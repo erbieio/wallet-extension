@@ -1,0 +1,45 @@
+:root {
+    // Popup fillet
+    --van-dialog-border-radius: 10px;
+    // Pop up window width
+    --van-dialog-width: 350px;
+    --van-button-primary-background-color:#9F54BA;
+    // Pop up confirmation button color
+    --van-dialog-confirm-button-text-color: #9F54BA;
+    // Pop up button font
+    --van-font-size-lg: 12px;
+    // Button border color
+    --van-button-primary-border-color: #9F54BA;
+    // Button font size
+    --van-button-default-font-size: 16px;
+    // Button fillet
+    --van-button-border-radius: 22px;
+    // Default button font color
+    --van-button-primary-background-color: #9F54BA;
+    // Border color
+    // --van-border-color: rgba(236, 237, 239, 1);
+    // Button default height
+    --van-button-default-height: 44px;
+    // Mask mask color
+    --van-overlay-background-color: rgba(0, 0, 0, 0.5000);
+    --van-border-color: #E4E7E8;
+    --van-danger-color: #d5384b;
+    --van-button-default-border-color: #000;
+    --van-button-danger-background-color: #D73A49;
+    --van-button-danger-border-color: #D73A49;
+    --van-border-width-base: 1px;
+    --van-background-color:#F8F3F9;
+    --van-switch-node-box-shadow: 0 3px 1px 0 rgba(#c7c5c5, .05), 0 2px 2px 0 rgba(#c7c5c5, .1), 0 3px 3px 0 rgba(#c7c5c5, .05);
+    --van-switch-background-color: #b3b3b3;
+    --van-switch-on-background-color:#9F54BA;
+    --van-cell-vertical-padding: 15px;
+    --van-popover-action-height: 33px;
+}
+
+.color-error {
+    color: #D73A49;
+}
+
+.color-warn {
+    color: #FFBE00;
+}
