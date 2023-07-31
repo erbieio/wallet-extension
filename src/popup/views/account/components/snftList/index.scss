@@ -47,7 +47,17 @@
         padding-bottom: 3px;
         padding-left: 8px;
         padding-right: 8px;
-
+        &.active {
+            margin-bottom: 10px;
+            margin-top: 10px;
+            background-image: linear-gradient(
+              90deg,
+              rgba(251, 195, 50, 1),
+              rgba(255, 255, 255, 1),
+              rgb(253, 206, 78)
+            );
+            animation: Gradient 6s ease infinite;
+          }
         .coll-card {
             width: 35px;
             height: 35px;
@@ -56,7 +66,25 @@
             margin-right: 6.8px;
             margin-bottom: 6.5px;
             position: relative;
-
+            &.gary {
+    
+                position: relative;
+                .snft-img {
+                  backdrop-filter: saturate(100%) blur(0);
+                  filter: grayscale(100%);
+                }
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  bottom: 0;
+                  right: 0;
+                  border-radius: 5px;
+                  background: rgba($color: #000, $alpha: .5);
+                  z-index: 11;
+              }
+                    }
             &:hover {
                 .arrow-top {
                     position: absolute;
@@ -73,12 +101,12 @@
 
             .check-icon-default {
                 position: absolute;
-                width: 23px;
-                height: 23px;
+                width: 23px !important;
+                height: 23px !important;
                 object-fit: contain;
-                left: 7px;
-                top: 7px;
-                z-index: 1;
+                left: 7px !important;
+                top: 7px !important;
+                z-index: 11;
             }
 
             .check-icon {
@@ -90,7 +118,7 @@
                 top: 50%;
                 margin-left: -10px;
                 margin-top: -10px;
-                z-index: 1;
+                z-index: 11;
 
                 &::after {
                     content: "";
@@ -125,17 +153,77 @@
                 right: 0px;
                 bottom: 0px;
             }
+            &.shining {
+                img {
+                    left: 3px;
+                    right: 3px;
+                    bottom: 3px;
+                    top: 3px;
+                    width: 32px;
+                    height: 32px;
+                }
+            }
         }
 
         .coll-card.shining {
-            img {
-                width: 36px;
-                height: 36px;
-                left: 3px;
-                right: 3px;
-                top: 3px;
-                bottom: 3px;
-            }
+            // &::before{
+            //     border: 2px solid gold;
+            //     animation: clippath infinite 5.4s cubic-bezier(1,.78,.71,.57);
+
+            // }
+       
+                // border: 2px solid #FBC332;
+                // position: relative;
+
+                // &::before {
+                //     content: "";
+                //     width: 35px;
+                //     height: 35px;
+                //     border-radius: 4px;
+                //     background-image: linear-gradient(var(--rotate), #fff, #f3e3ba 45%, #f8b305);
+                //     position: absolute;
+                //     z-index: 1;
+                //     top: 0;
+                //     left: 0;
+                //     animation: spin 3s linear infinite;
+                // }
+
+                // & img {
+                //     width: 29px !important;
+                //     height: 29px !important;
+                //     position: absolute;
+                //     left: 3px;
+                //     top: 3px;
+                //     border-radius: 4px;
+                //     z-index: 10;
+                // }
+
+                // &::after {
+                //     position: absolute;
+                //     content: "";
+                //     top: 7px;
+                //     left: 0;
+                //     right: 0;
+                //     z-index: 1;
+                //     height: 100%;
+                //     width: 100%;
+                //     margin: 0 auto;
+                //     transform: scale(0.8);
+                //     filter: blur(calc(50px / 6));
+                //     background-image: linear-gradient(var(--rotate), #fff, rgb(245, 222, 190) 30%, #f8b305);
+                //     opacity: 1;
+                //     transition: opacity .5s;
+                //     animation: spin 3s linear infinite;
+                // }
+   
+            // .snft-img {
+            //     width: 34px;
+            //     height: 34px;
+            //     left: 2px;
+            //     right: 2px;
+            //     top: 2px;
+            //     bottom: 2px;
+            // }
         }
 
         .coll-card:nth-last-of-type(1) {
@@ -207,7 +295,7 @@
             height: 10px;
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
-            width: 200px;
+            width: 0;
             background: linear-gradient(90deg, #DDF2E2 0%, #85E19B 100%);
             transition: ease .3s;
         }
@@ -266,6 +354,20 @@
 
 }
 
+
+@keyframes Gradient {
+    0% {
+        background-position: left 0 top 0;
+    }
+    50% {
+        background-position: left 50% top 0;
+    }
+    100% {
+        background-position: left 100% top 0;
+    }
+
+  }
+
 @media screen and (max-width: 750px) {
     .snft-card {
         &-list {
@@ -321,8 +423,8 @@
 
             .coll-card.shining {
                 img {
-                    width: 31.6px;
-                    height: 31.6px;
+                    // width: 33px;
+                    // height: 33px;
                 }
             }
         }
@@ -333,12 +435,11 @@
     .snft-card {
         &-list {
             .coll-card {
-                width: 33px;
-                height: 33px;
-
+                width: 34.4px;
+                height: 34.4px;
                 img {
-                    width: 33px;
-                    height: 33px;
+                    width: 34.4px;
+                    height: 34.4px;
                 }
             }
 
@@ -349,7 +450,18 @@
                 }
             }
         }
+        .snft-list-out {
+            top: 65px;
+            .snft-list {
+                .snft-child {
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 8.2px;
+                }
+            }
+        }
     }
+
 }
 
 .load-tip {
@@ -486,9 +598,9 @@
     --lineColor: rgba(102, 163, 224, .2);
 }
 
-.shining {
+.shining-out {
     position: relative;
-
+    box-shadow: 0 1px 6px 0 #f3d485; 
     &::before {
         content: "";
         position: absolute;
@@ -496,9 +608,63 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border: 3px solid gold;
-        animation: clippath 3s infinite linear;
+        border: 2px solid #f8b305;
+        animation: clippath infinite 5s linear;
         border-radius: 5px;
+    }
+}
+.shining {
+    // border: 2px solid #FBC332;
+    position: relative;
+
+    &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background-image: linear-gradient(var(--rotate), #fff, #f3e3ba 50%, #f8b305);
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        animation: spin 3s linear infinite;
+    }
+
+    & img {
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        right: 3px;
+        bottom: 3px;
+        border-radius: 4px;
+        z-index: 10;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        top: 7px;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        transform: scale(0.8);
+        filter: blur(calc(50px / 6));
+        background-image: linear-gradient(var(--rotate), #fff, rgb(245, 222, 190) 30%, #f8b305);
+        opacity: 1;
+        transition: opacity .5s;
+        animation: spin 3s linear infinite;
+    }
+}
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+
+    100% {
+        --rotate: 360deg;
     }
 }
 
@@ -516,6 +682,20 @@
     50% {
         clip-path: inset(95% 0 0 0);
     }
+
+    75% {
+        clip-path: inset(0 0 0 95%);
+    }
+}
+
+@keyframes clippath2 {
+
+    0%,
+    100% {
+        clip-path: inset(0 0 95% 0);
+    }
+
+
 
     75% {
         clip-path: inset(0 0 0 95%);

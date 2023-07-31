@@ -6,19 +6,8 @@
           <div class="notices pl-14 pr-14 pt-4 pb-4 flex center-v">
             <i class="iconfont icon-warn"></i>
             <span class="lh-14"
-            v-show="type == '2'"
               >
               {{ t("transferNft.conversionconfirmation") }}</span
-            >
-            <span class="lh-14"
-            v-show="type == '3'"
-              >
-              {{ t("transferNft.stakingconfirmation") }}</span
-            >
-            <span class="lh-14"
-            v-show="type == '1'"
-              >
-              {{ t("transferNft.reStakingconfirmation") }}</span
             >
           </div>
           <div class="flex between t-bottom pl-14 pr-14">
@@ -32,9 +21,6 @@
               <!-- amount -->
               <div class="amount ml-8 flex column between">
                 <div class="f-12">{{selectedText}}</div>
-                <!-- <span class="sel">{{selectNumber}} 
-                  {{ t("transferNft.select") }}
-                </span> -->
                 <div class="sel2 text-bold">{{selectTotal}} ERB</div>
               </div>
             </div>
@@ -42,9 +28,8 @@
             <div class="convert flex center">
               <van-button size="small" type="primary" @click="handleConfirm"
                 >
-                <!-- {{ t("transferNft.convert") }} <i class="iconfont icon-zhuanhuan"></i
-              > -->
-                  {{submitText}}
+                <i class="iconfont icon-caozuo-xunhuan1"></i>
+                  {{t("transferNft.convert")}}
             </van-button>
             </div>
           </div>
@@ -80,8 +65,8 @@ export default defineComponent({
     },
     // selected Total Amount
     selectTotal: {
-      type: Number,
-      default: 0
+      type: String,
+      default: '0'
     },
     // selected text
     selectedText:{
@@ -225,6 +210,9 @@ export default defineComponent({
       transform: scale(0.8);
       transform-origin: center left;
     }
+  }
+  button {
+    min-width: 60px;
   }
 }
 .slider-enter-active {

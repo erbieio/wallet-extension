@@ -1,31 +1,19 @@
 
 
-import { httpGet,httpPost } from '../request'
-import { scanApi,snftUrl4,nftmintApi } from '@/popup/http/httpUrl'
-
-
-// Get NFT according to owner
-export function getNftOwner(params = {}){
-    return httpGet(`${scanApi}/nft_meta/page`, params)
-}
-
+import { httpGet, httpPost } from '../request'
+import { scanApi, snftUrl4, nftmintApi } from '@/popup/http/httpUrl'
 
 
 // Get snft by owner
-export function getSnftOwner(params = {}){
-    return httpGet(`${scanApi}/snft_meta/page`, params)
+export function getSnftOwner(params = {}) {
+  return httpGet(`${scanApi}/snft_meta/page`, params)
 }
-
-
-
 
 
 // Query collection
 export function collectionList(params = {}) {
-    return httpGet(`${scanApi}/collect/page`, params)
+  return httpGet(`${scanApi}/collect/page`, params)
 }
-
-
 
 
 /**
@@ -33,9 +21,9 @@ export function collectionList(params = {}) {
  * @param params 
  * @returns 
  */
-export function snftCollectionById(params = {}){
-    const { id }: any = params
-    return httpGet(`${scanApi}/snft/collection/0x${id || ''}`)
+export function snftCollectionById(params = {}) {
+  const { id }: any = params
+  return httpGet(`${scanApi}/snft/collection/0x${id || ''}`)
 }
 
 /**
@@ -47,31 +35,20 @@ export function snftCollectionById(params = {}){
  * @returns 
  */
 export function collectionListPage(params = {}) {
-    return httpGet(`${scanApi}/snft/collection/page`, params)
+  return httpGet(`${scanApi}/snft/collection/page`, params)
 }
-
-/**
- * Specify 256 fragments by ID query
- * @param id 
- * @returns 
- */
-export function snftGroup(id: string) {
-    return httpGet(`${scanApi}/snft/group/${id}`, {})
-}
-
-
 
 
 /**
  * /v2/querySnftByCollection
  * According to the classification, the owner search set
  */
-export function queryOwnerSnftCollections(params ={}){
-    return httpPost(`${snftUrl4}/v2/queryOwnerSnftCollections`, params)
+export function queryOwnerSnftCollections(params = {}) {
+  return httpPost(`${snftUrl4}/v2/queryOwnerSnftCollections`, params)
 }
 
-export function queryAllSnftByCollection(params= {}) {
-    return httpPost(`${snftUrl4}/v2/queryAllSnftByCollection`, params)
+export function queryAllSnftByCollection(params = {}) {
+  return httpPost(`${snftUrl4}/v2/queryAllSnftByCollection`, params)
 }
 
 /**
@@ -82,8 +59,8 @@ export function queryAllSnftByCollection(params= {}) {
  * @param params count
  * @returns 
  */
-export function queryCollectionAllSnft(params ={}){
-    return httpPost(`${snftUrl4}/v2/queryCollectionAllSnft`, params)
+export function queryCollectionAllSnft(params = {}) {
+  return httpPost(`${snftUrl4}/v2/queryCollectionAllSnft`, params)
 }
 
 /**
@@ -94,8 +71,8 @@ export function queryCollectionAllSnft(params ={}){
  * @param params count
  * @returns 
  */
- export function queryOwnerSnftChipAmount(params ={}){
-    return httpPost(`${snftUrl4}/v2/queryOwnerSnftChipAmount`, params)
+export function queryOwnerSnftChipAmount(params = {}) {
+  return httpPost(`${snftUrl4}/v2/queryOwnerSnftChipAmount`, params)
 }
 
 
@@ -103,8 +80,8 @@ export function queryCollectionAllSnft(params ={}){
  * Check the number of snft held according to the collection
  * @package params 
  */
-export function querySnftByCollection(params ={}){
-    return httpPost(`${snftUrl4}/v2/querySnftByCollection`, params)
+export function querySnftByCollection(params = {}) {
+  return httpPost(`${snftUrl4}/v2/querySnftByCollection`, params)
 }
 
 
@@ -116,109 +93,116 @@ export function querySnftByCollection(params ={}){
  * @param params count
  * @returns 
  */
-export function QuerySnftChip(params = {}){
-    return httpPost(`${snftUrl4}/v2/querySnftChip`, params)
+export function QuerySnftChip(params = {}) {
+  return httpPost(`${snftUrl4}/v2/querySnftChip`, params)
 }
 
 
 
-// Query automatically synthesized SNFT data
-export const snft_com_page = (params = {}) => {
-    return httpGet(`${scanApi}/snft_com/page`,params)
-   
-  }
-  // Example Query SNFT data
+
+// Example Query SNFT data
 export const getSnftList = (params = {}) => {
-   return httpGet(`${scanApi}/snft/page`,params)
+  return httpGet(`${scanApi}/snft/page`, params)
 }
-  
+
 
 export const queryArraySnft = (params = {}) => {
-    return httpPost(`${snftUrl4}/v2/queryArraySnft`,params)
+  return httpPost(`${snftUrl4}/v2/queryArraySnft`, params)
 }
 
 interface Response {
   code: string
   data: any
+  msg: string
 }
 
-interface  QueryAllSnftByStageParams  {
+
+interface QueryAllSnftByStageParams {
   stage_addr: string
   start_index: string
-  count:string
+  count: string
   snfttype: "chip" | "snft" | "collect"
+  owner_addr?: string
 }
 
-export const queryAllSnftByStage = (params: QueryAllSnftByStageParams): Promise<Response>  => {
+export const queryAllSnftByStage = (params: QueryAllSnftByStageParams): Promise<Response> => {
   return httpPost(`${snftUrl4}/v2/queryAllSnftByStage`, params)
 }
 
-interface  QueryOwnerStageParams  {
-  owner_addr: string
-  start_index: string
-  count:string
+
+enum flags {
+  all = 'all'
 }
-export const queryOwnerStage = (params: QueryOwnerStageParams): Promise<Response> => {
+interface QueryOwnerStageParams {
+  owner_addr?: string
+  start_index?: string
+  stages?: string
+}
+interface ListResponse extends Response {
+  total_count: number
+  data: Array<any>
+}
+export const queryOwnerStage = (params: QueryOwnerStageParams): Promise<ListResponse> => {
   return httpPost(`${snftUrl4}/v2/queryOwnerStage`, params)
 }
 
 
 
-  // Query the account information about the specified address
+// Query the account information about the specified address
 export const getAccount = (address: string) => {
-    return httpGet(`${scanApi}/account/${address}`)
+  return httpGet(`${scanApi}/account/${address}`)
 }
 
 
 
 export const getOwnerNftList = (params = {}) => {
-  return httpGet(`${scanApi}/nft/page`,params)
+  return httpGet(`${scanApi}/nft/page`, params)
 }
 export interface GetDrawInfoParams {
-    useraddr: string
-    index: string
-    count: string
-  }
-  export const getDrawInfoByUser = (params: GetDrawInfoParams) => {
-    return httpPost(`${nftmintApi}/v1/getDrawInfoByUser`, params)
-  
-  }
-  
-  export interface EmailParams {
-    useraddr: string
-  }
-  export const getEmailByUser = (params: EmailParams) => {
-    return httpPost(`${nftmintApi}/v1/getEmailByUser`, params)
-  
-  }
-  
-  
-  export interface DrawListParams {
-    nftaddrs: string
-  }
-  export const getDrawInfoByNftaddrs = (params: DrawListParams) => {
-    return httpPost(`${nftmintApi}/v1/getDrawInfoByNftaddrs`, params)
-  
-  }
-  
-  
-  
-  
-  export const getPaintFee = () => {
-    return httpPost(`${nftmintApi}/v1/getPaintFee`, {})
-  }
-  export interface DrawImageParams {
-    useraddr: string
-    nftaddr: string
-    email: string
-    drawflag: string
-  }
-  export const drawImage = (params: DrawImageParams) => {
-    return httpPost(`${nftmintApi}/v1/drawImage`, params)
-  }
-  
-  
-  export const getAiServerAddr = () => {
-    return httpPost(`${nftmintApi}/v1/getAiServerAddr`, {})
-  }
-  
+  useraddr: string
+  index: string
+  count: string
+}
+export const getDrawInfoByUser = (params: GetDrawInfoParams) => {
+  return httpPost(`${nftmintApi}/v1/getDrawInfoByUser`, params)
+
+}
+
+export interface EmailParams {
+  useraddr: string
+}
+export const getEmailByUser = (params: EmailParams) => {
+  return httpPost(`${nftmintApi}/v1/getEmailByUser`, params)
+
+}
+
+
+export interface DrawListParams {
+  nftaddrs: string
+}
+export const getDrawInfoByNftaddrs = (params: DrawListParams) => {
+  return httpPost(`${nftmintApi}/v1/getDrawInfoByNftaddrs`, params)
+
+}
+
+
+
+
+export const getPaintFee = () => {
+  return httpPost(`${nftmintApi}/v1/getPaintFee`, {})
+}
+export interface DrawImageParams {
+  useraddr: string
+  nftaddr: string
+  email: string
+  drawflag: string
+}
+export const drawImage = (params: DrawImageParams) => {
+  return httpPost(`${nftmintApi}/v1/drawImage`, params)
+}
+
+
+export const getAiServerAddr = () => {
+  return httpPost(`${nftmintApi}/v1/getAiServerAddr`, {})
+}
+

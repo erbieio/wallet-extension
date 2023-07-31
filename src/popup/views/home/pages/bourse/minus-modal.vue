@@ -1,13 +1,5 @@
 <template>
-  <van-dialog
-    v-model:show="show"
-    show-cancel-button
-    teleport="#page-box"
-    :showConfirmButton="false"
-    :showCancelButton="false"
-    class="minus-stack-dialog"
-    closeOnClickOverlay
-  >
+  <van-dialog v-model:show="show" show-cancel-button teleport="#page-box" :showConfirmButton="false" :showCancelButton="false" class="minus-stack-dialog" closeOnClickOverlay>
     <div class="title text-center">{{ t("bourse.minusTit") }}</div>
     <div class="form-box">
       <!-- <div class="card">
@@ -38,21 +30,12 @@
         <div class="label lh-16 mb-2">
           {{ t("bourse.stakingFee") }}
 
-          <van-popover
-            v-model:show="showTip2"
-            theme="dark"
-            placement="top"
-            trigger="manual"
-          >
+          <van-popover v-model:show="showTip2" theme="dark" placement="top" trigger="manual">
             <div class="f-12 pl-10 pr-10 pt-10 pb-10 popover-tip">
               {{ t("bourse.tipstake") }}
             </div>
             <template #reference>
-              <van-icon
-                @mouseenter="showTip2 = true"
-                @mouseout="showTip2 = false"
-                name="question hover"
-              />
+              <van-icon @mouseenter="showTip2 = true" @mouseout="showTip2 = false" name="question hover" />
             </template>
           </van-popover>
         </div>
@@ -62,21 +45,12 @@
         <div class="label lh-16 mb-2">
           {{ t("minerspledge.redemingAmount") }}
 
-          <van-popover
-            v-model:show="showTip3"
-            theme="dark"
-            placement="top"
-            trigger="manual"
-          >
+          <van-popover v-model:show="showTip3" theme="dark" placement="top" trigger="manual">
             <div class="f-12 pl-10 pr-10 pt-10 pb-10 popover-tip">
               {{ t("bourse.tipre") }}
             </div>
             <template #reference>
-              <van-icon
-                @mouseenter="showTip3 = true"
-                @mouseout="showTip3 = false"
-                name="question hover"
-              />
+              <van-icon @mouseenter="showTip3 = true" @mouseout="showTip3 = false" name="question hover" />
             </template>
           </van-popover>
         </div>
@@ -86,21 +60,12 @@
         <div class="label lh-16 mb-2">
           {{ t("bourse.hsitoryReturn") }}
 
-          <van-popover
-            v-model:show="showTip4"
-            theme="dark"
-            placement="top"
-            trigger="manual"
-          >
+          <van-popover v-model:show="showTip4" theme="dark" placement="top" trigger="manual">
             <div class="f-12 pl-10 pr-10 pt-10 pb-10 popover-tip">
               {{ t("bourse.tipprofit") }}
             </div>
             <template #reference>
-              <van-icon
-                @mouseenter="showTip4 = true"
-                @mouseout="showTip4 = false"
-                name="question hover"
-              />
+              <van-icon @mouseenter="showTip4 = true" @mouseout="showTip4 = false" name="question hover" />
             </template>
           </van-popover>
         </div>
@@ -110,21 +75,12 @@
         <div class="label lh-16 mb-2">
           {{ t("bourse.income") }}
 
-          <van-popover
-            v-model:show="showTip5"
-            theme="dark"
-            placement="top"
-            trigger="manual"
-          >
+          <van-popover v-model:show="showTip5" theme="dark" placement="top" trigger="manual">
             <div class="f-12 pl-10 pr-10 pt-10 pb-10 popover-tip">
               {{ t("bourse.tipincome") }}
             </div>
             <template #reference>
-              <van-icon
-                @mouseenter="showTip5 = true"
-                @mouseout="showTip5 = false"
-                name="question hover"
-              />
+              <van-icon @mouseenter="showTip5 = true" @mouseout="showTip5 = false" name="question hover" />
             </template>
           </van-popover>
         </div>
@@ -134,21 +90,12 @@
         <div class="label lh-16 mb-2">
           {{ t("bourse.gasFee") }}
 
-          <van-popover
-            v-model:show="showTip6"
-            theme="dark"
-            placement="top"
-            trigger="manual"
-          >
+          <van-popover v-model:show="showTip6" theme="dark" placement="top" trigger="manual">
             <div class="f-12 pl-10 pr-10 pt-10 pb-10 popover-tip">
               {{ t("common.gasFee") }}
             </div>
             <template #reference>
-              <van-icon
-                @mouseenter="showTip6 = true"
-                @mouseout="showTip6 = false"
-                name="question hover"
-              />
+              <van-icon @mouseenter="showTip6 = true" @mouseout="showTip6 = false" name="question hover" />
             </template>
           </van-popover>
         </div>
@@ -225,8 +172,7 @@ export default defineComponent({
     const { state } = store;
     const gasFee = ref();
 
-    const { addExchangeBalance, miunsExchangeBalance, closeExchanges } =
-      useExchanges();
+    const { addExchangeBalance, miunsExchangeBalance, closeExchanges } = useExchanges();
     watch(
       () => props.modelValue,
       async (n) => {
@@ -235,8 +181,8 @@ export default defineComponent({
           const bigAmount = new Bignumber(props.amount);
           const { address } = state.account.accountInfo;
           const str = bigAmount.gte(props.fee)
-            ? `wormholes:{"version":"0.0.1","type":12}`
-            : `wormholes:{"type":22,"version":"v0.0.1"}`;
+            ? `${store.getters['account/chainParsePrefix']}:{"version":"0.0.1","type":12}`
+            : `${store.getters['account/chainParsePrefix']}:{"type":22,"version":"v0.0.1"}`;
           const realAm = bigAmount.gte(props.fee) ? 0 : props.amount;
           const data3 = toHex(str);
           const tx1 = {
@@ -332,24 +278,30 @@ export default defineComponent({
   line-height: 60px;
   background: #F8F3F9;
 }
+
 .form-box {
   border-radius: 10px;
   border: 1px solid #e4e7e8;
   margin: 27px 15px 15px;
   padding: 12px 15px 0;
 }
+
 .card {
   border-bottom: 1px solid #e4e7e8;
   padding: 11px 0;
+
   .label {
     color: #8f8f8f;
   }
+
   .value {
     color: #000000;
+
     &.gasFee {
       color: #3aae55;
     }
   }
+
   &:nth-last-of-type(1) {
     border-bottom: none;
   }

@@ -172,7 +172,7 @@ export default {
     const store = useStore();
     const currentNetwork = computed(() => store.state.account.currentNetwork);
     const { emit }: any = context;
-    const str = `wormholes:{"type":10,"version":"v0.0.1"}`;
+    const str = `${store.getters['account/chainParsePrefix']}:{"type":10,"version":"v0.0.1"}`;
     let dislogShow = computed({
       get: () => props.show,
       set: (v) => emit("update:show", v),

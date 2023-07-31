@@ -23,7 +23,8 @@ import { toRaw } from "vue";
 import { TransactionData, TransactionParams } from "./index";
 import { ETH, Token } from "@/popup/utils/token";
 import { getAccountAddr, getCreator, getPeriodById } from "@/popup/http/modules/common";
-import { useStore } from "vuex";
+import { chainDataParse } from "@/popup/enum/env";
+
 import {
   NetWorkData,
   netWorklist,
@@ -49,6 +50,20 @@ import Bignumber from 'bignumber.js'
 import { sendBackground } from "@/popup/utils/sendBackground";
 import localforage from "localforage";
 import { Wallet } from "ethers";
+
+type ChainVersion = {
+  name: string
+  version: string
+}
+
+interface ValidatorInfo {
+  Addr:string
+  Balance: number
+  Proxy: string
+  Weight: Array<any>
+}
+type Validator = null | ValidatorInfo
+
 export interface State {
   // Mnemonic words
   mnemonic: Mnemonic;
@@ -79,7 +94,8 @@ export interface State {
   netStatus: NetStatus
   creatorStatus: Object | null,
   ethAccountInfo: Object,
-
+  chainVersion: ChainVersion,
+  validator: Validator,
 }
 export type ContactInfo = {
   address: string;
@@ -234,7 +250,12 @@ export type TransactionReceipt = {
 };
 
 let waitTime = null;
-
+let provider: any = null
+export const getProvider = async () => {
+  const { dispatch } = storeObj;
+  const pro = await dispatch('account/getProvider')
+  return pro
+}
 export let wallet: any = null;
 export const getWallet = () => {
   if (!wallet || !wallet.provider) {
@@ -346,8 +367,44 @@ export default {
     tranactionModel(state: State) {
       return state.tranactionModel
     },
+    chainParsePrefix(state: State) {
+      const {name, version} = state.chainVersion
+      if(name == 'wormholes' && version < 'v0.14.0' ){
+        return chainDataParse.wormholes
+      }
+      if(name == 'erbie' && version >= 'v0.14.0' ){
+        return chainDataParse.erbie
+      }
+      throw Error('chain version error')
+    }
   },
   mutations: {
+    UPDATE_CHAINVERSION(state: State, str: string) {
+      try {
+          const [name, version] = str.split(' ')
+          if(name && version) {
+            state.chainVersion = {
+              name,
+              version
+            }
+        } else {
+          state.chainVersion = {
+            name: str,
+            version: str
+          }
+        }
+
+      }catch(err) {
+        state.chainVersion = {
+          name: str,
+          version: str
+        }
+      }
+      
+    },
+    UPDATE_VALIDATOR(state: State, info: Validator) {
+      state.validator = info
+    },
     // Update EthAccountInfo
     UPDATE_ETHACCOUNTINFO(state: State, info: any) {
       state.ethAccountInfo = info
@@ -746,6 +803,27 @@ export default {
     },
   },
   actions: {
+    getProvider({ state }: any) {
+      const { URL } = state.currentNetwork;
+      if (!provider || !provider.connection || provider.connection.url.toUpperCase() != URL.toUpperCase()) {
+        provider = ethers.getDefaultProvider(URL)
+      }
+      return provider || {}
+    },
+    async getChainVersion ({state, commit}) {
+      const provider = await getProvider()
+      const res = await provider.send('eth_version')
+      console.warn('erbie ===========', res.split(' '))
+      commit('UPDATE_CHAINVERSION', res)
+      return res
+    },
+    async getValidator({state,commit}: any) {
+      const provider = await getProvider()
+      const res = await provider.send("eth_getValidator", ['latest'])
+      const {Validators} = res || {}
+      const addInfo = Validators.find((item: Validator) => item.Addr.toUpperCase() == state.accountInfo.address.toUpperCase())
+      commit('UPDATE_VALIDATOR', addInfo || null)
+    },
     // get ethAccountInfo
     async getEthAccountInfo({ commit, state }: any) {
       const wall = await getWallet()
@@ -1056,6 +1134,7 @@ export default {
           const wall = await dispatch("createWalletByJson", { password, json });
           const newWallet = wall.connect(provider)
           const res = await newWallet.provider.getNetwork()
+          dispatch('getChainVersion')
           commit('UPDATE_ETHNETWORK', res)
           commit('UPDATE_NETSTATUS', NetStatus.success)
           commit("UPDATE_WALLET", newWallet);
@@ -1069,6 +1148,7 @@ export default {
             commit('UPDATE_NETSTATUS', NetStatus.success)
             commit("UPDATE_WALLET", newWallet);
             commit('UPDATE_ETHNETWORK', res)
+            dispatch('getChainVersion')
             return newWallet
           } else {
             commit('UPDATE_NETSTATUS', NetStatus.success)
@@ -1082,7 +1162,7 @@ export default {
           const newWallet = wallet.connect(provider)
           const res = await newWallet.provider.getNetwork()
           commit('UPDATE_ETHNETWORK', res)
-
+          dispatch('getChainVersion')
           commit('UPDATE_NETSTATUS', NetStatus.success)
           commit("UPDATE_WALLET", newWallet);
           return newWallet
@@ -1090,9 +1170,6 @@ export default {
       } catch (err: any) {
         console.warn('showNotify', Notify)
         console.error('err:----2', err)
-        // if(JSON.stringify(err).indexOf('could not detect network') > -1) {
-        //   Notify({ type: 'danger', message: i18n.global.t('error.netErr'),duration: 5000 })
-        // }
         Notify({ type: 'danger', message: i18n.global.t('error.netErr'), duration: 5000, position: 'bottom' })
         commit('UPDATE_NETSTATUS', NetStatus.fail)
         return Promise.reject(err);

@@ -62,7 +62,7 @@ export default defineComponent({
     // The total scale
     total: {
       type: Number,
-      default: 256,
+      default: 16,
     },
     // Convertible proportion
     ratio: {
@@ -220,7 +220,7 @@ export default defineComponent({
         color: #3AAE55;
         padding: 0 4px;
         font-size: 12px;
-        // transform: scale(0.8);
+        transform: scale(0.8);
       }
     }
   }

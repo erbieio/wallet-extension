@@ -215,7 +215,8 @@ export default defineComponent({
     const { $tradeConfirm } = useTradeConfirm();
     const { $toast } = useToast();
     const showModal: Ref<boolean> = ref(false);
-    const { dispatch, commit, state } = useStore();
+    const store = useStore();
+    const {dispatch,commit,state} = store
     const { currentNetwork } = state.account;
     watch(
       () => props.modelValue,
@@ -311,15 +312,15 @@ export default defineComponent({
           switch (props.txtype) {
             // transfer
             case "2":
-              str = `wormholes:{"type":6,"nft_address":"${nftAdd}","version":"v0.0.1"}`;
+              str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nftAdd}","version":"v0.0.1"}`;
               break;
             // pledge
             case "3":
-              str = `wormholes:{"type":7,"nft_address":"${nftAdd}","version":"0.0.1"}`;
+              str = `${store.getters['account/chainParsePrefix']}:{"type":7,"nft_address":"${nftAdd}","version":"0.0.1"}`;
               break;
             // redemption
             case "1":
-              str = `wormholes:{"type":8,"nft_address":"${nftAdd}","version":"0.0.1"}`;
+              str = `${store.getters['account/chainParsePrefix']}:{"type":8,"nft_address":"${nftAdd}","version":"0.0.1"}`;
               break;
           }
           console.log('str', str)
@@ -408,7 +409,6 @@ export default defineComponent({
       
       
         /**
-         * （SNFT质押金额+交易所质押金额）/全网质押金额 * 599184  * （SNFT质押/（SNFT + 交易所））
          * address: "0x7e5f4552091a69125d5dfcb7b8c2659029395bdf"
            balance: "155996997207323999550712"
            code: null
@@ -460,14 +460,14 @@ export default defineComponent({
         switch (props.txtype) {
           // To pledge
           case "3":
-            str = `wormholes:{"type":7,"nft_address":"${nft_address}","version":"0.0.1"}`;
+            str = `${store.getters['account/chainParsePrefix']}:{"type":7,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
           // redeemable
           case "1":
-            str = `wormholes:{"type":8,"nft_address":"${nft_address}","version":"0.0.1"}`;
+            str = `${store.getters['account/chainParsePrefix']}:{"type":8,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
           case "2":
-            str = `wormholes:{"type":6,"nft_address":"${nft_address}","version":"0.0.1"}`;
+            str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
         }
         console.log("gas fee  - str-------------------", str);

@@ -334,16 +334,18 @@ export default {
 }
 
 
+
 export function getInput(input) {
     console.log('input', input)
+    const prefix = store.getters['account/chainParsePrefix']
     if (input && input != '0x') {
         try {
             debugger
             const wormStr = web3.utils.toAscii(input)
             console.log('wormStr',wormStr)
-            const [nullstr, jsonstr] = wormStr.split('wormholes:')
+            const [nullstr, jsonstr] = wormStr.split(`${prefix}:`)
             let jsonData = null
-            const txType = wormStr.startsWith('wormholes:')
+            const txType = wormStr.startsWith(`${prefix}:`)
             if (jsonstr && txType) {
                 jsonData = JSON.parse(jsonstr)
             } else {
@@ -352,7 +354,7 @@ export function getInput(input) {
   
             console.warn('jsonData', jsonData)
             if(txType) {
-                jsonData.txType = 'wormholes'
+                jsonData.txType = prefix
             } else {
                 if(jsonData) {
                     if(jsonData.nft_address && jsonData.owner) {
@@ -366,7 +368,7 @@ export function getInput(input) {
             }
             return jsonData
         } catch (err) {
-            console.log('err', err)
+            console.warn('err', err)
             return null
         }
     }

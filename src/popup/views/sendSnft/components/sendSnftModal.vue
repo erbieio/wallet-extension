@@ -107,7 +107,8 @@ export default defineComponent({
     const calcFee = async () => {
       console.warn('props.tx', props.tx)
       const { nft_address, to } = props.tx
-      const str = `wormholes:{"version": "v0.0.1","type": 1,"nft_address":"${nft_address[0]}"}`;
+      const [addr] = nft_address
+      const str = `${store.getters['account/chainParsePrefix']}:{"version": "v0.0.1","type": 1,"nft_address":"${addr.replaceAll('m', '')}"}`;
       console.warn('str----', str)
       const data3 = web3.utils.fromUtf8(str);
       const myAddr = accountInfo.value.address

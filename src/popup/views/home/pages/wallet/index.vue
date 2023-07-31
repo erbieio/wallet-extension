@@ -261,10 +261,8 @@ import AccountModal from "@/popup/components/accountModal/index.vue";
 import { mapState, useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { addressMask, decimal } from "@/popup/utils/filters";
-import { useToggleAccount } from "@/popup/components/accountModal/hooks/toggleAccount";
 import useClipboard from "vue-clipboard3";
 import { useI18n } from "vue-i18n";
-import { getNftOwner } from "@/popup/http/modules/nft";
 import eventBus from "@/popup/utils/bus";
 import QrcodeModal from "@/popup/components/qrcodeModal/index.vue";
 import AddressQRModal from "@/popup/components/addressQRModal/index.vue";
@@ -286,10 +284,7 @@ import BackUp from "@/popup/components/guideModal/backUp.vue";
 import BackUpBottom from "@/popup/components/guideModal/backupBottom.vue";
 import SnftDetails from "@/popup/components/snftdetails/index.vue";
 import { useExchanges } from "@/popup/hooks/useExchanges";
-import { web3 } from "@/popup/utils/web3";
 import { useToast } from "@/popup/plugins/toast";
-import { useDialog } from "@/popup/plugins/dialog";
-import { getWallet } from "@/popup/store/modules/account";
 import BigNumber from "bignumber.js";
 
 export default {
@@ -340,7 +335,7 @@ export default {
     const { t } = useI18n();
     const router = useRouter();
     const route = useRoute();
-    const active: Ref<string> = ref("c");
+    const active: Ref<string> = ref("a");
     const { generateSign, initExchangeData } = useExchanges();
     const store = useStore();
     const showSlider = ref(false);
@@ -382,6 +377,9 @@ export default {
         query: { backUrl: "receive-choose-code" },
       });
     };
+    const handleGetValidator = async () => {
+      dispatch('account/getValidator')
+    }
 
     const showModal: Ref<boolean> = ref(false);
     const showaccount = () => {
@@ -462,15 +460,19 @@ export default {
         console.warn('changeAccount....')
         dispatch('account/getEthAccountInfo')
         dispatch("account/updateBalance");
+        handleGetValidator()
         showModal.value = false;
       });
+      eventBus.on('walletReady', () => {
+        handleGetValidator()
+      })
       dispatch('account/getCreatorStatus', accountInfo.value.address)
       dispatch("account/getEthAccountInfo");
       dispatch("account/getExchangeStatus").then((res) => {
         console.warn(111);
-        if (res.status == 2 && res.ExchangerFlag) {
-          initExchangeData();
-        }
+        // if (res.status == 2 && res.ExchangerFlag) {
+        //   initExchangeData();
+        // }
       });
       dispatch("transfer/clearTx");
       handleLoopBalance();

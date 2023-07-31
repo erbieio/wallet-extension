@@ -160,7 +160,7 @@
       >
         <template v-slot:link>
           <span
-            @click="viewAccountByAddress(accountInfo.address)"
+            @click="toScan(accountInfo.address,'/AccountDetail')"
             class="f-12 view-history hover"
             rel="noopener noreferrer"
             >{{ t("wallet.scanLink") }}</span
@@ -196,7 +196,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { hexValue } from "@ethersproject/bytes";
 import { useI18n } from "vue-i18n";
-import { guid, viewAccountByAddress, debounce } from "@/popup/utils/utils";
+import { guid, toScan, debounce } from "@/popup/utils/utils";
 import {
   clone,
   getWallet,
@@ -742,7 +742,7 @@ export default {
       loading,
       pageData,
       VUE_APP_SCAN_URL,
-      viewAccountByAddress,
+      toScan,
       txList,
     };
   },

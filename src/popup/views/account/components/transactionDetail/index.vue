@@ -109,7 +109,7 @@ import { Icon, Toast, Button, Popover } from "vant";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { utils } from "ethers";
-import { copy } from "@/popup/utils/utils";
+import { copy, toScan } from "@/popup/utils/utils";
 import { useI18n } from "vue-i18n";
 import BigNumber from "bignumber.js";
 import { useToast } from "@/popup/plugins/toast";
@@ -184,7 +184,7 @@ export default defineComponent({
       return bigP.multipliedBy(bigU);
     });
     const view = () => {
-      window.open(`${VUE_APP_SCAN_URL}TradeDetail/${props.data.hash}`);
+      toScan(props.data.hash,'/TradeDetail')
     };
     const cancel = () => {
       emit("handleClose");

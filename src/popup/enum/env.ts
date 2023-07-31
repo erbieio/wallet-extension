@@ -22,3 +22,13 @@ export const VUE_APP_PRIVACYNOTICE = decode(process.env.VUE_APP_PRIVACYNOTICE ||
 
 
 export const VUE_APP_OFFICIAL_EXCHANGE = decode(process.env.VUE_APP_OFFICIAL_EXCHANGE || '')
+
+
+export const isDev = process.env.VUE_APP_NODE_ENV == 'development'
+
+
+
+export enum chainDataParse {
+    wormholes = 'wormholes',
+    erbie = 'erbie'
+}

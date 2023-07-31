@@ -17,7 +17,7 @@
         "utility": "实用"
     },
     "loginwithpassword": {
-        "welcome": "欢迎再次使用Wormholes钱包",
+        "welcome": "欢迎再次使用Erbie钱包",
         "login": "登录",
         "input": "输入密码",
         "pleaseinput": "请输入密码",
@@ -273,14 +273,14 @@
         "continue": "继续",
         "back": "返回",
         "next": "下一步",
-        "serviceandPrivacyNotice": "请查看 Wormholes ERB 钱包服务条款和隐私声明",
+        "serviceandPrivacyNotice": "请查看 Erbie ERB 钱包服务条款和隐私声明",
         "memErr": "助记词格式有误，请确认后重新提交",
         "isServiceandPrivacyNotice": "请务必检查服务条款和隐私政策 ",
         "isServiceandPrivacyNotices": "请务必勾选用户协议 ",
-        "pwdTip": "通过继续，您同意 Wormholes 的 {br} {link1}&{link2}",
+        "pwdTip": "通过继续，您同意 Erbie 的 {br} {link1}&{link2}",
         "link1": "Terms Of Service",
         "link2": "Privacy Notice",
-        "pwdTip2": "通过继续，您同意 Wormholes 的 {br} {link1}",
+        "pwdTip2": "通过继续，您同意 Erbie 的 {br} {link1}",
         "link3": "质押者的SNFT权益条款"
     },
     "sign": {
@@ -309,13 +309,13 @@
         "hint": "你的钱包没有备份！",
         "tips": "如果您在使用钱包之前不进行备份，您的资金将面临风险。 确保立即备份。",
         "yourRecoveryPhrase": "你的恢复短语",
-        "yourRecoveryPhraseTitle": "在任何情况下,Wormholes 都不会要求您提供恢复短语。保护您的资金，不要与任何人分享您的恢复短语。",
+        "yourRecoveryPhraseTitle": "在任何情况下,Erbie 都不会要求您提供恢复短语。保护您的资金，不要与任何人分享您的恢复短语。",
         "remindMeLater": "稍后提醒我",
         "backUp": "备份",
         "hint1": "以正确的顺序写下或复制这些单词并将它们保存在安全的地方。",
         "suggest": "建议您将它们写下来。",
         "getStarted": "让我们开始吧",
-        "saveTips": "将您的密钥存储在安全的位置。这是找回钱包的唯一方法。Wormholes不保留副本。",
+        "saveTips": "将您的密钥存储在安全的位置。这是找回钱包的唯一方法。Erbie不保留副本。",
         "continue": "继续",
         "verifyMnemonicPhrase": "验证助记词",
         "protectYourFunds": "保护您的资金，不要与任何人分享您的恢复短语。",
@@ -644,7 +644,7 @@
         "cancel": "取消",
         "confirm": "确认",
         "importAccount": "导入账户",
-        "importMessage": "改进后的帐户可在您的钱包中查看，但无法通过您的 Wormholes Secret 恢复恢复短语。访问此处了解更多信息。",
+        "importMessage": "改进后的帐户可在您的钱包中查看，但无法通过您的 Erbie Secret 恢复恢复短语。访问此处了解更多信息。",
         "inputPrivateKey": "输入私钥",
         "scanQRCode": "扫描二维码",
         "forexample": "例如.3a1076bf45ab87712ad64ccb3b10217737faacbf2872e88fdd9a537d8fe266",
@@ -900,10 +900,10 @@
     "import": {
         "input": "输入私钥",
         "scan": "扫描二维码",
-        "hint": "改进后的帐户可以在您的钱包中查看，但您的 Wormholes 秘密恢复短语无法恢复您的帐户 {a}",
+        "hint": "改进后的帐户可以在您的钱包中查看，但您的 Erbie 秘密恢复短语无法恢复您的帐户 {a}",
         "hintatag": "访问此处了解更多信息",
         "importaccount": "导入账户",
-        "announcement": "导入的账户可在你的钱包中查看的,但无法通过Wormholes助记词找回。",
+        "announcement": "导入的账户可在你的钱包中查看的,但无法通过Erbie助记词找回。",
         "learnmore": "在此处详细了解导入的账号。",
         "copy": "粘贴您的私钥字符串",
         "forexample": "例如 ,3a1076bf45ab87712ad64ccb3b10217737faacbf2872e88fdd9a537d8fe266",
@@ -920,7 +920,7 @@
     },
     "importsuccess": {
         "success": "账户导入成功!",
-        "check": "您现在将能够在Wormholes查看您导入的账户。",
+        "check": "您现在将能够在Erbie查看您导入的账户。",
         "scanning": "正在扫描…"
     },
     "resetPwd": {
@@ -1065,7 +1065,7 @@
         "promptTip2":"使用URL:输入现有NFT内容的URL，这些内容可以从OpenSea等可以读取图像信息的平台上获取。",
         "promptTip":"可以通过两种方式生成链层NFT:",
         "placeholder":"提示词:请输入文字描述图片，例如:按照维米尔的《戴珍珠耳环的女孩》的风格画一个海唐。 \nSourceUrl:资产URL",
-        "promptWordErr":"最多可输入75个单词，只支持英文俚语、特殊符号或url地址",
+        "promptWordErr":"最多可输入75个英文字符，只支持英文俚语、特殊符号或url地址",
         "promptWordNotNull":"提示词/SourceUrl不能为空",
         "normalNftTip":"您已勾选AI绘画，请填写有效提示词，最多输入75个单词，仅支持英语俚语和特殊符号。",
         "creativeMode":"AI绘画模式",
@@ -1078,7 +1078,7 @@
         "geneateComfirm":"生成NFT确认",
         "drawVal":"AI绘画费用",
         "aiDrawTip":"输入AI提示词并选择此模式后，AI会为您创建一个NFT。这需要少量的ERB费用，在测试网阶段，10 ERB是测试标准。",
-        "emailTip":"邮箱将接收 WormholesChain 为您生成的 AI NFT。"
+        "emailTip":"邮箱将接收 ErbieChain 为您生成的 AI NFT。"
     },
     "transferNft": {
         "radioTip": "这是您的 SNFT 的转换率，您可以为每个 SNFT 转换多少 ERB。",
@@ -1138,7 +1138,7 @@
         "feetip": "Tips:质押期为一年。详情请参阅条款和规定。",
         "nameTit1": "虫洞交换",
         "nameTit2": "虫洞 CMS",
-        "desc3": "这是您可以使用 Wormholes Blockchain 将 SNFT 转换为 ERB 的按钮。",
+        "desc3": "这是您可以使用 Erbie Blockchain 将 SNFT 转换为 ERB 的按钮。",
         "wattingTitle": "配置",
         "headerTitle": "成为质押者",
         "openexchange": "开启质押者",
@@ -1232,7 +1232,7 @@
         "maxaccount": "最大账户:"
     },
     "networklist": {
-        "wormholes": "Wormholes 网络",
+        "wormholes": "Erbie 网络",
         "rinkeby": "rinkeby 测试网络",
         "homestead": "homestead 主网",
         "ropsten": "ropsten 测试网络",
@@ -1276,9 +1276,9 @@
         "suretomodifytheexchangepledgeamountcustodyservicefee": "确认修改质押者质押金额/托管服务费吗？",
         "suretocancel": "你确定要取消吗？",
         "breakGuide": "确定取消引导操作流程吗?",
-        "connect": "连接到 Wormholes",
-        "connect2": "使用Wormholes连接",
-        "connect3": "已成功连接到Wormholes",
+        "connect": "连接到 Erbie",
+        "connect2": "使用Erbie连接",
+        "connect3": "已成功连接到Erbie",
         "connectTxt": "连接",
         "installMetaMask": "你未安装钱包，请先安装MetaMask",
         "back": "返回",
@@ -1406,7 +1406,7 @@
         "tiptit2": "质押者奖励:",
         "tiptit3": "ERB奖励:",
         "tip1": "在虫洞活动期间获得的SNFTs将会显示在这个页面上。点击“认领”按钮，一键认领所有SNFTs, SNFTs将直接存入您的当前钱包。{br}您可以通过右下角的NFT交易中心操作您的权益。",
-        "tip2": "如果您的帐户在WormholesNFT上没有开放的质押者，我们将为您打开一个WormholesNFT质押者:一旦打开，您将需要遵循我们的教程来部署您的质押者;您也可以进入我们的钱包，选择我们的服务来帮助您部署质押者。如果您的帐户尚未在虫洞上交易，我们将自动增加相应的存款金额。",
+        "tip2": "如果您的帐户在ErbieNFT上没有开放的质押者，我们将为您打开一个ErbieNFT质押者:一旦打开，您将需要遵循我们的教程来部署您的质押者;您也可以进入我们的钱包，选择我们的服务来帮助您部署质押者。如果您的帐户尚未在虫洞上交易，我们将自动增加相应的存款金额。",
         "tip3": "你在虫洞活动中收到的erb将会显示在这个页面上。按下“申领”按钮，即可申领所有雇员再培训费，而所得的雇员再培训费会直接存入你现时的钱包。",
         "hasBrought": "已领取",
         "success": "获取成功！",
@@ -1424,7 +1424,7 @@
         "Importsuccessful": "代币已导入成功",
         "error": "导入失败，当前网络不支持该代币",
         "tip": "查看完整历史记录 {link}",
-        "etherscan": "在 Wormholesscan 上"
+        "etherscan": "在 Erbiescan 上"
     },
     "minerspledge": {
         "smileTip": "你的信誉很好，{value}，请保留它，获得更多的收入 {btn}",
@@ -1538,7 +1538,7 @@
     },
     "createwallet": {
         "createwallet": "创建钱包",
-        "title": "此密码仅限于在该设备上解锁您的 Wormholes 钱包",
+        "title": "此密码仅限于在该设备上解锁您的 Erbie 钱包",
         "password": "新密码",
         "password2": "确认密码",
         "failed": "创建钱包失败",

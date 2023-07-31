@@ -159,7 +159,7 @@ export default {
     const http = async () => {
       try {
         isLoading.value = true;
-        const str = `wormholes:{"version": "0.0.1", "type": 25, "reward_flag": ${select.value}}`;
+        const str = `${store.getters['account/chainParsePrefix']}:{"version": "0.0.1", "type": 25, "reward_flag": ${select.value}}`;
         const data3 = toHex(str);
         console.log(data3);
         console.log(str);

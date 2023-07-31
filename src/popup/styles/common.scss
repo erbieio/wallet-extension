@@ -148,7 +148,7 @@ img {
 
 // Click status
 .clickActive:active {
-  background: #F8F3F9;
+  background: rgba($color: #000, $alpha: 0.3);
 }
 
 .van-toast__text {
