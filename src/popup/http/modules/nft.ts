@@ -130,9 +130,7 @@ export const queryAllSnftByStage = (params: QueryAllSnftByStageParams): Promise<
 }
 
 
-enum flags {
-  all = 'all'
-}
+
 interface QueryOwnerStageParams {
   owner_addr?: string
   start_index?: string

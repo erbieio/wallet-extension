@@ -22,7 +22,7 @@ import { getRandomIcon } from "@/popup/utils/index";
 import { toRaw } from "vue";
 import { TransactionData, TransactionParams } from "./index";
 import { ETH, Token } from "@/popup/utils/token";
-import { getAccountAddr, getCreator, getPeriodById } from "@/popup/http/modules/common";
+import { getAccountAddr, getCreator } from "@/popup/http/modules/common";
 import { chainDataParse } from "@/popup/enum/env";
 
 import {

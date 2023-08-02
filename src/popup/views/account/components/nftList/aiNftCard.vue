@@ -1,11 +1,11 @@
 <template>
   <div
     @click="toDetail"
-    :class="`nft-card  clickActive  ${
+    :class="`nft-card    ${
       layoutType == 'list' ? ' flex between' : ''
     } ${layoutType} pb-14`"
   >
-    <div :class="`info  ${layoutType == 'list' ? 'flex between' : ''}`">
+    <div :class="`info clickActive  ${layoutType == 'list' ? 'flex between' : ''}`">
       <div class="icon flex center">
         <van-image :src="data.meta_url" fit="cover" v-if="data.meta_url" />
         <div :class="`nft-ai ${data.category == 2 ? 'fail' : 'success'}` " v-else>

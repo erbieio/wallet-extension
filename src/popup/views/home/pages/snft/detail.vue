@@ -498,10 +498,15 @@ export default {
     // // Exchange rate by selected quantity 256 by single snft
     const ratio = computed(() => {
       const { t0, t1, t2, t3 } = state.configuration.setting.conversion
+      const { mergelevel, mergenumber, ownaddr, exchange } = chooseSnftData.value
+      const myAddr = accountInfo.value.address.toUpperCase()
+      if (mergelevel == 1 && !exchange && ownaddr.toUpperCase() == myAddr) {
+        return t1
+      } else {
+       return t0
 
-      let total = 0;
-      return total;
-    });
+      }
+    })
 
 
 

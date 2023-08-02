@@ -676,7 +676,7 @@ width: 420px;
       }
     }
 
-    &.step13 {
+    &.step14 {
       bottom: 150px !important;
       right: 14px !important;
       left: 14px !important;
@@ -742,7 +742,7 @@ width: 420px;
     width: 250px;
 
     &.step1 {
-      top: 130px !important;
+      top: 90px !important;
       left: 18px !important;
       .van-popover__arrow {
         left: 110px;
@@ -778,12 +778,12 @@ width: 420px;
     }
 
     &.step5 {
-      // left: 50% !important;
-      // margin-left: -200px !important;
+      left: 50% !important;
+      margin-left: -120px !important;
       top: 270px !important;
       width: calc(100% - 40px) !important;
-      left: 20px !important;
-      right: 20px !important;
+      // left: 20px !important;
+      // right: 20px !important;
 
       .van-popover__arrow {
         left: 51%;
@@ -795,50 +795,68 @@ width: 420px;
       top: 320px !important;
       left: 20px !important;
       .van-popover__arrow {
-        left: 183px;
+        left: 100px;
       }
 
     }
 
     &.step7 {
       top: 316px !important;
-      right: 200px !important;
-      left: inherit !important;
-
+      left: 50% !important;
+      margin-left: -120px !important;
       .van-popover__arrow {
-        left: inherit;
-        right: 163px !important;
+        left: 51%;
       }
     }
 
     &.step8 {
       top: 320px !important;
-
+      right: 0 !important;
+      left: inherit !important;
       // left: 400px !important;
       .van-popover__arrow {
-        left:65px;
+        left:51%;
       }
     }
 
     &.step9 {
-      top: inherit !important;
-      right: 20px !important;
-      left: inherit !important;
-      bottom: 94px;
-      position: fixed !important;
+      top: 320px !important;
+      left: 50% !important;
+      margin-left: -130px !important;
 
       .van-popover__arrow {
-        //left: 321px;
+        left:51%;
+      }
+    }
+    
+    &.step10 {
+      top: 90px !important;
+      right: 20px !important;
+      left: inherit !important;
+      .van-popover__arrow {
+        left: inherit;
+        right: 14px;
       }
     }
 
-    &.step10 {
-      left: inherit !important;
-      right: 20px !important;
-      left: inherit;
-    }
+    // &.step10 {
+    //   top: inherit !important;
+    //   right: 20px !important;
+    //   left: inherit !important;
+    //   bottom: 94px;
+    //   position: fixed !important;
+
+    //   .van-popover__arrow {
+    //     //left: 321px;
+    //   }
+    // }
 
     &.step11 {
+      left: 20px !important;
+      top: 48px !important;
+    }
+
+    &.step12 {
       top: 48px !important;
 
       .van-popover__arrow {
@@ -846,7 +864,7 @@ width: 420px;
       }
     }
 
-    &.step12 {
+    &.step13 {
       left: 50% !important;
       margin-left: -125px !important;
       top: 50px !important;
@@ -862,7 +880,7 @@ width: 420px;
     //    right: 0px;
     //  }
     //}
-    &.step13 {
+    &.step14 {
       top: inherit !important;
       right: 20px !important;
       left: inherit !important;
@@ -878,7 +896,7 @@ width: 420px;
   .van-dialog {
     width:390px;
     &.van-popup--center{
-      margin-left: -160px;
+      margin-left: -195px;
       top: 40px;
     }
   }

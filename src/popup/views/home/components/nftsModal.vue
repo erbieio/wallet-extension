@@ -14,10 +14,6 @@
           <van-image :src="`${metaDomain}${item.source_url}`" width="100%" fit="cover" />
         </div>
       </div>
-      <!-- <div class="flex center tip">
-        You can also
-        <span>Buy SNF</span> at the exchange
-      </div>-->
       <i18n-t keypath="sendSNFT.buysnft" class="flex center tip" tag="p">
         <template v-slot:snf>
           <span>

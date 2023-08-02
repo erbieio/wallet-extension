@@ -12,7 +12,7 @@
   >
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">10</span> <span>/</span> 12
+        <span class="left">11</span> <span>/</span> 12
       </div>
       <div class="title">
         {{ t("bootstrapwindow.setUp") }}
@@ -21,7 +21,7 @@
         {{ t("bootstrapwindow.setUpMessage") }}
       </div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(11)">{{
+        <van-button type="primary" @click="handleClick(12)">{{
           t("bootstrapwindow.next")
         }}</van-button>
       </div>

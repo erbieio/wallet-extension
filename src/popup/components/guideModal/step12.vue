@@ -12,7 +12,7 @@
   >
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">8</span>
+        <span class="left">9</span>
         <span>/</span> 12
       </div>
       <div class="title">{{ t("bootstrapwindow.network") }}</div>
@@ -20,7 +20,7 @@
         {{ t("bootstrapwindow.networkMessage") }}
       </div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(9)">{{
+        <van-button type="primary" @click="handleClick(10)">{{
           t("bootstrapwindow.next")
         }}</van-button>
       </div>

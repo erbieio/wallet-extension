@@ -145,7 +145,7 @@ export default {
                         } else {
                             const json = getInput(item.input)
                             if(json) {
-                                item.txType = 'wormholes'
+                                item.txType = store.getters['account/chainParsePrefix']
                                 item.jsonData = json
                             } else {
                                 item.txType = 'contract'
@@ -235,7 +235,7 @@ export default {
                         } else {
                             const json = getInput(item.input)
                             if(json) {
-                                item.txType = 'wormholes'
+                                item.txType = store.getters['account/chainParsePrefix']
                                 item.jsonData = json
                             } else {
                                 item.txType = 'contract'
@@ -336,11 +336,9 @@ export default {
 
 
 export function getInput(input) {
-    console.log('input', input)
     const prefix = store.getters['account/chainParsePrefix']
     if (input && input != '0x') {
         try {
-            debugger
             const wormStr = web3.utils.toAscii(input)
             console.log('wormStr',wormStr)
             const [nullstr, jsonstr] = wormStr.split(`${prefix}:`)

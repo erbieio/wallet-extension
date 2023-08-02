@@ -5,7 +5,7 @@
     @click-overlay="beforeClose"
     :close-on-click-overlay="false"
     trigger="manual"
-    class="popover-dialog step13"
+    class="popover-dialog step14"
     placement="top-end"
     teleport="#page-box"
     overlay

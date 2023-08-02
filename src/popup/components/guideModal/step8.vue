@@ -12,7 +12,7 @@
   >
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">7</span> <span>/</span> 12
+        <span class="left">8</span> <span>/</span> 12
       </div>
       <div class="title">
         {{ t("bootstrapwindow.sNFTs") }}
@@ -21,18 +21,10 @@
         {{ t("bootstrapwindow.sNFTsMessage") }}
       </div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(8)">{{
+        <van-button type="primary" @click="handleClick(9)">{{
           t("bootstrapwindow.next")
         }}</van-button>
       </div>
-<!--      <span class="tip2 f-12">-->
-<!--        {{ t("bootstrapwindow.displaymethod") }}-->
-<!--      </span>-->
-<!--      <span class="circle"></span>-->
-<!--      <span class="tip4"></span>-->
-<!--      <span class="tip3">-->
-<!--        <i class="iconfont icon-modular"></i>-->
-<!--      </span>-->
       <span class="tip3"></span>
       <span class="tip2"></span>
       <span class="tip4"></span>

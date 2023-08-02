@@ -2,7 +2,7 @@ import { version } from "@/popup/enum/version";
 import router from "@/popup/router";
 import { useStore } from "vuex";
 import { addressMask, decimal } from "@/popup/utils/filters";
-import { erb_price } from '@/popup/http/modules/price'
+
 import { getWallet } from '@/popup/store/modules/account'
 import { useBroadCast } from '@/popup/utils/broadCost'
 import localforage from 'localforage';
@@ -124,7 +124,12 @@ export default {
       handleUpdate()
     },
     UPDATA_HIDE(state: State, idx: number) {
-      state[`show${idx}`] ? (state[`show${idx}`] = false) : "";
+      for(let i=0;i< 16;i++) {
+        if(i != idx) {
+          state[`show${idx}`] ? (state[`show${idx}`] = false) : "";
+        }
+      }
+      
       handleUpdate()
     },
     UPDATE_GUIDEFLAG(state: State, val: boolean){
@@ -214,11 +219,22 @@ export default {
     // Open pop-up window
     showDialog({ commit, state }: any, idx: number) {
       commit("UPDATA_HIDE", idx);
-      if(idx === 6) {
-        commit("UPDATA_SHOW", idx+2);
-      }else {
-        commit("UPDATA_SHOW", idx+1);
+      if(idx === 9) {
+        commit("UPDATA_HIDE", 8);
       }
+      if(idx === 12) {
+        commit("UPDATA_HIDE", 11);
+      }
+      if(idx === 14) {
+        commit("UPDATA_HIDE", 13);
+      }
+      console.warn('showDialog', idx)
+      commit("UPDATA_SHOW", idx+1);
+      // if(idx === 6) {
+      //   commit("UPDATA_SHOW", idx+2);
+      // }else {
+      //   commit("UPDATA_SHOW", idx+1);
+      // }
     },
     // Turn off boot
     closeGuide({commit,state}:any){

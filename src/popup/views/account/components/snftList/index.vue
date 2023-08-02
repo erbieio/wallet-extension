@@ -781,9 +781,10 @@ export default defineComponent({
           reLoading()
         },
         failBack: () => {
-
+          reLoading()
         },
       });
+      console.warn('all select nft_address', selectList.value)
       try {
         for await (const item of selectList.value) {
           let nftAddr = ''
@@ -802,6 +803,7 @@ export default defineComponent({
               nftAddr = nft_address.replace('mmm', '')
               break;
           }
+          console.warn('nft_address', nftAddr)
           const data3 = {
             type: 6,
             nft_address: nftAddr,

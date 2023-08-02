@@ -1,5 +1,5 @@
 import { httpGet, httpPost } from '../request'
-import { scanApi, snftUrl, snftUrl3 } from '@/popup/http/httpUrl'
+import { scanApi,  snftUrl3 } from '@/popup/http/httpUrl'
 
 
 // One click to create an exchange
@@ -82,8 +82,3 @@ export const getCreator = (address: string): Promise<CreatorData> => {
     return httpGet(`${scanApi}/creator/${address}`, {})
 }
 
-
-// specifies the ID to query the NFT period information of the system, including 16 collection information
-export const getPeriodById = (id: string): Promise<any> => {
-    return httpGet(`${snftUrl}/epoch/${id}`, {})
-}

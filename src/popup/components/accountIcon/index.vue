@@ -45,6 +45,7 @@ export default defineComponent({
   border-radius: 50%;
   overflow: hidden;
   transition: ease all 0.3s;
+  background:red;
   &:hover {
     transform: scale(1.3);
   }
