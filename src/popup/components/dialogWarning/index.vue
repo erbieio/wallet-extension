@@ -4,7 +4,7 @@
             <van-icon :color="color" :name="iconName" size="35" />
         </div>
         <div class="warning-text">
-            <span>{{text}}</span>
+            <span>{{ text }}</span>
         </div>
     </div>
 </template>
@@ -30,8 +30,8 @@ export default {
             default: '#F7BF03'
         },
         iconName: {
-           type: String,
-            default: 'warning' 
+            type: String,
+            default: 'warning'
         }
     },
     setup(props: any, context: SetupContext) {
@@ -44,24 +44,19 @@ export default {
                 emit('update:isWarning', v)
             }
         })
-        console.log(props);
-        
-        let time:any = null
+        let time: any = null
         watch(() => props.isWarning,
-        (now) => {
-            if (now) {
-                clearTimeout(time)
-                console.log(now);
-                console.log("nownownownownownownow");
-                
-                time = setTimeout(() => {
-                    show.value = false
-                    emit('update:isWarning', false)
-                }, 2500)
-            }
-        })
+            (now) => {
+                if (now) {
+                    clearTimeout(time)
+                    time = setTimeout(() => {
+                        show.value = false
+                        emit('update:isWarning', false)
+                    }, 2500)
+                }
+            })
         const text = props.text
-        
+
         return {
             show,
             text
@@ -71,28 +66,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .dialog-warning {
-        width: 250px;
-        background: rgba($color: #000000, $alpha: 0.8);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #fff;
-        max-width: 250px;
-        font-size: 15px;
-        min-height: 160px;
-        border-radius: 8px;
-        z-index: 99999;
-    }
-    .warning-icon {
-        padding: 25px;
-        text-align: center;
-    }
-    .warning-text {
-        text-align: center;
-        padding: 0 35px;
-        font-size: 14px;
-        color: #fff !important;
-    }
+.dialog-warning {
+    width: 250px;
+    background: rgba($color: #000000, $alpha: 0.8);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    max-width: 250px;
+    font-size: 15px;
+    min-height: 160px;
+    border-radius: 8px;
+    z-index: 99999;
+}
+
+.warning-icon {
+    padding: 25px;
+    text-align: center;
+}
+
+.warning-text {
+    text-align: center;
+    padding: 0 35px;
+    font-size: 14px;
+    color: #fff !important;
+}
 </style>

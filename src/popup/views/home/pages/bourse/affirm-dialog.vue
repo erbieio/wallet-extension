@@ -192,7 +192,7 @@ export default {
             gas2.value = new BigNumber(ethers.utils.formatEther(gasLimit))
               .dividedBy(ethers.utils.formatEther(gasPrice))
               .toFixed(9);
-            //debugger
+            
           }
           totalGas.value = new BigNumber(gasFee.value)
             .plus(gas2.value || 0)

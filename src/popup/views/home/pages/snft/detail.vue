@@ -5,7 +5,7 @@
     <div class="flex between mt-14 snft-list pl-22 pr-22">
       <div :class="`img-box flex center van-hairline--surround hover  flex center  ${item.select ? 'active' : ''
         } ${item.isLight ? '' : 'gary'} ${item.hasConvertSNFT ? 'shining' : ''}`" :title="getTipText(item)" v-for="(item, idx) in pageData.data.children" :key="item.address" @click="hancleClick(item, idx)">
-        <img v-show="!item.loadErr" :src="`${item.imgUrl}`"  @error="loadImg(item, idx)" :class="`flex center snft-img  ${item.select ? 'active' : ''}`" fit="cover" />
+        <img v-show="!item.loadErr" :src="`${item.imgUrl}`" @error="loadImg(item, idx)" :class="`flex center snft-img  ${item.select ? 'active' : ''}`" fit="cover" />
         <img v-show="item.loadErr" loading="lazy" src="@/assets/default.png" />
       </div>
     </div>
@@ -117,7 +117,7 @@ import { addressMask } from "@/popup/utils/filters";
 import BigNumber from "bignumber.js";
 import NavHeader from "@/popup/components/navHeader/index.vue";
 import { useI18n } from "vue-i18n";
-import { VUE_APP_METAURL,VUE_APP_IMGURL } from "@/popup/enum/env";
+import { VUE_APP_METAURL, VUE_APP_IMGURL } from "@/popup/enum/env";
 import TransferSingleSNFTModal from "@/popup/views/home/components/transferSingleSNFTModal.vue";
 import { useTradeConfirm } from "@/popup/plugins/tradeConfirmationsModal";
 import { web3 } from "@/popup/utils/web3";
@@ -163,14 +163,11 @@ export default {
     const conversion = computed(() => state.configuration.setting.conversion)
     const mySnfts = reactive({ list: [] });
     const showModal = ref(false)
-    console.warn('pageData', pageData.data)
     const { query } = route;
-    const { nft_address } = query;
     //Query the subscript of the swiper according to the address
 
     const swiperIdx = ref(0);
 
-    console.warn('idx')
     const chooseData = computed(() => {
       return pageData.data.children[swiperIdx.value];
     });
@@ -196,14 +193,13 @@ export default {
         snftChips.forEach(child => {
           let imgUrl = ''
 
-try {
-  const re = JSON.parse(item.source_url)
-  imgUrl = re.meta_url
-} catch (err) {
-  imgUrl = `${metaDomain.value}${item.source_url}`
-}
-console.warn('metaDomain222', imgUrl)
-  item.imgUrl = imgUrl
+          try {
+            const re = JSON.parse(item.source_url)
+            imgUrl = re.meta_url
+          } catch (err) {
+            imgUrl = `${metaDomain.value}${item.source_url}`
+          }
+          item.imgUrl = imgUrl
           const { mergelevel: childmergeLevel, exchange: childexchange, ownaddr: childownaddr, nft_address: childnft_address } = child
           const theFatherAddr = (childnft_address.slice(0, 41) + 'm').toUpperCase()
           if (theFatherAddr == nft_address.toUpperCase()) {
@@ -216,7 +212,6 @@ console.warn('metaDomain222', imgUrl)
         })
         const hasChips = item.children.filter(child => !child.exchange && child.ownaddr.toUpperCase() == myAddr && child.mergelevel == 0)
         const hasConvertSNFT = myAddr == ownaddr.toUpperCase() && !exchange && mergelevel == 1
-        console.warn('isLight', hasChips.length, hasConvertSNFT, item)
         item.hasConvertSNFT = hasConvertSNFT
         item.isLight = hasChips.length || hasConvertSNFT
       })
@@ -256,7 +251,6 @@ console.warn('metaDomain222', imgUrl)
         .then(({ data }) => {
           const address = accountInfo.value.address;
           const currentData = pageData.data.children[swiperIdx.value];
-          console.warn('get snfts chip, ', data)
           data.forEach((item: any) => {
             let { nft_address } = item;
             nft_address = nft_address.replaceAll('m', '0')
@@ -289,7 +283,6 @@ console.warn('metaDomain222', imgUrl)
             });
           }
           mySnfts.list = [...data, ...data3];
-          console.warn("mySnfts.value", mySnfts.list);
         })
         .catch((err) => {
           // mySnfts.value = [];
@@ -299,7 +292,6 @@ console.warn('metaDomain222', imgUrl)
         });
     };
     const hancleClick = (e, i) => {
-      console.log(e, i);
       swipe.value?.swipeTo(i);
     };
     // // change
@@ -327,7 +319,6 @@ console.warn('metaDomain222', imgUrl)
       const arr2 = pageData.data.children.map(
         (item) => item.imgUrl
       );
-      console.warn('arr2', arr2)
       ImagePreview({
         images: [...arr2],
         startPosition: idx,
@@ -338,7 +329,6 @@ console.warn('metaDomain222', imgUrl)
 
     const showBtn = computed(() => {
       const myAddr = accountInfo.value.address.toUpperCase()
-      console.log('chooseSnftData.value', chooseSnftData.value, mySnfts.list)
       const { mergelevel, mergenumber, exchange, ownaddr } = chooseSnftData.value
       if (ownaddr.toUpperCase() == myAddr && !exchange && mergelevel == 1) {
         return true
@@ -369,8 +359,6 @@ console.warn('metaDomain222', imgUrl)
 
     // // Select snft event
     const selectSnft = (v, idx) => {
-      console.log("start:", v, idx, mySnfts.list[idx].select);
-      console.log(v.select);
       if (v.disabled) {
         return;
       }
@@ -430,7 +418,6 @@ console.warn('metaDomain222', imgUrl)
       let total = 0;
       if (pageData.data.children) {
         const data = pageData.data.children[swiperIdx.value];
-        console.warn('hasChooseNum', data, mySnfts.list)
         return mySnfts.list.filter(item => item.ownaddr.toUpperCase() == accountInfo.value.address.toUpperCase()).length
       }
       return total;
@@ -449,7 +436,6 @@ console.warn('metaDomain222', imgUrl)
     const chooseSnftData = computed(
       () => {
         if (pageData.data.children) {
-          console.log('chooseSnftData-------------------', pageData.data.children[swiperIdx.value])
           return pageData.data.children[swiperIdx.value]
         }
         return {
@@ -533,7 +519,6 @@ console.warn('metaDomain222', imgUrl)
     }
 
     const totalNotConvert = computed(() => {
-      console.warn('total len', pageData.data)
       if (!pageData.data.children || !pageData.data.children.length) {
         return 0
       }
@@ -544,9 +529,7 @@ console.warn('metaDomain222', imgUrl)
     const { $tradeConfirm } = useTradeConfirm();
     const handleConfirmConvert = async () => {
       showModal.value = false
-
       const { address } = accountInfo.value
-      console.warn('confirm', toRaw(selectList.value))
       const len = selectList.value.length
       const waits = []
       const approveMessage = t("wallet.conver_approve");

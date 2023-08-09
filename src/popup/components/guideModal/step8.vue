@@ -1,15 +1,6 @@
 
 <template>
-  <van-popover
-    v-model:show="showModal"
-    @click-overlay="beforeClose"
-    :close-on-click-overlay="false"
-    trigger="manual"
-    class="popover-dialog step8"
-    placement="bottom-end"
-    teleport="#page-box"
-    overlay
-  >
+  <van-popover v-model:show="showModal" @click-overlay="beforeClose" :close-on-click-overlay="false" trigger="manual" class="popover-dialog step8" placement="bottom-end" teleport="#page-box" overlay>
     <div class="dialog-box">
       <div class="serial-number">
         <span class="left">8</span> <span>/</span> 11
@@ -76,7 +67,6 @@ export default defineComponent({
       })
         .then(() => true)
         .catch(() => false);
-      console.log("flag", flag);
       if (flag) {
         dispatch("system/closeGuide");
         showModal.value = false;
@@ -97,6 +87,7 @@ export default defineComponent({
   // width: 340px;
   padding-bottom: 25px;
   position: relative;
+
   .serial-number {
     display: flex;
     justify-content: flex-end;
@@ -104,54 +95,59 @@ export default defineComponent({
     padding-bottom: 14px;
     padding-right: 14px;
     font-size: 12px;
+
     .left {
       color: #9F54BA;
     }
   }
+
   .tip2 {
     position: absolute;
     top: -57px;
     height: 45px;
-    padding:0 30px;
+    padding: 0 30px;
     width: 105%;
     border: 1px dashed #fff;
     border-radius: 5px;
-    right:-8px;
+    right: -8px;
     //left: -10px;
     border-top: none;
 
   }
+
   .tip4 {
     position: absolute;
     top: -56px;
     height: 1px;
     //padding:0 20px;
     width: 53px;
-    border-bottom:  1px dashed #fff;
+    border-bottom: 1px dashed #fff;
     border-radius: 5px;
     right: -7px;
     //left: 75px;
 
     border-top: none;
   }
+
   .tip5 {
     position: absolute;
     top: -56px;
     height: 1px;
-    padding:0 20px;
+    padding: 0 20px;
     width: 245px;
-    border-bottom:  1px dashed #fff;
+    border-bottom: 1px dashed #fff;
     border-radius: 510px;
     //right: -10px;
     left: -10px;
     border-top: none;
   }
+
   .tip3 {
     position: absolute;
     top: -86px;
     width: 60px;
     height: 30px;
-    padding:0 20px;
+    padding: 0 20px;
     // width: 320px;
     border: 1px dashed #fff;
     border-radius: 5px;
@@ -163,31 +159,37 @@ export default defineComponent({
     //background: RGBA(126, 126, 126, .5);
     border-bottom: none;
   }
+
   @media screen and (min-width: 1000px) {
     .tip5 {
-      top:-66px;
+      top: -66px;
       width: 530px;
       left: -475px;
 
     }
+
     .tip2 {
-      top:-67px;
+      top: -67px;
       width: 740px;
       right: -15px;
       //left: 0;
     }
+
     .tip3 {
       top: -96px;
       right: 135px;
 
     }
+
     .tip4 {
       width: 148px;
-      top:-66px;
+      top: -66px;
       right: -12px;
 
     }
-  };
+  }
+
+  ;
 
   .circle {
     position: absolute;
@@ -199,6 +201,7 @@ export default defineComponent({
     border: 1px solid #fff;
     background: #fff;
   }
+
   .title {
     text-align: center;
     font-size: 24px;
@@ -206,19 +209,21 @@ export default defineComponent({
     line-height: 30px;
     margin-top: 22px;
   }
+
   .small-tit {
     text-align: center;
     margin-bottom: 30px;
     font-size: 12px;
     color: #848484;
   }
+
   :deep {
     button {
       min-width: 100px;
     }
   }
+
   :deep(.van-popover__wrapper) {
     height: 0;
   }
-}
-</style>
+}</style>

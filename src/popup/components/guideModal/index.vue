@@ -1,17 +1,8 @@
 <template>
   <div>
     <div>
-      <van-dialog
-        v-model:show="showModal"
-        teleport="#page-box"
-        :showConfirmButton="false"
-        :showCancelButton="false"
-        class="guideModalGetStart"
-        closeOnClickOverlay
-        :before-close="beforeClose"
-        :title="''"
-      >
-        <div class="title text-center text-bold van-hairline--bottom">{{t('bootstrapwindow.welcome')}}</div>
+      <van-dialog v-model:show="showModal" teleport="#page-box" :showConfirmButton="false" :showCancelButton="false" class="guideModalGetStart" closeOnClickOverlay :before-close="beforeClose" :title="''">
+        <div class="title text-center text-bold van-hairline--bottom">{{ t('bootstrapwindow.welcome') }}</div>
         <div class="flex center">
           <WormTransition size="small">
             <template v-slot:t1>
@@ -31,23 +22,16 @@
           </WormTransition>
         </div>
 
-        <div class="small-tit text-center text-bold f-24">{{t('bootstrapwindow.wormHoles')}}</div>
-        <div class="tip f-12 lh-16 text-center pl-24 pr-24 mt-12 mb-12">{{t('bootstrapwindow.wormHolesMessage')}}</div>
+        <div class="small-tit text-center text-bold f-24">{{ t('bootstrapwindow.wormHoles') }}</div>
+        <div class="tip f-12 lh-16 text-center pl-24 pr-24 mt-12 mb-12">{{ t('bootstrapwindow.wormHolesMessage') }}</div>
         <div class="flex center pb-30 pl-14 pr-14 mt-20">
-          <van-button type="primary" @click="handleClick(0)">{{t('bootstrapwindow.getStared')}}</van-button>
+          <van-button type="primary" @click="handleClick(0)">{{ t('bootstrapwindow.getStared') }}</van-button>
         </div>
       </van-dialog>
     </div>
     <div>
-      <van-dialog
-        v-model:show="showModal2"
-        teleport="#page-box"
-        :showConfirmButton="false"
-        :showCancelButton="false"
-        closeOnClickOverlay
-        :title="''"
-      >
-        <div class="title text-center  bold van-hairline--bottom">{{t('bootstrapwindow.welcome')}}</div>
+      <van-dialog v-model:show="showModal2" teleport="#page-box" :showConfirmButton="false" :showCancelButton="false" closeOnClickOverlay :title="''">
+        <div class="title text-center  bold van-hairline--bottom">{{ t('bootstrapwindow.welcome') }}</div>
 
         <div class="flex center">
           <WormTransition size="small">
@@ -58,10 +42,10 @@
             </template>
           </WormTransition>
         </div>
-        <div class="small-tit text-center text-bold f-24">{{t('bootstrapwindow.wormHoles')}}</div>
-        <div class="tip f-12 lh-16 text-center pl-24 pr-24 mt-12 mb-12">{{t('bootstrapwindow.wormHolesMessageEnd')}}</div>
+        <div class="small-tit text-center text-bold f-24">{{ t('bootstrapwindow.wormHoles') }}</div>
+        <div class="tip f-12 lh-16 text-center pl-24 pr-24 mt-12 mb-12">{{ t('bootstrapwindow.wormHolesMessageEnd') }}</div>
         <div class="flex center pb-30 pl-14 pr-14 mt-20">
-          <van-button type="primary" @click="complete">{{t('bootstrapwindow.okay')}}</van-button>
+          <van-button type="primary" @click="complete">{{ t('bootstrapwindow.okay') }}</van-button>
         </div>
       </van-dialog>
     </div>
@@ -128,9 +112,6 @@ export default defineComponent({
     }
 
     const beforeClose = async () => {
-      console.log(Dialog.confirm)
-      //   debugger
-
       try {
         const flag = await Dialog.confirm({
           className: 'closeGuideModal',
@@ -139,7 +120,6 @@ export default defineComponent({
         })
           .then(() => true)
           .catch(() => false)
-        console.log('flag', flag)
         if (flag) {
           dispatch('system/closeGuide')
           showModal.value = false
@@ -169,24 +149,30 @@ export default defineComponent({
   font-weight: bold;
 
 }
+
 .tip {
   color: #848484;
 }
+
 .small-tit {
   margin-top: 20px;
 }
+
 .savebtn {
   width: 250px;
   background: #F8F3F9;
   border-radius: 30px;
   color: #9F54BA;
+
   i {
     font-size: 12px;
   }
+
   &:hover {
     background: #F8F3F9;
   }
 }
+
 :deep(.icon-box) {
   margin-top: 20px;
 }

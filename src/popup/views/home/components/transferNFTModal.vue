@@ -141,8 +141,6 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (n) => {
-        console.log("selectList", props.selectList);
-        console.log("txtype", props.txtype);
         showModal.value = n;
         if (n) {
           timer = setInterval(() => {
@@ -203,7 +201,6 @@ export default defineComponent({
           break;
       }
       const str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nftAddr}","version":"v0.0.1"}`
-      console.warn('get gas fee nftAddr', nftAddr)
       const data3 = toHex(str);
       const tx1 = {
         from: address,

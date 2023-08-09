@@ -1,23 +1,11 @@
 <template>
-  <van-dialog
-    v-model:show="showModal"
-    :showConfirmButton="false"
-    :showCancelButton="false"
-    teleport="#page-box"
-    closeOnClickOverlay
-  >
+  <van-dialog v-model:show="showModal" :showConfirmButton="false" :showCancelButton="false" teleport="#page-box" closeOnClickOverlay>
     <div class="title">{{ t("wallet.account") }}</div>
     <div class="account-list scrollBar">
-      <div
-        :class="`card flex between hover ${
-          item.address.toUpperCase() == selectAccount.address.toUpperCase()
-            ? 'active'
-            : ''
-        }`"
-        v-for="item in accountList"
-        @click.stop="handleSelect(item)"
-        :key="item.address"
-      >
+      <div :class="`card flex between hover ${item.address.toUpperCase() == selectAccount.address.toUpperCase()
+          ? 'active'
+          : ''
+        }`" v-for="item in accountList" @click.stop="handleSelect(item)" :key="item.address">
         <div class="card-info flex">
           <div class="userIcon flex center">
             <AccountIcon size="small" :data="item.icon" />
@@ -53,7 +41,6 @@ const VanDialog = Dialog.Component;
 const props = defineProps({
   modelValue: Boolean,
 });
-console.warn("props", props.modelValue);
 const emits = defineEmits(["update:modelValue", "onChange"]);
 const showModal: Ref<boolean> = ref(false);
 const selectAccount: Ref<AccountInfo | any> = ref({});
@@ -66,7 +53,6 @@ watch(
 watch(
   () => showModal.value,
   (v) => {
-    console.warn("emit", v);
     emits("update:modelValue", v);
   }
 );
@@ -93,30 +79,37 @@ onMounted(async () => {
   font-weight: bold;
   text-align: center;
 }
+
 .account-list {
   max-height: 40vh;
   overflow-y: scroll;
   padding: 20px 0 0 0;
+
   .card {
     padding: 16px 15px;
     border-bottom: 1px solid #ecedef;
     transition: ease .3s;
+
     &:hover {
       .acc-info {
+
         .name,
         .address {
           color: #9F54BA;
         }
       }
     }
+
     &.active {
       .acc-info {
+
         .name,
         .address {
           color: #9F54BA;
         }
       }
     }
+
     .acc-info {
       margin-left: 15px;
 
@@ -126,6 +119,7 @@ onMounted(async () => {
       }
     }
   }
+
   .userIcon {
     width: 35px;
     height: 35px;

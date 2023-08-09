@@ -161,21 +161,15 @@ export default {
         isLoading.value = true;
         const str = `${store.getters['account/chainParsePrefix']}:{"version": "0.0.1", "type": 25, "reward_flag": ${select.value}}`;
         const data3 = toHex(str);
-        console.log(data3);
-        console.log(str);
         const tx1 = {
           from: accountInfo.value.address,
           to: accountInfo.value.address,
           data: `0x${data3}`,
         };
-        console.log(tx1);
-
         const wallet = await getWallet();
         const data = await store.dispatch('account/transaction', tx1)
         const receipt = await wallet.provider.waitForTransaction(data.hash)
         await store.dispatch('account/waitTxQueueResponse')
-        console.log(receipt);
-        console.log("receiptreceiptreceiptreceiptreceipt");
         isLoading.value = false;
         emitWarningSuccess();
       } catch (error) {
@@ -192,7 +186,7 @@ export default {
              const wallet = await getWallet();
              const { address } = wallet;
              const ethAccountInfo = await wallet.provider.send("eth_getAccountInfo", [address,"latest"]);
-      //debugger
+      
             select.value = ethAccountInfo.value.Worm.RewardFlag;
            }finally{
             Toast.clear()

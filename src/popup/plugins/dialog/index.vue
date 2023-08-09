@@ -32,9 +32,6 @@
 import { Ref, ref } from "vue";
 import { Dialog, Icon, Button } from "vant";
 import i18n from "@/popup/language";
-// import
-console.warn("i18n-------", i18n);
-
 enum DialogType {
   success = "success",
   warn = "warn",

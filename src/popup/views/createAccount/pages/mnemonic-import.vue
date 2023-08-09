@@ -121,7 +121,6 @@ export default {
       }
     })
     const onSubmit = async (value: object) => {
-      console.log('submit', value)
       if (password.value == password2.value) {
         loading.value = true
         try {
@@ -145,15 +144,7 @@ export default {
                 }
                 // Storage password Generates a keystore file based on the password private key
                 const keyStore = encryptPrivateKey(params)
-                // Encrypt mnemonic storage according to password
-                console.log('web3---------', web3)
-                // const mnemonicData = encryptPrivateKey({
-                //   privateKey: web3.utils.toHex(mnemonic.toString()),
-                //   password: password.value
-                // })
-                // commit('mnemonic/UPDATE_MNEMONIC', mnemonicData)
 
-                console.warn('mnemonic.toString()', mnemonic, mnemonic.value)
                 const mnemonicData = encryptPrivateKey({
                   privateKey: web3.utils.toHex(mnemonic.value.toString()),
                   password: password.value,

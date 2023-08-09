@@ -247,7 +247,6 @@ export default defineComponent({
       () => ready.value,
       async (n) => {
         if (n) {
-          console.warn("watch------ currentRate", n);
           nextTick(() => {
             const { amount, amount2 } = props;
             if (amount && amount2) {

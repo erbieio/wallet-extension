@@ -1,20 +1,11 @@
 <template>
-    <NavHeader backUrl="wallet" :title="t('sendSNFT.collTit')" :hasRight="false"></NavHeader>
+  <NavHeader backUrl="wallet" :title="t('sendSNFT.collTit')" :hasRight="false"></NavHeader>
   <div id="tabBox">
     <van-tabs v-model:active="active" sticky :offset-top="48" @change="changeTab">
       <van-tab v-for="(item, idx) in categoryList" :key="item.value" :title="item.text">
         <div class="snft-list-con" v-if="item.collList.length">
-          <van-tabs
-            :ref="`active2Tab${idx}`"
-            :class="`coll-icon-tabs ${
-              item.collTabList.length - 1 == active2 ? 'coll-list' : ''
-            }`"
-            v-model="active2"
-            sticky
-            swipeable
-            :offset-top="97"
-            @change="changeTa2"
-          >
+          <van-tabs :ref="`active2Tab${idx}`" :class="`coll-icon-tabs ${item.collTabList.length - 1 == active2 ? 'coll-list' : ''
+            }`" v-model="active2" sticky swipeable :offset-top="97" @change="changeTa2">
             <van-tab v-for="(child, idx) in item.collTabList" :key="child.name">
               <template #title v-if="!child.type">
                 <span class="icon-num">{{ idx + 1 }}</span>
@@ -27,13 +18,7 @@
               </template>
               <div class="coll-content-list mt-24" v-if="!child.type">
                 <div v-if="child.snfts" class="flex between list-box">
-                  <div
-                    class="snft-card van-hairline--surround hover"
-                    v-for="sun in child.snfts"
-                    type="list"
-                    @click="handleDetail(child, sun.nft_address, sun.id,sun)"
-                    :key="sun.nft_address"
-                  >
+                  <div class="snft-card van-hairline--surround hover" v-for="sun in child.snfts" type="list" @click="handleDetail(child, sun.nft_address, sun.id, sun)" :key="sun.nft_address">
                     <div class="flex center">
                       <van-image :src="`${metaDomain}${sun.source_url}`" width="100%" fit="cover"></van-image>
                     </div>
@@ -49,7 +34,7 @@
                     <div class="coll-img">
                       <span class="icon-num van-hairline--surround">
                         {{
-                        idx + 1
+                          idx + 1
                         }}
                       </span>
                       <van-image :src="`${metaDomain}/${abc.img}`" fit="cover"></van-image>
@@ -232,7 +217,6 @@ export default {
             }
           }
           categoryList.value[active.value].last_len = data.length
-          console.warn(categoryList.value, active.value)
         }
         return data
       } catch (err) {
@@ -260,7 +244,6 @@ export default {
         categoryList.value[active.value].collList[active2.value].snfts = data
         categoryList.value[active.value].collTabList[active2.value].snfts = data
 
-        console.warn('snft list', categoryList.value)
         return data
       } catch (err) {
         console.error(err)
@@ -280,11 +263,10 @@ export default {
       params2.createaddr = currentSelect.collection_creator_addr
       await getSnfts(params2)
     })
-    
+
     const metaDomain = ref(`${VUE_APP_METAURL}`)
     // Outer tab switching
     const changeTab = async (i: any) => {
-      console.log(i, active2Tab.value)
       active.value = i
       active2.value = 0
       // If the collist length of the current classification is 0, the current collection list is requested
@@ -311,8 +293,6 @@ export default {
       // @ts-ignore
       if (currentInstance.ctx.$refs && currentInstance.ctx.$refs[`active2Tab${i}`]) {
         const currentRef = currentInstance.ctx.$refs[`active2Tab${i}`]
-        console.log('currentRef.ctx', currentRef)
-
         if (currentRef) {
           currentRef[0].scrollTo(0)
         }
@@ -320,12 +300,10 @@ export default {
     }
     // Inner tab switching
     const changeTa2 = async (i: any) => {
-      console.log(i)
       active2.value = i
       if (i == 10) {
         return
       }
-      console.log(i, active2.value)
       const collList: any = categoryList.value[active.value].collList
       if (collList.length && (!collList[active2.value].snfts || !collList[active2.value].snfts.length)) {
         params2.name = collList[active2.value].name
@@ -339,8 +317,6 @@ export default {
     const modalSnft = ref(false)
     const collModalData = ref({})
     const handleCollModal = async (data: any, idx: number) => {
-      console.log('dategory', categoryList.value)
-      console.log('data', data)
       const { snfts, name, collection_creator_addr } = data
       // No collection to query collection
       if (!snfts || !snfts.length) {
@@ -353,7 +329,6 @@ export default {
         try {
           Toast.loading({ message: 'loading...' })
           const { data: newData }: any = await querySnftByCollection(params)
-          console.warn('get adata.', data)
           newData.forEach((item: any) => {
             item.address = item.nft_address
             item.select = false
@@ -444,13 +419,16 @@ export default {
 .ddd i {
   font-size: 36px;
 }
+
 #tabBox {
   width: 375px;
   margin: 0 auto;
 }
+
 :deep(.van-tabs__line) {
   display: none;
 }
+
 :deep(.van-tab) {
   line-height: 19px;
   height: 19px;
@@ -461,6 +439,7 @@ export default {
   margin-right: 12.5px;
   flex: none;
   color: #9F54BA;
+
   span {
     font-size: 12px;
     -webkit-line-clamp: 1;
@@ -475,35 +454,42 @@ export default {
   background: #9F54BA;
   color: #fff;
 }
+
 :deep(.van-tabs__wrap) {
   background: #F8F3F9;
   padding: 15px 0;
   height: auto;
   // width: 375px
 }
+
 :deep(.van-sticky--fixed) {
   z-index: 1001;
   // height: 32PX;
 }
+
 :deep(.van-tabs__nav--line) {
   padding-bottom: 0;
   height: auto;
   padding-left: 14px;
   padding-right: 14px;
 }
+
 .snft-list-con {
   //   height: 800px;
 }
+
 :deep(.coll-icon-tabs) {
   &.coll-list {
     .van-sticky {
       display: none;
     }
   }
+
   .van-sticky--fixed,
   .van-tabs__wrap {
     height: auto;
   }
+
   .van-tab {
     width: 60px;
     height: 60px;
@@ -513,26 +499,31 @@ export default {
     color: #9F54BA;
     padding: 0;
     position: relative;
+
     &.van-tab--active {
       background: #fff;
       border: 1PX solid #9F54BA;
       border-radius: 50%;
       color: #9F54BA;
+
       .van-tab__text .icon-num {
         border: 1PX solid #9F54BA;
         color: #9F54BA;
       }
     }
+
     .More {
       width: 60px;
       line-height: 60px;
       text-align: center;
       font-size: 14px;
     }
+
     .van-tab__text {
       display: block;
       height: 100%;
       width: 60px;
+
       .icon-num {
         min-width: 15px;
         height: 15px;
@@ -550,6 +541,7 @@ export default {
       }
     }
   }
+
   .van-image {
     width: 58px;
     height: 58px;
@@ -557,59 +549,73 @@ export default {
     overflow: hidden;
   }
 }
+
 .coll-content-list {
   padding: 0 15px;
+
   .list-box {
     flex-wrap: wrap;
   }
+
   .snft-card {
     width: 48%;
     font-size: 12px;
     cursor: pointer;
     padding: 7.5px;
     margin-bottom: 15px;
+
     &::after {
       border-radius: 7.5px;
     }
+
     .van-image {
       width: 150px;
       height: 150px;
       border-radius: 7.5px;
       overflow: hidden;
     }
+
     .name {
       margin-top: 6px;
     }
+
     .address {
       color: rgba(154, 154, 154, 1);
     }
   }
 }
+
 .coll-card {
   padding: 0 15px;
   margin-bottom: 16px;
   cursor: pointer;
+
   .name-info {
     font-size: 12px;
     height: 32px;
-    .name {
-    }
+
+    .name {}
+
     .hold-num {
       color: #acacac;
     }
   }
 }
+
 .coll-img {
   width: 60px;
   height: 60px;
   position: relative;
+
   .icon-num {
     position: absolute;
     font-size: 12px;
+
     &::after {
       border-radius: 16px;
       border-color: #acacac;
     }
+
     color: #acacac;
     min-width: 16px;
     padding: 0 4px;
@@ -622,13 +628,14 @@ export default {
     bottom: 0;
   }
 }
+
 .coll-amount {
   font-size: 12px;
   height: 32px;
-  .num {
-  }
+
+  .num {}
+
   .toUsd {
     color: #acacac;
   }
-}
-</style>
+}</style>

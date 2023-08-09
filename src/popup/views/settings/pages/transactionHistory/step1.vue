@@ -1,113 +1,55 @@
 <template>
-      <NavHeader :hasRight="false" :title="t('setting.transitionHistory')"></NavHeader>
-    <van-sticky offset-top="48">
-      <div class="flex center tabs-box pt-14">
-        <div class="tabs flex between center-v hover van-hairline--surround">
-          <div
-            :class="`tab text-center lh-24 ${item.select ? 'active' : ''}`"
-            @click="changeTab(item)"
-            v-for="item in tabs.list"
-            :key="item.value"
-          >{{ $t(item.name) }}</div>
-        </div>
+  <NavHeader :hasRight="false" :title="t('setting.transitionHistory')"></NavHeader>
+  <van-sticky offset-top="48">
+    <div class="flex center tabs-box pt-14">
+      <div class="tabs flex between center-v hover van-hairline--surround">
+        <div :class="`tab text-center lh-24 ${item.select ? 'active' : ''}`" @click="changeTab(item)" v-for="item in tabs.list" :key="item.value">{{ $t(item.name) }}</div>
       </div>
-    </van-sticky>
+    </div>
+  </van-sticky>
   <div class="transaction-history">
     <div class="all" v-show="chooseTabdata.value == 1">
       <!-- Transactions -->
       <div v-if="transactionList.length">
-        <CollectionCard
-        :id="item.hash"
-          @handleClick="handleView(item)"
-          v-for="item in transactionList"
-          :key="item.to"
-          :data="item"
-          @handleSend="handleSend"
-          @handleCancel="handleCancel"
-          :active="route.query.hash?.toString() === item.hash"
-        />
+        <CollectionCard :id="item.hash" @handleClick="handleView(item)" v-for="item in transactionList" :key="item.to" :data="item" @handleSend="handleSend" @handleCancel="handleCancel" :active="route.query.hash?.toString() === item.hash" />
       </div>
       <no-data v-if="!loading && !transactionList.length" />
     </div>
     <div class="receive" v-show="chooseTabdata.value == 2"></div>
     <div class="send" v-show="chooseTabdata.value == 3">
       <div v-if="sendList.length">
-        <CollectionCard
-        :id="item.hash"
-          @handleClick="handleView(item)"
-          v-for="item in sendList"
-          :key="item.to"
-          :data="item"
-          @handleSend="handleSend"
-          @handleCancel="handleCancel"
-          :active="route.query.hash?.toString() === item.hash"
-        />
+        <CollectionCard :id="item.hash" @handleClick="handleView(item)" v-for="item in sendList" :key="item.to" :data="item" @handleSend="handleSend" @handleCancel="handleCancel" :active="route.query.hash?.toString() === item.hash" />
       </div>
       <no-data v-if="!loading && !sendList.length" />
     </div>
     <div class="swap" v-show="chooseTabdata.value == 4">
       <div v-if="swapList.length">
-        <CollectionCard
-        :id="item.hash"
-          @handleClick="handleView(item)"
-          v-for="item in swapList"
-          :key="item.to"
-          :data="item"
-          @handleSend="handleSend"
-          @handleCancel="handleCancel"
-          :active="route.query.hash?.toString() === item.hash"
-        />
+        <CollectionCard :id="item.hash" @handleClick="handleView(item)" v-for="item in swapList" :key="item.to" :data="item" @handleSend="handleSend" @handleCancel="handleCancel" :active="route.query.hash?.toString() === item.hash" />
       </div>
       <no-data v-if="!loading && !swapList.length" />
     </div>
 
     <div class="other" v-show="chooseTabdata.value == 5">
       <div v-if="otherList.length">
-        <CollectionCard
-        :id="item.hash"
-          @handleClick="handleView(item)"
-          v-for="item in otherList"
-          :key="item.to"
-          :data="item"
-          @handleSend="handleSend"
-          @handleCancel="handleCancel"
-          :active="route.query.hash?.toString() === item.hash"
-        />
+        <CollectionCard :id="item.hash" @handleClick="handleView(item)" v-for="item in otherList" :key="item.to" :data="item" @handleSend="handleSend" @handleCancel="handleCancel" :active="route.query.hash?.toString() === item.hash" />
       </div>
       <no-data v-if="!loading && !otherList.length" />
     </div>
   </div>
   <div class="loading-list-con" v-show="loading">
-      <div class="loading-list-card" v-for="item in 18" :key="item">
-        <van-skeleton avatar :row="2" />
-      </div>
+    <div class="loading-list-card" v-for="item in 18" :key="item">
+      <van-skeleton avatar :row="2" />
     </div>
-    <!-- View transaction details -->
-    <van-dialog
-    v-model:show="showTransactionModal"
-    title
-    :showCancelButton="false"
-    :showConfirmButton="false"
-    closeOnClickOverlay
-    class="transfer-detail-modal"
-  >
-    <TransactionDetail
-      @handleClose="handleClose"
-      :data="transactionData.data"
-      @handleSpeed="handleSend"
-      @handleCancel="handleCancel"
-    />
+  </div>
+  <!-- View transaction details -->
+  <van-dialog v-model:show="showTransactionModal" title :showCancelButton="false" :showConfirmButton="false" closeOnClickOverlay class="transfer-detail-modal">
+    <TransactionDetail @handleClose="handleClose" :data="transactionData.data" @handleSpeed="handleSend" @handleCancel="handleCancel" />
   </van-dialog>
 
-  <CommonModal
-    v-model="showSpeedModal"
-    :title="
-      sendTxType == 1
-        ? t('common.gasSpeedUp')
-        : t('transationHistory.cancelDealTit')
-    "
-    className="transactionDetailsModal"
-  >
+  <CommonModal v-model="showSpeedModal" :title="sendTxType == 1
+      ? t('common.gasSpeedUp')
+      : t('transationHistory.cancelDealTit')
+    " className="transactionDetailsModal">
     <div class="m-14 pl-14 pr-14 border-round detail-modal">
       <div class="flex between lh-16 pt-12 pb-8">
         <span>{{ t("transactionDetails.nonce") }}</span>
@@ -126,40 +68,30 @@
         <span>{{ t("converSnft.amount") }}</span>
         <span>{{
           !transactionData.data.tokenAddress
-            ? ethers.utils.formatEther(transactionData.data.sendData.value)
-            : transactionData.data.amount
+          ? ethers.utils.formatEther(transactionData.data.sendData.value)
+          : transactionData.data.amount
         }}</span>
       </div>
       <div class="flex between lh-16 pt-8 pb-8">
         <span>{{ t("transactionDetails.gasfee") }}</span>
         <span>{{
           transactionData.data.sendData.gasPrice
-            ? ethers.utils.formatEther(transactionData.data.sendData.gasPrice)
-            : 0
+          ? ethers.utils.formatEther(transactionData.data.sendData.gasPrice)
+          : 0
         }}</span>
       </div>
       <div class="flex between lh-16 pt-8 pb-12">
         <span>{{ t("transactionDetails.totalAmount") }}</span>
-        <span
-          >≈
+        <span>≈
           {{
             !transactionData.data.tokenAddress
-              ? ethers.utils.formatEther(transactionData.data.sendData.value)
-              : transactionData.data.amount
+            ? ethers.utils.formatEther(transactionData.data.sendData.value)
+            : transactionData.data.amount
           }}
-          {{ currentNetwork.currencySymbol }}</span
-        >
+          {{ currentNetwork.currencySymbol }}</span>
       </div>
     </div>
-    <ModifGasFee
-      :show="showSpeedModal"
-      :to="transactionData.data.to"
-      :gasPrice="transactionData.data.gasPrice"
-      :gasLimit="transactionData.data.gasLimit"
-      :amount="ethers.utils.formatEther(transactionData.data.sendData.value)"
-      :tokenContractAddress="''"
-      @change="handleGasChange"
-    />
+    <ModifGasFee :show="showSpeedModal" :to="transactionData.data.to" :gasPrice="transactionData.data.gasPrice" :gasLimit="transactionData.data.gasLimit" :amount="ethers.utils.formatEther(transactionData.data.sendData.value)" :tokenContractAddress="''" @change="handleGasChange" />
     <div class="sendBtnBox pb-20 mt-20">
       <van-button @click="showSpeedModal = false" class="mr-26">{{
         t("common.cancel")
@@ -171,21 +103,11 @@
   </CommonModal>
 
   <Transition name="slider">
-      <i18n-t
-        tag="div"
-        v-if="showBuyTip"
-        keypath="wallet.toBrowser"
-        :class="`flex center scan-link fixed-bottom ${bugTipClass}`"
-      >
-        <template v-slot:link>
-          <span
-            @click="toScan(accountInfo.address, '/AccountDetail')"
-            class="f-12 view-history hover"
-            rel="noopener noreferrer"
-            >{{ t("wallet.scanLink") }}</span
-          >
-        </template>
-      </i18n-t>
+    <i18n-t tag="div" v-if="showBuyTip" keypath="wallet.toBrowser" :class="`flex center scan-link fixed-bottom ${bugTipClass}`">
+      <template v-slot:link>
+        <span @click="toScan(accountInfo.address, '/AccountDetail')" class="f-12 view-history hover" rel="noopener noreferrer">{{ t("wallet.scanLink") }}</span>
+      </template>
+    </i18n-t>
   </Transition>
 </template>
 <script lang="ts">
@@ -275,17 +197,13 @@ export default {
     const appProvide = inject("appProvide");
     const { t } = useI18n();
     const store = useStore();
-    console.log("-=============================");
     const currentNetwork = computed(() => store.state.account.currentNetwork);
     const accountInfo = computed(() => store.state.account.accountInfo);
-    const { $dialog } = useDialog();
     const route = useRoute()
     const tabs = reactive({
       list: [
         { name: t("transationHistory.all"), value: 1, select: true },
-        // { name: "Receive", value: 2, select: false },
         { name: t("transationHistory.send"), value: 3, select: false },
-        // { name: t("transationHistory.swap"), value: 4, select: false },
         { name: t("transationHistory.other"), value: 5, select: false },
       ],
     });
@@ -316,70 +234,38 @@ export default {
         accountInfo.value.address
       );
     };
-    eventBus.on('waitTxEnd', async() => {
-      store.dispatch('txList/asyncUpdateList',{total: 0})
+    eventBus.on('waitTxEnd', async () => {
+      store.dispatch('txList/asyncUpdateList', { total: 0 })
     })
     eventBus.on("loopTxListUpdata", () => {
       getPageList();
     });
     eventBus.on("txPush", (data: any) => {
       getPageList();
-      console.warn('txPush', data)
-      // const tx = tlist.value.find((item: any) => item.txId.toUpperCase() == data.txId.toUpperCase())
-      // if(!tx) {
-      //   debugger
-      // // @ts-ignore
-      // tlist.value.unshift(data)
-      // }
     });
 
     eventBus.on("delTxQueue", (data: any) => {
       getPageList();
-      // @ts-ignore
-      // tlist.value = tlist.value.filter(item => item.txId.toUpperCase() == data.txId.toUpperCase())
     });
-    
+
     eventBus.on("txQueuePush", (data: any) => {
       getPageList();
-      // let time = setTimeout(async() => {
-      //   const tx = tlist.value.find((item: any) => item.txId.toUpperCase() == data.txId.toUpperCase())
-      // if(!tx) {
-      //   tlist.value.unshift(data)
-      // }
-      //   clearTimeout(time)
-      // },300)
     });
     eventBus.on('sameNonce', () => {
       showSpeedModal.value = false
       getPageList();
     })
     eventBus.on("txUpdate", (data: any) => {
-      console.warn("txUpdate----", data);
       getPageList();
-      // for (let i = 0; i < tlist.value.length; i++) {
-      //   let item = tlist.value[i];
-      //   const { txId } = item;
-      //   if(data.txId) {
-      //     // @ts-ignore
-      //     if (txId && txId.toString().toUpperCase() == data.txId.toUpperCase()) {
-      //     // @ts-ignore
-      //     tlist.value[i] = data;
-      //     }
-      //   }
-      // }
-      // const tx = tlist.value.find((item: any) => item.txId.toUpperCase() == data.txId.toUpperCase())
-      // if(!tx) {
-      //   tlist.value.unshift(data)
-      // }
     });
-    eventBus.on('changeNetwork', async(address) => {
+    eventBus.on('changeNetwork', async (address) => {
       loading.value = true
       tlist.value = []
       try {
-        const { total, asyncRecordKey} = await handleAsyncTxList();
-        await store.dispatch('txList/asyncUpdateList',{total})
+        const { total, asyncRecordKey } = await handleAsyncTxList();
+        await store.dispatch('txList/asyncUpdateList', { total })
         await getPageList();
-      }finally {
+      } finally {
         loading.value = false
       }
       store.dispatch("account/waitTxQueueResponse", {
@@ -396,9 +282,9 @@ export default {
       window.addEventListener('scroll', deFun)
 
       try {
-        const { total, asyncRecordKey} = await handleAsyncTxList();
-        await store.dispatch('txList/asyncUpdateList',{total})
-      }finally {
+        const { total, asyncRecordKey } = await handleAsyncTxList();
+        await store.dispatch('txList/asyncUpdateList', { total })
+      } finally {
         getPageList();
         loading.value = false
       }
@@ -411,43 +297,43 @@ export default {
     const loading = ref(true);
     const getPageList = async () => {
       // showSpeedModal.value = false;
-        const chainId = currentNetwork.value.chainId;
-        try {
-          const id = currentNetwork.value.id;
-          const targetAddress = accountInfo.value.address.toUpperCase();
-          let searchKey = "";
-          if (id === "wormholes-network-1") {
-            searchKey = `async-${id}-${chainId}-${targetAddress}`;
-          } else {
-            searchKey = `txlist-${id}-${chainId}-${targetAddress}`;
-          }
-          const txInfo: any = await localforage.getItem(searchKey);
-          const queuekey = `txQueue-${id}-${chainId}-${targetAddress.toUpperCase()}`;
-          const txQueue = await localforage.getItem(queuekey);
-          let tx = [];
-          if (id === "wormholes-network-1") {
-            tx = txInfo ? txInfo.list : [];
-          } else {
-            tx = txInfo;
-          }
-          Array.isArray(tx) ? tlist.value = [...tx] : '';
-          Array.isArray(txQueue) ? tlist.value.unshift(...txQueue) : "";
-        } finally {
-          loading.value = false;
+      const chainId = currentNetwork.value.chainId;
+      try {
+        const id = currentNetwork.value.id;
+        const targetAddress = accountInfo.value.address.toUpperCase();
+        let searchKey = "";
+        if (id === "wormholes-network-1") {
+          searchKey = `async-${id}-${chainId}-${targetAddress}`;
+        } else {
+          searchKey = `txlist-${id}-${chainId}-${targetAddress}`;
         }
-        const hash = route.query.hash
-        if(hash) {
-          const tx = tlist.value.find((item: any) => item.hash.toUpperCase() == hash?.toString().toUpperCase())
-          if(tx) {
-            transactionData.data = tx
-            showTransactionModal.value = true;
-            // let time = setTimeout(() => {
-            //   const ele = document.getElementById(hash?.toString())
-            //  ele ? ele.scrollIntoView() : ''
-            //  clearTimeout(time)
-            // })
-          }
+        const txInfo: any = await localforage.getItem(searchKey);
+        const queuekey = `txQueue-${id}-${chainId}-${targetAddress.toUpperCase()}`;
+        const txQueue = await localforage.getItem(queuekey);
+        let tx = [];
+        if (id === "wormholes-network-1") {
+          tx = txInfo ? txInfo.list : [];
+        } else {
+          tx = txInfo;
         }
+        Array.isArray(tx) ? tlist.value = [...tx] : '';
+        Array.isArray(txQueue) ? tlist.value.unshift(...txQueue) : "";
+      } finally {
+        loading.value = false;
+      }
+      const hash = route.query.hash
+      if (hash) {
+        const tx = tlist.value.find((item: any) => item.hash.toUpperCase() == hash?.toString().toUpperCase())
+        if (tx) {
+          transactionData.data = tx
+          showTransactionModal.value = true;
+          // let time = setTimeout(() => {
+          //   const ele = document.getElementById(hash?.toString())
+          //  ele ? ele.scrollIntoView() : ''
+          //  clearTimeout(time)
+          // })
+        }
+      }
     };
 
 
@@ -520,7 +406,7 @@ export default {
         cancelSend();
       }
     };
-   
+
 
     onUnmounted(() => {
       if (waitTime.value) {
@@ -583,13 +469,13 @@ export default {
           })
         }
         let txType = 'normal'
-        if(tokenAddress) {
+        if (tokenAddress) {
           txType = 'contract'
         } else {
           txType = !newData ? 'normal' : (newData.indexOf(store.getters['account/chainParsePrefix']) > -1 ? store.getters['account/chainParsePrefix'] : 'contract')
         }
         const { hash, from, type, value: newVal, contractAddress } = data;
-        const txInfo =  {
+        const txInfo = {
           ...transactionData.data,
           receipt: {
             blockHash: null,
@@ -597,7 +483,7 @@ export default {
             cumulativeGasUsed: { type: "BigNumber", hex: "0x0" },
             effectiveGasPrice: { type: "BigNumber", hex: "0x0" },
             gasUsed: { type: "BigNumber", hex: "0x0" },
-                 // @ts-ignore
+            // @ts-ignore
             transactionHash: transactionData.data.hash,
             from,
             to,
@@ -665,7 +551,6 @@ export default {
           gasLimit: gasLimit.value,
           data: sendData.data
         };
-        console.warn("tx", tx);
         let data = null;
         if (tokenAddress) {
           const transferParams = {
@@ -688,12 +573,12 @@ export default {
         // step1  Set the original transaction status to false and unshift to the transaction record
         const { hash, from, type, value: newVal, contractAddress } = data;
         let txType = 'normal'
-        if(tokenAddress) {
+        if (tokenAddress) {
           txType = 'contract'
         } else {
           txType = !newData ? 'normal' : (newData.indexOf(store.getters['account/chainParsePrefix']) > -1 ? store.getters['account/chainParsePrefix'] : 'contract')
         }
-        const txInfo =  {
+        const txInfo = {
           ...transactionData.data,
           receipt: {
             blockHash: null,
@@ -701,7 +586,7 @@ export default {
             cumulativeGasUsed: { type: "BigNumber", hex: "0x0" },
             effectiveGasPrice: { type: "BigNumber", hex: "0x0" },
             gasUsed: { type: "BigNumber", hex: "0x0" },
-                 // @ts-ignore
+            // @ts-ignore
             transactionHash: transactionData.data.hash,
             from,
             to,
@@ -749,43 +634,42 @@ export default {
     const handleCancel = (data: any) => {
       handleClose();
       sendTxType.value = 2;
-      console.warn("cancel...");
       transactionData.data = data;
       showSpeedModal.value = true;
     };
     const showBuyTip = ref(true)
     const bugTipClass = ref('')
     const watchList = (val: any) => {
-      if(val && val.length >= 10) {
+      if (val && val.length >= 10) {
         !bugTipClass.value ? bugTipClass.value = 'fixed' : ''
       } else {
-        bugTipClass.value ? bugTipClass.value = '' :''
+        bugTipClass.value ? bugTipClass.value = '' : ''
       }
     }
-    
-    watch(()=> tlist.value, watchList , {
+
+    watch(() => tlist.value, watchList, {
       deep: true,
       immediate: true
     })
     let oldScrollTop = 0
     const scrolling = () => {
-      if(tlist.value.length < 10) {
+      if (tlist.value.length < 10) {
         return
       }
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       let scrollStep = scrollTop - oldScrollTop;
       oldScrollTop = scrollTop;
       if (scrollStep < 0) {
         console.log("scroll up.")
-        if(!showBuyTip.value)showBuyTip.value = true
+        if (!showBuyTip.value) showBuyTip.value = true
 
 
       } else {
-        if(showBuyTip.value)showBuyTip.value = false
+        if (showBuyTip.value) showBuyTip.value = false
         console.log("scroll down.")
       }
     }
-    
+
     const deFun = debounce(scrolling, 300)
 
     return {
@@ -832,6 +716,7 @@ export default {
   bottom: 10px;
   left: 50%;
   margin-left: -110px;
+
   &.fixed {
     padding: 3px 5px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
@@ -839,30 +724,38 @@ export default {
     background: #fff;
   }
 }
+
 .view-history {
   color: #9F54BA;
+
   &:hover {
     text-decoration: underline;
   }
 }
+
 .transaction-history {
   overflow-y: scroll;
   // height: calc(100vh - 48PX - 48PX);
 }
+
 .tabs-box {
   background: #fff;
 }
+
 .tabs {
   width: 260px;
+
   &::after {
     border-color: #9F54BA;
     border-radius: 26px;
   }
+
   .tab {
     width: 100px;
     line-height: 26px;
     border-radius: 12px;
     font-size: 12px;
+
     &.active {
       background: #9F54BA;
       // border: 1PX solid #9F54BA;

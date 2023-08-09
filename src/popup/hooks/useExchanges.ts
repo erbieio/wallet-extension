@@ -51,7 +51,7 @@ export const useExchanges = () => {
 
       callBack ? callBack() : "";
       localStorage.setItem('tx2', JSON.stringify(data))
-      // debugger
+      
       $tradeConfirm.update({ status: "approve" })
       const receipt = await wallet.provider.waitForTransaction(data.hash, null, 60000)
       localStorage.setItem('receipt2', JSON.stringify(receipt))
@@ -78,8 +78,6 @@ export const useExchanges = () => {
           failMessage: err.reason,
         });
       }
-      console.log(err)
-      console.log("==========err2=============")
       Toast(err.toString());
       resetData();
       return Promise.reject()
@@ -115,7 +113,6 @@ export const useExchanges = () => {
         address,
         params: `'${JSON.stringify(params)}'`,
       };
-      console.log(sendData)
       const val: any = await createExchange(sendData);
       if (val.code == "true") {
         let time = setTimeout(async () => {
@@ -291,7 +288,7 @@ export const useExchanges = () => {
           sig: sigstr,
           isAdmin: false,
           call: (sign: string) => {
-            debugger
+            
             sendPledge(amount, proxy_address, sign)
           }
         })
@@ -301,7 +298,6 @@ export const useExchanges = () => {
       // Ordinary pledge
       sendPledge(amount, '', '')
     } catch (err: any) {
-      console.error(err)
       $tradeConfirm.update({ status: "fail" })
     }
   };
@@ -312,7 +308,6 @@ export const useExchanges = () => {
       const wallet = await getWallet()
       const { address } = wallet
       const str = `${store.getters['account/chainParsePrefix']}:{"type":9,"proxy_address":"${proxy_address}","proxy_sign":"${proxy_sign}","version":"v0.0.1"}`
-      console.warn('str', str)
       const data3 = toHex(str);
       const tx1 = {
         to: address,
@@ -320,9 +315,6 @@ export const useExchanges = () => {
         data: `0x${data3}`,
         transitionType: '9'
       };
-      console.warn('tx1', tx1)
-      console.warn('amount', amount)
-
       const receipt = await store.dispatch('account/transaction', tx1)
       $tradeConfirm.update({ status: "approve" })
       const receipt2 = await wallet.provider.waitForTransaction(receipt.hash, null, 60000)
@@ -424,8 +416,6 @@ export const useExchanges = () => {
       status,
       ExchangerFlag
     } = exchangeStatus
-    console.log(status)
-    console.log(ExchangerFlag)
     if ((status != 2 && ExchangerFlag == false) || (!ExchangerFlag && status == 2)) {
       $tradeConfirm.open({
         approveMessage: i18n.global.t('createExchange.create_approve'),
@@ -499,7 +489,6 @@ export const useExchanges = () => {
   const initExchangeData = async () => {
     const wallet = await getWallet()
     const { address } = wallet
-    console.warn('wallet', wallet)
     const res = await wallet.provider.send('eth_getAccountInfo', [address, "latest"])
     const { ExchangerName, BlockNumber } = res.Worm
     let exchange_name = ExchangerName;

@@ -78,7 +78,6 @@ export default {
     const { toClipboard } = useClipboard()
     const tocopyCMS = async () => {
       try {
-        console.log('cms')
         await toClipboard(`${adminUrl.value}`)
         Toast.success(t('copy.copy'))
       } catch (e) {
@@ -87,7 +86,6 @@ export default {
     }
     const tocopyTrade = async () => {
       try {
-        console.log('Trade')
         await toClipboard(`${exchangeUrl.value}`)
         Toast.success(t('copy.copy'))
       } catch (e) {

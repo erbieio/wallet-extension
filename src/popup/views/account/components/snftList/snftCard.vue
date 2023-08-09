@@ -131,7 +131,6 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { t } = useI18n();
-    console.log('props.data------', props.data)
     const compData:Ref<any> = ref({ select: false, children: [] });
     const store = useStore()
     const currentNetwork = computed(() => store.state.account.currentNetwork);
@@ -154,9 +153,7 @@ export default defineComponent({
 
     }
 
-    watch(() => props.selectAll, (n) => {
-      console.warn('select all 222222222222')
-    })
+
     const coll_address = collIdStr + id
     compData.value = {
       id,
@@ -249,7 +246,6 @@ export default defineComponent({
 
     // snft click
     const handleClick = (item: any, idx: number) => {
-      console.log('item', item, props)
       if (!props.showIcon) {
         sessionStorage.setItem("compData", JSON.stringify(compData.value));
         router.push({name:'coll-detail',query: {...item}})
@@ -267,7 +263,6 @@ export default defineComponent({
       }
       const { index } = props;
       item.select = !item.select;
-      console.log("select", compData.value, item);
       const { children } = compData.value;
       const clds = children.filter((item) => item.select);
       const emitData = {
@@ -277,8 +272,6 @@ export default defineComponent({
         index,
         item,
       }
-      console.warn('compData', compData)
-      context.emit("changeSelect", emitData);
     };
     const getDisabled = (item: any) => {
       const {
@@ -304,9 +297,8 @@ export default defineComponent({
     };
     // All/none
     const chooseAll = (bool: boolean) => {
-      console.log('props.data', props.data)
       compData.value.select = bool;
-      //debugger
+      
       if (compData.value) {
         compData.value.children.forEach((item) => {
           if (getDisabled(item) == "") {
@@ -330,7 +322,6 @@ export default defineComponent({
         if(props.status === '1' && compData.value.pledgestate === 'Pledge' && !compData.value.isUnfreeze) {
           return
         }
-        console.warn('nnnnnnnnnn', n)
         nextTick(() => {
           chooseAll(n)
         })
@@ -394,8 +385,6 @@ export default defineComponent({
 
     const getNumber = computed(() => {
       const res = { ...props.data };
-      console.warn('res------------', res)
-
         let total = 0;
         const { MergeLevel, MergeNumber, snfts} = res
         if(MergeLevel === 2 && snfts.length) {

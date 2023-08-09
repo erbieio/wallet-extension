@@ -224,12 +224,9 @@ export default defineComponent({
         to: "0x7fBC8ad616177c6519228FCa4a7D9EC7d1804900",
         value: ethers.utils.parseEther(amount.toString()),
       });
-      console.log("gasPrice", ethers.utils.formatUnits(gasprice, "gwei"));
-      console.log("gas1", ethers.utils.formatUnits(gas1, "gwei"));
       const gasp = ethers.utils.formatUnits(gasprice, "gwei");
       const gas1n = ethers.utils.formatUnits(gas1, "gwei");
       gasFee.value = new BigNumber(gasp).multipliedBy(gas1n).toNumber();
-      console.log("gasFee", gasFee.value);
       if (amount2) {
         const { contractWithSigner, contract } = await dispatch(
           "account/connectConstract",
@@ -239,13 +236,10 @@ export default defineComponent({
           accountInfo.value.address,
           amount2.toString()
         );
-        console.log("gas2", ethers.utils.formatUnits(gas2, "gwei"));
         const gas2n = ethers.utils.formatUnits(gas2, "gwei");
         const gas2amount = new BigNumber(gas2n).multipliedBy(gasp).toNumber();
-        console.log("gas2amount", gas2amount);
         gasFee.value = new BigNumber(gasFee.value).plus(gas2amount).toNumber();
         loadingGas.value = false;
-        
         countDown.start()
       } else {
         loadingGas.value = false;

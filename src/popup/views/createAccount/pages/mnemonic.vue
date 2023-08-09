@@ -152,7 +152,6 @@ export default {
         await chrome.storage.local.set({ mnemonic: mnemonic })
         router.push({ name: "loginAccount-mnemonic-import" })
       } catch (err) {
-        console.error(err.toString())
         $toast.warn(t('importByMnemonic.errorMonic'))
       }
     }

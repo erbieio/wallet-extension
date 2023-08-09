@@ -231,7 +231,6 @@ const updateAddrInitData = async () => {
             Balance: new BigNumber(item.Balance).div(1000000000000000000).toFixed(2)
         }
     })
-    console.log('stakerExtensions', stakerExtensions.value)
     const users = list.map((item: { Addr: string; }) => item.Addr)
     if (users && users.length) {
         getUsersCoefficient({ users: JSON.stringify(users) }).then(res => {
@@ -254,7 +253,6 @@ const updateAddrInitData = async () => {
     }
     const wallet = await getWallet();
     const blockNum = await wallet.provider.getBlockNumber();
-    console.log('blockNum', blockNum)
     blockNumber.value = blockNum
     const myAccount = stakerExtensions.value.find(item => item.Addr.toUpperCase() == accountInfo.value.address.toUpperCase())
     if (!myAccount) {
@@ -284,11 +282,9 @@ const handleAddBlur = () => {
 }
 
 const handleSliderChange = (e) => {
-    console.log(e)
     addNumber.value = e
 }
 const childConfirm = async (v: any) => {
-    console.log(v)
     const hasAddr = stakerExtensions.value.find(item => item.Addr.toUpperCase() == v.Addr.toUpperCase())
     if (hasAddr) {
         $toast.warn(t('validator.addrHasExits'))
@@ -296,8 +292,6 @@ const childConfirm = async (v: any) => {
     }
     const wallet = await getWallet();
     const blockNum = await wallet.provider.getBlockNumber();
-    console.log('blockNum', blockNum)
-
     blockNumber.value = blockNum
     stakerExtensions.value.forEach(item => item.selected = false)
     v.selected = true
@@ -390,7 +384,6 @@ const minusConfirm = async () => {
             value: addNumber.value,
             data: data3,
         };
-        console.warn('tx1', tx1, addNumber.value)
         const data = await dispatch('account/transaction', tx1)
         $tradeConfirm.update({ status: "approve" })
         const res = await data.wait()
@@ -492,7 +485,6 @@ const addStakeConfirm = async () => {
             value: addNumber.value,
             data: data3,
         };
-        console.warn('tx1', tx1, addNumber.value)
         const data = await dispatch('account/transaction', tx1)
         $tradeConfirm.update({ status: "approve" })
         const res = await data.wait()
@@ -511,12 +503,10 @@ const addStakeConfirm = async () => {
 
 const handleAddError = (err: any) => {
     // showAddDialog.value = false
-    console.warn('aaaa', err.message)
     $toast.fail(err.reason)
 }
 
 const handleClick = (item: any) => {
-    console.warn('click item', item)
     const { Addr } = item
     stakerExtensions.value.forEach(item => {
         if (Addr.toUpperCase() == item.Addr.toUpperCase()) {

@@ -64,16 +64,9 @@ export default {
     const accountList = computed(() => {
         return store.state.account.accountList
     })
-    // @ts-ignore
-    // const bg = chrome.runtime.getBackgroundPage();
-    // const currentSender = bg.connectList.find(item => item.origin == bg.params[handleType.wallet_requestPermissions].sender.origin)
-    // const accounts = currentSender ? currentSender.accountList : []
 
-    // const checkArr = [accountInfo.value.address,...accounts]
     const checkedList = ref([])
-
     const { sender, method, sendId } = route.query
-    console.warn('sender',sender)
     const senderData = ref(JSON.parse(decodeURIComponent(sender.toString())))
     const selectLen = computed(() => {
        return checkedList.value.length
@@ -98,13 +91,11 @@ export default {
       const sendParams = data[method] ? data[method] : {}
       const currentSender = list.connectList.find((item: any) => item.origin == sendParams.sender.origin)
       const accounts = currentSender ? currentSender.accountList : []
-      console.warn('sendParams.sender', sendParams.sender)
       const checkArr = [accountInfo.value.address,...accounts]
       checkedList.value = checkArr
     })
     const loading = ref(false)
     const next = () => {
-      console.warn('checkedList.value', checkedList.value)
       loading.value = true
       sendBackground({method,response: {code:'200',data:[...checkedList.value],sendId}})
     }

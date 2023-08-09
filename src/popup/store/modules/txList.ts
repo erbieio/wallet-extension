@@ -7,7 +7,6 @@ import localforage from 'localforage'
 import eventBus from '@/popup/utils/bus'
 import { utils } from 'ethers'
 import { web3 } from '@/popup/utils/web3'
-console.warn('web3', web3)
 import BigNumber from 'bignumber.js'
 import { guid } from '@/popup/utils'
 
@@ -39,14 +38,13 @@ export default {
     actions: {
         async updateRecordPage({ commit, state }: any, { transactions: list, total, chainId, hasRecord }) {
             const typerec = typeof hasRecord
-            console.warn('typeof hasRecord', typeof hasRecord, typeof typerec)
             const wallet = await getWallet()
             const addr = store.state.account.accountInfo.address.toUpperCase()
             const { id } = store.state.account.currentNetwork
             const asyncRecordKey = `async-${id}-${chainId}-${addr}`
             let txInfo = await localforage.getItem(asyncRecordKey)
             if (list && list.length) {
-                const realList = txInfo && txInfo.list.length ?  txInfo.list.filter(item => !item.sendType) : []
+                const realList = txInfo && txInfo.list.length ? txInfo.list.filter(item => !item.sendType) : []
                 if ((txInfo && total >= realList.length) || !txInfo) {
                     try {
                         for await (const item of list) {
@@ -58,9 +56,8 @@ export default {
                     }
                 }
             }
-            console.log('txInfo', txInfo)
             if (txInfo) {
-                const realList = txInfo && txInfo.list.length ?  txInfo.list.filter(item => !item.sendType) : []
+                const realList = txInfo && txInfo.list.length ? txInfo.list.filter(item => !item.sendType) : []
                 if (total <= realList.length) {
                     if (time && typeof hasRecord == 'undefined') {
                         clearInterval(time)
@@ -71,7 +68,6 @@ export default {
                     txInfo.page = Number(txInfo.page) + 1 + ''
                 }
                 const newList = unRepet(txInfo.list, list).sort((a, b) => b.blockNumber - a.blockNumber)
-                console.log('newList', newList)
                 txInfo.list = txInfo.list && txInfo.list.length ? newList : [...list].sort((a, b) => b.blockNumber - a.blockNumber)
                 txInfo.total = total
             } else {
@@ -83,7 +79,7 @@ export default {
             }
             await localforage.setItem(asyncRecordKey, txInfo)
             eventBus.emit('loopTxListUpdata', txInfo.list)
-            const realList = txInfo && txInfo.list.length ?  txInfo.list.filter(item => !item.sendType) : []
+            const realList = txInfo && txInfo.list.length ? txInfo.list.filter(item => !item.sendType) : []
             if (!list || realList.length < page_size_int && typeof hasRecord == 'undefined') {
                 if (time) {
                     clearInterval(time)
@@ -136,15 +132,15 @@ export default {
                     page: txInfo.page
                 }
                 const { total, transactions } = await getTransitionsPage(params)
-                if(transactions && transactions.length) {
-                    for(let i =0;i<transactions.length;i++){
+                if (transactions && transactions.length) {
+                    for (let i = 0; i < transactions.length; i++) {
                         const item = transactions[i]
                         item.txId = guid()
-                        if(item.input == '0x') {
+                        if (item.input == '0x') {
                             item.txType = 'normal'
                         } else {
                             const json = getInput(item.input)
-                            if(json) {
+                            if (json) {
                                 item.txType = store.getters['account/chainParsePrefix']
                                 item.jsonData = json
                             } else {
@@ -153,13 +149,13 @@ export default {
                         }
                     }
                 }
-                    
+
                 if (transactions && transactions.length > page_size_int) {
                     txInfo.page = page_size_int + 1 + '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          '
                 }
                 await localforage.setItem(asyncRecordKey, txInfo)
                 await dispatch('updateRecordPage', { transactions, total, chainId })
-                return { total, chainId, asyncRecordKey, transactions,...params,txInfo }
+                return { total, chainId, asyncRecordKey, transactions, ...params, txInfo }
             }
             return null
         },
@@ -175,23 +171,21 @@ export default {
             const txInfo = await localforage.getItem(asyncRecordKey)
             // const totalPage = Math.ceil(total/10)
             // const listTotalPage = Math.ceil(txInfo.list.length/10)
-            const realList = txInfo && txInfo.list.length ?  txInfo.list.filter(item => !item.sendType) : []
-            return new Promise(async(resolve) => {
+            const realList = txInfo && txInfo.list.length ? txInfo.list.filter(item => !item.sendType) : []
+            return new Promise(async (resolve) => {
                 if (total !== realList.length) {
                     const hasRecord1 = await handleUpdateList()
-                    console.warn('hasRecord1', hasRecord1)
                     if (!hasRecord1) {
                         resolve()
                         clearInterval(time2)
-                        return 
+                        return
                     }
                     time2 = setInterval(async () => {
                         const hasRecord = await handleUpdateList()
-                        console.warn('hasRecord', hasRecord)
                         if (!hasRecord) {
                             resolve()
                             clearInterval(time2)
-                        } 
+                        }
                     }, timeOut2)
                 } else {
                     resolve()
@@ -211,30 +205,30 @@ export default {
                 // Clear the transaction history of the current account
                 const qstr1 = `async-${id}-${chainId}-${addr.toUpperCase()}`
                 const qstr2 = `txQueue-${id}-${chainId}-${addr.toUpperCase()}`
-                if(!total && txInfo.list && txInfo.list.length) {
-                    await localforage.iterate(async(value, key, iterationNumber) => {
+                if (!total && txInfo.list && txInfo.list.length) {
+                    await localforage.iterate(async (value, key, iterationNumber) => {
                         console.log('clear cancel', key)
                         if (key !== "vuex") {
-                            if(key == qstr1 || key == qstr2) {
+                            if (key == qstr1 || key == qstr2) {
                                 console.log('clear cancel', key)
-                               await localforage.removeItem(key);
+                                await localforage.removeItem(key);
                             }
                         } else {
-                          [key, value]
+                            [key, value]
                         }
                     });
                     return false
                 }
-                if(transactions && transactions.length) {
+                if (transactions && transactions.length) {
 
-                    for(let i=0;i<transactions.length;i++){
+                    for (let i = 0; i < transactions.length; i++) {
                         const item = transactions[i]
                         item.txId = guid()
-                        if(item.input == '0x') {
+                        if (item.input == '0x') {
                             item.txType = 'normal'
                         } else {
                             const json = getInput(item.input)
-                            if(json) {
+                            if (json) {
                                 item.txType = store.getters['account/chainParsePrefix']
                                 item.jsonData = json
                             } else {
@@ -243,16 +237,15 @@ export default {
                         }
                         let diffList = txInfo.list && txInfo.list.length ? txInfo.list.slice(0, 10) : txInfo.list
                         const txQueue = await localforage.getItem(qstr2) || []
-                        for await (let [sameIdx,child] of diffList.entries()) {
-                            console.log('sameIdx', sameIdx, child)
-                            if(child.hash.toUpperCase() == item.hash.toUpperCase() && item.status != child.status){
-                                if(sameIdx > -1) {
+                        for await (let [sameIdx, child] of diffList.entries()) {
+                            if (child.hash.toUpperCase() == item.hash.toUpperCase() && item.status != child.status) {
+                                if (sameIdx > -1) {
                                     txInfo.list[sameIdx] = item
                                     await localforage.setItem(qstr1, txInfo)
                                     eventBus.emit('sameNonce', child.hash)
-                                    for await (const [idx,iterator] of txQueue.entries()) {
-                                        if(iterator.nonce === diffList[sameIdx].nonce) {
-                                            txQueue.splice(idx,1)
+                                    for await (const [idx, iterator] of txQueue.entries()) {
+                                        if (iterator.nonce === diffList[sameIdx].nonce) {
+                                            txQueue.splice(idx, 1)
                                             await localforage.setItem(qstr2, txQueue)
                                         }
                                     }
@@ -262,11 +255,9 @@ export default {
                     }
                 }
                 let newList = []
-                if(transactions && transactions.length) {
+                if (transactions && transactions.length) {
                     newList = transactions.filter(item => !hashList.includes(item.hash.toUpperCase()))
                 }
-                console.warn('newList', newList)
-
                 let hasRecord = false
                 if (transactions && transactions.length >= 10) {
                     if (newList && newList.length == transactions.length) {
@@ -278,7 +269,7 @@ export default {
                 } else {
                     hasRecord = false
                 }
-                
+
                 await dispatch('updateRecordPage', { transactions: newList, total, chainId, hasRecord })
                 return hasRecord
             }
@@ -288,25 +279,24 @@ export default {
             const network = store.state.account.currentNetwork
             const wallet = await getWallet()
             // When you are currently on a wormholes network, synchronize transaction records from the block browser
-            return new Promise(async(resolve) => {
+            return new Promise(async (resolve) => {
                 if (network.id === 'wormholes-network-1') {
-                    
+
                     try {
                         const res = await dispatch('asyncAddrRecord')
-                        console.warn('res', res)
-                    const txInfo = await localforage.getItem(res.asyncRecordKey)
-                    const realList = txInfo && txInfo.list.length ?  txInfo.list.filter(item => !item.sendType) : []
-                    if(realList.length === res.total) {
-                        resolve({total:res.total,asyncRecordKey: res.asyncRecordKey})
-                    }
-                    if(res){
-                        const { asyncRecordKey, total } = res
+                        const txInfo = await localforage.getItem(res.asyncRecordKey)
+                        const realList = txInfo && txInfo.list.length ? txInfo.list.filter(item => !item.sendType) : []
+                        if (realList.length === res.total) {
+                            resolve({ total: res.total, asyncRecordKey: res.asyncRecordKey })
+                        }
+                        if (res) {
+                            const { asyncRecordKey, total } = res
                             time = setInterval(async () => {
                                 const txInfo = await localforage.getItem(asyncRecordKey)
-                                const realList = txInfo && txInfo.list.length ?  txInfo.list.filter(item => !item.sendType) : []
+                                const realList = txInfo && txInfo.list.length ? txInfo.list.filter(item => !item.sendType) : []
                                 if (res && realList.length < total) {
                                     const info = await dispatch('asyncAddrRecord')
-                                    if(info.total === info.txInfo.list.length) {
+                                    if (info.total === info.txInfo.list.length) {
                                         resolve({ total: info.total, asyncRecordKey })
                                         clearInterval(time)
                                     }
@@ -314,18 +304,18 @@ export default {
                                     resolve({ total, asyncRecordKey })
                                     clearInterval(time)
                                 }
-                               
+
                             }, timeOut)
-                            
-                    } else {
-                        resolve({ total: 0, asyncRecordKey: '' })
-                        clearInterval(time)
-                    }
-                    } catch(err){
+
+                        } else {
+                            resolve({ total: 0, asyncRecordKey: '' })
+                            clearInterval(time)
+                        }
+                    } catch (err) {
                         console.error(err)
                     }
                 }
-                resolve({total:0, asyncRecordKey:''}) 
+                resolve({ total: 0, asyncRecordKey: '' })
             })
 
         },
@@ -340,7 +330,6 @@ export function getInput(input) {
     if (input && input != '0x') {
         try {
             const wormStr = web3.utils.toAscii(input)
-            console.log('wormStr',wormStr)
             const [nullstr, jsonstr] = wormStr.split(`${prefix}:`)
             let jsonData = null
             const txType = wormStr.startsWith(`${prefix}:`)
@@ -349,13 +338,13 @@ export function getInput(input) {
             } else {
                 jsonData = JSON.parse(wormStr)
             }
-  
+
             console.warn('jsonData', jsonData)
-            if(txType) {
+            if (txType) {
                 jsonData.txType = prefix
             } else {
-                if(jsonData) {
-                    if(jsonData.nft_address && jsonData.owner) {
+                if (jsonData) {
+                    if (jsonData.nft_address && jsonData.owner) {
                         jsonData.txType = 'normal'
                     } else {
                         jsonData.txType = 'contract'
@@ -399,9 +388,8 @@ export async function getConverAmount(wallet, data) {
     const { input, blockNumber } = data
     if (input && blockNumber) {
         let jsonData = getInput(input)
-        if(jsonData) {
+        if (jsonData) {
             const { type, nft_address } = jsonData
-            console.log('input data---', jsonData)
             if (type && type == 6 && nft_address) {
                 const len = nft_address.length
                 switch (len) {
@@ -421,12 +409,11 @@ export async function getConverAmount(wallet, data) {
                     "eth_getAccountInfo",
                     [nft_address, web3.utils.toHex((blockNumber - 1).toString())]
                 );
-                console.log('nftAccountInfo', nftAccountInfo)
                 const { MergeLevel, MergeNumber } = nftAccountInfo.Nft
 
                 //  @ts-ignore
                 const { t0, t1, t2, t3 } = store.state.configuration.setting.conversion
-    
+
                 let convertAmount = 0
                 if (MergeLevel === 0) {
                     convertAmount = new BigNumber(MergeNumber).multipliedBy(t0).toNumber()
@@ -449,8 +436,8 @@ export async function getConverAmount(wallet, data) {
 
 function clone(params = {}) {
     return JSON.parse(JSON.stringify(params))
-  }
-  
+}
+
 export const stopLoop = () => {
     clearInterval(time)
     clearInterval(time2)

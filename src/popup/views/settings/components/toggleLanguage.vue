@@ -97,7 +97,6 @@ export default defineComponent({
       dispatch("system/setLanguage", langName);
     }
     const setLanguage = async (item: Language) => {
-      console.log('locale', locale, i18n)
       const { value } = item;
       i18n.global.locale.value = value;
       i18n.global.fallbackLocale.value = value

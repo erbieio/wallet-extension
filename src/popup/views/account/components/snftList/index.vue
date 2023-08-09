@@ -252,7 +252,6 @@ export default defineComponent({
       const parentEle = newList.list[index]
       if (checked) {
         const { mergelevel: l2level, mergenumber: l2levelnumber, ownaddr: l2ownaddr, exchange } = child
-        console.warn('check 000', toRaw(item), toRaw(child))
         if (l2level == 2 && l2ownaddr.toUpperCase() == myAddr && !exchange) {
           parentEle.selectAssets.push(({ ...child }))
           parentEle.myOwnerAssets = [{ ...child }]
@@ -300,7 +299,6 @@ export default defineComponent({
           owner_addr
         }
         const res = await queryAllSnftByCollection(params)
-        console.log('res', res.data)
         const { snftChips, snfts } = res.data
 
         currentCollection.children = [...snfts].map(item => {
@@ -311,11 +309,8 @@ export default defineComponent({
           } catch (err) {
             imgUrl = `${metaDomain.value}${item.source_url}`
           }
-          console.warn('metaDomain222', imgUrl)
-
           return { ...item, imgUrl }
         })
-        console.warn('snftChips', snftChips)
         let total = 0
         const chips = snftChips.filter(s => {
           if (s.ownaddr.toUpperCase() == owner_addr && !s.exchange && s.mergelevel == 0) {
@@ -354,7 +349,6 @@ export default defineComponent({
             parentEle.checked = true
           }
         })
-        console.warn('selected ', currentCollection.snfts)
       } else {
         // collection == l2
         const { mergelevel: l2level, mergenumber: l2levelnumber, ownaddr: l2ownaddr, exchange, nft_address: l2nftaddr } = child
@@ -378,8 +372,6 @@ export default defineComponent({
         })
 
         const theCollAddrs = currentCollection.myOwnerAssets.map(c => c.nft_address.toUpperCase())
-        console.warn('check false', item.selectedStr, total, theCollAddrs, parentEle.selectAssets)
-
         parentEle.selectedStr = parentEle.selectedStr - total
         parentEle.selectAssets = parentEle.selectAssets.filter(c => !theCollAddrs.includes(c.nft_address.toUpperCase()))
         if (parentEle.selectedStr != parentEle.Chipamount) {
@@ -412,7 +404,6 @@ export default defineComponent({
           // get my snft/ship/ of the collection
           for await (const child of item.children) {
             const { collection_creator_addr, collections, OwnerFlag, children, mergelevel, mergenumber } = child
-            console.log('for each', mergelevel, mergenumber, OwnerFlag, child)
             if (mergelevel < 2 && OwnerFlag) {
 
               // get collDetail
@@ -447,16 +438,12 @@ export default defineComponent({
               }
             }
           }
-          console.warn('handle select all', myOwnerAssets, total)
           item['myOwnerAssets'].push(...myOwnerAssets)
           item.checked = true
           item.children.forEach(child => child.checked = true)
-          console.warn('myOwnerAssets', myOwnerAssets)
           item['selectAssets'] = [...myOwnerAssets]
-          console.warn('total', total, myOwnerAssets)
           item['selectedStr'] = total
         } catch (err) {
-          console.error('err', err)
           $toast.fail(JSON.stringify(err))
         } finally {
           toast.clear()
@@ -536,9 +523,7 @@ export default defineComponent({
           finished.value = true
         }
         stagesparams.start_index = Number(stagesparams.count) + (Number(stagesparams.start_index)) + ''
-        console.warn('newList', newList)
       } catch (err) {
-        console.warn('err', err)
         nftErr.value = true;
         Toast(JSON.stringify(err));
       } finally {
@@ -642,7 +627,6 @@ export default defineComponent({
       newList.list.forEach(item => {
         list.push(...item.selectAssets)
       })
-      console.warn('new selectList', list, newList)
       return list;
     });
 
@@ -699,13 +683,10 @@ export default defineComponent({
           }
         }
       })
-      console.warn('treeData', treeData)
       newList.list.forEach(item => {
         const { nft_address, mergelevel, mergenumber } = item
-        console.warn('err 111', nft_address.toUpperCase(), treeData[nft_address.toUpperCase()])
         const upAddr = nft_address.toUpperCase()
         const allAssets = [...treeData[upAddr].children]
-        console.warn('all assets', allAssets)
         item.selectAssets = [...allAssets]
         item.selectedStr = treeData[upAddr].selectStr
         item.checked = true
@@ -720,8 +701,6 @@ export default defineComponent({
           }
         })
       })
-      console.warn('treeData', treeData)
-      console.warn('newList', newList.list)
     }
 
     const selectAll = ref(false);
@@ -768,7 +747,6 @@ export default defineComponent({
     const handleConfirmConvert = async () => {
       showNFTModal.value = false
       const { address } = accountInfo.value
-      console.warn('confirm', toRaw(selectList.value))
       const len = selectList.value.length
       const waits = []
       const approveMessage = t("wallet.conver_approve");
@@ -793,7 +771,6 @@ export default defineComponent({
           reLoading()
         },
       });
-      console.warn('all select nft_address', selectList.value)
       try {
         for await (const item of selectList.value) {
           let nftAddr = ''
@@ -812,7 +789,6 @@ export default defineComponent({
               nftAddr = nft_address.replace('mmm', '')
               break;
           }
-          console.warn('nft_address', nftAddr)
           const data3 = {
             type: 6,
             nft_address: nftAddr,
@@ -930,17 +906,14 @@ export default defineComponent({
           }
         })
       })
-      console.warn('ratio', r, n)
       return parseFloat(new BigNumber(r).div(n).toFixed(4));
     });
 
     const toDetail = (sun, i) => {
-      console.warn('detail', toRaw(sun), i)
       sessionStorage.setItem(
         "compData",
         JSON.stringify({ ...toRaw(sun), selectIndex: i })
       );
-
       router.push({ name: 'coll-detail' });
     }
 

@@ -8,42 +8,36 @@
       <!-- Non imported accounts -->
       <div class="f-12 lh-16 accountList-tit" v-show="defaultlist.length">{{ t("network.createAccounts") }}</div>
 
-      <div
-        v-for="(item, index) in defaultlist"
-        :key="item.value"
-        :class="` clickActive ${
-            index < defaultlist.length - 1 ? 'border-bottom' : ''
-          }`"
-        @click="handleAccountFun(item, index)"
-      >
-      <div class="flex account-card" :title="item.address">
-            <div class="flex center select-box">
-              <i :class="`iconfont ${item.address.toUpperCase() == accountInfo.address.toUpperCase()
- ? 'icon-danxuan' : 'icon-danxuan1'} `"></i>
+      <div v-for="(item, index) in defaultlist" :key="item.value" :class="` clickActive ${index < defaultlist.length - 1 ? 'border-bottom' : ''
+        }`" @click="handleAccountFun(item, index)">
+        <div class="flex account-card" :title="item.address">
+          <div class="flex center select-box">
+            <i :class="`iconfont ${item.address.toUpperCase() == accountInfo.address.toUpperCase()
+              ? 'icon-danxuan' : 'icon-danxuan1'} `"></i>
+          </div>
+          <div class="account-icon flex center">
+            <div class="account-icon-box">
+              <AccountIcon :data="item.icon" />
             </div>
-            <div class="account-icon flex center">
-              <div class="account-icon-box">
-                <AccountIcon :data="item.icon" />
-              </div>
-            </div>
-            <div class="account-info flex center-v">
-              <div class="account-info-box">
-                <div class="account-name flex center-v">
-                  {{ item.name }}
-                  <div class="pl-4 pr-4" @click.stop="openModifModal(item)">
-                    <i class="iconfont icon-bianji"></i>
-                  </div>
-                </div>
-                <div class="account-value" v-show="amountType != 'mask'">
-                  {{ decimal(item.amount) }} {{ currentNetwork.currencySymbol }}
-                </div>
-                <div class="account-value" v-show="amountType == 'mask'">
-                  ********
+          </div>
+          <div class="account-info flex center-v">
+            <div class="account-info-box">
+              <div class="account-name flex center-v">
+                {{ item.name }}
+                <div class="pl-4 pr-4" @click.stop="openModifModal(item)">
+                  <i class="iconfont icon-bianji"></i>
                 </div>
               </div>
+              <div class="account-value" v-show="amountType != 'mask'">
+                {{ decimal(item.amount) }} {{ currentNetwork.currencySymbol }}
+              </div>
+              <div class="account-value" v-show="amountType == 'mask'">
+                ********
+              </div>
             </div>
+          </div>
 
-            <!-- <div class="flex right center-v add-choose-icon">
+          <!-- <div class="flex right center-v add-choose-icon">
               <van-loading
                 v-show="
                   accountLoading &&
@@ -53,48 +47,42 @@
                 color="#9F54BA"
               />
             </div> -->
-          </div>
-      
+        </div>
+
       </div>
       <!-- Imported account -->
       <div v-if="importList.length" class="f-12 lh-16 accountList-tit">{{ t("network.importAccounts") }}</div>
-  
-      <div
-        v-for="(item, index) in importList"
-        :key="item.value"
-        :class="` clickActive ${
-            index < importList.length - 1 ? 'border-bottom' : ''
-          }`"
-        @click="handleAccountFun(item, index)"
-      >
-      <div class="flex account-card" :title="item.address">
-            <div class="flex center select-box">
-              <i :class="`iconfont ${item.address.toUpperCase() == accountInfo.address.toUpperCase()
- ? 'icon-danxuan' : 'icon-danxuan1'} `"></i>
-            </div>
-            <div class="account-icon flex center">
-              <div class="account-icon-box">
-                <AccountIcon :data="item.icon" />
-              </div>
-            </div>
-            <div class="account-info flex center-v">
-              <div class="account-info-box">
-                <div class="account-name flex center-v">
-                  {{ item.name }}
-                  <div class="pl-4 pr-4" @click.stop="openModifModal(item)">
-                    <i class="iconfont icon-bianji"></i>
-                  </div>
-                </div>
-                <div class="account-value" v-show="amountType != 'mask'">
-                  {{ decimal(item.amount) }} {{ currentNetwork.currencySymbol }}
-                </div>
-                <div class="account-value" v-show="amountType == 'mask'">
-                  ********
-                </div>
-              </div>
-            </div>
 
-            <!-- <div class="flex right center-v add-choose-icon">
+      <div v-for="(item, index) in importList" :key="item.value" :class="` clickActive ${index < importList.length - 1 ? 'border-bottom' : ''
+        }`" @click="handleAccountFun(item, index)">
+        <div class="flex account-card" :title="item.address">
+          <div class="flex center select-box">
+            <i :class="`iconfont ${item.address.toUpperCase() == accountInfo.address.toUpperCase()
+              ? 'icon-danxuan' : 'icon-danxuan1'} `"></i>
+          </div>
+          <div class="account-icon flex center">
+            <div class="account-icon-box">
+              <AccountIcon :data="item.icon" />
+            </div>
+          </div>
+          <div class="account-info flex center-v">
+            <div class="account-info-box">
+              <div class="account-name flex center-v">
+                {{ item.name }}
+                <div class="pl-4 pr-4" @click.stop="openModifModal(item)">
+                  <i class="iconfont icon-bianji"></i>
+                </div>
+              </div>
+              <div class="account-value" v-show="amountType != 'mask'">
+                {{ decimal(item.amount) }} {{ currentNetwork.currencySymbol }}
+              </div>
+              <div class="account-value" v-show="amountType == 'mask'">
+                ********
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="flex right center-v add-choose-icon">
               <van-loading
                 v-show="
                   accountLoading &&
@@ -104,8 +92,8 @@
                 color="#9F54BA"
               />
             </div> -->
-          </div>
-      
+        </div>
+
       </div>
     </div>
     <!-- Button group -->
@@ -231,22 +219,21 @@ export default {
         forbidClick: true,
         loadingType: 'spinner'
       })
-      console.log('loading')
 
-        let time = setTimeout(async () => {
-          try {
-        await createAccount()
-        await dispatch('common/scrollBottom', { id: 'account-list' })
-      } catch(err){
-        Toast(err.toString())
-      }
+      let time = setTimeout(async () => {
+        try {
+          await createAccount()
+          await dispatch('common/scrollBottom', { id: 'account-list' })
+        } catch (err) {
+          Toast(err.toString())
+        }
         let time2 = setTimeout(() => {
           Toast.clear()
           clearTimeout(time2)
         }, 300)
         clearTimeout(time)
       })
-      
+
     }
     return {
       t,
@@ -280,19 +267,23 @@ export default {
 .btn-group {
   padding: 20px 50px;
 }
+
 .btn-group-box {
   width: 180px;
   margin: 0 auto;
 }
+
 .accountList-tit {
   color: #8f8f8f;
   padding: 0 20px;
   margin-top: 24px;
 }
+
 :deep(.van-loading) {
   width: 22px;
   height: 22px;
 }
+
 .btn-box {
   .btn {
     width: 34px;
@@ -301,72 +292,91 @@ export default {
     border-radius: 17px;
     border: 1PX solid #9F54BA;
     cursor: pointer;
+
     &:hover {
       background: #9F54BA;
+
       i {
         color: #fff;
       }
     }
+
     i {
       font-size: 16px;
       color: #9F54BA;
     }
   }
+
   .text {
     color: #9F54BA;
     font-size: 12px;
   }
 }
+
 .account-card {
   height: 72px;
   padding: 0 15px;
   transition: ease 0.3s;
+
   .select-box {
     margin-right: 12px;
+
     i {
       font-size: 18px;
       color: #9F54BA;
     }
   }
+
   &:hover {
     background: #F8F3F9;
-    color:#9F54BA;
-    .account-value,.account-name i {
-      color:#9F54BA;
+    color: #9F54BA;
+
+    .account-value,
+    .account-name i {
+      color: #9F54BA;
 
     }
 
   }
+
   .account-icon {
     padding: 0 6px 0 0;
+
     &-box {
       border-radius: 3px;
       overflow: hidden;
     }
   }
+
   .account-name {
     line-height: 18px;
     font-size: 12px;
+
     i {
       font-size: 14px;
       color: #a9a6a6;
     }
   }
+
   .account-value {
     color: #a9a6a6;
     line-height: 18px;
   }
+
   .account-info-box {
     width: 240px;
   }
+
   .add-choose-icon {
     width: 100%;
+
     i {
       color: rgb(13, 215, 13);
       font-size: 14px;
     }
   }
 }
+
 // .title {
 //   color: #b3b3b3;
 //   line-height: 62px;
@@ -376,8 +386,8 @@ export default {
   // max-height: 400px;
   overflow-y: scroll;
 }
+
 .icon-weibiaoti-1_xinzengzhanghu {
   font-weight: bold;
   font-size: 20px !important;
-}
-</style>
+}</style>

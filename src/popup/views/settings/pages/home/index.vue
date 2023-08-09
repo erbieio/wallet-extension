@@ -19,31 +19,25 @@
         <i class="iconfont icon-suo"></i>
       </template>
 
-      <setting-card
-        @handleClick="routerPush({name: 'export-privateKey'})"
-        :label="t('setting.privateKey')"
-      />
-      <setting-card @handleClick="routerPush({name: 'recovery-phrase'})" :label="t('setting.walletSecretRecoveryPhrase')" />
-      <setting-card
-        :label="t('setting.privacySetting')"
-        @handleClick="routerPush({name:'resetPwd-step1', query: { toName:'resetPwd-step2' }})"
-      />
+      <setting-card @handleClick="routerPush({ name: 'export-privateKey' })" :label="t('setting.privateKey')" />
+      <setting-card @handleClick="routerPush({ name: 'recovery-phrase' })" :label="t('setting.walletSecretRecoveryPhrase')" />
+      <setting-card :label="t('setting.privacySetting')" @handleClick="routerPush({ name: 'resetPwd-step1', query: { toName: 'resetPwd-step2' } })" />
     </SettingClass>
 
     <SettingClass :label="t('setting.networks')">
       <template v-slot:icon>
         <i class="iconfont icon-wangluo"></i>
       </template>
-      <setting-card @handleClick="routerPush({name: 'networkList'})" :label="t('setting.addNetworks')" />
+      <setting-card @handleClick="routerPush({ name: 'networkList' })" :label="t('setting.addNetworks')" />
     </SettingClass>
 
     <SettingClass :label="t('setting.contacts')">
       <template v-slot:icon>
         <i class="iconfont icon-tongxunlu1"></i>
       </template>
-      <setting-card @handleClick="routerPush({name:'contacts-list'})" :label="t('setting.addEditRemove')" />
+      <setting-card @handleClick="routerPush({ name: 'contacts-list' })" :label="t('setting.addEditRemove')" />
     </SettingClass>
-<!-- 
+    <!-- 
     <SettingClass :label="t('setting.aboutWormHoles')" @handleClick="towebsite">
       <template v-slot:icon>
         <i class="iconfont icon-zuanshi_o"></i>
@@ -77,7 +71,7 @@ export default {
   components: {
     NavHeader,
     [Icon.name]: Icon,
-    [Sticky.name]:Sticky,
+    [Sticky.name]: Sticky,
     [Button.name]: Button,
     SettingClass,
     SettingCard,
@@ -89,16 +83,14 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const store = useStore()
-    const {state} = store
-    const clickLeft = () => {}
+    const { state } = store
+    const clickLeft = () => { }
     const lang = computed(() => {
       const language = (navigator.language ? navigator.language : navigator.language).toLowerCase() // @ts-ignore // @ts-ignore
       const langName = language.split('-')[0] != 'zh' ? 'en' : 'zh'
       const newLang = store.state.system.language || langName
       return languages.find((item: any) => item.value == newLang)
     })
-    console.warn('lang', lang.value)
-
     const routerPush = ({ name, query, params }: any) => {
       router.push({ name, query, params })
     }
@@ -114,7 +106,7 @@ export default {
     const handleToggleCurrency = () => {
       showCurrency.value = true
     }
-    const {$toast} = useToast()
+    const { $toast } = useToast()
 
     const towebsite = () => {
       window.open(decode('aHR0cHM6Ly93d3cud29ybWhvbGVzLmNvbS8='))
@@ -124,9 +116,7 @@ export default {
       loading.value = true;
       try {
         localforage.iterate((value, key, iterationNumber) => {
-          console.log('clear cancel', key)
           if (key !== "vuex") {
-            console.log('clear cancel', key)
             localforage.removeItem(key);
           } else {
             [key, value]
@@ -157,30 +147,34 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-:deep(){
+:deep() {
   .icon-wangluo {
     font-size: 16px !important;
   }
 }
+
 .settings-index {
   .settings-card {
 
     padding: 13px 12px 16px 14px;
     transition: ease 0.3s;
+
     &:hover {
       background: #F8F3F9;
     }
+
     .title {
       .label {
         font-size: 18px;
 
       }
+
       .icon {
         font-size: 20px;
         color: rgb(138, 133, 133);
       }
     }
+
     .desc {
       margin-top: 5px;
       font-size: 12px;

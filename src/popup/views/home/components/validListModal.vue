@@ -64,7 +64,6 @@ const props = defineProps({
 })
 const emits = defineEmits(['update:modelValue', 'confirm'])
 watch(() => props.modelValue, n => {
-    console.warn('watch modelvalue', n)
     showModal.value = n
     if (n) {
         getList()
@@ -95,7 +94,6 @@ const getIconClass = (v: any) => {
       if (num > 50) return "smile";
 }
 const getList = async () => {
-    console.log('get list',loading.value, finished.value)
     if(loading.value || finished.value){
         return
     }
@@ -103,12 +101,10 @@ const getList = async () => {
     try {
         const { data } = await getValidatorInfo(params)
         params.index = Number(params.index) + 10 + ''
-        console.warn('d', data)
         list.value.push(...(data && data.length ? data : []).map((item: any) => {
             //The field of Pledged's unit is GWEI
             return { ...item, icon: getRandomIcon(), iconClass:getIconClass(item.coefficient),Pledged: new BigNumber(item.Pledged).div(1000000000).toNumber() }
         }))
-        console.warn('list.value', list.value)
         if (!data || data.length < 10) {
             finished.value = true
         }
@@ -151,7 +147,6 @@ const handleConfirm = async() => {
         ethers.utils.getAddress(value1.value)
         const wallet = await getWallet()
         const acc = await wallet.provider.send('eth_getAccountInfo',  [value1.value, "latest"])
-        console.warn('acc', acc)
         const PledgedBalance = acc.Worm?.PledgedBalance ? new BigNumber(acc.Worm?.PledgedBalance).div(1000000000000000000).toNumber() : 0
         if(PledgedBalance < 700 && accountInfo.value.address.toUpperCase() != value1.value.toUpperCase()) {
             $toast.warn(t('validator.fromPledgeErr'))
@@ -167,7 +162,6 @@ const handleConfirm = async() => {
         })
         showModal.value = false
     } catch (err) {
-        console.error(err)
         $toast.fail(t('transaction.malformedaddress'))
     } finally {
         btnLoading.value = false

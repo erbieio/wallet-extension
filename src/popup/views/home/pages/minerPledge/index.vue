@@ -102,26 +102,18 @@ export default {
         //Determine whether the current balance can be used as the miner's pledge amount
         try {
           const wallet = await getWallet()
-          // debugger
+          
           //Determine the current node URL
           let provider = ethers.getDefaultProvider(nodeValue.value)
           const newWallet: any = wallet.connect(provider)
           const balance = await newWallet.getBalance()
-          console.log(balance)
-          console.log('================banlance')
           let money = utils.formatEther(balance._hex)
-          //Loading
-          console.log(money)
-          console.log('================money')
           //If there is a current balance, you can make adjustments to the pledge
           if (money >= 100000) {
             clearInterval(interval)
             isLoading.value = false
             nextShow.value = true
             balanceMoney.value = money
-            console.log(balanceMoney)
-            console.log('=========11111111=======')
-            // })
           } else {
             closeAll()
           }

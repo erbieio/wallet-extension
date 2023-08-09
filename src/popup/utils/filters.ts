@@ -220,7 +220,6 @@ export const txTypeToIcon = (data: any) => {
 
 export const handleTxType = (item: any) => {
   const { to, from, contractAddress, sendStatus, txType, input } = item
-  console.warn('handleTxType',txType, item)
   const myAddr = store.state.account.accountInfo.address.toUpperCase()
   
   if (sendStatus && sendStatus === 'pendding') {
@@ -232,7 +231,6 @@ export const handleTxType = (item: any) => {
   if (txType === store.getters['account/chainParsePrefix']) {
     const data = getInput(input)
     if (data) {
-        console.warn('data', data)
         if (data.type == 6) {
           const { nft_address } = data
           const level = getSNFTLevel(nft_address)

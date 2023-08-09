@@ -273,11 +273,10 @@ export const getGasFee = async (tx: any) => {
     const gasLimit = await wall.estimateGas(tx)
     const limitStr = ethers.utils.formatEther(gasLimit)
     const priceStr = ethers.utils.formatUnits(gasPrice, 'wei')
-    //debugger
+    
     const gasFee = new Bignumber(limitStr).multipliedBy(priceStr).toFixed(9)
     return gasFee
   } catch (err) {
-    console.error(err)
     return Promise.reject(err)
   }
 }
@@ -563,7 +562,6 @@ export default {
       const formAdd = from.toUpperCase();
       const txListKey = `txlist-${id}`
       let txList: any = await localforage.getItem(txListKey)
-      console.log('txList', txList)
       if (txList && typeof txList == 'object') {
         const receipt = { ...value, symbol: currencySymbol }
         delete receipt.network
@@ -581,7 +579,6 @@ export default {
         }
       }
       store.commit('account/DEL_TXQUEUE', value)
-      console.log('set txList', txList)
       // save txlist
       localforage.setItem(txListKey, clone(txList))
       handleUpdate()
@@ -808,7 +805,6 @@ export default {
     async getChainVersion ({state, commit}) {
       const provider = await getProvider()
       const res = await provider.send('eth_version')
-      console.warn('erbie ===========', res.split(' '))
       commit('UPDATE_CHAINVERSION', res)
       return res
     },
@@ -826,7 +822,6 @@ export default {
         "eth_getAccountInfo",
         [state.accountInfo.address, "latest"]
       ).then((res: any) => {
-        console.warn('eth_getAccountInfo', res)
         const data = { ...res, ...res.Worm, status: 0 }
         commit('UPDATE_ETHACCOUNTINFO', data)
         return data
@@ -842,7 +837,6 @@ export default {
         const rewardEth = utils.formatEther(data.reward)
         const profitStr = utils.formatEther(data.profit)
         const stateData = { ...data, account: res, weight, rewardEth, profitStr }
-        console.warn('state', stateData)
         commit('UPDATE_CREATORSTATUS', stateData)
       } catch (err) {
         commit('UPDATE_CREATORSTATUS', null)
@@ -863,7 +857,6 @@ export default {
         const { accountInfo } = state;
         const { keyStore } = accountInfo;
         const password: string = await getCookies("password") || "";
-        console.warn('password', password)
         if (!password) {
           const query = getQuery();
           // @ts-ignore
@@ -952,7 +945,6 @@ export default {
     ) {
       try {
         const { phrase, pathIndex } = params;
-        console.warn('000', params)
         wallet = await createWalletByMnemonic({ phrase, pathIndex });
         return Promise.resolve(wallet);
       } catch ({ reason }) {
@@ -1032,7 +1024,7 @@ export default {
       try {
         const wa = await ImportPrivateKey({ privatekey });
         const { URL } = state.currentNetwork;
-        // debugger
+        
         let provider = ethers.getDefaultProvider(URL);
         const newWallet = wa.connect(provider)
         // During the import, check whether the address exists in the current account list. If the address exists, an exception is thrown and the import will not continue
@@ -1163,8 +1155,6 @@ export default {
           return newWallet
         }
       } catch (err: any) {
-        console.warn('showNotify', Notify)
-        console.error('err:----2', err)
         Notify({ type: 'danger', message: i18n.global.t('error.netErr'), duration: 5000, position: 'bottom' })
         commit('UPDATE_NETSTATUS', NetStatus.fail)
         return Promise.reject(err);
@@ -1178,7 +1168,6 @@ export default {
       const txListKey = `txQueue-${id}-${state.ethNetwork.chainId}-${from.toUpperCase()}`
       // const txListKey = `txQueue-${id}-${from.toUpperCase()}`
       let txList: any = await localforage.getItem(txListKey)
-      console.warn('txList', txList)
       return txList && txList.length ? true : false
     },
     async transaction(
@@ -1190,7 +1179,6 @@ export default {
       if (checkTxQueue && await dispatch('hasPendingTransactions')) {
         return Promise.reject({ reason: i18n.global.t('common.sendTipPendding'), code: 500 })
       }
-      console.warn('params', params)
       try {
         const newData = data || ''
         const { currentNetwork } = state
@@ -1200,7 +1188,6 @@ export default {
         };
         if (Number(gasPrice)) {
           const bigPrice = new BigNumber(gasPrice)
-          console.warn('bigPrice', bigPrice.toNumber())
           const gasp = Number(gasPrice) ? bigPrice.dividedBy(1000000000).toFixed(12) : '0.0000000012';
           tx.gasPrice = ethers.utils.parseEther(gasp)
         }
@@ -1246,11 +1233,9 @@ export default {
           nft_address: nft_address || ''
         })
 
-        console.log("i18n", i18n);
         sendData.wallet = newwallet
         return sendData
       } catch (err) {
-        console.error(err)
         return Promise.reject(err)
       }
     },
@@ -1268,7 +1253,7 @@ export default {
         const { currentNetwork, accountInfo } = state
         // Update recent contacts
         commit("PUSH_RECENTLIST", to);
-        debugger
+        
         // Get contract token instance object
         const { contractWithSigner, contract } = await dispatch(
           "connectConstract",
@@ -1276,8 +1261,6 @@ export default {
         );
         const { precision } = state.currentNetwork.tokens[accountInfo.address.toUpperCase()].find(item => item.tokenContractAddress.toUpperCase() == tokenAddress.toUpperCase())
         const amountWei = utils.parseUnits(amount.toString(), precision).toString()
-        console.warn('amountWei', amountWei)
-        console.log(" contract.estimate", contract, contractWithSigner);
         const gasp = Number(gasPrice) ? new BigNumber(gasPrice).dividedBy(1000000000).toFixed(12) : '0.0000000012';
         const transferParams: any = {
           gasLimit: gasLimit,
@@ -1286,7 +1269,6 @@ export default {
         if (typeof sendNonce != undefined) {
           transferParams['nonce'] = sendNonce
         }
-        console.log("transferParams", transferParams);
         const data = await contractWithSigner.transfer(to, amountWei, transferParams)
         const { from, gasLimit: newLimit, gasPrice: newPrice, hash, nonce, type, value: newVal, to: toAddr } = data;
         await PUSH_TXQUEUE({
@@ -1319,7 +1301,6 @@ export default {
       return new Promise(async (resolve, reject) => {
         try {
           const wallet = await getWallet();
-          console.log('newtx', tx)
           const { to } = tx
           // Update recent contacts
           commit("PUSH_RECENTLIST", to);
@@ -1419,16 +1400,13 @@ export default {
         let balance = "0";
         try {
           const ban = await contractWithSigner.balanceOf(wallet.address)
-          console.warn('获取合约资产', utils.formatUnits(ban.toString(), decimal))
           balance = utils.formatUnits(ban.toString(), decimal);
         } catch (err: any) {
           // Toast(i18n.global.t("currencyList.importerror"));
           return Promise.reject(i18n.global.t("currencyList.importerror"))
         }
-        console.log("connectConstract", contractWithSigner, contract);
         // Link contract
         if (hasAddress) {
-          console.log("balance.toString()", balance.toString(), balance);
           // Add if not
           network.tokens[key].push({
             symbol,
@@ -1499,7 +1477,6 @@ export default {
         );
         Promise.all(plist).then((result) => {
           for (let i = 0; i < tokens.length; i++) {
-            console.log('result[i]', result[i])
             // @ts-ignore
             tokens[i].balance = result[i];
           }
@@ -1525,10 +1502,8 @@ export default {
           wallet.provider
         );
         const contractWithSigner = contract.connect(wallet);
-        console.warn("contractWithSigner--------------", contractWithSigner);
         const amount = await contractWithSigner.balanceOf(wallet.address)
         const newban = utils.formatUnits(amount.toString(), precision)
-        console.log('amount 合约', utils.formatUnits(amount.toString(), precision))
         return Promise.resolve(newban);
       } catch (err) {
         return Promise.reject(err);
@@ -1612,7 +1587,6 @@ export default {
               const ethb = new BigNumber(Balance).div("1000000000000000000");
               totalAmount = ethb.plus(totalAmount);
             });
-            console.log("totalAmount", totalAmount.toNumber());
             resolve(totalAmount.toNumber());
           });
       });
@@ -1657,7 +1631,6 @@ export default {
     // The result of polling the transaction queue
     // The result of polling the transaction queue
     async waitTxQueueResponse({ commit, state }: any, opt?: Object) {
-      console.warn('waitTxQueueResponse---')
       const _opt = {
         time: 60000,
         callback: (e: any) => { },
@@ -1916,7 +1889,7 @@ export const DEL_TXQUEUE = async (tx: any) => {
     let queueKey = `txQueue-${id}-${chainId}-${from.toUpperCase()}`
     const list: any = await localforage.getItem(queueKey)
     const txQueue = list && list.length ? list : []
-    debugger
+    
     const newList = txQueue.filter((item: any) => item.txId.toUpperCase() != txId.toUpperCase())
     await localforage.setItem(queueKey, newList)
     eventBus.emit('delTxQueue', tx)
@@ -1926,7 +1899,6 @@ export const DEL_TXQUEUE = async (tx: any) => {
 
 export const PUSH_TRANSACTION = async (da: any) => {
   const state = store.state.account
-  console.warn('push', da)
   const { receipt, sendData, network, txId, value, date, sendType, txType } = da
   const { convertAmount, nonce, data } = sendData
   const {
@@ -1982,7 +1954,6 @@ export const PUSH_TRANSACTION = async (da: any) => {
     sendType,
     txType
   }
-  console.warn('newReceipt', newReceipt)
   if (data) {
     const convertAmount = await getConverAmount(wallet, { input: data, blockNumber })
     newReceipt['convertAmount'] = convertAmount
@@ -1997,8 +1968,6 @@ export const PUSH_TRANSACTION = async (da: any) => {
     txListKey = `txlist-${state.currentNetwork.id}-${chainId}-${formAdd}`
   }
   let txList: any = await localforage.getItem(txListKey)
-  console.log('txList', txList)
-
   if (state.currentNetwork.id == 'wormholes-network-1') {
     if (txList && txList.list.length) {
       const tx = txList.list.find((item: any) => item.txId.toUpperCase() == newReceipt.txId.toUpperCase())
@@ -2019,8 +1988,6 @@ export const PUSH_TRANSACTION = async (da: any) => {
     }
   }
 
-  // store.commit('account/DEL_TXQUEUE', value)
-  console.log('set txList', txList)
   // save txlist
   await localforage.setItem(txListKey, clone(txList))
   eventBus.emit('txPush', clone(newReceipt))
@@ -2098,7 +2065,6 @@ export const UPDATE_TRANSACTION = async (da: any) => {
     txListKey = `txlist-${id}-${chainId}-${formAdd}`
   }
   let txList: any = await localforage.getItem(txListKey)
-  console.warn('has txID', txList)
   if (state.currentNetwork.id == 'wormholes-network-1') {
     if (txList && txList.list.length) {
       for (let i = 0; i < txList.list.length; i++) {

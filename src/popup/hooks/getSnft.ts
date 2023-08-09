@@ -9,7 +9,6 @@ import {
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 export const useGetSnft = () => {
-    console.log('usedb', usedb)
     const accountInfo = computed(() => store.state.account.accountInfo)
     const params = {
         owner: accountInfo.value.address,

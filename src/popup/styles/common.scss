@@ -141,14 +141,12 @@ img {
     opacity: 1;
   }
 }
-
-.clickActive:hover {
+.clickActive {
+  transition: ease .3s;
   cursor: pointer;
-}
-
-// Click status
-.clickActive:active {
-  background: rgba($color: #000, $alpha: 0.3);
+  &:active {
+    background: rgba($color: #000, $alpha: 0.15);
+  }
 }
 
 .van-toast__text {

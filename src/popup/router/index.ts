@@ -228,7 +228,6 @@ const router = createRouter({
 });
 
 router.beforeEach(async(to, form, next) =>  {
-  console.warn('route-----',to, form)
  // @ts-ignore
  await store.restored; 
  const { name, meta } = to;
@@ -244,7 +243,6 @@ router.beforeEach(async(to, form, next) =>  {
 // Wallet not created -> Boot page
 const filterNames1 = ['guide-step1','guide-step2','loginAccount-create-step1','loginAccount-create-step2','loginAccount-step1','loginAccount-step2','loginAccount-export-mnemonic','loginAccount-mnemonic-import','loginAccount-createing']
 if(!hasAccountFlag && !password && !filterNames1.includes(name.toString())) {
-  console.log('11111111111111111111111111',name,filterNames1)
   next({
     name: "guide-step1"
   })
@@ -252,8 +250,6 @@ if(!hasAccountFlag && !password && !filterNames1.includes(name.toString())) {
 }
 // Created, not logged in -> Logged in page
 if(hasAccountFlag && !password && name != 'loginAccount-step1' && name != 'resetPwd-step1') {
-  console.log('2222222222222222222222222222222222222',password,hasAccountFlag)
-
   const newQuery = {...query}
   const path = getURLPath()
   path != '/loginAccount/step1' && path != '/' ? newQuery.backUrl = path : ''
@@ -279,7 +275,6 @@ if(hasAccountFlag && password && form.fullPath == '/' && name != 'wallet' && !fi
     next({name:"wallet"})
     return
   }
-  console.log('33333333333333333333333333333333')
   next()
   return
 }
@@ -288,7 +283,6 @@ if(hasAccountFlag && password && filterNames3.includes(to.name.toString())) {
   next({name:"wallet"})
   return
 }
-console.log('4444444444444444444444444444444444444444444')
 next()
 
 });

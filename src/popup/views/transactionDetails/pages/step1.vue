@@ -2,16 +2,8 @@
   <div class="currency">
     <div class="currency-bd">
       <div class="flex center">
-        <div
-          class="flex center currency-icon"
-          v-for="item in accountInfo.token"
-          :key="item"
-        >
-          <img
-            class="currency-symbol"
-            v-if="item"
-            src="@/assets/icon_black.svg"
-          />
+        <div class="flex center currency-icon" v-for="item in accountInfo.token" :key="item">
+          <img class="currency-symbol" v-if="item" src="@/assets/icon_black.svg" />
         </div>
       </div>
       <div class="amount text-center text-bold pl-14 pr-14">
@@ -21,10 +13,7 @@
       <div class="flex center">
         <div class="actions-list flex between">
           <div class="actions-list-card">
-            <div
-              class="actions-list-card-icon flex center"
-              @click.stop="toogleAcceptCode"
-            >
+            <div class="actions-list-card-icon flex center" @click.stop="toogleAcceptCode">
               <i class="iconfont icon-teshujiantouzuoxiantiao"></i>
             </div>
             <div class="actions-list-card-label text-center">
@@ -53,29 +42,11 @@
     <div class="tx-tit lh-30 pl-14 pr-14">{{ t("common.hsitory") }}</div>
 
     <div class="swap-list" v-show="!loading">
-      <CollectionCard
-        @handleClick="handleView(item)"
-        @handleSend="handleSend"
-        @handleCancel="handleCancel"
-        v-for="item in txList"
-        :key="item.address"
-        :data="item"
-      />
+      <CollectionCard @handleClick="handleView(item)" @handleSend="handleSend" @handleCancel="handleCancel" v-for="item in txList" :key="item.address" :data="item" />
       <NoData v-if="!txList.length" :message="t('wallet.no')" />
 
-      <van-dialog
-        v-model:show="showTransactionModal"
-        :showCancelButton="false"
-        :showConfirmButton="false"
-        closeOnClickOverlay
-        class="transfer-detail-modal"
-      >
-        <TransactionDetail
-          @handleClose="handleClose"
-          @handleSpeed="handleSend"
-          @handleCancel="handleCancel"
-          :data="transactionData.data"
-        />
+      <van-dialog v-model:show="showTransactionModal" :showCancelButton="false" :showConfirmButton="false" closeOnClickOverlay class="transfer-detail-modal">
+        <TransactionDetail @handleClose="handleClose" @handleSpeed="handleSend" @handleCancel="handleCancel" :data="transactionData.data" />
       </van-dialog>
     </div>
     <div class="loading-list-con" v-show="loading">
@@ -84,15 +55,10 @@
       </div>
     </div>
   </div>
-  <CommonModal
-    v-model="showSpeedModal"
-    :title="
-      sendTxType == 1
-        ? t('common.gasSpeedUp')
-        : t('transationHistory.cancelDealTit')
-    "
-    className="transactionDetailsModal"
-  >
+  <CommonModal v-model="showSpeedModal" :title="sendTxType == 1
+      ? t('common.gasSpeedUp')
+      : t('transationHistory.cancelDealTit')
+    " className="transactionDetailsModal">
     <div class="m-14 pl-14 pr-14 border-round detail-modal">
       <div class="flex between lh-16 pt-12 pb-8">
         <span>{{ t("transactionDetails.nonce") }}</span>
@@ -108,39 +74,30 @@
         <span>{{ t("converSnft.amount") }}</span>
         <span>{{
           !sendTx.tokenAddress
-            ? ethers.utils.formatEther(sendTx.sendData.value)
-            : sendTx.amount
+          ? ethers.utils.formatEther(sendTx.sendData.value)
+          : sendTx.amount
         }}</span>
       </div>
       <div class="flex between lh-16 pt-8 pb-8">
         <span>{{ t("transactionDetails.gasfee") }}</span>
         <span>{{
           sendTx.sendData.gasPrice
-            ? ethers.utils.formatEther(sendTx.sendData.gasPrice)
-            : 0
+          ? ethers.utils.formatEther(sendTx.sendData.gasPrice)
+          : 0
         }}</span>
       </div>
       <div class="flex between lh-16 pt-8 pb-12">
         <span>{{ t("transactionDetails.totalAmount") }}</span>
-        <span
-          >≈
+        <span>≈
           {{
             !sendTx.tokenAddress
-              ? ethers.utils.formatEther(sendTx.sendData.value)
-              : sendTx.amount
+            ? ethers.utils.formatEther(sendTx.sendData.value)
+            : sendTx.amount
           }}
-          {{ currentNetwork.currencySymbol }}</span
-        >
+          {{ currentNetwork.currencySymbol }}</span>
       </div>
     </div>
-    <ModifGasFee
-      :show="showSpeedModal"
-      :to="sendTx.to"
-      :gasPrice="sendTx.gasPrice"
-      :gasLimit="sendTx.gasLimit"
-      :amount="ethers.utils.formatEther(sendTx.sendData.value)"
-      @change="handleGasChange"
-    />
+    <ModifGasFee :show="showSpeedModal" :to="sendTx.to" :gasPrice="sendTx.gasPrice" :gasLimit="sendTx.gasLimit" :amount="ethers.utils.formatEther(sendTx.sendData.value)" @change="handleGasChange" />
     <div class="sendBtnBox pb-20 mt-20">
       <van-button @click="showSpeedModal = false" class="mr-26">{{
         t("common.cancel")
@@ -152,24 +109,12 @@
   </CommonModal>
 
   <Transition name="slider">
-      <i18n-t
-        tag="div"
-        v-if="showBuyTip"
-        keypath="wallet.toBrowser"
-        :class="`flex center scan-link fixed-bottom ${bugTipClass}`"
-      >
-        <template v-slot:link>
-          <span
-            @click="toScan(accountInfo.address,'/AccountDetail')"
-            class="f-12 view-history hover"
-            rel="noopener noreferrer"
-            >{{ t("wallet.scanLink") }}</span
-          >
-        </template>
-      </i18n-t>
+    <i18n-t tag="div" v-if="showBuyTip" keypath="wallet.toBrowser" :class="`flex center scan-link fixed-bottom ${bugTipClass}`">
+      <template v-slot:link>
+        <span @click="toScan(accountInfo.address, '/AccountDetail')" class="f-12 view-history hover" rel="noopener noreferrer">{{ t("wallet.scanLink") }}</span>
+      </template>
+    </i18n-t>
   </Transition>
-
-
 </template>
 <script lang="ts">
 import {
@@ -253,65 +198,64 @@ export default {
     const getPageList = async () => {
       // showSpeedModal.value = false;
       try {
-          const chainId = currentNetwork.value.chainId;
-          const id = currentNetwork.value.id;
-          const targetAddress = accountInfo.value.address.toUpperCase();
-          let searchKey = "";
-          if (id === "wormholes-network-1") {
-            searchKey = `async-${id}-${chainId}-${targetAddress}`;
-          } else {
-            searchKey = `txlist-${id}-${chainId}-${targetAddress}`;
-          }
-          const txInfo: any = await localforage.getItem(searchKey);
-          const queuekey = `txQueue-${id}-${chainId}-${targetAddress.toUpperCase()}`;
-          const txQueue = await localforage.getItem(queuekey);
-          let tx = [];
-          if (id === "wormholes-network-1") {
-            tx = txInfo ? txInfo.list : [];
-          } else {
-            tx = txInfo;
-          }
-
-          if (tx && tx.length) {
-            const list = tx || [];
-            if (tokenContractAddress) {
-              txList.value = list.filter((item: any) => {
-                if(item.to){
-                  return item.to.toUpperCase() == tokenContractAddress.toString().toUpperCase()
-                }
-              });
-              
-            } else {
-              const tokens = currentNetwork.value.tokens[accountInfo.value.address.toUpperCase()]
-              const tokenAddrs = tokens && tokens.length ? tokens.map((item: any) => item.tokenContractAddress.toUpperCase()) : []
-              console.warn('tokenAddrs', tokenAddrs,list)
-              txList.value = list
-            }
-          }
-          if(!tokenContractAddress) {
-            if(Array.isArray(txQueue)) {
-            txQueue.forEach(item => {
-              if(!item.tokenAddress){
-                // @ts-ignore
-                txList.value.unshift(item)
-              }
-            })
-          }
-          } else {
-            if(Array.isArray(txQueue)) {
-            txQueue.forEach(item => {
-              if(item.tokenAddress.toUpperCase() == tokenContractAddress.toString().toUpperCase()){
-                // @ts-ignore
-                txList.value.unshift(item)
-              }
-            })
-          }
-          }
-
-        } catch (err) {
-        } finally {
-          loading.value = false;
+        const chainId = currentNetwork.value.chainId;
+        const id = currentNetwork.value.id;
+        const targetAddress = accountInfo.value.address.toUpperCase();
+        let searchKey = "";
+        if (id === "wormholes-network-1") {
+          searchKey = `async-${id}-${chainId}-${targetAddress}`;
+        } else {
+          searchKey = `txlist-${id}-${chainId}-${targetAddress}`;
         }
+        const txInfo: any = await localforage.getItem(searchKey);
+        const queuekey = `txQueue-${id}-${chainId}-${targetAddress.toUpperCase()}`;
+        const txQueue = await localforage.getItem(queuekey);
+        let tx = [];
+        if (id === "wormholes-network-1") {
+          tx = txInfo ? txInfo.list : [];
+        } else {
+          tx = txInfo;
+        }
+
+        if (tx && tx.length) {
+          const list = tx || [];
+          if (tokenContractAddress) {
+            txList.value = list.filter((item: any) => {
+              if (item.to) {
+                return item.to.toUpperCase() == tokenContractAddress.toString().toUpperCase()
+              }
+            });
+
+          } else {
+            const tokens = currentNetwork.value.tokens[accountInfo.value.address.toUpperCase()]
+            const tokenAddrs = tokens && tokens.length ? tokens.map((item: any) => item.tokenContractAddress.toUpperCase()) : []
+            txList.value = list
+          }
+        }
+        if (!tokenContractAddress) {
+          if (Array.isArray(txQueue)) {
+            txQueue.forEach(item => {
+              if (!item.tokenAddress) {
+                // @ts-ignore
+                txList.value.unshift(item)
+              }
+            })
+          }
+        } else {
+          if (Array.isArray(txQueue)) {
+            txQueue.forEach(item => {
+              if (item.tokenAddress.toUpperCase() == tokenContractAddress.toString().toUpperCase()) {
+                // @ts-ignore
+                txList.value.unshift(item)
+              }
+            })
+          }
+        }
+
+      } catch (err) {
+      } finally {
+        loading.value = false;
+      }
     };
 
     const handleAsyncTxList = () => {
@@ -323,14 +267,12 @@ export default {
     let waitTime: any = ref(null);
     onMounted(async () => {
       store.dispatch('account/clearWaitTime')
-      console.warn('onMounted')
       try {
-       const { total, asyncRecordKey} = await handleAsyncTxList();
-       console.warn('onMounted 1', total)
-        await store.dispatch('txList/asyncUpdateList',{total})
-      }catch(err: any){
+        const { total, asyncRecordKey } = await handleAsyncTxList();
+        await store.dispatch('txList/asyncUpdateList', { total })
+      } catch (err: any) {
         console.error(err)
-      }finally {
+      } finally {
         getPageList();
         loading.value = false
       }
@@ -343,11 +285,10 @@ export default {
     const toSend = () => {
       router.push({ name: "send", query });
     };
-    const toSwap = () => {};
+    const toSwap = () => { };
     let transactionData: any = reactive({ data: {} });
     const showTransactionModal: Ref<boolean> = ref(false);
     const handleView = (e: any) => {
-      console.warn("e--", e);
       transactionData.data = e;
       showTransactionModal.value = true;
     };
@@ -359,18 +300,15 @@ export default {
     // 1 speed up  2 cancel
     const sendTxType = ref(1);
     const handleSend = (data: any) => {
-      console.log("handleSend...");
       handleClose();
       sendTxType.value = 1;
       sendTx.value = data;
       showSpeedModal.value = true;
-      console.log("sendTx---", sendTx.value);
     };
 
     const handleCancel = (data: any) => {
       handleClose();
       sendTxType.value = 2;
-      console.warn("cancel...", data);
       sendTx.value = data;
       showSpeedModal.value = true;
     };
@@ -379,8 +317,6 @@ export default {
     const gasPrice = ref("0");
     const handleGasChange = (gasData: any) => {
       const { gasLimit: limit, gasPrice: gprice } = gasData;
-      console.warn("limit", limit);
-      console.warn("gprice", gprice);
       gasLimit.value = limit;
       gasPrice.value = gprice;
     };
@@ -394,14 +330,14 @@ export default {
         cancelSend();
       }
     };
-    eventBus.on('changeNetwork', async(address) => {
+    eventBus.on('changeNetwork', async (address) => {
       loading.value = true
       txList.value = [];
       try {
-        const { total, asyncRecordKey} = await handleAsyncTxList();
-        await store.dispatch('txList/asyncUpdateList',{total})
+        const { total, asyncRecordKey } = await handleAsyncTxList();
+        await store.dispatch('txList/asyncUpdateList', { total })
         await getPageList();
-      }finally {
+      } finally {
         loading.value = false
       }
       store.dispatch("account/waitTxQueueResponse", {
@@ -417,56 +353,22 @@ export default {
     })
     eventBus.on("txPush", (data: any) => {
       getPageList()
-      // const tx = txList.value.find((item: any) => item.txId.toUpperCase() == data.txId.toUpperCase())
-      // if(!tx) {
-      // // @ts-ignore
-      // txList.value.unshift(data)
-      // }
     });
     eventBus.on("delTxQueue", (data: any) => {
       getPageList()
-      // @ts-ignore
-      // txList.value = txList.value.filter(item => item.txId.toUpperCase() == data.txId.toUpperCase())
     });
-    
+
     eventBus.on("txQueuePush", (data: any) => {
       getPageList()
-      // let time = setTimeout(async() => {
-      //   const tx = txList.value.find((item: any) => item.txId.toUpperCase() == data.txId.toUpperCase())
-      // if(!tx) {
-      // // @ts-ignore
-      // txList.value.unshift(data)
-      // }
-      // clearTimeout(time)
-      // },300)
     });
-    eventBus.on('waitTxEnd', async() => {
-      store.dispatch('txList/asyncUpdateList',{total: 0})
+    eventBus.on('waitTxEnd', async () => {
+      store.dispatch('txList/asyncUpdateList', { total: 0 })
 
     })
     eventBus.on("txUpdate", (data: any) => {
-      console.warn("txUpdate----", data);
       getPageList()
-      // for (let i = 0; i < txList.value.length; i++) {
-      //   let item = txList.value[i];
-      //   const { txId } = item;
-      //   if(data.txId) {
-      //     // @ts-ignore
-      //     if (txId && txId.toString().toUpperCase() == data.txId.toUpperCase()) {
-      //     // @ts-ignore
-      //     txList.value[i] = data;
-      //     }
-      //   }
-      // }
-      // const tx = txList.value.find((item: any) => item.txId.toUpperCase() == data.txId.toUpperCase())
-      // if(!tx) {
-      //    // @ts-ignore
-      //   txList.value.unshift(data)
-      //   return
-      // }
     });
     onUnmounted(() => {
-      // console.warn('waitTime.value', waitTime.value)
       if (waitTime.value) {
         clearInterval(waitTime.value);
       }
@@ -527,13 +429,13 @@ export default {
           })
         }
         let txType = 'normal'
-        if(tokenAddress) {
+        if (tokenAddress) {
           txType = 'contract'
         } else {
           txType = !newData ? 'normal' : (newData.indexOf(store.getters['account/chainParsePrefix']) > -1 ? store.getters['account/chainParsePrefix'] : 'contract')
         }
         const { hash, from, type, value: newVal, contractAddress } = data;
-        const txInfo =  {
+        const txInfo = {
           ...sendTx.value,
           receipt: {
             blockHash: null,
@@ -541,7 +443,7 @@ export default {
             cumulativeGasUsed: { type: "BigNumber", hex: "0x0" },
             effectiveGasPrice: { type: "BigNumber", hex: "0x0" },
             gasUsed: { type: "BigNumber", hex: "0x0" },
-                 // @ts-ignore
+            // @ts-ignore
             transactionHash: sendTx.value.hash,
             from,
             to,
@@ -609,7 +511,6 @@ export default {
           gasLimit: gasLimit.value,
           data: sendData.data
         };
-        console.warn("tx", tx);
         let data = null;
         if (tokenAddress) {
           const transferParams = {
@@ -632,12 +533,12 @@ export default {
         // step1  Set the original transaction status to false and unshift to the transaction record
         const { hash, from, type, value: newVal, contractAddress } = data;
         let txType = 'normal'
-        if(tokenAddress) {
+        if (tokenAddress) {
           txType = 'contract'
         } else {
           txType = !newData ? 'normal' : (newData.indexOf(store.getters['account/chainParsePrefix']) > -1 ? store.getters['account/chainParsePrefix'] : 'contract')
         }
-        const txInfo =  {
+        const txInfo = {
           ...sendTx.value,
           receipt: {
             blockHash: null,
@@ -645,7 +546,7 @@ export default {
             cumulativeGasUsed: { type: "BigNumber", hex: "0x0" },
             effectiveGasPrice: { type: "BigNumber", hex: "0x0" },
             gasUsed: { type: "BigNumber", hex: "0x0" },
-                 // @ts-ignore
+            // @ts-ignore
             transactionHash: sendTx.value.hash,
             from,
             to,
@@ -684,32 +585,32 @@ export default {
     const showBuyTip = ref(true)
     const bugTipClass = ref('')
     const watchList = (val: any) => {
-      if(val && val.length >= 10) {
+      if (val && val.length >= 10) {
         !bugTipClass.value ? bugTipClass.value = 'fixed' : ''
       } else {
-        bugTipClass.value ? bugTipClass.value = '' :''
+        bugTipClass.value ? bugTipClass.value = '' : ''
       }
     }
-    
-    watch(()=> txList.value, watchList , {
+
+    watch(() => txList.value, watchList, {
       deep: true,
       immediate: true
     })
     let oldScrollTop = 0
     const scrolling = () => {
-      if(txList.value.length < 10) {
+      if (txList.value.length < 10) {
         return
       }
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       let scrollStep = scrollTop - oldScrollTop;
       oldScrollTop = scrollTop;
       if (scrollStep < 0) {
         console.log("scroll up.")
-        if(!showBuyTip.value)showBuyTip.value = true
+        if (!showBuyTip.value) showBuyTip.value = true
 
 
       } else {
-        if(showBuyTip.value)showBuyTip.value = false
+        if (showBuyTip.value) showBuyTip.value = false
         console.log("scroll down.")
       }
     }
@@ -749,11 +650,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .swap-list {
   // height: calc(100vh - 48PX - 245px - 50PX);
   overflow-y: scroll;
 }
+
 .fixed-bottom {
   height: 20px;
   width: 220px;
@@ -761,6 +662,7 @@ export default {
   bottom: 10px;
   left: 50%;
   margin-left: -110px;
+
   &.fixed {
     padding: 3px 5px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
@@ -768,22 +670,27 @@ export default {
     background: #fff;
   }
 }
+
 .tx-tit {
   height: 30px;
   color: #848484;
   background: #F1F3F4;
 }
+
 .view-history {
   color: #9F54BA;
+
   &:hover {
     text-decoration: underline;
   }
 }
+
 .currency {
   .currency-bd {
     background: #F8F3F9;
     height: 235px;
   }
+
   .currency-icon {
     // background: #9F54BA;
     border-radius: 50%;
@@ -797,15 +704,18 @@ export default {
     height: 59px;
     margin-bottom: 20px;
   }
+
   .amount {
     line-height: 20px;
     font-size: 24px;
     margin-top: 8px;
     word-break: break-all;
   }
+
   .balance {
     color: #848484;
   }
+
   .actions-list {
     &-card {
       width: 32px;
@@ -816,11 +726,13 @@ export default {
         background: #9F54BA;
         border-radius: 32px;
         transition: ease 0.3s;
+
         &:hover {
           background: #9F54BA;
           box-shadow: 0 3px 4px #F8F3F9;
         }
       }
+
       &-label {
         line-height: 16px;
         color: #9F54BA;
@@ -830,10 +742,8 @@ export default {
     }
   }
 }
+
 .iconfont {
   color: #fff;
 }
-
-
-
 </style>

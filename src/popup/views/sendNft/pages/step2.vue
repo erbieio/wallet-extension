@@ -180,7 +180,6 @@ export default {
     });
     // Select account
     const handleClickAccount = (acc) => {
-      console.log("choose account", acc);
       addressErr.value = false;
       account.data = acc;
       toAddress.value = acc.address;
@@ -297,8 +296,6 @@ export default {
         return false;
       }
       // Whether the balance is greater than the sent amount
-      console.warn(chooseToken.value);
-      console.warn(amount.value);
       if (new BigNumber(chooseToken.value.balance).lte(amount.value)) {
         return false;
       }
@@ -339,7 +336,6 @@ export default {
           disabled: [TradeStatus.pendding],
           callBack
         })
-        console.warn(accountInfo.value)
         try {
           loading.value = true;
           const tx = {

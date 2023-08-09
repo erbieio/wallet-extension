@@ -154,7 +154,6 @@ export default {
     const historyProfit = ref("");
     const addprofit = ref("")
     const calcProfit = async () => {
-      console.warn('calc', props.addNumber, props.amount)
       const { t0, t1, t2, t3 } = store.state.configuration.setting.conversion
       //snft rewards require an average conversion rate
       const average = (t0 + t1 + t2 + t3) / 4
@@ -170,7 +169,6 @@ export default {
       // addNumber + If the pledged amount is greater than or equal to 70,000, use erb reward, and less than 70,000, use snft reward
       const blockn = web3.utils.toHex(blockNumber.toString());
       if (isValidator) {
-        console.warn('average', average)
         historyProfit.value = new BigNumber(rewardCoinCount).multipliedBy(0.16).plus(new BigNumber(rewardSNFTCount).multipliedBy(average)).toString()
         const { Validators } = await wallet.provider.send("eth_getValidator", [blockn]);
         let total = new BigNumber(0);
@@ -183,9 +181,6 @@ export default {
         // Total revenue one year
         const totalprofit = store.state.account.minerTotalProfit;
         const snfttotalprofit = store.state.account.exchangeTotalProfit;
-        console.warn('totalPledge',totalPledge.toNumber())
-        console.warn('totalStr',totalStr)
-        
         myprofit.value = totalPledge.div(totalStr)
           .multipliedBy(totalprofit).plus(new BigNumber(props.addNumber).div(totalStr).multipliedBy(snfttotalprofit))
           .toFixed(6);
@@ -228,7 +223,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .tip {
   margin: 12px 13px 0;
   color: #9F54BA;

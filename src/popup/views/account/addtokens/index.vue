@@ -85,7 +85,6 @@ export default {
     };
     // Click to add connectConstract
     const onSubmit = (data: any) => {
-      console.log("submit", data);
       Dialog.confirm({
         message: t("currencyList.sure"),
       }).then(async () => {

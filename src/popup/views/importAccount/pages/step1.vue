@@ -1,16 +1,9 @@
 <template>
   <div class="importAccount-page">
-    <Tip :message="t('import.hint')"/>
+    <Tip :message="t('import.hint')" />
     <div class="flex between btn-box mt-22">
-      <div
-        style="cursor: no-drop"
-        :class="`flex-1  ${item.select ? 'active' : ''} ${
-          item.value == 1 ? 'van-hairline--right' : ''
-        }`"
-        v-for="item in btnList"
-        :key="item.value"
-        @click="handleClick(item)"
-      >
+      <div style="cursor: no-drop" :class="`flex-1  ${item.select ? 'active' : ''} ${item.value == 1 ? 'van-hairline--right' : ''
+        }`" v-for="item in btnList" :key="item.value" @click="handleClick(item)">
         <div class="flex center">
           <i :class="`iconfont ${item.icon}`"></i>
         </div>
@@ -21,17 +14,11 @@
       <div class="import operate">
         <van-form>
           <van-cell-group inset :class="`${errReason ? 'error' : ''} text`">
-            <van-field
-              v-model="privatekey"
-              autosize
-              type="textarea"
-              :class="` content`"
-              :placeholder="t('import.forexample')"
-            />
+            <van-field v-model="privatekey" autosize type="textarea" :class="` content`" :placeholder="t('import.forexample')" />
           </van-cell-group>
           <div class="error mt-6" v-show="errReason">
-            <div @click="toCopy" class="hover" v-if="errAddress">{{errAddress}}</div>
-            <div>{{errReason}}</div>
+            <div @click="toCopy" class="hover" v-if="errAddress">{{ errAddress }}</div>
+            <div>{{ errReason }}</div>
           </div>
           <div class="btn-group">
             <div class="container pl-28 pr-28">
@@ -47,13 +34,7 @@
       <div class="import operate">
         <van-form>
           <van-cell-group inset class="text">
-            <van-field
-              v-model="privatekey"
-              autosize
-              type="textarea"
-              class="content"
-              :placeholder="t('import.forexample')"
-            />
+            <van-field v-model="privatekey" autosize type="textarea" class="content" :placeholder="t('import.forexample')" />
           </van-cell-group>
 
           <div class="btn-group">
@@ -66,7 +47,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -107,7 +87,7 @@ export default {
     [Tabs.name]: Tabs,
     [Dialog.Component.name]: Dialog.Component,
     Tip
-},
+  },
   setup() {
     const active = ref(0);
     const { t } = useI18n();
@@ -127,12 +107,6 @@ export default {
       loading.value = true
       errAddress.value = ''
       errReason.value = ''
-      console.log("submit", values);
-      console.log(
-        "privatekey.value",
-        privatekey.value,
-        privatekey.value.length
-      );
       // Verify that the private key is valid
       dispatch("account/importPrivateKey", privatekey.value.trim())
         .then(async (wallet) => {
@@ -187,12 +161,11 @@ export default {
       Toast(t("importerror.inputofprivatekey"));
     };
 
-        // Copy user address
+    // Copy user address
     const { toClipboard } = useClipboard()
     const toCopy = async () => {
       try {
         await toClipboard(`${errAddress.value}`)
-        // console.log(accountInfo.value.address)
         $toast.success(t('copy.title'))
       } catch (e) {
         console.error(e)
@@ -219,9 +192,11 @@ export default {
   i {
     font-size: 38px;
   }
+
   .icon-QRcode {
     font-size: 42px;
   }
+
   .flex-1.active {
     color: #9F54BA;
   }
@@ -236,50 +211,61 @@ export default {
 
 .left {
   width: 20px;
+
   i {
     font-size: 16px;
     color: #9F54BA;
   }
 }
+
 a {
   text-decoration: underline;
   color: #9F54BA;
 }
+
 .operate {
   padding: 0 20px;
   height: 100px;
+
   .copykey {
     font-size: 15px;
     line-height: 15px;
     margin-top: 30px;
     margin-left: 18px;
   }
+
   .text {
     margin: 29px auto 0;
     // padding: 15px 15px 59px;
     background: #ffffff;
     border-radius: 3px;
     border: 1px solid #e8e9eb;
+
     .content {
       font-size: 14px;
     }
   }
 }
+
 :deep() {
   .van-cell {
     padding: 20px 10px;
+
     .van-field__body {
       border: none;
     }
   }
+
   .van-cell-group.error {
     background: #FBF2F3;
     border-color: #D73A49;
+
     .van-field {
       background: none;
     }
   }
 }
+
 .error {
   color: #D73A49;
 }

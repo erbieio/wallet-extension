@@ -86,7 +86,6 @@ export default {
     const password: Ref<string> = ref("");
     const password2: Ref<string> = ref("");
     const onSubmit = async (value: object) => {
-      console.log("submit", value);
       // Verify that passwords are consistent
       if (password.value == password2.value) {
         loading.value = true

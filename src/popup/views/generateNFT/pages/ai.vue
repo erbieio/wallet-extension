@@ -369,7 +369,7 @@ const handleConfirm = async () => {
   });
   try {
     const myAddr = state.account.accountInfo.address;
-    debugger;
+    ;
     if (!readonlySwitch.value) {
       if (isNormalCreate) {
         await normalCreate();
@@ -404,7 +404,7 @@ const handleConfirm = async () => {
         }
       }
     } else {
-      debugger;
+      ;
       const nft_address = query.address ? query.address.toString() : ""
       const sendData = {
         owner: myAddr,

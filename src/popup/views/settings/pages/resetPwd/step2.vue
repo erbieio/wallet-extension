@@ -164,7 +164,6 @@ export default {
       try {
         await createWalletByJson(data)
       }catch(err){
-        console.warn('err', err)
         router.back()
       }
     }
@@ -187,7 +186,6 @@ export default {
           router.replace({ name: 'loginAccount-step1' })
         })
       } catch (err) {
-        console.log('err---', err)
         $toast.warn(t('resetPwd.failedtochange'))
       }
     }

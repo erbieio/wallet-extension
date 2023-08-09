@@ -36,7 +36,6 @@ export const useSign = () => {
             address: address?.toString() || ''
         }
         dispatch('account/connectWalletByPwdAddress', params).then(async (wallet) => {
-            console.log('wallet', wallet)
             try {
                 sign.value = await wallet.signMessage(queryStr).catch((err: Error) => Toast(err)).finally(() => loading.value = false)
             } catch(err: any){

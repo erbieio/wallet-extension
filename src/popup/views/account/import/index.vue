@@ -85,12 +85,6 @@ export default {
     };
     // Import the account using the private key
     const onSubmit = (values: string) => {
-      console.log("submit", values);
-      console.log(
-        "privatekey.value",
-        privatekey.value,
-        privatekey.value.length
-      );
       // Verify whether the private key is valid
       dispatch("account/importPrivateKey", privatekey.value.trim())
         .then(async(wallet) => {

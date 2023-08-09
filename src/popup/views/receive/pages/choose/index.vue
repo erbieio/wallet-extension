@@ -1,24 +1,17 @@
 <template>
-    <NavHeader :title="t('bootstrapwindow.tOKENs')">
-      <template v-slot:left>
-       <span class="back hover f-12" @click="back">{{t('createAccountpage.back')}}</span>
-      </template>
-    </NavHeader>
+  <NavHeader :title="t('bootstrapwindow.tOKENs')">
+    <template v-slot:left>
+      <span class="back hover f-12" @click="back">{{ t('createAccountpage.back') }}</span>
+    </template>
+  </NavHeader>
   <div class="choose-list">
     <div class="list pt-16">
       <div class="search-box ml-14 mr-14 flex center-v between">
         <div class="flex center-v ipt-box pl-10">
           <van-icon name="search hover" />
-          <van-field
-            v-model="name"
-            :placeholder="t('receive.search')"
-          ></van-field>
+          <van-field v-model="name" :placeholder="t('receive.search')"></van-field>
         </div>
-        <div
-          class="close flex center pr-14 pt-10 pb-10 pl-10"
-          v-show="name"
-          @click="clear"
-        >
+        <div class="close flex center pr-14 pt-10 pb-10 pl-10" v-show="name" @click="clear">
           <van-icon name="cross" />
         </div>
       </div>
@@ -27,12 +20,7 @@
         <van-index-bar sticky :sticky-offset-top="0" :index-list="indexList">
           <div v-for="(item, idx) in tokens" :key="idx">
             <van-index-anchor :index="item.label" />
-            <TokenCard
-              v-for="(child, idx) in item.children"
-              :key="idx"
-              :data="child"
-              :toName="backUrl"
-            />
+            <TokenCard v-for="(child, idx) in item.children" :key="idx" :data="child" :toName="backUrl" />
           </div>
         </van-index-bar>
       </div>
@@ -56,7 +44,7 @@ import {
   Cell,
 } from "vant";
 import { useRoute, useRouter } from "vue-router";
-import { defineComponent, Ref, toRaw, ref, watch, SetupContext,inject } from "vue";
+import { defineComponent, Ref, toRaw, ref, watch, SetupContext, inject } from "vue";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
 import AccountIcon from "@/popup/components/accountIcon/index.vue";
@@ -87,7 +75,7 @@ export default {
     const accountInfo = computed(() => store.state.account.accountInfo);
     const currentNetwork = computed(() => store.state.account.currentNetwork);
     const { query } = route;
-    const { backUrl,clickBackUrl } = query;
+    const { backUrl, clickBackUrl } = query;
 
     const replaceBackUrl = ref(clickBackUrl || '')
 
@@ -109,8 +97,6 @@ export default {
     const accountTokens = computed(
       () => store.getters["account/accountTokens"]
     );
-    console.log("----------accountTokens", toRaw(accountTokens.value));
-    console.log("----------myToken", myToken.value);
     const name = ref("");
     const alist = computed(() => {
       const tks = toRaw(accountTokens.value);
@@ -119,7 +105,6 @@ export default {
       list.sort((a: any, b: any) => {
         return (a.name + "").localeCompare(b.name + "");
       });
-      console.log("list---", list);
       const newl = list.filter((item: any) => {
         if (name.value) {
           if (item.name.toUpperCase().indexOf(name.value.toUpperCase()) > -1) {
@@ -157,7 +142,7 @@ export default {
       name.value = "";
     };
     const back = () => {
-      router.replace({name : replaceBackUrl.value?.toString() || 'wallet'})
+      router.replace({ name: replaceBackUrl.value?.toString() || 'wallet' })
     }
     return {
       t,
@@ -176,19 +161,22 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  :deep(){
-    .van-field {
-      padding:0;
-      .van-field__body {
-        border: none;
-      }
+:deep() {
+  .van-field {
+    padding: 0;
+
+    .van-field__body {
+      border: none;
     }
   }
+}
+
 .title {
   font-size: 16px;
-    color: #000;
+  color: #000;
   font-weight: bold;
 }
+
 .choose-list {
 
   :deep(.van-index-anchor) {
@@ -196,11 +184,13 @@ export default {
     color: #aeaeae;
     line-height: 30px;
   }
+
   :deep(.van-index-bar__sidebar) {
     color: #909090;
     display: none;
     right: 8px;
   }
+
   :deep(.van-index-bar__index) {
     width: 18px;
     height: 18px;
@@ -209,21 +199,26 @@ export default {
     margin-bottom: 4px;
     padding: 0;
   }
+
   :deep(.van-index-bar__index--active) {
     background: #9F54BA;
     color: #fff;
     border-radius: 9px;
   }
+
   * {
     box-sizing: border-box;
   }
+
   .list {
     height: calc(100vh - 48px - 16px);
     overflow-y: scroll;
   }
+
   .search-box {
     border: 1px solid #B3B3B3;
     border-radius: 5px;
+
     &:hover {
       border-color: #9F54BA;
     }
@@ -231,13 +226,16 @@ export default {
 
   .ipt-box {
     width: 96%;
+
     i {
       color: #9F54BA;
       font-size: 22px;
     }
   }
+
   .close {
     width: 30px;
+
     i {
       font-size: 18px;
       color: #9F54BA;

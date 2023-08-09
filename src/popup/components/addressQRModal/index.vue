@@ -104,7 +104,6 @@ export default defineComponent({
     const toCopy = async () => {
       try {
         await toClipboard(`${props.data}`)
-        // console.log(accountInfo.value.address)
         $toast.success(t('copy.title'))
       } catch (e) {
         console.error(e)

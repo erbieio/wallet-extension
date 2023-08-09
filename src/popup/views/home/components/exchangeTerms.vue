@@ -354,13 +354,11 @@ export default defineComponent({
             // Jump to select currency lazy loading animation package
             const intersectionObserver = new IntersectionObserver(entries => {
               if (entries[0].intersectionRatio <= 0) return
-              console.log('Loaded new items')
               let time = setTimeout(() => {
                 showBtn.value = true
                 clearTimeout(time)
               })
             })
-            // intersectionObserver.observe(nullEle.value);
           })
         }
       }

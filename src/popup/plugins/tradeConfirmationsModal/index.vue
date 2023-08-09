@@ -141,8 +141,6 @@ import i18n from "@/popup/language";
 import { TradeConfirmOpt, TradeStatus } from "./tradeConfirm";
 import { toScan } from "@/popup/utils/utils";
 import router from "@/popup/router";
-console.warn("i18n-------", i18n);
-
 
 enum messageType {
   string = 'string',

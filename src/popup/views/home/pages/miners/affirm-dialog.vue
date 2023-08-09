@@ -85,7 +85,7 @@ export default {
       // Agent pledge
       const str = `${store.getters['account/chainParsePrefix']}:{"type":9,"proxy_address":"","proxy_sign":"","version":"v0.0.1"}`
       const data3 = toHex(str);
-      debugger
+      
       const tx1 = {
         to: address,
         value: ethers.utils.parseEther(props.amount + ""),

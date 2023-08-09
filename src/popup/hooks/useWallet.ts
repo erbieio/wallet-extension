@@ -13,25 +13,24 @@ export const useWallet = () => {
         const { hasAccount } = useLogin()
         const hasAcc = await hasAccount()
         const password = await getCookies()
-        if(!hasAcc) {
-            router.replace({ name: 'guide-step1'})
+        if (!hasAcc) {
+            router.replace({ name: 'guide-step1' })
         }
         try {
             let newwallet = await getWallet()
             dispatch('account/updateAllBalance')
             eventBus.emit('walletReady', newwallet)
         } catch (err) {
-            console.log('err', err.toString())
-            if(err.toString().indexOf('invalid password') > -1) {
-                router.replace({ name: "loginAccount-step1", query:{...query,backUrl: getURLPath()} })
-                return 
+            if (err.toString().indexOf('invalid password') > -1) {
+                router.replace({ name: "loginAccount-step1", query: { ...query, backUrl: getURLPath() } })
+                return
             }
-            if(hasAcc && !password) {
-               router.replace({ name: "loginAccount-step1", query:{...query,backUrl: getURLPath()} })
-               return
+            if (hasAcc && !password) {
+                router.replace({ name: "loginAccount-step1", query: { ...query, backUrl: getURLPath() } })
+                return
             }
-            if(!hasAcc && !password) {
-                router.replace({ name: 'guide-step1'})
+            if (!hasAcc && !password) {
+                router.replace({ name: 'guide-step1' })
             }
         }
     }

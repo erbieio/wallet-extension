@@ -2,7 +2,6 @@
 import { ethers } from 'ethers';
 import { useStore } from 'vuex';
 import i18n from "@/popup/language/index";
-console.warn('ethers', ethers)
 // @ts-ignore
 window.ethers = ethers
 /**
@@ -74,30 +73,13 @@ export function createWalletByMnemonic(params: CreateWalletByMnemonicParams) {
     if (pathIndex != '-1') {
         path = getPath(pathIndex);
     }
-    console.warn('phrase', phrase, pathIndex)
-
     // Creating wallets with mnemonics
     try {
         return Promise.resolve(ethers.Wallet.fromMnemonic(phrase, path))
     } catch (err) {
-        console.error(err)
         return Promise.reject(err)
     }
 }
-// export function createWalletByMnemonic(params: CreateWalletByMnemonicParams) {
-//     const { phrase, pathIndex } = params
-//     let path: string = ''
-//     if (pathIndex != '-1') {
-//         path = getPath(pathIndex);
-//     }
-//     // Create a wallet with mnemonics
-//     try {
-//         return Promise.resolve(ethers.Wallet.fromMnemonic(phrase, path))
-//     } catch (err) {
-//         console.error(err)
-//         return Promise.reject(err)
-//     }
-// }
 
 export interface PrivateKeyParams {
     privatekey: string

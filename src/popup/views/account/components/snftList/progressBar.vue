@@ -85,7 +85,6 @@ export default defineComponent({
           new BigNumber(value).div(total).multipliedBy(100).toFixed(2)
         );
         width.value =  nw > 100 ? 100 : nw
-        console.log('width', width.value, value, total)
       },{
         immediate: true,
       }
@@ -97,7 +96,6 @@ export default defineComponent({
       const intersectionObserver = new IntersectionObserver((entries) => {
         if (entries[0].intersectionRatio <= 0) return;
         const { value, total } = props;
-        console.log("Loaded new items");
         let time = setTimeout(() => {
           width.value = Number(
             new BigNumber(value).div(total).multipliedBy(100).toFixed(2)

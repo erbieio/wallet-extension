@@ -1,15 +1,6 @@
 
 <template>
-  <van-popover
-    v-model:show="showModal"
-    @click-overlay="beforeClose"
-    :close-on-click-overlay="false"
-    trigger="manual"
-    class="popover-dialog step9"
-    placement="top-end"
-    teleport="#page-box"
-    overlay
-  >
+  <van-popover v-model:show="showModal" @click-overlay="beforeClose" :close-on-click-overlay="false" trigger="manual" class="popover-dialog step9" placement="top-end" teleport="#page-box" overlay>
     <div class="dialog-box">
       <div class="serial-number">
         <span class="left">9</span><span>/</span> 11
@@ -72,7 +63,6 @@ export default defineComponent({
       })
         .then(() => true)
         .catch(() => false);
-      console.log("flag", flag);
       if (flag) {
         dispatch("system/closeGuide");
         showModal.value = false;
@@ -92,6 +82,7 @@ export default defineComponent({
 .dialog-box {
   // width: 340px;
   padding-bottom: 25px;
+
   .serial-number {
     display: flex;
     justify-content: flex-end;
@@ -99,10 +90,12 @@ export default defineComponent({
     padding-bottom: 14px;
     padding-right: 14px;
     font-size: 12px;
+
     .left {
       color: #9F54BA;
     }
   }
+
   .title {
     text-align: center;
     font-size: 24px;
@@ -110,17 +103,20 @@ export default defineComponent({
     line-height: 30px;
     margin-top: 22px;
   }
+
   .small-tit {
     text-align: center;
     margin-bottom: 30px;
     font-size: 12px;
     color: #848484;
   }
+
   :deep {
     button {
       min-width: 100px;
     }
   }
+
   :deep(.van-popover__wrapper) {
     height: 0;
   }

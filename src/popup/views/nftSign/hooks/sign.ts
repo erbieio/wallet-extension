@@ -18,18 +18,18 @@ export const useSign = () => {
      * sig  
      */
     let { address, data: queryStr } = query
-    const loading:Ref<boolean> = ref(false)
+    const loading: Ref<boolean> = ref(false)
 
     const toSign = async () => {
         const password = await getCookies('password')
-        if(!queryStr){
+        if (!queryStr) {
             Toast(i18n.global.t('sign.signature'))
             return
         }
-        if(!password){
+        if (!password) {
             Toast(i18n.global.t('sign.password'))
-            router.replace({name: "loginAccount-step1",})
-            return 
+            router.replace({ name: "loginAccount-step1", })
+            return
         }
         loading.value = true
         const params: ConnectWalletByPwdAddress = {
@@ -37,10 +37,9 @@ export const useSign = () => {
             address: address?.toString() || ''
         }
         dispatch('account/connectWalletByPwdAddress', params).then(async (wallet) => {
-            console.log('wallet', wallet)
             try {
                 sign.value = await wallet.signMessage(queryStr).catch((err: Error) => Toast(err)).finally(() => loading.value = false)
-            } catch(err: any){
+            } catch (err: any) {
                 Toast(err || t('sign.unknownmistake'))
             }
         }).catch(err => Toast(err)).finally(() => loading.value = false)

@@ -119,10 +119,8 @@ export default defineComponent({
     const gasFee = ref("0");
 
     const calcFee = async () => {
-      console.warn('props.tx', props.tx)
       const { nft_address, to } = props.tx
       const str = `${store.getters['account/chainParsePrefix']}:{"version": "v0.0.1","type": 1,"nft_address":"${nft_address}"}`;
-      console.warn('str----', str)
       const data3 = web3.utils.fromUtf8(str);
       const myAddr = accountInfo.value.address
       const tx = {

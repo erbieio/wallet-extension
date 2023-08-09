@@ -341,8 +341,6 @@ import { useDialog } from "@/popup/plugins/dialog";
 import AccountModal from "@/popup/views/home/components/action-sheet.vue";
 import AccountList from "@/popup/views/home/pages/miners/components/accountList.vue";
 import ModifPledgeModal from "@/popup/views/account/components/modifPledgeModal/index.vue";
-import { debug } from "console";
-import { toHex } from "@/popup/utils/utils";
 import { getRandomIcon } from "@/popup/utils";
 import { useToast } from "@/popup/plugins/toast";
 import { TradeStatus } from "@/popup/plugins/tradeConfirmationsModal/tradeConfirm";
@@ -422,7 +420,7 @@ export default defineComponent({
     })
     //  const { state } = store;
     onMounted(async () => {
-      debugger
+
       try {
         const wallet = await getWallet();
         const { address } = wallet;
@@ -432,7 +430,7 @@ export default defineComponent({
           "eth_getAccountInfo",
           [address, "latest"]
         );
-        debugger
+
         const blockn = web3.utils.toHex(blockNumber.value.toString());
         // Amount of the first pledge/total amount of the pledge *36 (start time of the second cancellation of the pledge calculation)+ Amount of the second pledge/total amount *72=54 = (time when the second cancellation of the pledge can be revoked)
         showCloseBtn.value = new BigNumber(blockNumber.value)
@@ -441,8 +439,6 @@ export default defineComponent({
         const pledgeList = await wallet.provider.send("eth_getValidator", [
           `${blockn}`,
         ]);
-        console.log("pledgeList", pledgeList);
-
         if (!ethAccountInfo.value.Worm.PledgedBalance) {
           isModif.value = false;
           // $wdialog.open({title:t('minerspledge.beValidator'),message:t("minerspledge.warn"),type:'warn'});
@@ -454,13 +450,12 @@ export default defineComponent({
                 item.Addr.toUpperCase() ==
                 accountInfo.value.address.toUpperCase()
             );
-            debugger
-            console.warn("pledge", pledge);
+
             const selectAcc = accountList.value.find(
               (item: any) =>
                 item.address.toUpperCase() == pledge.Proxy.toUpperCase()
             );
-            debugger;
+            ;
             selectAccount.value = selectAcc
               ? { ...selectAcc }
               : { address: pledge.Addr, name: "", icon: getRandomIcon() };
@@ -469,8 +464,6 @@ export default defineComponent({
           }
         }
         accountInfoBlockNumber.value = ethAccountInfo.value.Worm.BlockNumber;
-        console.log(blockNumber.value - accountInfoBlockNumber.value);
-        console.log("blockNumber.value - accountInfoBlockNumber.value");
       } finally {
         pageLoading.value = false;
       }
@@ -506,9 +499,6 @@ export default defineComponent({
       modifExchangeBalance,
     } = useExchanges();
     const name = ref("");
-    const handleNameBlur = () => { };
-    console.log("===========");
-    console.log("===========");
 
     const { dispatch } = store;
     const amount = ref(200);
@@ -569,10 +559,8 @@ export default defineComponent({
         $toast.warn(t("sendto.no"));
         return;
       }
-      console.log(addNumber.value, isAddAffirmDialog.value, isModif.value);
 
       isAddAffirmDialog.value = true;
-      console.log(isAddAffirmDialog.value);
     };
 
     const addNumber = ref();
@@ -595,9 +583,6 @@ export default defineComponent({
             ? ""
             : selectAccount.value.address;
         const am = addNumber.value ? Number(addNumber.value) : 0 || 70000;
-        console.warn("proxy_address", proxy_address);
-        console.warn("am", am);
-        //
         await sendToPledge(am, isModif.value ? "" : proxy_address);
         isLoading.value = false;
         addNumber.value = null;
@@ -642,9 +627,6 @@ export default defineComponent({
     watch(
       () => props.show,
       (n) => {
-        console.log("==================n===========");
-        console.log(n);
-        console.log("==================n===========");
         showCreateExchange.value = n;
       }
     );
@@ -661,8 +643,6 @@ export default defineComponent({
     watch(
       () => networkTypeValue.value,
       (now) => {
-        console.log(now);
-        console.log("-------------------------------");
         if (now === 3) {
           isWarning.value = true;
         }
@@ -725,12 +705,10 @@ export default defineComponent({
         try {
           const provider = ethers.getDefaultProvider(name.value);
           const { chainId } = await provider.getNetwork();
-          debugger;
+          ;
           const mainProvider = ethers.getDefaultProvider(mainNetwork.value.URL);
-          debugger;
+          ;
           const { chainId: mainChainId } = await mainProvider.getNetwork();
-          console.warn("mainChainId", mainChainId);
-          console.warn("chainId", chainId);
           if (chainId != mainChainId) {
             isError.value = true;
             return t("minerspledge.invalidChainId", { chainId });
@@ -769,15 +747,8 @@ export default defineComponent({
       let formatValue;
 
       const toPledge = (PledgedBalance - 0).toLocaleString();
-      console.log(new BigNumber(PledgedBalance).toString());
-
       formatValue = utils.formatEther(
         toPledge.toString().replace(/\$|\,/g, "")
-      );
-      console.warn(
-        "formatValue------------",
-        formatValue,
-        PledgedBalance.toString()
       );
       if (Number(formatValue) > 0) {
         isOpen.value = true;
@@ -804,9 +775,6 @@ export default defineComponent({
       if (num >= 40 && num <= 50) return "neutral";
       if (num > 50) return "smile";
     });
-    console.log(isExchangerFlag);
-    console.log("===============================11111111111==========");
-
     let cancelClick = () => {
       showCreateExchange.value = false;
       emit("closeSonShow", false);
@@ -886,10 +854,6 @@ export default defineComponent({
           };
         });
       options.data = [accountItem, ...arr];
-      console.log(arr);
-      console.log(accountItem);
-      console.log("options.dataoptions.dataoptions.dataoptions.data");
-
       selectValue.value = store.state.account.accountInfo.address;
       selectValueNam.value = store.state.account.accountInfo.name;
       selectValueColor.value = store.state.account.accountInfo.icon.color;
@@ -920,11 +884,9 @@ export default defineComponent({
     };
 
     const PledgedBalance = computed(() => {
-      console.warn("ethAccountInfo.value", ethAccountInfo.value);
       if (!ethAccountInfo.value?.PledgedBalance) {
         return 70000;
       }
-      console.warn("ethAccountInfo.value", ethAccountInfo.value);
       return decimal(
         new BigNumber(ethAccountInfo.value?.PledgedBalance)
           .div(1000000000000000000)
@@ -1021,7 +983,6 @@ export default defineComponent({
     const { $tradeConfirm } = useTradeConfirm()
 
     const handleReConfirm = async () => {
-      console.warn(reconveryDetail.value)
       const { amount }: any = reconveryDetail.value
       const str = `${store.getters['account/chainParsePrefix']}:{"type":26,"version":"v0.0.1"}`;
       const tx = {

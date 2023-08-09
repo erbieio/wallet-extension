@@ -1,17 +1,12 @@
 <template>
   <div class="page-currency-list">
-      <NavHeader :hasRight="false" :title="$t('wallet.addtoken')">
-        <template v-slot:left>
-          <van-icon name="arrow-left" class="back" @click="back" />
-        </template>
-      </NavHeader>
+    <NavHeader :hasRight="false" :title="$t('wallet.addtoken')">
+      <template v-slot:left>
+        <van-icon name="arrow-left" class="back" @click="back" />
+      </template>
+    </NavHeader>
     <div class="page-container">
-      <ChooseTokenCard
-        v-for="item in tokens"
-        :key="item.tokenContractAddress"
-        :data="item"
-        @handleClick="hancleChoose"
-      />
+      <ChooseTokenCard v-for="item in tokens" :key="item.tokenContractAddress" :data="item" @handleClick="hancleChoose" />
     </div>
   </div>
 </template>
@@ -58,7 +53,6 @@ export default {
       router.go(-1);
     };
     const hancleChoose = (data: any) => {
-      console.log("token", data);
       Dialog.confirm({
         message: t("currencyList.sure"),
       }).then(async () => {
@@ -83,9 +77,9 @@ export default {
             address,
           });
           Toast(t("currencyList.Importsuccessful"));
-          router.replace({name:'wallet'})
+          router.replace({ name: 'wallet' })
         } catch (err) {
-          Toast (t("currencyList.error"));
+          Toast(t("currencyList.error"));
         }
       });
     };
@@ -103,6 +97,7 @@ export default {
   .back {
     font-size: 18px;
   }
+
   .tit {
     font-size: 18px;
     margin-top: 10px;

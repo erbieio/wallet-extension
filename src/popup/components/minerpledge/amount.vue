@@ -2,7 +2,7 @@
   <van-overlay :show="dislogShow" :z-index="5" class="custom-overlay">
     <div class="miners">
       <div class="miners-header">
-        <span>{{$t('minerspledge.setamount')}}</span>
+        <span>{{ $t('minerspledge.setamount') }}</span>
       </div>
       <div class="miners-container flex column between">
         <div class="contaienr-top-ipt">
@@ -15,8 +15,8 @@
         </div>
         <div class="container-btn flex center column">
           <div>
-            <van-button color="#000000" class="btn" plain @click="dislogShow = false">{{$t('minerspledge.reset')}}</van-button>
-            <van-button type="primary" class="btn" round @click="submit">{{$t('minerspledge.confirm')}}</van-button>
+            <van-button color="#000000" class="btn" plain @click="dislogShow = false">{{ $t('minerspledge.reset') }}</van-button>
+            <van-button type="primary" class="btn" round @click="submit">{{ $t('minerspledge.confirm') }}</van-button>
           </div>
         </div>
       </div>
@@ -66,8 +66,6 @@ export default {
   },
   setup(props: any, context: SetupContext) {
     const { t } = useI18n()
-
-    console.log('11111111111')
     const { emit }: any = context
     // input box name
     let amount = ref(props.minersMoney)
@@ -131,6 +129,7 @@ export default {
     background: #fff;
     margin: auto;
     border-radius: 8px;
+
     .miners-header {
       height: 62px;
       line-height: 62px;
@@ -140,9 +139,11 @@ export default {
       font-size: 14px;
       color: #0f0f0f;
     }
+
     .miners-container {
       .contaienr-top-header {
         margin: 28px 0 21px 0;
+
         span {
           &:first-child {
             display: inline-block;
@@ -156,6 +157,7 @@ export default {
             color: #0287db;
             border: 3px solid #0287db;
           }
+
           &:last-child {
             font-weight: bold;
             font-size: 14px;
@@ -163,6 +165,7 @@ export default {
           }
         }
       }
+
       .contaienr-top-ipt {
         width: 315px;
         height: 90px;
@@ -171,43 +174,53 @@ export default {
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
         border: 1PX solid #e4e7e8;
+
         .ipt {
           width: 280px;
+
           span {
             font-size: 16px;
             font-weight: bold;
           }
         }
+
         .text {
           font-size: 14px;
         }
+
         .user-field {
           font-size: 12px;
         }
-        > span {
+
+        >span {
           font-size: 12px;
           color: #8f8f8f;
         }
+
         .ipt-text-a {
           padding-top: 20px;
           margin-top: 30px;
           font-size: 12px;
           color: #8f8f8f;
         }
+
         .ipt-text-b {
           margin: 5px 0 9px 0;
           color: #000;
           font-size: 12px;
           font-weight: bold;
         }
+
         .ipt-server {
           font-size: 12px;
           color: #8f8f8f;
           font-weight: bold;
+
           span {
             font-weight: 400;
             color: #000000;
           }
+
           .ipt-server-i {
             width: 133px;
             height: 30px;
@@ -218,82 +231,100 @@ export default {
             justify-content: space-between;
             background: #F8F3F9;
             border-radius: 7px 7px 7px 7px;
+
             &:first-child {
               padding: 0 18px;
             }
           }
+
           .ipt-server-i-active {
             color: #0287db;
             background: #F8F3F9;
             border: 1PX solid #9F54BA;
+
             span {
               color: #0287db;
             }
           }
         }
+
         .money {
           margin: 10px 0 20px 0;
           font-size: 12px;
           font-weight: bold;
+
           span {
             &:first-child {
               color: #000000;
             }
+
             &:last-child {
               color: #0287db;
             }
           }
         }
+
         .ipt-slider {
           margin-left: 5px;
         }
+
         .stake {
           margin: 20px 0 5px 0;
           font-size: 12px;
           color: #8f8f8f;
+
           span {
             color: #3aae55;
           }
         }
-        :deep(){
+
+        :deep() {
           .van-cell {
-          padding-left: 0px;
+            padding-left: 0px;
+          }
         }
-        } 
+
         .van-cell:after {
           display: none;
         }
       }
+
       .container-btn {
         margin-top: 10px;
+
         .btn {
           width: 104px;
           height: 45px;
           margin-top: 21px;
+
           &:first-child {
             margin-right: 35px;
           }
         }
+
         span {
           font-size: 12px;
+
           &:first-child {
             margin: 0 5px 0 10px;
             color: #8f8f8f;
           }
+
           &:last-child {
             color: #0287db;
           }
         }
+
         .btn-text {
           margin: 15px 0 10px 0;
           font-size: 12px;
           color: #8f8f8f;
         }
+
         .underline {
           text-decoration: underline;
         }
       }
     }
   }
-}
-</style>
+}</style>

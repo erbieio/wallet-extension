@@ -1,13 +1,5 @@
 <template>
-  <van-dialog
-    v-model:show="showModal"
-    show-cancel-button
-    teleport="#page-box"
-    class="account-list-modal2"
-    :showConfirmButton="false"
-    :showCancelButton="false"
-    closeOnClickOverlay
-  >
+  <van-dialog v-model:show="showModal" show-cancel-button teleport="#page-box" class="account-list-modal2" :showConfirmButton="false" :showCancelButton="false" closeOnClickOverlay>
     <div class="account-container">
       <div class="title text-center bold van-hairline--bottom">
         {{ t("account.account") }}
@@ -17,31 +9,21 @@
         <div v-if="importList.length" class="f-12 lh-16 accountList-tit">
           {{ t("account.importaccount") }}
         </div>
-        <div
-          v-for="(item, index) in importList"
-          :key="item.value"
-          :data-selected="
-            accountInfo.address.toUpperCase() == item.address.toUpperCase()
-              ? true
-              : false
-          "
-          :class="` clickActive van-hairline--bottom`"
-          @click="handleAccountFun2(item, index)"
-        >
+        <div v-for="(item, index) in importList" :key="item.value" :data-selected="accountInfo.address.toUpperCase() == item.address.toUpperCase()
+            ? true
+            : false
+          " :class="` clickActive van-hairline--bottom`" @click="handleAccountFun2(item, index)">
           <div class="flex account-card" :title="item.address">
             <div class="flex center select-box">
-              <i
-                :class="`iconfont ${
-                  item.address.toUpperCase() ==
+              <i :class="`iconfont ${item.address.toUpperCase() ==
                   accountInfo.address.toUpperCase()
-                    ? 'icon-danxuan'
-                    : 'icon-danxuan1'
-                } `"
-              ></i>
+                  ? 'icon-danxuan'
+                  : 'icon-danxuan1'
+                } `"></i>
             </div>
             <div class="account-icon flex center">
               <div class="account-icon-box">
-                <AccountIcon :data="item.icon" :title="item.address"/>
+                <AccountIcon :data="item.icon" :title="item.address" />
               </div>
             </div>
             <div class="account-info flex center-v">
@@ -49,31 +31,21 @@
                 <div class="account-name flex center-v" :title="item.address">
                   <div class="name-box">{{ item.name }}</div>
                   <div class="pl-4 pr-4" @click.stop="openModifModal(item)">
-                    <i class="iconfont icon-bianji"  :title="t('common.modifName')"></i>
+                    <i class="iconfont icon-bianji" :title="t('common.modifName')"></i>
                   </div>
-                  <div class="flex"  v-if="popupType === 'Popup'">
-                    <div
-                    :class="`connectStatus pl-6 pr-6 ${
-                      handleHasConnect(item.address) ? 'active' : 'disConnect'
-                    } flex center`"
-                    :title="
-                      handleHasConnect(item.address)
-                        ? t('common.isConnect')
-                        : t('common.ununited')
-                    "
-                  ></div>
-                  <div
-                    class="connectTo"
-                    @click.stop="handleConnectTo(item.address)"
-                    :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', {size: activeTab.origin}) : t('common.disconnectToSize', {size: activeTab.origin})}`"
-
-                  >
-                    {{
-                      !handleHasConnect(item.address)
+                  <div class="flex" v-if="popupType === 'Popup'">
+                    <div :class="`connectStatus pl-6 pr-6 ${handleHasConnect(item.address) ? 'active' : 'disConnect'
+                      } flex center`" :title="handleHasConnect(item.address)
+      ? t('common.isConnect')
+      : t('common.ununited')
+    "></div>
+                    <div class="connectTo" @click.stop="handleConnectTo(item.address)" :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', { size: activeTab.origin }) : t('common.disconnectToSize', { size: activeTab.origin })}`">
+                      {{
+                        !handleHasConnect(item.address)
                         ? t("common.connectTo")
                         : t("common.disconnect")
-                    }}
-                  </div>
+                      }}
+                    </div>
                   </div>
                 </div>
                 <div class="account-value" v-show="amountType != 'mask'">
@@ -90,27 +62,17 @@
         <div class="f-12 lh-16 accountList-tit" v-show="defaultlist.length">
           {{ t("account.createaccount") }}
         </div>
-        <div
-          v-for="(item, index) in defaultlist"
-          :key="item.value"
-          :data-selected="
-            accountInfo.address.toUpperCase() == item.address.toUpperCase()
-              ? true
-              : false
-          "
-          :class="` clickActive van-hairline--bottom`"
-          @click="handleAccountFun(item, index)"
-        >
+        <div v-for="(item, index) in defaultlist" :key="item.value" :data-selected="accountInfo.address.toUpperCase() == item.address.toUpperCase()
+            ? true
+            : false
+          " :class="` clickActive van-hairline--bottom`" @click="handleAccountFun(item, index)">
           <div class="flex account-card" :title="item.address">
             <div class="flex center select-box">
-              <i
-                :class="`iconfont ${
-                  item.address.toUpperCase() ==
+              <i :class="`iconfont ${item.address.toUpperCase() ==
                   accountInfo.address.toUpperCase()
-                    ? 'icon-danxuan'
-                    : 'icon-danxuan1'
-                } `"
-              ></i>
+                  ? 'icon-danxuan'
+                  : 'icon-danxuan1'
+                } `"></i>
             </div>
             <div class="account-icon flex center">
               <div class="account-icon-box">
@@ -125,28 +87,18 @@
                     <i class="iconfont icon-bianji" :title="t('common.modifName')"></i>
                   </div>
                   <div class="flex" v-if="popupType === 'Popup'">
-                    <div
-                    :class="`connectStatus pl-6 pr-6 ${
-                      handleHasConnect(item.address) ? 'active' : 'disConnect'
-                    } flex center`"
-                    :title="
-                      handleHasConnect(item.address)
-                        ? t('common.isConnect')
-                        : t('common.ununited')
-                    "
-                  ></div>
-                  <div
-                    class="connectTo"
-                    @click.stop="handleConnectTo(item.address)"
-                    :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', {size: activeTab.origin}) : t('common.disconnectToSize', {size: activeTab.origin})}`"
-
-                  >
-                    {{
-                      !handleHasConnect(item.address)
+                    <div :class="`connectStatus pl-6 pr-6 ${handleHasConnect(item.address) ? 'active' : 'disConnect'
+                      } flex center`" :title="handleHasConnect(item.address)
+      ? t('common.isConnect')
+      : t('common.ununited')
+    "></div>
+                    <div class="connectTo" @click.stop="handleConnectTo(item.address)" :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', { size: activeTab.origin }) : t('common.disconnectToSize', { size: activeTab.origin })}`">
+                      {{
+                        !handleHasConnect(item.address)
                         ? t("common.connectTo")
                         : t("common.disconnect")
-                    }}
-                  </div>
+                      }}
+                    </div>
                   </div>
                 </div>
                 <div class="account-value" v-show="amountType != 'mask'">
@@ -164,11 +116,7 @@
       <div class="flex between btn-group border-top pt-20">
         <div class="flex between btn-group-box">
           <div class="btn-box">
-            <van-button
-              class="btn flex center"
-              :loading="createLoading"
-              @click="handleCreateAccount"
-            >
+            <van-button class="btn flex center" :loading="createLoading" @click="handleCreateAccount">
               <i class="iconfont icon-chuangjianren"></i>
             </van-button>
             <div class="text-center text text-bold lh-16">
@@ -212,12 +160,7 @@
         <van-button @click="showConnectModal = false">{{
           t("common.cancel")
         }}</van-button>
-        <van-button
-          type="primary"
-          @click="handleConnectFun"
-          :loading="connectLoading"
-          >{{ connectModalTit }}</van-button
-        >
+        <van-button type="primary" @click="handleConnectFun" :loading="connectLoading">{{ connectModalTit }}</van-button>
       </div>
     </div>
   </CommonModal>
@@ -359,7 +302,6 @@ export default defineComponent({
         forbidClick: true,
         loadingType: "spinner",
       });
-      console.log("loading");
       let time = setTimeout(async () => {
         await createAccount();
         await dispatch("common/scrollBottom", { id: "account-list" });
@@ -379,8 +321,6 @@ export default defineComponent({
         (item: any) => item.dataset.selected == "true"
       );
       const hei = ele.offsetTop - ele.offsetHeight;
-
-      console.warn("hei", hei);
       dispatch("common/scrollTop", {
         id: "listDom",
         top: hei,
@@ -389,16 +329,13 @@ export default defineComponent({
     const activeTab = ref(null);
     const isConnectList = ref([]);
     const initConectData = () => {
-      return new Promise(async(resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
         const connectList = await chrome.storage.local.get(["connectList"]);
-        console.log("connectList", connectList);
         chrome.tabs.query(
           { active: true, currentWindow: true },
           (tabs: Array<[]>) => {
-            console.log("tabs", tabs);
             activeTab.value = tabs.find((item) => item.active);
             activeTab.value.origin = getHostName(activeTab.value.url);
-            console.log(" activeTab.value", activeTab.value);
             connectList.connectList.forEach((element) => {
               if (
                 element.origin.toUpperCase() ===
@@ -443,7 +380,7 @@ export default defineComponent({
       }
       connectAddr.value = addr;
     };
-    const {$toast} = useToast()
+    const { $toast } = useToast()
     const connectLoading = ref(false);
     const handleConnectFun = () => {
       connectLoading.value = true;
@@ -458,7 +395,7 @@ export default defineComponent({
         connectLoading.value = false;
         showConnectModal.value = false;
         initConectData();
-        $toast.success(connectType.value ==='connectByAddress' ? t('common.connectSuccess') : t('common.disconnectSuccess'))
+        $toast.success(connectType.value === 'connectByAddress' ? t('common.connectSuccess') : t('common.disconnectSuccess'))
         clearTimeout(time);
       }, 1000);
     };
@@ -517,50 +454,59 @@ function getHostName(url = "") {
 .name-box {
   max-width: 120px;
 }
+
 .connect-btns {
   button {
     min-width: 100px;
   }
 }
+
 .connectAddr {
   font-size: 14px;
   color: #000;
   word-break: break-all;
   word-wrap: break-word;
 }
+
 .source-tit {
   color: #000;
   font-size: 14px;
   font-weight: bold;
   text-align: left;
 }
+
 .sender {
   border: 1px solid #ccc;
   height: 40px;
   width: 100%;
   border-radius: 20px;
+
   .icon {
     img {
       width: 20px;
       display: block;
     }
   }
+
   .origin {
     width: 90%;
     color: #000;
     font-size: 13px;
   }
 }
+
 .connectTip {
   color: #000;
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
 }
+
 .connectTo {
   color: #9F54BA;
   margin-left: 5px;
 }
+
 .connectStatus {
   &.active::after {
     content: "";
@@ -570,6 +516,7 @@ function getHostName(url = "") {
     border-radius: 4px;
     background: rgb(11, 211, 11);
   }
+
   &.disConnect::after {
     content: "";
     display: block;
@@ -579,29 +526,36 @@ function getHostName(url = "") {
     background: #ccc;
   }
 }
+
 .select-box {
   margin-right: 12px;
+
   i {
     font-size: 18px;
     color: #9F54BA;
   }
 }
+
 .btn-group {
   padding: 20px 50px;
 }
+
 .btn-group-box {
   width: 180px;
   margin: 0 auto;
 }
+
 .accountList-tit {
   color: #8f8f8f;
   padding: 0 20px;
   margin-top: 24px;
 }
+
 :deep(.van-loading) {
   width: 22px;
   height: 22px;
 }
+
 .btn-box {
   .btn {
     width: 34px;
@@ -610,65 +564,81 @@ function getHostName(url = "") {
     border-radius: 17px;
     border: 1px solid #9F54BA;
     cursor: pointer;
+
     &:hover {
       background: #9F54BA;
+
       i {
         color: #fff;
       }
     }
+
     i {
       font-size: 16px;
       color: #9F54BA;
     }
   }
+
   .text {
     color: #9F54BA;
     font-size: 12px;
   }
 }
+
 .account-card {
   height: 72px;
   padding: 0 15px;
   transition: ease 0.3s;
+
   &:hover {
     background: #F8F3F9;
-    color:#9F54BA;
-    
-    .account-value,.account-name i {
-      color:#9F54BA;
+    color: #9F54BA;
+
+    .account-value,
+    .account-name i {
+      color: #9F54BA;
 
     }
   }
+
   .account-icon {
     padding: 0 6px 0 0;
+
     &-box {
       border-radius: 3px;
       overflow: hidden;
     }
   }
+
   .account-name {
     line-height: 18px;
     font-size: 12px;
+
     i {
       font-size: 14px;
       color: #a9a6a6;
     }
   }
+
   .account-value {
     color: #a9a6a6;
     line-height: 18px;
   }
+
   .account-info-box {
     width: 240px;
   }
+
   .add-choose-icon {
     width: 100%;
+
     i {
       color: rgb(13, 215, 13);
       font-size: 14px;
     }
   }
 }
+
 .title {
   color: #000;
   font-size: 15px;
@@ -676,10 +646,12 @@ function getHostName(url = "") {
   background: #F8F3F9;
   font-weight: bold;
 }
+
 .account-list {
   max-height: 300px;
   overflow-y: scroll;
 }
+
 .icon-weibiaoti-1_xinzengzhanghu {
   font-weight: bold;
   font-size: 20px !important;

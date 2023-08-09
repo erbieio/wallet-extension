@@ -56,7 +56,6 @@ export default {
     const toCopy = async () => {
       try {
         await toClipboard(`${link.value}`)
-        console.log(link.value)
         Toast.success(t('copy.title'))
       } catch (e) {
         console.error(e)

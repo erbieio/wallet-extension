@@ -86,7 +86,6 @@ export default defineComponent({
       () => props.modelValue,
       n => {
         showModal.value = n
-        console.log('props', props.defaultAmount)
         amount.value = props.defaultAmount
         if(n){
           countDown.start()

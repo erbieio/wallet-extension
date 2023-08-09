@@ -9,37 +9,20 @@
       </template>
     </NavHeader>
     <div class="bourse-container" id="bourse-page" v-if="!loading">
-     <div class="bourse-container-name" v-if="false">
+      <div class="bourse-container-name" v-if="false">
         <span>{{ t("bourse.name") }} ({{ name.length }}/20)</span>
-        <el-tooltip
-          popper-class="tooltip4"
-          class="box-item"
-          effect="dark"
-          :content="t('bourse.tip20')"
-          placement="right"
-          trigger="hover"
-        >
+        <el-tooltip popper-class="tooltip4" class="box-item" effect="dark" :content="t('bourse.tip20')" placement="right" trigger="hover">
           <van-icon name="question" class="ml-4" color="#9A9A9A" />
         </el-tooltip>
       </div>
- 
+
       <div class="create-new-password" v-show="false">
         <van-form @submit="onSubmit" ref="formDom">
           <div v-if="false">
-            <van-field
-              :disabled="isExchangerFlag"
-              maxlength="20"
-              validate-trigger="onSubmit"
-              v-model="name"
-              readonly
-              :class="`text ${nameError ? 'error' : ''}`"
-              type="text"
-              :placeholder="t('bourse.placename')"
-              :rules="[
-                // { required: true, message: t('bourse.vainame') },
-                { validator: asynPwd2, message: t('bourse.vainame2') },
-              ]"
-            />
+            <van-field :disabled="isExchangerFlag" maxlength="20" validate-trigger="onSubmit" v-model="name" readonly :class="`text ${nameError ? 'error' : ''}`" type="text" :placeholder="t('bourse.placename')" :rules="[
+              // { required: true, message: t('bourse.vainame') },
+              { validator: asynPwd2, message: t('bourse.vainame2') },
+            ]" />
           </div>
         </van-form>
       </div>
@@ -49,14 +32,7 @@
 
       <div class="bourse-container-name bt mt-14 pt-10" v-if="false">
         <span class="mt-8">{{ t("createExchange.formCharge") }}</span>
-        <el-tooltip
-          popper-class="tooltip4"
-          class="box-item"
-          effect="dark"
-          :content="feilvstr"
-          placement="right"
-          trigger="hover"
-        >
+        <el-tooltip popper-class="tooltip4" class="box-item" effect="dark" :content="feilvstr" placement="right" trigger="hover">
           <van-icon class="ml-6" name="question" color="#9A9A9A" />
         </el-tooltip>
       </div>
@@ -66,31 +42,17 @@
 
       <div v-if="isExchangerFlag" class="bourse-container-name  pt-10 ">
         <span class="mt-8">{{ t("bourse.stakingFee") }}</span>
-        <el-tooltip
-          popper-class="tooltip4"
-          class="box-item"
-          effect="dark"
-          :content="t('bourse.tip3')"
-          placement="right"
-          trigger="hover"
-        >
+        <el-tooltip popper-class="tooltip4" class="box-item" effect="dark" :content="t('bourse.tip3')" placement="right" trigger="hover">
           <van-icon class="ml-6" name="question" color="#9A9A9A" />
         </el-tooltip>
       </div>
       <div v-if="isExchangerFlag" class="f-14 text-bold mt-8">
         {{ exchangerBalance }} ERB
       </div>
-    
+
       <div class="bourse-container-meaning bt mt-14" v-if="false">
         <span>{{ t("bourse.marketCom") }}</span>
-        <el-tooltip
-          popper-class="tooltip1"
-          class="box-item"
-          effect="dark"
-          :content="feilvstr"
-          placement="right"
-          trigger="hover"
-        >
+        <el-tooltip popper-class="tooltip1" class="box-item" effect="dark" :content="feilvstr" placement="right" trigger="hover">
           <van-icon class="ml-4" name="question" color="#9A9A9A" />
         </el-tooltip>
       </div>
@@ -101,41 +63,21 @@
         </div>
       </div>
       <div class="bourse-container-slider" v-if="false">
-        <el-slider
-          v-model="money"
-          :disabled="true"
-          :min="10"
-          :max="100"
-          :marks="marks"
-          :format-tooltip="(v) => v / 10"
-        />
-        <van-field
-          :disabled="true"
-          v-model="money2"
-          class="slider-ipt"
-          type="number"
-          @change="handleMoney"
-        />
+        <el-slider v-model="money" :disabled="true" :min="10" :max="100" :marks="marks" :format-tooltip="(v) => v / 10" />
+        <van-field :disabled="true" v-model="money2" class="slider-ipt" type="number" @change="handleMoney" />
       </div>
-   
+
       <div class="bourse-container-meaning" v-if="!isExchangerFlag">
         <span>{{ t("bourse.stakingFee") }}</span>
-        <el-tooltip
-          popper-class="tooltip2"
-          class="box-item"
-          effect="dark"
-          :content="t('bourse.tip3')"
-          placement="right"
-          trigger="hover"
-        >
+        <el-tooltip popper-class="tooltip2" class="box-item" effect="dark" :content="t('bourse.tip3')" placement="right" trigger="hover">
           <van-icon name="question" class="ml-4" color="#9A9A9A" />
         </el-tooltip>
       </div>
       <div class="t3" v-if="!isExchangerFlag">
-        700ERB 
+        700ERB
       </div>
 
-     <!--
+      <!--
        // <div class="bourse-container-meaning bt mt-14" v-if="isExchangerFlag">
       //   <span>{{ t("createExchange.addPl") }} </span>
       //   <el-tooltip
@@ -267,62 +209,26 @@
 
       <div :class="!isExchangerFlag ? 'bourse-container-btns' : 'btn-groups'">
         <div class="pwd-tip mb-24">
-        <i18n-t keypath="createAccountpage.pwdTip2" tag="div" class="text-center mt-20 lh-16">
-          <template v-slot:br><br></template>
-          <template v-slot:link1><span class="hover" @click="routerTo">{{t('createAccountpage.link3')}}</span></template>
-        </i18n-t>
-      </div>
+          <i18n-t keypath="createAccountpage.pwdTip2" tag="div" class="text-center mt-20 lh-16">
+            <template v-slot:br><br></template>
+            <template v-slot:link1><span class="hover" @click="routerTo">{{ t('createAccountpage.link3') }}</span></template>
+          </i18n-t>
+        </div>
         <div class="container flex between pl-12 pr-12 btn-box">
-          <van-button
-            v-if="!isExchangerFlag"
-            @click="onSubmit"
-            block
-            type="primary"
-            >{{ t("common.confirm") }}</van-button
-          >
+          <van-button v-if="!isExchangerFlag" @click="onSubmit" block type="primary">{{ t("common.confirm") }}</van-button>
           <template v-else>
             <template v-if="isExchangerFlag">
-              <van-popover
-                v-model:show="showClose"
-                v-if="!isTimeQualified"
-                theme="dark"
-                :close-on-click-outside="false"
-                placement="top-end"
-                trigger="manual"
-                class="popover-btn-tip"
-              >
+              <van-popover v-model:show="showClose" v-if="!isTimeQualified" theme="dark" :close-on-click-outside="false" placement="top-end" trigger="manual" class="popover-btn-tip">
                 <div class="f-12 pl-10 pr-10 pt-10 pb-10">
                   {{ t("bourse.closeTip") }}
                 </div>
                 <template #reference>
-                  <van-button
-                    class="b1 mr-10 closeBtn"
-                    @click="handleMinus"
-                    block
-                    :disabled="minusDisabled"
-                    plain
-                    >{{ t("createExchange.pledgeRed") }}</van-button
-                  >
+                  <van-button class="b1 mr-10 closeBtn" @click="handleMinus" block :disabled="minusDisabled" plain>{{ t("createExchange.pledgeRed") }}</van-button>
                 </template>
               </van-popover>
-              <van-button
-                v-else
-                class="b1 mr-10 closeBtn"
-                @click="handleMinus"
-                block
-                :disabled="minusDisabled"
-                plain
-                >{{ t("createExchange.pledgeRed") }}</van-button
-              >
+              <van-button v-else class="b1 mr-10 closeBtn" @click="handleMinus" block :disabled="minusDisabled" plain>{{ t("createExchange.pledgeRed") }}</van-button>
 
-              <van-button
-                v-if="!isExchangerFlag"
-                class="b1"
-                @click="onSubmit"
-                block
-                type="primary"
-                >{{ t("bourse.saveExchange") }}</van-button
-              >
+              <van-button v-if="!isExchangerFlag" class="b1" @click="onSubmit" block type="primary">{{ t("bourse.saveExchange") }}</van-button>
               <!--
               <van-button
                 v-else
@@ -338,63 +244,20 @@
       </div>
     </div>
     <div class="flex center loading-page" v-else>
-    <van-loading color="#9F54BA" />
+      <van-loading color="#9F54BA" />
     </div>
-    <CustomExchangeModal
-      v-model="showAcount"
-      :maxBalance="10"
-      :minBalance="1"
-      :defaultAmount="moneyStr"
-      @handleConfirm="handleConfirm"
-    />
+    <CustomExchangeModal v-model="showAcount" :maxBalance="10" :minBalance="1" :defaultAmount="moneyStr" @handleConfirm="handleConfirm" />
 
-    <dialog-warning
-      v-model:isWarning="isDialogWarning"
-      :text="t('send.sendMessage')"
-    >
+    <dialog-warning v-model:isWarning="isDialogWarning" :text="t('send.sendMessage')">
     </dialog-warning>
-    <affirm-dialog
-      @open="open"
-      :name="name"
-      :money="moneyStr"
-      v-model:show="isAffirmDialog"
-      :serverIndex="serverIndex"
-      v-if="isAffirmDialog"
-    ></affirm-dialog>
-    <SwitchNetwork
-      v-model:show="showModalNetwork"
-      @close="showModalNetwork = false"
-    />
-    <close-dialog
-      @warningSuccess="handleClose"
-      v-model:isWarning="isCloseDialog"
-      v-if="isCloseDialog"
-    ></close-dialog>
-    <affirm-close
-      :name="name"
-      :money="moneyStr"
-      v-model:show="isCloseAffirm"
-      @affirmClose="affirmClose"
-    ></affirm-close>
+    <affirm-dialog @open="open" :name="name" :money="moneyStr" v-model:show="isAffirmDialog" :serverIndex="serverIndex" v-if="isAffirmDialog"></affirm-dialog>
+    <SwitchNetwork v-model:show="showModalNetwork" @close="showModalNetwork = false" />
+    <close-dialog @warningSuccess="handleClose" v-model:isWarning="isCloseDialog" v-if="isCloseDialog"></close-dialog>
+    <affirm-close :name="name" :money="moneyStr" v-model:show="isCloseAffirm" @affirmClose="affirmClose"></affirm-close>
     <close-home v-model:isWarning="isCloseHome" v-if="isCloseHome"></close-home>
-    <AddModal
-      v-model="showAddModal"
-      :amount="addAmount"
-      :fee="exchangerBalance"
-      :name="name"
-    />
-    <MinusModal
-      v-model="showMinusModal"
-      :amount="minusAmount"
-      :fee="exchangerBalance"
-      :name="name"
-    />
-    <ModifPledgeModal
-      v-model="showPledgeModal"
-      :max="parseInt(exchangerBalance)"
-      :defaultValue="700"
-      @confirm="handleConfirmMinus"
-    />
+    <AddModal v-model="showAddModal" :amount="addAmount" :fee="exchangerBalance" :name="name" />
+    <MinusModal v-model="showMinusModal" :amount="minusAmount" :fee="exchangerBalance" :name="name" />
+    <ModifPledgeModal v-model="showPledgeModal" :max="parseInt(exchangerBalance)" :defaultValue="700" @confirm="handleConfirmMinus" />
   </div>
 </template>
 <script lang="ts">
@@ -471,7 +334,6 @@ interface Mark {
   style: CSSProperties;
   label: string;
 }
-console.log("saaaaa")
 type Marks = Record<number, Mark | string>;
 export default defineComponent({
   name: "createExchange",
@@ -541,13 +403,9 @@ export default defineComponent({
           address,
           "latest",
         ]);
-        console.log(blockNumber.value - accountInfoBlockNumber.value);
-        console.log("blockNumber.value - accountInfoBlockNumber.value");
         await dispatch("account/getExchangeStatus");
         ethAccountInfo.value = accountInfo.Worm;
         accountInfoBlockNumber.value = accountInfo.Worm.BlockNumber;
-        console.log(blockNumber.value - accountInfoBlockNumber.value);
-        
         if (exchangeStatus.value.ExchangerFlag) {
           const { ExchangerBalance, ExchangerName, ExchangerURL, FeeRate } =
             accountInfo.Worm;
@@ -617,8 +475,6 @@ export default defineComponent({
         if (exchangeStatus.value.ExchangerFlag) {
           await modifExchangeBalance(name);
         } else {
-          console.warn("name", name);
-          console.warn("fee_rate", fee_rate);
           await createExchanges(name, 200, fee_rate);
         }
       } catch (err) {
@@ -651,7 +507,7 @@ export default defineComponent({
     // servr selection
     let serverIndex = ref(0);
     const changeServerIndex = (value: number) => {
-      if(value && insufficientMoney.value) {
+      if (value && insufficientMoney.value) {
         return
       }
       if (exchangeStatus.value.ExchangerFlag) {
@@ -675,17 +531,10 @@ export default defineComponent({
         nameError.value = true;
         return t("bourse.vainame");
       }
-      console.log(val.length)
-
       if (val.length < 4 || val.length > 20) {
         nameError.value = true;
         return false;
       }
-      // if (regExchangeName.test(val)) {
-      //   console.log(val)
-      //   nameError.value = true;
-      //   return false;
-      // }
       return true;
     };
     const { $tradeConfirm } = useTradeConfirm();
@@ -722,7 +571,6 @@ export default defineComponent({
       return new Bignumber(accountInfo.value.amount).lt(901) ? true : false
     })
     let changeexchangerName = (value: any) => {
-      console.warn('value',value)
       return value;
     };
     const ethAccountInfo = ref({ ExchangerBalance: 0 });
@@ -736,10 +584,8 @@ export default defineComponent({
 
     onMounted(() => {
       initPageData();
-      console.warn('insufficientMoney.value', insufficientMoney.value, isExchangeStatusStatus.value)
-      if(insufficientMoney.value) {
+      if (insufficientMoney.value) {
         serverIndex.value = 0
-        console.warn('serverIndex.value---', serverIndex.value)
       }
     });
     const isExchangerFlag = computed(
@@ -756,7 +602,7 @@ export default defineComponent({
     const formDom = ref();
     const router = useRouter();
     const back = () => {
-      serverIndex.value=  2;
+      serverIndex.value = 2;
       // Do not open the exchange directly jump home page, otherwise the previous page
       if (isExchangeStatusStatus.value) {
         router.replace({ name: "exchange-management" });
@@ -803,7 +649,7 @@ export default defineComponent({
       const diffAm = new Bignumber(maxBalance.value).minus(
         exchangerBalance.value
       );
-      //debugger;
+      ;
       if (am.lt(diffAm)) {
         $toast.warn(t("createExchange.ispoor"));
         return;
@@ -853,12 +699,6 @@ export default defineComponent({
       }
     );
 
-    watch(() => serverIndex.value, n => {
-      console.log('serverIndex:', n)
-    },{
-      deep: true,
-      immediate: true
-    })
     const addAmount = ref();
     const minBalance = computed(() => 0);
     const maxBalance = computed(() =>
@@ -882,7 +722,7 @@ export default defineComponent({
     const closeBtnDisabled = ref(true);
 
     const changeAdd = () => {
- 
+
     };
 
     const bigAmount = new BigNumber(accountInfo.value.amount);
@@ -918,8 +758,7 @@ export default defineComponent({
     const showClose = ref(true);
 
     const feilvstr = computed(() => {
-      console.warn('moneyStr.value', t('createExchange.commission',{value: moneyStr.value}))
-      return t('createExchange.commission',{value: moneyStr.value})
+      return t('createExchange.commission', { value: moneyStr.value })
     })
     const addBalance = computed(() => {
       return new Bignumber(901).minus(accountInfo.value.amount).toFixed(6)

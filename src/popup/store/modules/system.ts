@@ -54,7 +54,7 @@ export default {
     language: "",
     // Homepage NFT, list display method card list
     layoutType: "card",
-    chainVersion:'',
+    chainVersion: '',
     layoutList: [
       // Arrangement method list: list, card
       { value: "list", name: "list" },
@@ -95,9 +95,9 @@ export default {
     // RMB exchange rate
     transferCNYRate: 0.6,
     // Password encryption iv
-    iv:'',
-    conversationId:'',
-    wallet_token:{
+    iv: '',
+    conversationId: '',
+    wallet_token: {
       seconds: 0,
       time: 0,
       value: null
@@ -124,44 +124,44 @@ export default {
       handleUpdate()
     },
     UPDATA_HIDE(state: State, idx: number) {
-      for(let i=0;i< 16;i++) {
-        if(i != idx) {
+      for (let i = 0; i < 16; i++) {
+        if (i != idx) {
           state[`show${idx}`] ? (state[`show${idx}`] = false) : "";
         }
       }
-      
+
       handleUpdate()
     },
-    UPDATE_GUIDEFLAG(state: State, val: boolean){
+    UPDATE_GUIDEFLAG(state: State, val: boolean) {
       state.finishedGuide = val
       handleUpdate()
     },
-    UPDATE_HASBACKUPMNEMONIC(state: State, val: boolean){
+    UPDATE_HASBACKUPMNEMONIC(state: State, val: boolean) {
       state.hasBackUpMnemonic = val
       handleUpdate()
     },
-    UPDATE_LASTDELAYTIME(state:State, time: number){
+    UPDATE_LASTDELAYTIME(state: State, time: number) {
       state.lastDelayTime = time
       handleUpdate()
     },
     UPDATA_ACCOUNTINFO(state: State, info: any) {
       state.ethAccountInfo = info
     },
-    UPDATE_TRANSFERUSDRATE(state:State, val: number){
+    UPDATE_TRANSFERUSDRATE(state: State, val: number) {
       state.transferUSDRate = val
     },
-    UPDATE_TRANSFERCNYRATE(state:State, val: number){
+    UPDATE_TRANSFERCNYRATE(state: State, val: number) {
       state.transferCNYRate = val
     },
     UPDATA_CONVERSATIONID(state: State, id: string) {
       state.conversationId = id
     },
     UPDATE_WALLET_TOKEN(state: State, token: WalletToken) {
-      const {seconds,time,value} = token
+      const { seconds, time, value } = token
       state.wallet_token = {
         seconds,
         time,
-        value:''
+        value: ''
       }
       handleUpdate()
     },
@@ -178,9 +178,9 @@ export default {
       }
     },
     // Whether the pop-up window guides the pop-up window
-    getGuideModal(state: State){
+    getGuideModal(state: State) {
       const { finishedGuide } = state
-      if(finishedGuide){
+      if (finishedGuide) {
         return false
       } else {
         return true
@@ -219,64 +219,58 @@ export default {
     // Open pop-up window
     showDialog({ commit, state }: any, idx: number) {
       commit("UPDATA_HIDE", idx);
-      if(idx === 9) {
+      if (idx === 9) {
         commit("UPDATA_HIDE", 8);
       }
-      if(idx === 12) {
+      if (idx === 12) {
         commit("UPDATA_HIDE", 11);
       }
-      if(idx === 14) {
+      if (idx === 14) {
         commit("UPDATA_HIDE", 13);
       }
-      console.warn('showDialog', idx)
-      commit("UPDATA_SHOW", idx+1);
-      // if(idx === 6) {
-      //   commit("UPDATA_SHOW", idx+2);
-      // }else {
-      //   commit("UPDATA_SHOW", idx+1);
-      // }
+      commit("UPDATA_SHOW", idx + 1);
     },
     // Turn off boot
-    closeGuide({commit,state}:any){
+    closeGuide({ commit, state }: any) {
       commit('UPDATE_GUIDEFLAG', true)
-      for(let i = 1;i<14;i++){
+      for (let i = 1; i < 14; i++) {
         commit('UPDATA_HIDE', i)
       }
     },
     // Update login time
-    setLoginTime({commit, state}: any, time: string) {
+    setLoginTime({ commit, state }: any, time: string) {
       commit('UPDATE_LASTLOGINTIME', time)
     },
     // Get account details
-    async getEthAccountInfo({commit, state}: any){
+    async getEthAccountInfo({ commit, state }: any) {
       const wall = await getWallet()
       const { address } = wall
-      wall.provider.send('eth_getAccountInfo',[address, "latest"]).then((res:any)=>{
-        const data = {...res, ...res.Worm, status: 0}
+      wall.provider.send('eth_getAccountInfo', [address, "latest"]).then((res: any) => {
+        const data = { ...res, ...res.Worm, status: 0 }
         commit('UPDATA_ACCOUNTINFO', data)
       })
     },
-    setConversationid({commit, state}: any, id: string) {
-      commit('UPDATA_CONVERSATIONID',id)
+    setConversationid({ commit, state }: any, id: string) {
+      commit('UPDATA_CONVERSATIONID', id)
     },
-    async getChainVersion({commit, state}: any, wallet: any){
-      const version =  await wallet.provider.send('eth_version')
-      const { chainId } =  await wallet.provider.getNetwork()
+    async getChainVersion({ commit, state }: any, wallet: any) {
+      const version = await wallet.provider.send('eth_version')
+      const { chainId } = await wallet.provider.getNetwork()
       const { id } = store.state.account.currentNetwork
       const queryList = [
         `async-${id}-${chainId}`,
         `txQueue-${id}-${chainId}`,
         `txlist-${id}-${chainId}`
       ]
-      
+
       const oldVersion = state.chainVersion
-      if(oldVersion && version != oldVersion) {
+      if (oldVersion && version != oldVersion) {
         localforage.iterate((value, key, iterationNumber) => {
           console.log('clear cancel', key)
           if (key !== "vuex") {
             const flag = queryList.some(str => key.indexOf(str) > -1)
             console.log('clear cancel', key)
-            if(flag){
+            if (flag) {
               localforage.removeItem(key);
             }
           } else {

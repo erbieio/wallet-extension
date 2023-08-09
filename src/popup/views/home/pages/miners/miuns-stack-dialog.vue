@@ -207,7 +207,6 @@ export default {
           try {
             gasFee.value = await getGasFee(tx1)
           } catch (err: any) {
-            console.warn(err);
             emit('error', err)
           }
           calcProfit();
@@ -219,7 +218,6 @@ export default {
     const historyProfit = ref("");
     const addprofit = ref("")
     const calcProfit = async () => {
-      console.warn('calc', props.minusNumber, props.amount)
       const { t0, t1, t2, t3 } = store.state.configuration.setting.conversion
       //snft rewards require an average conversion rate
       const average =  (t0 + t1 + t2 + t3)/4

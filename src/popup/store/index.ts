@@ -1,7 +1,6 @@
 // @ts-nocheck
 import localforage from 'localforage';
 window.localforage = localforage
-console.warn('localforage', localforage)
 import { clone } from 'pouchdb-utils';
 import { createStore } from 'vuex'
 import common from './modules/common'

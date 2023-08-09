@@ -142,7 +142,6 @@ export const useToggleAccount = () => {
           resolve(wallet)
         }catch(err){
           reject(err)
-          console.error(err)
         }
       });
     })

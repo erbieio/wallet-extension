@@ -22,13 +22,11 @@ export const getSysParams = (address: string) => {
 
 // Set system information
 export const modifySysParams = (address: string, params = {}) => {
-    console.log('params', JSON.stringify(params))
     return httpPost(`${snftUrl3}/c${address.toLowerCase()}/v2/modifySysParams`, params)
 }
 
 // Set one touch exchange data
 export const setExchangeSig = (address: string, params = {}) => {
-    console.log('params', JSON.stringify(params))
     return httpPost(`${snftUrl3}/c${address.toLowerCase()}/v2/setExchangeSig`, params)
 }
 /**

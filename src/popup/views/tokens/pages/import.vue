@@ -109,13 +109,12 @@ export default {
     const tokenError = ref(false);
     // Click add connectconstraint
     const onSubmit = async (data: any) => {
-      console.log("submit", data);
       await form.value.validate()
       $dialog.open({
         type: 'warn',
         message: t("currencyList.sure", { tokenName: name.value }),
         callBack: async () => {
-          debugger
+
           const { address } = await getWallet();
           try {
             Toast.loading({
@@ -176,8 +175,6 @@ export default {
         );
         const contractWithSigner = contract.connect(wallet);
         name.value = await contractWithSigner.name();
-        // const decimal = await contractWithSigner.decimals();
-        // const symbol = await contractWithSigner.symbol();
         return true;
 
       } catch (err) {
@@ -186,10 +183,6 @@ export default {
       } finally {
         Toast.clear()
       }
-    };
-    // Import function
-    const handleImport = () => {
-      console.log("import...");
     };
 
     const cancel = () => {
@@ -207,7 +200,6 @@ export default {
       tokenContractAddress,
       onSubmit,
       OFFICIAL_WEBSITE,
-      handleImport,
       form
     };
   },

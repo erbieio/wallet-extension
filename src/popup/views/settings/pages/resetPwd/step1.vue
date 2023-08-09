@@ -133,7 +133,7 @@ export default {
     const onSubmit = async (value: object) => {
       accountLoading.value = true
       const accountInfo = store.state.account.accountInfo
-      //debugger
+      
       const { keyStore } = accountInfo
       // Unlock the keyStore file of the current account with a password
       const data: CreateWalletByJsonParams = {

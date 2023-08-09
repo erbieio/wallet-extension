@@ -356,7 +356,6 @@ export default {
 
     // Select account
     const handleClickAccount = (acc) => {
-      console.log("choose account111", acc.address);
       addressErr.value = false;
       account.data = acc;
       toAddress.value = acc.address;

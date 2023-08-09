@@ -365,11 +365,9 @@ export default {
       return data;
     });
     const loading: Ref<boolean> = ref(false);
-    console.log("getters", store);
     const accountTokens = computed(
       () => store.getters["account/accountTokens"]
     );
-    console.log("accountTokens", accountTokens);
     // Jump to receive QR code page
     const toReceive = () => {
       router.push({
@@ -455,9 +453,7 @@ export default {
     };
 
     onMounted(() => {
-      console.warn('onMounted')
       eventBus.on("changeAccount", () => {
-        console.warn('changeAccount....')
         dispatch('account/getEthAccountInfo')
         dispatch("account/updateBalance");
         handleGetValidator()
@@ -469,10 +465,6 @@ export default {
       dispatch('account/getCreatorStatus', accountInfo.value.address)
       dispatch("account/getEthAccountInfo");
       dispatch("account/getExchangeStatus").then((res) => {
-        console.warn(111);
-        // if (res.status == 2 && res.ExchangerFlag) {
-        //   initExchangeData();
-        // }
       });
       dispatch("transfer/clearTx");
       handleLoopBalance();
@@ -546,7 +538,6 @@ export default {
       router.push({ name: "tokens-import" });
     };
     const handleChangeIsselect = (v: boolean) => {
-      console.warn('handleChangeIsselect', v)
       isSelect.value = v;
     };
 

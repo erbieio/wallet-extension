@@ -149,13 +149,9 @@ export default {
     const { tx, sendId, sender }: any = query;
     const newtx = JSON.parse(tx);
     const senderData = JSON.parse(sender);
-    console.log("senderData", senderData);
     const txJSON = ref(newtx);
     txJSON.value['from'] = accountInfo.value.address
-    // const currentAccountInfo = computed(() => store.state.account.accountList.find(item => item.address.toUpperCase() ==from.toString().toUpperCase()))
-    // console.warn("tx----------------", txJSON.value);
-    // const diffAddr = ref(from.toString().toUpperCase() == accountInfo.value.address.toUpperCase() ? true : false)
-    // console.warn('diffAddr', diffAddr.value)
+
     const clickRight = () => {
       router.replace({ name: "wallet" });
     };
@@ -177,7 +173,6 @@ export default {
           ...newtx,
           checkTxQueue: false,
         });
-        console.warn("receipt", receipt);
         sendBackground({
           method: handleType.eth_sendTransaction,
           response: { code: "200", data: receipt, sendId },

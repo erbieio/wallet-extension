@@ -57,49 +57,47 @@ export default {
       store.dispatch('account/waitTxQueueResponse')
       return receipt
     },
-   // Personal casting NFT
-   async nftCreate({ commit, state }: any, nft_data: any) {
-    const wallet = await getWallet();
-    const { address } = wallet
-    const { royalty, meta_url, name, desc, category } = nft_data;
-    const par = {
-      version: '0.0.1',
-      type: 0,
-      royalty: royalty,
-      exchanger: "",
-      meta_url: web3.utils.fromUtf8(JSON.stringify(nft_data))
-    }
-    const parstr = `${store.getters['account/chainParsePrefix']}:${JSON.stringify(par)}`
-    const newdata = web3.utils.fromUtf8(parstr)
-    const tx = {
-      from: address,
-      to: address,
-      data: newdata,
-      value: "0",
-    };
-    const data = await store.dispatch('account/transaction', tx)
-    store.dispatch('account/waitTxQueueResponse')
-    return data
-  },
-  // Transfer NFT
-  async send({ commit, state }: any, params: TransferData) {
-    const wallet = await getWallet();
-    const { address } = wallet
-    const { nft_address, to, checkTxQueue } = params
-    // Update recent contacts
-    store.commit("account/PUSH_RECENTLIST", to);
-    const str = `${store.getters['account/chainParsePrefix']}:{"version": "v0.0.1","type": 1,"nft_address":"${nft_address}"}`;
-    console.warn('str----', str)
-    const data3 =  web3.utils.fromUtf8(str);
-    const tx = {
-      from: address,
-      to,
-      data: data3,
-    };
-    console.warn('tx', tx)
-    const data = await store.dispatch('account/transaction', tx)
-    return data
-  },
+    // Personal casting NFT
+    async nftCreate({ commit, state }: any, nft_data: any) {
+      const wallet = await getWallet();
+      const { address } = wallet
+      const { royalty, meta_url, name, desc, category } = nft_data;
+      const par = {
+        version: '0.0.1',
+        type: 0,
+        royalty: royalty,
+        exchanger: "",
+        meta_url: web3.utils.fromUtf8(JSON.stringify(nft_data))
+      }
+      const parstr = `${store.getters['account/chainParsePrefix']}:${JSON.stringify(par)}`
+      const newdata = web3.utils.fromUtf8(parstr)
+      const tx = {
+        from: address,
+        to: address,
+        data: newdata,
+        value: "0",
+      };
+      const data = await store.dispatch('account/transaction', tx)
+      store.dispatch('account/waitTxQueueResponse')
+      return data
+    },
+    // Transfer NFT
+    async send({ commit, state }: any, params: TransferData) {
+      const wallet = await getWallet();
+      const { address } = wallet
+      const { nft_address, to, checkTxQueue } = params
+      // Update recent contacts
+      store.commit("account/PUSH_RECENTLIST", to);
+      const str = `${store.getters['account/chainParsePrefix']}:{"version": "v0.0.1","type": 1,"nft_address":"${nft_address}"}`;
+      const data3 = web3.utils.fromUtf8(str);
+      const tx = {
+        from: address,
+        to,
+        data: data3,
+      };
+      const data = await store.dispatch('account/transaction', tx)
+      return data
+    },
 
     // Get asset list according to owner
     async getSnftOwner({ commit, state }: any, page: string) {

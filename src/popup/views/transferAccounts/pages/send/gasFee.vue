@@ -194,17 +194,12 @@ setup(props: any) {
     try {
       const wallet = await getWallet();
       const gasPrice = await wallet.provider.getGasPrice();
-      console.log("gasPrice", utils.formatUnits(gasPrice, "wei"));
       const bigGas = new BigNumber(utils.formatUnits(gasPrice, "wei"));
       const bigGasDiv = bigGas.multipliedBy(0.2);
       const bigGasDiv2 = bigGas.multipliedBy(0.1);
       const max = bigGas.plus(bigGasDiv).dividedBy(1000000000).toString();
       const min = bigGas.dividedBy(1000000000).toString();
       const average = bigGas.plus(bigGasDiv2).dividedBy(1000000000).toString();
-      console.log("bigGas", bigGas.toString());
-      console.log("max", max);
-      console.log("min", min);
-      console.log("average", average);
       gasData.value = [min, average, max];
     } catch (err) {
       console.error("getGasPrice:error", err);
@@ -251,7 +246,6 @@ setup(props: any) {
         .then((gas: any) => {
           const limitWei = utils.formatUnits(gas, "wei")
           gasLimit.value = parseFloat(new BigNumber(limitWei).plus(new BigNumber(limitWei).multipliedBy(0.2)).toFixed(0));
-          console.log('gasLimit.value', gasLimit.value,limitWei)
         });
     } else {
       gasLimit.value = 21000;

@@ -62,7 +62,6 @@ export default {
     const pageType = ref(window ? window.pageType : '')
     provide("appProvide", appProvide());
     onMounted(async () => {
-      console.log('this', this)
       // update browser session window id
       dispatch('system/setConversationid', guid())
       // Listen to the broadcast of the same source window
@@ -85,7 +84,6 @@ export default {
           document.getElementById('app').style.display = 'block'
           clearTimeout(time)
         }, 200)
-        console.warn('VUE_APP_SCAN_URL', VUE_APP_SCAN_URL)
         let time2 = setTimeout(function () {
           commit("account/UPDATE_WORMHOLES_URL", {
             URL: VUE_APP_NODE_URL,

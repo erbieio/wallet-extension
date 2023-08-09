@@ -201,18 +201,12 @@ export default defineComponent({
               item.meta_url = pa.meta_url;
               item.prompt = pa.meta_url;
               item.randomNumber = pa.randomNumber;
-              // item.nftCategory =
-              console.warn(
-                "web3.utils.toUtf8(item.raw_meta_url)",
-                web3.utils.toUtf8(item.raw_meta_url)
-              );
               item.info = web3.utils.toUtf8(item.raw_meta_url);
             } catch (err) {
               console.error(err);
               item.info = {};
             }
           });
-          console.warn("nfts", nfts);
           // @ts-ignore
           pageData.nftList.push(...nfts);
         }
@@ -230,7 +224,6 @@ export default defineComponent({
         }
         loadNft.value = true;
       }
-      console.log("load nft...");
       try {
         if (sortVal.value == 0) {
           params.page = Number(params.page) + 1 + "";
@@ -265,7 +258,7 @@ export default defineComponent({
     // Update the current collectibles list each time you switch accounts
     eventBus.on("changeAccount", (address) => {
       params.owner = address;
-      debugger;
+      ;
       reLoading();
     });
     const toCreate = () => {

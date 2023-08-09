@@ -218,8 +218,6 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (n) => {
-        console.log("selectList", props.selectList);
-        console.log("txtype", props.txtype, typeof props.txtype);
         showModal.value = n;
         if (n) {
           let t = setInterval(() => {
@@ -229,7 +227,6 @@ export default defineComponent({
             time.value = time.value - 1;
           }, 1000);
           if (props.txtype == "3" || props.txtype == "1") {
-            console.warn("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             calcProfit();
           }
           calcGasFee();
@@ -258,7 +255,6 @@ export default defineComponent({
     const loading = ref(false);
     const handleComfirm = async () => {
       emit("update:modelValue", false);
-      console.log("selectList", props.selectList);
       const wallet = await getWallet();
       const { address } = wallet;
       let approveMessage = "";
@@ -303,7 +299,7 @@ export default defineComponent({
           nftAdd = nft_address.substr(0, 40);
             break;
         }
-        //debugger;
+        ;
         try {
           let str = "";
           switch (props.txtype) {
@@ -320,7 +316,6 @@ export default defineComponent({
               str = `${store.getters['account/chainParsePrefix']}:{"type":8,"nft_address":"${nftAdd}","version":"0.0.1"}`;
               break;
           }
-          console.log('str', str)
           const data3 = toHex(str);
           const tx1 = {
             from: address,
@@ -351,7 +346,6 @@ export default defineComponent({
             status: "success",
           });
         } catch (err) {
-          console.error(err);
           $tradeConfirm.update({
             status: "fail",
           });
@@ -380,10 +374,8 @@ export default defineComponent({
       const { t0, t1, t2, t3 } = state.configuration.setting.conversion
 
       try {
-        console.log("1---------------------------");
         const wallet = await getWallet();
         const addressInfo = await getAccountAddr(wallet.address)
-        console.warn('addressInfo', addressInfo)
         const {rewardSNFTCount,exchangerAmount,snftAmount} = addressInfo
         const exchangeNum = ethers.utils.formatEther(exchangerAmount || '0')
         const snftNum = ethers.utils.formatEther(snftAmount || '0')
@@ -392,14 +384,10 @@ export default defineComponent({
         const rio = new BigNumber(props.selectTotal).div(new BigNumber(exchangeNum).plus(snftNum))
         historyProfit.value = new BigNumber(rewardSNFTCount).multipliedBy(t0).multipliedBy(rio).toFixed(5)
         }
-        console.warn('eth_getAllStakers',props.txtype)
         if(props.txtype === '3') {
           const {Stakers} = await wallet.provider.send('eth_getAllStakers')
-        console.warn('pledgeTotal', Stakers)
         const totalPledge = Stakers.map((item: any) => item.Balance).reduce((prev, total) => new BigNumber(prev).plus(prev)).div(10000000000000000).toFixed(10)
-        console.warn('totalPledge', totalPledge)
         const r = !Number(props.selectTotal) ? new BigNumber(0): new BigNumber(props.selectTotal).div(new BigNumber(exchangeNum).plus(props.selectTotal))
-        console.warn('r---', r.toNumber())
         const am = new BigNumber(props.selectTotal).plus(exchangeNum).div(totalPledge).multipliedBy(599184).multipliedBy(r).toFixed(15)
         myprofit.value = am  
       }
@@ -424,10 +412,8 @@ export default defineComponent({
            validatorAmount: "70000000000000000000000"
          */
 
-        console.warn("historyProfit", historyProfit.value);
-        console.warn("myprofit", myprofit.value);
       } catch (err) {
-        console.log("4---------------------------++++++++", err);
+        console.error(err);
       }
     };
 
@@ -435,10 +421,6 @@ export default defineComponent({
     const calcGasFee = async () => {
       try {
         const { address } = state.account.accountInfo;
-        console.warn(
-          "calc gasfee -----------------------------------:",
-          props.selectList
-        );
         const [data] = props.selectList;
         let { nft_address, MergeLevel } = data;
         switch (MergeLevel) {
@@ -451,7 +433,6 @@ export default defineComponent({
             nft_address = nft_address.substr(0, 40);
             break;
         }
-        console.log("data----------", data);
         let str = "";
 
         switch (props.txtype) {
@@ -467,7 +448,6 @@ export default defineComponent({
             str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
         }
-        console.log("gas fee  - str-------------------", str);
         const data3 = toHex(str);
         const tx1 = {
           from: address,
@@ -477,7 +457,6 @@ export default defineComponent({
         const gas = await getGasFee(tx1);
         gasFee.value = new BigNumber(gas).multipliedBy(1).toFixed(6);
       } catch (err) {
-        console.warn("gas err", err);
         $toast.warn(err);
       }
     };

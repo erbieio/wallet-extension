@@ -1,54 +1,28 @@
 <template>
   <div class="custom-exchange-modal">
-    <van-dialog
-      v-model:show="showModal"
-      teleport="#page-box"
-      :showConfirmButton="false"
-      :showCancelButton="false"
-      closeOnClickOverlay
-      :title="''"
-    >
+    <van-dialog v-model:show="showModal" teleport="#page-box" :showConfirmButton="false" :showCancelButton="false" closeOnClickOverlay :title="''">
       <div class="title text-center text-bold van-hairline--bottom">
         {{ title ? title : t("send.setAmount") }}
       </div>
       <div class="label-tit">
         {{ t("createExchange.formCharge") }}
 
-        <van-popover
-          v-model:show="showpop"
-          theme="dark"
-          placement="top"
-          trigger="manual"
-        >
+        <van-popover v-model:show="showpop" theme="dark" placement="top" trigger="manual">
           <div class="f-12 pl-10 pr-10 pt-10 pb-10">
             {{ t('createExchange.commission') }}
           </div>
           <template #reference>
-            <van-icon
-              @mouseenter="showpop = true"
-              @mouseout="showpop = false"
-              name="question hover"
-            />
+            <van-icon @mouseenter="showpop = true" @mouseout="showpop = false" name="question hover" />
           </template>
         </van-popover>
       </div>
       <div class="amount-box pl-14 pr-14 flex between ml-12 mr-12 mt-4 mb-20">
         <div class="flex-6">
           <div class="f-18 amount-ipt flex center-v">
-            <van-field
-              class="hover"
-              type="number"
-              :placeholder="placeholder || t('createExchange.placeholder',{min:minBalance,max:maxBalance})"
-              v-model="amount"
-              @focus="handleFocus"
-            />
+            <van-field class="hover" type="number" :placeholder="placeholder || t('createExchange.placeholder', { min: minBalance, max: maxBalance })" v-model="amount" @focus="handleFocus" />
           </div>
         </div>
-        <div
-          class="flex-4 transfer flex center-v right pr-6 hover"
-          v-if="hasTransferToken"
-          @click.stop="handleChooseToken"
-        >
+        <div class="flex-4 transfer flex center-v right pr-6 hover" v-if="hasTransferToken" @click.stop="handleChooseToken">
           <div class="token-info flex between center-v pl-6 pr-6">
             <div class="xuanwo flex center">
               <img src="@/assets/logoeth.png" />
@@ -155,9 +129,7 @@ export default defineComponent({
       () => props.modelValue,
       (n) => {
         showModal.value = n;
-        console.log("props", props.defaultAmount);
         const am = Number(props.defaultAmount);
-
         amount.value = am ? am.toString() : null;
       },
       {
@@ -188,7 +160,6 @@ export default defineComponent({
         $toast.warn(t("amountreminder.pleaseenter"));
         return;
       }
-      console.log("props---------", props);
       const num = new BigNumber(props.maxBalance);
       if (num.lt(parseFloat(amount.value))) {
         $toast.warn(t("customExchangeModal.exceededmaximumamount"));
@@ -215,8 +186,8 @@ export default defineComponent({
       return token
         ? token
         : {
-            name,
-          };
+          name,
+        };
     });
 
     // If the amount is 0 when focusing, the amount is cleared
@@ -251,14 +222,17 @@ export default defineComponent({
 .btn-box {
   padding: 0 56px 20px;
 }
+
 .label-tit {
   padding: 0 15px;
   line-height: 24px;
   margin-top: 17px;
+
   i {
     color: #9a9a9a;
   }
 }
+
 .title {
   color: #000;
   font-size: 15px;
@@ -267,41 +241,51 @@ export default defineComponent({
   font-weight: bold;
 
 }
+
 .van-cell:after {
   display: none;
 }
+
 .amount-box {
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #B3B3B3;
   padding: 0 15px;
 }
+
 :deep(.van-button) {
   width: 100px !important;
 }
+
 .imitate-input {
   width: auto;
   min-width: 30px;
   outline: none;
   display: inline-block;
 }
+
 .imitate-placeholder {
   color: #999;
 }
+
 .amount-ipt {
   color: #8f8f8f;
   height: 35px;
+
   .van-field {
     padding: 0;
     display: inline-block;
+
     :deep(input) {
       font-size: 12px;
       font-weight: bold;
+
       &::placeholder {
         font-weight: normal;
       }
     }
   }
+
   // input {
   //   display: inline-block;
   //   width: auto;
@@ -314,18 +298,21 @@ export default defineComponent({
     font-size: 15px;
   }
 }
+
 .token-info {
   height: 35px;
   min-width: 90px;
   max-width: 150px;
   background: #f1f3f4;
   border-radius: 17.5px;
+
   .xuanwo {
     width: 24px;
     height: 24px;
     border-radius: 10px;
     // background: #0b80d7;
     padding: 2px;
+
     img {
       display: block;
       width: 100%;
@@ -333,10 +320,12 @@ export default defineComponent({
       // border-radius: 50%;
     }
   }
+
   i {
     color: #9F54BA;
     font-size: 15px;
   }
+
   .token-name {
     color: #000;
   }

@@ -103,7 +103,6 @@ export default {
     const loading: Ref<boolean> = ref(false);
     const onSubmit = (values: Object) => {
       loading.value = true;
-      console.log("submit", values);
       // Verify that passwords are consistent
       if (password.value == password2.value) {
         // Store password
@@ -125,7 +124,6 @@ export default {
             // Generate a keystore file based on the password private key
             const keyStore = encryptPrivateKey(params);
             // Encrypt mnemonic storage according to password
-            console.log('web3---------', web3)
             const mnemonicData = encryptPrivateKey({
               privateKey: web3.utils.toHex(mnemonic.value),
               password: password.value,

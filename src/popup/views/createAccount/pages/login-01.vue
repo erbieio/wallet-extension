@@ -1,10 +1,6 @@
 <template>
   <div>
-    <NavHeader
-      :title="t('wallet.wormHoles')"
-      :hasLeft="false"
-      :hasRight="false"
-    />
+    <NavHeader :title="t('wallet.wormHoles')" :hasLeft="false" :hasRight="false" />
     <div class="title">
       <WormTransition size="small">
         <template v-slot:icon>
@@ -25,44 +21,18 @@
           <div class="text-bold f-12 mt-10 mb-10 lh-16 flex between">
             <span>{{ t("createAccountpage.password") }}</span>
             <span>
-              <i
-                @click="toggleMask"
-                :class="`iconfont hover ${
-                  switchPassType ? 'icon-yanjing1' : 'icon-yanjing'
-                }`"
-              ></i>
+              <i @click="toggleMask" :class="`iconfont hover ${switchPassType ? 'icon-yanjing1' : 'icon-yanjing'
+                }`"></i>
             </span>
           </div>
-          <van-field
-            v-model="password"
-            name="password"
-            ref="iptRef"
-            :class="`text ${pwdErr ? 'error' : ''}`"
-            :type="`${switchPassType ? 'text' : 'password'}`"
-            @click-right-icon="switchPassType = !switchPassType"
-            :placeholder="$t('createAccountpage.passwordPlaceholder')"
-            :rules="[{ validator: asynPwd }]"
-
-    
-          />
+          <van-field v-model="password" name="password" ref="iptRef" :class="`text ${pwdErr ? 'error' : ''}`" :type="`${switchPassType ? 'text' : 'password'}`" @click-right-icon="switchPassType = !switchPassType" :placeholder="$t('createAccountpage.passwordPlaceholder')" :rules="[{ validator: asynPwd }]" />
         </van-cell-group>
         <div class="btn-box">
-          <van-button
-            :loading="loading"
-            round
-            block
-            type="primary"
-            native-type="submit"
-            >{{ t("createAccountpage.loginIn") }}</van-button
-          >
+          <van-button :loading="loading" round block type="primary" native-type="submit">{{ t("createAccountpage.loginIn") }}</van-button>
         </div>
       </van-form>
       <div class="text-center f-12">
-        <i18n-t
-          tag="div"
-          class="reset-box"
-          keypath="createAccountpage.cantLogin"
-        >
+        <i18n-t tag="div" class="reset-box" keypath="createAccountpage.cantLogin">
           <template v-slot:reset>
             <span class="lh-20 tool hover" @click="reset" :disable="reset_flag">
               {{ t("createAccountpage.resentWallet") }}
@@ -71,11 +41,7 @@
         </i18n-t>
       </div>
     </div>
-    <Resetpopup
-      v-model="resetmodule"
-      @handleConfirm="handleComfirm"
-      @cancel="cancel"
-    />
+    <Resetpopup v-model="resetmodule" @handleConfirm="handleComfirm" @cancel="cancel" />
   </div>
 </template>
 <script lang="ts">
@@ -240,14 +206,13 @@ export default {
       let time = setTimeout(() => {
         const ipt = document.querySelector('input')
         ipt.focus()
-        console.warn('get focus...',ipt.focus)
         clearTimeout(time)
-      },300)
+      }, 300)
 
     });
 
     const reset_flag = ref(true);
-    const handleComfirm = () => {};
+    const handleComfirm = () => { };
     return {
       t,
       handleComfirm,
@@ -272,17 +237,21 @@ export default {
 .btn-box {
   margin: 50px 28px 30px;
 }
+
 .reset-box {
   color: #828184;
 }
+
 .title {
   .iconele {
     width: 19px;
   }
+
   .tit-big {
     line-height: 21px;
     font-weight: bolder;
   }
+
   .tit-small {
     color: #B3B3B3;
   }
@@ -292,6 +261,7 @@ export default {
   .tit-small {
     color: #B3B3B3;
   }
+
   .right {
     color: #9F54BA;
     text-decoration: underline;
@@ -300,18 +270,23 @@ export default {
   .icon-yanjing1 {
     color: #9F54BA;
   }
+
   :deep(.van-field__label) {
     display: none;
   }
+
   :deep(.van-field__error-message) {
     margin-bottom: 12px;
   }
+
   :deep(.van-cell:after) {
     display: none;
   }
+
   :deep(.van-cell) {
     padding: 0;
   }
+
   :deep(.van-field__body) {
     height: 42px;
     margin-bottom: 10px;
@@ -319,12 +294,14 @@ export default {
     border-radius: 5px;
     transition: ease 0.3s;
     font-size: 12px;
-  
+
   }
 }
+
 .tool {
   color: #9F54BA;
 }
+
 .underline {
   text-decoration: underline;
 }

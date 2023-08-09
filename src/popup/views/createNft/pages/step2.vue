@@ -315,10 +315,8 @@ export default {
         message: t("common.checkText"),
         forbidClick: true,
       });
-      console.log(v);
       try {
         const data = await axios.get(meta_url.value);
-        console.warn("get data", data);
         if (data.data) {
           return true;
         } else {
@@ -333,13 +331,10 @@ export default {
     const onSubmit = async (values: any) => {
       const name1 = name.value.toString();
       const desc1 = desc.value.toString();
-      console.log("111", name1);
       if (new BigNumber(royalty.value).lte(0)) {
         Toast(t("castingnft.royaltyTip"));
         return;
       }
-
-      console.log("submit", values);
       try {
         txPorp.value = {
           meta_url: meta_url.value,

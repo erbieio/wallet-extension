@@ -300,7 +300,6 @@ export default defineComponent({
       handleChoose,
       handleChooseComfirm,
     } = useNetWork();
-    console.warn("currentNetwork", currentNetwork.value);
     watch(
       () => props.modelValue,
       (n) => {
