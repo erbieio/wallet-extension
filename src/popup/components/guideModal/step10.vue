@@ -12,7 +12,7 @@
   >
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">9</span> <span>/</span> 12
+        <span class="left">9</span> <span>/</span> 11
       </div>
       <div class="title">
         {{ t("bootstrapwindow.identifier") }}
@@ -22,7 +22,6 @@
       </div>
       <span class="tip4">
         <i class=" user iconfont icon-fangwujianzhuwugoujianbeifen"></i>
-        <!-- <img class="user" src="@/popup/views/home/imgs/smallhome.png" alt="" /> -->
       </span>
       <div class="flex center">
         <van-button type="primary" @click="handleClick(10)">{{

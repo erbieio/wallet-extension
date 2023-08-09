@@ -133,19 +133,16 @@ export const handleRequest = {
     // // tradable
     async [handleType.eth_sendTransaction](data, sendResponse, sender) {
         const { sendId, newParams } = data
-        console.warn('newParams', newParams)
         const [tx] = newParams
         // const {from} = tx
         try {
             // const localAddr = await getLocalAddr()
             // await handleDiffAddrAndLocalAddr(from, localAddr)
             const [tx] = newParams
-            console.log('send0--', newParams)
             const newurl = `${globalPath}#/nft-transaction?sendId=${sendId}&tx=${encodeURIComponent(JSON.stringify(tx))}&sender=${encodeURIComponent(JSON.stringify(sender))}`;
             await openPopup(handleType.eth_sendTransaction, newurl, sendResponse, sender)
         } catch (err) {
             const errMsg = createMsg(err, handleType.eth_sendTransaction)
-            console.error('err ----', err)
             sendMessage({...errMsg, sendId}, {}, sender)
         }
     },
@@ -180,7 +177,6 @@ export const handleRpc = async function (method, data, sendResponse, sender) {
             sendMessage({ ...sendMsg, sendId }, {}, sender)
         })
     } catch (err) {
-        console.log('err----', err)
         const errMsg = { ...errorCode['32000'], data: err }
         sendMessage({ ...errMsg, sendId }, {}, sender)
     }

@@ -27,7 +27,6 @@ export const handleEvents = {
 
     },
     async [eventsEmitter.message](data, sendResponse, sender) {
-        console.warn('message', data, sender)
         const { method: eventType } = data
         const wallet = await getWallet()
         const method = eventsEmitter.message
@@ -35,7 +34,6 @@ export const handleEvents = {
             const errMsg = { ...errorCode['200'], data: res }
             const sendMsg = createMsg(errMsg, method)
             const resp = {...sendMsg, eventType}
-            console.log('resp', resp)
             sendMessage(resp, {}, sender)
         })
     },
@@ -47,7 +45,6 @@ export const handleEvents = {
             const errMsg = { ...errorCode['200'], data: res }
             const sendMsg = createMsg(errMsg, method)
             const resp = {...sendMsg, eventType}
-            console.log('resp', resp)
             sendMessage(resp, {}, sender)
         })
     },
@@ -59,7 +56,6 @@ export const handleEvents = {
             const errMsg = { ...errorCode['200'], data: res }
             const sendMsg = createMsg(errMsg, method)
             const resp = {...sendMsg, eventType}
-            console.log('resp', resp)
             sendMessage(resp, {}, sender)
         })
     }

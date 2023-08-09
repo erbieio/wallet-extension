@@ -164,7 +164,7 @@ export function calcTransaitionTotal(data: any = null) {
 
 
 
-//On the main net Wormholes when return exchange USD before + ≈$23, otherwise do not return
+//On the main net Erbie when return exchange USD before + ≈$23, otherwise do not return
 export const toUsdSymbol = (v: string | number, keepDotLength = 6) => {
   const store = useStore();
   const showstr = toUsd(v, keepDotLength)
@@ -222,6 +222,7 @@ export const handleTxType = (item: any) => {
   const { to, from, contractAddress, sendStatus, txType, input } = item
   console.warn('handleTxType',txType, item)
   const myAddr = store.state.account.accountInfo.address.toUpperCase()
+  
   if (sendStatus && sendStatus === 'pendding') {
     // if (txType === 'contract') {
     //   return i18n.global.t('transationHistory.contract')
@@ -270,7 +271,11 @@ export const handleTxType = (item: any) => {
     if(txType == 'contract') {
       return i18n.global.t('transationHistory.contract')
     } else {
-      return i18n.global.t('transationHistory.send')
+      if (to.toUpperCase() == myAddr) {
+        return i18n.global.t('transactiondetails.recive')
+      } else {
+        return i18n.global.t('transationHistory.send')
+      }
     }
   }
 
@@ -311,7 +316,7 @@ export const handleTxTypeString = (item: any) => {
     const data = getInput(input)
     if (data) {
       if (data.type == 6) {
-        return 'Conver'
+        return 'Convert'
       }
       if (data.type == 1) {
         if (to.toUpperCase() == myAddr) {

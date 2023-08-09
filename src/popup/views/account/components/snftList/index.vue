@@ -4,7 +4,7 @@
     <van-sticky :offset-top="91">
       <div>
         <div class="flex between nfttransfer-box center-v pl-14 pr-14">
-          <span class="tit lh-30 f-12 hover text-bold">
+          <span class="tit lh-30 f-12 text-bold">
             {{ t("createNft.converttoERB") }} {{ t('createExchange.convert') }}
           </span>
           <van-switch v-model="showConvert" size="17" @change="handleChangeSwitch" v-if="newList.list.length" />
@@ -16,14 +16,14 @@
 
         <div :class="`snft-card ${item.mergelevel == 3 ? 'shining-out' : ''}`" v-for="(item, index) in newList.list" :key="item.nft_address">
           <div class="snft-card-tit flex between">
-            <span class="tit">{{ item.collections }}</span>
-            <!-- <span class="more" @click="toMore(item)">{{ t("sendSNFT.more") }}</span> -->
+            <span class="tit">{{ item.period }} {{ t('common.period') }}</span>
           </div>
-          <div :class="`snft-card-list flex ${item.mergelevel == 3 ? 'active' :''}`">
+          <div :class="`snft-card-list flex ${item.mergelevel == 3 ? 'active' : ''}`">
             <div :class="`coll-card hover ${child.garyClass} ${child.shiningClass}`" v-for="(child, idx) in item.children" :key="child.nft_address" @mouseover="handleMouseOver({ index, item, child, idx })" @mouseleave="handleMouseOut({ index, item, child, idx })">
               <i class="iconfont icon-duihao2 check-icon" v-if="child.checked && showConvert && child.canSelect" @click="handleSelect({ index, item, child, idx, checked: false })"></i>
               <img src="./select-white.svg" class="check-icon-default no-select" alt="" v-if="showConvert && !child.checked && child.canSelect" @click="handleSelect({ index, item, child, idx, checked: true })" />
-              <img loading="lazy" :src="`${metaDomain}${child.source_url}`" class="snft-img" />
+              <img loading="lazy" @error="loadImg(child, idx)" :src="`${child.imgUrl}`" class="snft-img" />
+              <img v-show="child.loadErr" loading="lazy" src="@/assets/default.png" class="snft-img" />
               <span class="arrow-top" v-if="child.children && child.children.length"></span>
             </div>
           </div>
@@ -34,14 +34,16 @@
                   <van-loading size="28" color="#9F54BA"></van-loading>
                 </div>
                 <div v-for="(sun, i) in showSNFTList" class="snft-child hover" :key="sun.nft_address" @click="toDetail(sun, i)">
-                  <img loading="lazy" :src="`${metaDomain}${sun.source_url}`" class="snft-img" />
+                  <img loading="lazy" v-if="!sun.loadErr" @error="loadImg(sun, i)" :src="`${sun.imgUrl}`" class="snft-img" />
+                  <img v-show="sun.loadErr" loading="lazy" src="@/assets/default.png" class="snft-img" />
+
                 </div>
               </div>
             </div>
 
           </Transition>
           <div class="process-bar">
-            <div class="tit">Ratio(1:{{ item.ratio }})</div>
+            <!-- <div class="tit">Ratio(1:{{ item.ratio }})</div> -->
             <div class="animate-bar">
               <div class="animate-bar-scale" v-for="i in 9"></div>
               <div class="animate-bar-track" :style="{ width: `${item.processBar}%` }"></div>
@@ -50,16 +52,17 @@
               <div class="text-right">{{ item.Chipamount }}/4096</div>
             </div>
           </div>
-          <div class="select-all flex center-v" >
-            <span v-if="showConvert" class="flex center-v mr-6"><i  :class="`iconfont hover ${item.checked ? 'icon-duihao2' : 'icon-check_line'}`" @click="handleAllSelect({ index, item })"></i>
-            {{ t('common.all') }}</span> {{ item.selectedStr }}/{{ item.Chipamount }}
+          <div class="select-all flex center-v">
+            <span v-if="showConvert" class="flex center-v mr-6"><i :class="`iconfont hover ${item.checked ? 'icon-duihao2' : 'icon-check_line'}`" @click="handleAllSelect({ index, item })"></i>
+              {{ t('common.all') }}</span> {{ item.selectedStr }}/{{ item.Chipamount }}
           </div>
         </div>
       </div>
       <!-- no data -->
-      <div class="flex center no-list pt-30" v-show="!newList.list.length && !nftErr && finished">
+      <!-- <div class="flex center no-list pt-30" v-show="!newList.list.length && !nftErr && finished">
         <i class="iconfont icon-inbox"></i>
-      </div>
+      </div> -->
+      <NoData v-show="!newList.list.length && !nftErr && finished" />
 
       <!-- error -->
       <div class="err-nft p-20" v-if="nftErr">
@@ -80,11 +83,11 @@
   </Transition>
 
   <!-- </van-pull-refresh> -->
-  <SliderBottom>
+  <!-- <SliderBottom>
     <i18n-t keypath="wallet.buySnft" tag="div" class="text-center f-12">
       <template v-slot:link><a :href="VUE_APP_OFFICIAL_EXCHANGE" target="__blank">{{ t('wallet.findMore') }}</a></template>
     </i18n-t>
-  </SliderBottom>
+  </SliderBottom> -->
   <!-- nft snft -->
   <TransferNFT v-model="showConvert" @handleConfirm="handleConfirmNFT" @handleAll="handleAll" :selectNumber="selectLength" :selectTotal="selectTotal" :ratio="ratio" :selectedText="selectedText" />
   <!-- nft snft Conversion of pop-ups -->
@@ -127,14 +130,15 @@ import TransferNFTModal from "@/popup/views/home/components/transferNFTModal.vue
 import { useStore } from "vuex";
 import { List, Toast, Button, Sticky, PullRefresh, Switch, Loading } from "vant";
 import { useI18n } from "vue-i18n";
-import { VUE_APP_METAURL, VUE_APP_OFFICIAL_EXCHANGE } from "@/popup/enum/env";
+import { VUE_APP_METAURL, VUE_APP_OFFICIAL_EXCHANGE, VUE_APP_IMGURL } from "@/popup/enum/env";
 import SliderBottom from "@/popup/components/sliderBottom/index.vue";
 import { debounce } from "@/popup/utils/utils";
 import { useToast } from "@/popup/plugins/toast";
 import { web3 } from "@/popup/utils/web3";
 import { useTradeConfirm } from "@/popup/plugins/tradeConfirmationsModal";
 import router from "@/popup/router";
-
+import { RegUrl } from "@/popup/enum/regexp";
+import NoData from '@/popup/components/noData/index.vue'
 export default defineComponent({
   name: "snft-list",
   components: {
@@ -149,6 +153,7 @@ export default defineComponent({
     [PullRefresh.name]: PullRefresh,
     SnftModal,
     SliderBottom,
+    NoData
   },
   emits: ["onLoad", "changeSwitch"],
   setup(props: any, context: SetupContext) {
@@ -156,7 +161,7 @@ export default defineComponent({
     const { t } = useI18n();
     const layoutType = computed(() => store.state.system.layoutType);
     const accountInfo = computed(() => store.state.account.accountInfo);
-    const metaDomain = ref(`${VUE_APP_METAURL}`);
+    const metaDomain = ref(`${VUE_APP_IMGURL}`);
     // nft load
     const loadNft: Ref<boolean> = ref(false);
     const finished: Ref<boolean> = ref(false);
@@ -246,17 +251,14 @@ export default defineComponent({
       const currentCollection = newList.list[index].children[idx]
       const parentEle = newList.list[index]
       if (checked) {
-        //TODO:   l2 l1
-
-
-        const {mergelevel: l2level,mergenumber: l2levelnumber,ownaddr: l2ownaddr, exchange} = child
+        const { mergelevel: l2level, mergenumber: l2levelnumber, ownaddr: l2ownaddr, exchange } = child
         console.warn('check 000', toRaw(item), toRaw(child))
-        if(l2level == 2 && l2ownaddr.toUpperCase() == myAddr && !exchange) {
-          parentEle.selectAssets.push(({...child}))
-          parentEle.myOwnerAssets = [{...child}]
+        if (l2level == 2 && l2ownaddr.toUpperCase() == myAddr && !exchange) {
+          parentEle.selectAssets.push(({ ...child }))
+          parentEle.myOwnerAssets = [{ ...child }]
           parentEle.selectedStr = parentEle.selectedStr + l2levelnumber
           currentCollection.checked = true
-          return 
+          return
         }
         item.showDetails = true
         if (currentCollection.children) {
@@ -268,20 +270,17 @@ export default defineComponent({
           nextTick(() => {
             parentEle.showDetails = true
             let total = 0
-           currentCollection.myOwnerAssets.forEach(c => {
-              if(c.ownaddr.toUpperCase() == myAddr && !c.exchange){
-                if(c.mergelevel > 0) {
+            currentCollection.myOwnerAssets.forEach(c => {
+              if (c.ownaddr.toUpperCase() == myAddr && !c.exchange) {
+                if (c.mergelevel > 0) {
                   total += c.mergenumber
                 } else {
                   total += 1
                 }
               }
             })
-            //TODO:  
             parentEle.selectAssets.push(...toRaw(currentCollection.myOwnerAssets))
             parentEle.selectedStr = item.selectedStr + total
-            console.log('单个 点击 1', checked, toRaw(parentEle.selectAssets), parentEle, currentCollection.myOwnerAssets, total)
-            console.warn('currentCollection', currentCollection)
             if (parentEle.selectedStr == item.Chipamount) {
               parentEle.checked = true
             }
@@ -304,17 +303,29 @@ export default defineComponent({
         console.log('res', res.data)
         const { snftChips, snfts } = res.data
 
-        currentCollection.children = [...snfts]
+        currentCollection.children = [...snfts].map(item => {
+          let imgUrl = ''
+          try {
+            const re = JSON.parse(item.source_url)
+            imgUrl = re.meta_url
+          } catch (err) {
+            imgUrl = `${metaDomain.value}${item.source_url}`
+          }
+          console.warn('metaDomain222', imgUrl)
+
+          return { ...item, imgUrl }
+        })
         console.warn('snftChips', snftChips)
         let total = 0
         const chips = snftChips.filter(s => {
-          if(s.ownaddr.toUpperCase() == owner_addr && !s.exchange && s.mergelevel == 0){
+          if (s.ownaddr.toUpperCase() == owner_addr && !s.exchange && s.mergelevel == 0) {
             total += 1
             return s
           }
         })
         const mysnfts = snfts.filter(s => {
-          if(s.ownaddr.toUpperCase() == owner_addr && !s.exchange && s.mergelevel == 1){
+
+          if (s.ownaddr.toUpperCase() == owner_addr && !s.exchange && s.mergelevel == 1) {
             total += s.mergenumber
             return s
           }
@@ -329,8 +340,8 @@ export default defineComponent({
 
 
         parentEle.selectAssets.push(...toRaw(currentCollection.myOwnerAssets))
-        if(child.mergelevel == 2 && child.ownaddr.toUpperCase() == myAddr && !child.exchange) {
-          parentEle.selectAssets.push({...child})
+        if (child.mergelevel == 2 && child.ownaddr.toUpperCase() == myAddr && !child.exchange) {
+          parentEle.selectAssets.push({ ...child })
         } else {
           parentEle.selectAssets.push(...currentCollection.myOwnerAssets)
         }
@@ -339,7 +350,6 @@ export default defineComponent({
           parentEle.showDetails = true
           parentEle.myOwnerAssets.push(...chips, ...mysnfts)
           parentEle.selectedStr = parentEle.selectedStr ? parentEle.selectedStr + total : total
-          console.log('单个 点击 2', checked, toRaw(parentEle.selectAssets), parentEle.myOwnerAssets)
           if (parentEle.selectedStr == parentEle.Chipamount) {
             parentEle.checked = true
           }
@@ -347,23 +357,19 @@ export default defineComponent({
         console.warn('selected ', currentCollection.snfts)
       } else {
         // collection == l2
-        const {mergelevel: l2level,mergenumber: l2levelnumber,ownaddr: l2ownaddr, exchange, nft_address: l2nftaddr} = child
-        if(l2level == 2 && l2ownaddr.toUpperCase() == myAddr && !exchange) {
+        const { mergelevel: l2level, mergenumber: l2levelnumber, ownaddr: l2ownaddr, exchange, nft_address: l2nftaddr } = child
+        if (l2level == 2 && l2ownaddr.toUpperCase() == myAddr && !exchange) {
           parentEle.selectAssets = parentEle.selectAssets.filter(c => c.nft_address.toUpperCase() != l2nftaddr.toUpperCase())
           parentEle.selectedStr = parentEle.selectedStr - l2levelnumber
           currentCollection.checked = false
-          console.warn('check false 合成 l2', l2levelnumber, l2nftaddr, parentEle.selectAssets)
-          return 
+          return
         }
 
         currentCollection.checked = false
-        console.warn('check false 000', currentCollection)
-
-        //TODO:  
         let total = 0
         currentCollection.myOwnerAssets.forEach(c => {
-          if(c.ownaddr.toUpperCase() == myAddr && !c.exchange){
-            if(c.mergelevel > 0) {
+          if (c.ownaddr.toUpperCase() == myAddr && !c.exchange) {
+            if (c.mergelevel > 0) {
               total += c.mergenumber
             } else {
               total += 1
@@ -372,7 +378,7 @@ export default defineComponent({
         })
 
         const theCollAddrs = currentCollection.myOwnerAssets.map(c => c.nft_address.toUpperCase())
-        console.warn('check false', item.selectedStr, total,  theCollAddrs, parentEle.selectAssets)
+        console.warn('check false', item.selectedStr, total, theCollAddrs, parentEle.selectAssets)
 
         parentEle.selectedStr = parentEle.selectedStr - total
         parentEle.selectAssets = parentEle.selectAssets.filter(c => !theCollAddrs.includes(c.nft_address.toUpperCase()))
@@ -388,9 +394,9 @@ export default defineComponent({
       if (!newList.list[index].checked) {
         let myOwnerAssets = []
         // L2
-        if(mergelevel == 3) {
-          item['myOwnerAssets'].push({...item})
-          item['selectAssets'] = [{...item}]
+        if (mergelevel == 3) {
+          item['myOwnerAssets'].push({ ...item })
+          item['selectAssets'] = [{ ...item }]
           item['selectedStr'] = mergenumber
           item.checked = true
           return
@@ -406,7 +412,7 @@ export default defineComponent({
           // get my snft/ship/ of the collection
           for await (const child of item.children) {
             const { collection_creator_addr, collections, OwnerFlag, children, mergelevel, mergenumber } = child
-            console.log('for each',mergelevel, mergenumber, OwnerFlag, child )
+            console.log('for each', mergelevel, mergenumber, OwnerFlag, child)
             if (mergelevel < 2 && OwnerFlag) {
 
               // get collDetail
@@ -419,13 +425,13 @@ export default defineComponent({
 
               const { snftChips, snfts } = res.data
               const mychips = snftChips.filter((it: any) => {
-                if(it.ownaddr.toUpperCase() == owner_addr && !it.exchange && it.mergelevel == 0){
+                if (it.ownaddr.toUpperCase() == owner_addr && !it.exchange && it.mergelevel == 0) {
                   total += 1
                   return it
                 }
               })
               const mysnfts = snfts.filter((it: any) => {
-                if(it.ownaddr.toUpperCase() == owner_addr && !it.exchange && it.mergelevel == 1) {
+                if (it.ownaddr.toUpperCase() == owner_addr && !it.exchange && it.mergelevel == 1) {
                   total += it.mergenumber
                   return it
                 }
@@ -435,14 +441,13 @@ export default defineComponent({
               child['children'] = [...snfts]
 
             } else {
-              // TODO: 期全选的时候正确处理数据，与单选合集的数据机构保持一致
-              if(mergelevel == 2 && child.ownaddr.toUpperCase() == accountInfo.value.address.toUpperCase() && !child.exchange && child.canSelect) {
+              if (mergelevel == 2 && child.ownaddr.toUpperCase() == accountInfo.value.address.toUpperCase() && !child.exchange && child.canSelect) {
                 total += mergenumber
-                myOwnerAssets.push({...child})
+                myOwnerAssets.push({ ...child })
               }
             }
           }
-          console.warn('handle select all' , myOwnerAssets, total)
+          console.warn('handle select all', myOwnerAssets, total)
           item['myOwnerAssets'].push(...myOwnerAssets)
           item.checked = true
           item.children.forEach(child => child.checked = true)
@@ -466,7 +471,7 @@ export default defineComponent({
     }
 
 
-    const newList = reactive({list:[]})
+    const newList = reactive({ list: [] })
     const total = ref(0)
     // List loading event
     const handleOnLoad = async () => {
@@ -474,18 +479,17 @@ export default defineComponent({
       try {
         const { data: stages, total_count } = await getStages()
         total.value += total_count
-        console.warn('stages', stages)
         for await (const item of stages) {
           const { data: { snfts } } = await getCollects(item.nft_address.replace('mmm', ''))
-          console.warn('snfts', snfts)
-          const {mergelevel,mergenumber,Chipamount} = item
-          console.warn('get list mergelevel', mergelevel)
+          const { mergelevel, mergenumber, Chipamount } = item
           let processBar = '0'
-          if(mergelevel == 3) {
-              processBar = '100'
-            } else {
-              processBar = new BigNumber(Chipamount).div(4096).multipliedBy(100).toFixed(2)
-            }
+          if (mergelevel == 3) {
+            processBar = '100'
+          } else {
+            processBar = new BigNumber(Chipamount).div(4096).multipliedBy(100).toFixed(2)
+          }
+          const stateAddr = item.nft_address.replaceAll('m', '').slice(3)
+          const period = parseInt('0x' + stateAddr)
           newList.list.push({
             ...item,
             load: false,
@@ -494,28 +498,37 @@ export default defineComponent({
             selectAssets: [],
             myOwnerAssets: [],
             ratio: 0,
+            period,
             processBar,
             children: [...snfts].map(child => {
               let canSelect = false
               let garyClass = ''
               let shiningClass = ''
-              const {mergelevel: collmergelevel, OwnerFlag, ownaddr, exchange} = child
-              if(mergelevel == 3) {
+              const { mergelevel: collmergelevel, OwnerFlag, ownaddr, exchange, source_url } = child
+              let imgUrl = ''
+
+              try {
+                const re = JSON.parse(source_url)
+                imgUrl = re.meta_url
+              } catch (err) {
+                imgUrl = `${metaDomain.value}${source_url}`
+              }
+              if (mergelevel == 3) {
                 canSelect = false
                 garyClass = ''
 
               } else {
                 const isMy = ownaddr.toUpperCase() == accountInfo.value.address.toUpperCase() && !exchange
-                if(collmergelevel == 2 && isMy) {
+                if (collmergelevel == 2 && isMy) {
                   shiningClass = 'shining'
                 }
-                if((collmergelevel == 2 && isMy) || OwnerFlag){
+                if ((collmergelevel == 2 && isMy) || OwnerFlag) {
                   canSelect = true
                 } else {
                   garyClass = 'gary'
                 }
               }
-              return { ...child, checked: false, selectedStr: 0, selectAssets: [], myOwnerAssets: [], canSelect,garyClass,shiningClass }
+              return { ...child, checked: false, selectedStr: 0, selectAssets: [], myOwnerAssets: [], canSelect, garyClass, shiningClass, imgUrl, loadErr: false }
             })
           })
         }
@@ -525,7 +538,7 @@ export default defineComponent({
         stagesparams.start_index = Number(stagesparams.count) + (Number(stagesparams.start_index)) + ''
         console.warn('newList', newList)
       } catch (err) {
-        console.warn('err')
+        console.warn('err', err)
         nftErr.value = true;
         Toast(JSON.stringify(err));
       } finally {
@@ -629,7 +642,7 @@ export default defineComponent({
       newList.list.forEach(item => {
         list.push(...item.selectAssets)
       })
-      console.warn('new selectList', list,newList)
+      console.warn('new selectList', list, newList)
       return list;
     });
 
@@ -650,47 +663,45 @@ export default defineComponent({
     };
 
     const handleSortAllData = (select: boolean, list: Array<any>) => {
-      console.warn('select', select, list)
-      // TODO: 根据返回的数据匹配到每个期里面的 资产列表内，关联到每个合集内的资产列表内
       const treeData = {}
       list.forEach(item => {
         const { snftstage, mergelevel, mergenumber, exchange, ownaddr, nft_address } = item
-        const stageAddr = `${snftstage.replaceAll('m','')}mmm`.toUpperCase()
-        const collAddr = `${nft_address.slice(0,40)}mm`.toUpperCase()
+        const stageAddr = `${snftstage.replaceAll('m', '')}mmm`.toUpperCase()
+        const collAddr = `${nft_address.slice(0, 40)}mm`.toUpperCase()
 
         let selectStr = 0
-        if(mergelevel > 0){
+        if (mergelevel > 0) {
           selectStr = mergenumber
         } else {
           selectStr = 1
         }
-        if(!treeData[stageAddr]) {
-          const data = {...item,collAddr,stageAddr}
+        if (!treeData[stageAddr]) {
+          const data = { ...item, collAddr, stageAddr }
           treeData[stageAddr] = {
             // all assets
             children: [data],
             selectStr,
             collectAssets: {}
           }
-          if(mergelevel < 3) {
-            treeData[stageAddr].collectAssets[collAddr] = [{...data}]
+          if (mergelevel < 3) {
+            treeData[stageAddr].collectAssets[collAddr] = [{ ...data }]
           }
         } else {
-          const data = {...item,collAddr,stageAddr}
+          const data = { ...item, collAddr, stageAddr }
           treeData[stageAddr].children.push(data)
           treeData[stageAddr].selectStr = treeData[stageAddr].selectStr + selectStr
-          if(mergelevel < 3) {
-            if(!treeData[stageAddr].collectAssets[collAddr]){
-            treeData[stageAddr].collectAssets[collAddr] = [{...data}]
-          } else {
-            treeData[stageAddr].collectAssets[collAddr].push({...data})
-          }
+          if (mergelevel < 3) {
+            if (!treeData[stageAddr].collectAssets[collAddr]) {
+              treeData[stageAddr].collectAssets[collAddr] = [{ ...data }]
+            } else {
+              treeData[stageAddr].collectAssets[collAddr].push({ ...data })
+            }
           }
         }
       })
       console.warn('treeData', treeData)
       newList.list.forEach(item => {
-        const {nft_address, mergelevel, mergenumber} = item
+        const { nft_address, mergelevel, mergenumber } = item
         console.warn('err 111', nft_address.toUpperCase(), treeData[nft_address.toUpperCase()])
         const upAddr = nft_address.toUpperCase()
         const allAssets = [...treeData[upAddr].children]
@@ -703,7 +714,7 @@ export default defineComponent({
           const { nft_address: collnftaddr } = child
           const upCollAddr = collnftaddr.toUpperCase()
           const collAssets = treeData[upAddr].collectAssets[upCollAddr]
-          if(collAssets) {
+          if (collAssets) {
             child.myOwnerAssets = collAssets
             child.selectAssets = collAssets
           }
@@ -717,23 +728,23 @@ export default defineComponent({
     //All/none
     const handleAll = async (select) => {
       selectAll.value = select;
-      if(select) {
+      if (select) {
         let toast = null
         try {
-           toast = Toast.loading({
+          toast = Toast.loading({
             duration: 0,
             forbidClick: true,
             message: t('common.loading'),
           });
-        const list = newList.list.map(item => item.nft_address.replaceAll('m',''))
-        const res = await queryOwnerStage({
-          owner_addr: accountInfo.value.address,
-          stages: JSON.stringify(list)
-        })
-        handleSortAllData(select, res.data)
-        }catch(err){
+          const list = newList.list.map(item => item.nft_address.replaceAll('m', ''))
+          const res = await queryOwnerStage({
+            owner_addr: accountInfo.value.address,
+            stages: JSON.stringify(list)
+          })
+          handleSortAllData(select, res.data)
+        } catch (err) {
           $toast.fail(err.message)
-        }finally {
+        } finally {
           toast.clear()
         }
       } else {
@@ -759,9 +770,7 @@ export default defineComponent({
       const { address } = accountInfo.value
       console.warn('confirm', toRaw(selectList.value))
       const len = selectList.value.length
-
       const waits = []
-
       const approveMessage = t("wallet.conver_approve");
       const wattingMessage = t("wallet.conver_waiting", {
         count: `<span style='color:#9F54BA;'>${len}</span>`,
@@ -925,21 +934,22 @@ export default defineComponent({
       return parseFloat(new BigNumber(r).div(n).toFixed(4));
     });
 
-    const toDetail = (sun ,i) => {
+    const toDetail = (sun, i) => {
       console.warn('detail', toRaw(sun), i)
       sessionStorage.setItem(
         "compData",
         JSON.stringify({ ...toRaw(sun), selectIndex: i })
       );
-      
-      router.push({ name: 'coll-detail'});
+
+      router.push({ name: 'coll-detail' });
     }
 
-    // const toMore = (item, idx) => {
-    //   console.warn(item)
-    // }
+    const loadImg = (child, idx) => {
+      child.loadErr = true
+    }
 
     return {
+      loadImg,
       // toMore,
       toDetail,
       ratio,

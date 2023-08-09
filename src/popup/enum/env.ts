@@ -11,6 +11,7 @@ export const VUE_APP_EXCHANGES_URL = decode(process.env.VUE_APP_EXCHANGES_URL ||
 export const VUE_APP_NODE_WORM_URL = decode(process.env.VUE_APP_NODE_WORM_URL || '')
 
 
+export const VUE_APP_IMGURL = decode(process.env.VUE_APP_IMGURL ||'')
 
 
 export const VUE_APP_METAURL = decode(process.env.VUE_APP_METAURL ||'')
@@ -22,7 +23,13 @@ export const VUE_APP_PRIVACYNOTICE = decode(process.env.VUE_APP_PRIVACYNOTICE ||
 
 
 export const VUE_APP_OFFICIAL_EXCHANGE = decode(process.env.VUE_APP_OFFICIAL_EXCHANGE || '')
+export const VUE_APP_NODE_URL = decode(process.env.VUE_APP_NODE_URL || '')
+export const VUE_APP_NODE_NAME = decode(process.env.VUE_APP_NODE_NAME || '')
 
+
+export const WALLET_DOC = 'https://www.erbie.io/docs/wallet/'
+
+export const OFFICIAL_WEBSITE = 'https://www.erbie.io'
 
 export const isDev = process.env.VUE_APP_NODE_ENV == 'development'
 

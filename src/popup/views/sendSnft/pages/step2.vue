@@ -470,7 +470,7 @@ export default {
           $tradeConfirm.open({
             disabled: [TradeStatus.pendding],
             callBack(){
-              router.replace({ name: "wallet" });
+              router.back()
             },
             approveMessage: t('sendSNFT.approveMessage',{total: sendList.length})
           })

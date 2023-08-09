@@ -45,6 +45,8 @@
         "accessCMS": "访问CMS"
     },
     "bourse": {
+        "addProfit":"追加收益",
+        "addProfitDesc":"追加金额一年产生的收益",
         "placename": "请输入名称",
         "vainame": "名称不能为空",
         "vainame2": "4-20个长度,支持中英文、数字",
@@ -305,11 +307,11 @@
         "title": "签名"
     },
     "mnemonic": {
-        "recoveryPhrase": "恢复短语",
+        "recoveryPhrase": "助记词备份",
         "hint": "你的钱包没有备份！",
         "tips": "如果您在使用钱包之前不进行备份，您的资金将面临风险。 确保立即备份。",
-        "yourRecoveryPhrase": "你的恢复短语",
-        "yourRecoveryPhraseTitle": "在任何情况下,Erbie 都不会要求您提供恢复短语。保护您的资金，不要与任何人分享您的恢复短语。",
+        "yourRecoveryPhrase": "你的助记词",
+        "yourRecoveryPhraseTitle": "在任何情况下,Erbie 都不会要求您提供助记词。保护您的资金，不要与任何人分享您的助记词。",
         "remindMeLater": "稍后提醒我",
         "backUp": "备份",
         "hint1": "以正确的顺序写下或复制这些单词并将它们保存在安全的地方。",
@@ -318,7 +320,7 @@
         "saveTips": "将您的密钥存储在安全的位置。这是找回钱包的唯一方法。Erbie不保留副本。",
         "continue": "继续",
         "verifyMnemonicPhrase": "验证助记词",
-        "protectYourFunds": "保护您的资金，不要与任何人分享您的恢复短语。",
+        "protectYourFunds": "保护您的资金，不要与任何人分享您的助记词。",
         "correctOrder": "以正确的顺序点击每个单词。",
         "errorMessage": " 助记词不正确。 请再试一次。",
         "backUpSuccessful": "备份成功",
@@ -330,7 +332,8 @@
         "tryagain": "错误的助记短语，请再试一次。",
         "checkthemnemonic": "请校验助记词",
         "backupyourQRcodeinasafeenvironment": "请在安全的环境中备份您的二维码 不建议截图",
-        "errorMonic": "无效的助记词"
+        "errorMonic": "无效的助记词",
+        "tit2":"备份助记词"
     },
     "exchange": {
         "autoExchange": "成为质押者",
@@ -398,7 +401,7 @@
         "address": "NFT地址",
         "amount": "数量",
         "send": "发送",
-        "more": "更多",
+        "more": "详情",
         "to": "到",
         "addAddress": "输入的钱包地址",
         "errorAddress": "请检查收货地址是否正确,然后重新输入。",
@@ -644,7 +647,7 @@
         "cancel": "取消",
         "confirm": "确认",
         "importAccount": "导入账户",
-        "importMessage": "改进后的帐户可在您的钱包中查看，但无法通过您的 Erbie Secret 恢复恢复短语。访问此处了解更多信息。",
+        "importMessage": "改进后的帐户可在您的钱包中查看，但无法通过您的 Erbie Secret 恢复助记词。访问此处了解更多信息。",
         "inputPrivateKey": "输入私钥",
         "scanQRCode": "扫描二维码",
         "forexample": "例如.3a1076bf45ab87712ad64ccb3b10217737faacbf2872e88fdd9a537d8fe266",
@@ -710,6 +713,7 @@
         "notmatch": "两次输入的密码不一致",
         "mnemonicExport": "助记词备份",
         "backUpDesc": "助记词备份，导出",
+        "errorMonic": "无效的助记词",
         "unlock": "请输入密码以解锁助记词"
     },
     "setting": {
@@ -724,9 +728,9 @@
         "languageSelection": "语言选择",
         "langTit": "语言",
         "securityandPrivacy": "安全与隐私",
-        "privacySetting": "隐私设置",
-        "privateKey": "私钥",
-        "walletSecretRecoveryPhrase": "钱包秘密恢复短语",
+        "privacySetting": "重置密码",
+        "privateKey": "导出私钥",
+        "walletSecretRecoveryPhrase": "导出助记词",
         "addNetworks": "添加和编辑自定义 RPC 网络",
         "contacts": "联系人",
         "addEditRemove": "添加 & 编辑 & 删除",
@@ -785,7 +789,7 @@
         "balance": "余额",
         "balanceMessage": "点击显示或隐藏总资产",
         "transaction": "交易",
-        "transactionMessage": "您可以接收,发送,购买,交换",
+        "transactionMessage": "您可以接收,发送",
         "tOKENs": "代币",
         "tOKENsMessage": "查看、添加和转移代币",
         "nFTs": "NFTs",
@@ -900,7 +904,7 @@
     "import": {
         "input": "输入私钥",
         "scan": "扫描二维码",
-        "hint": "改进后的帐户可以在您的钱包中查看，但您的 Erbie 秘密恢复短语无法恢复您的帐户 {a}",
+        "hint": "改进后的帐户可以在您的钱包中查看，但您的 Erbie 助记词无法恢复您的帐户 {a}",
         "hintatag": "访问此处了解更多信息",
         "importaccount": "导入账户",
         "announcement": "导入的账户可在你的钱包中查看的,但无法通过Erbie助记词找回。",
@@ -1240,6 +1244,7 @@
         "network": "网络"
     },
     "common": {
+        "period":"期",
         "checkText":"校验中，请稍后...",
         "urlErr":"链接无效",
         "clearCancheSuccess": "缓存清除成功",
@@ -1387,9 +1392,9 @@
         "thisactioncannotbeundone": "此操作无法撤消。",
         "youcanONLYrecoverthiswallet": "你只能恢复这个钱包",
         "withyour": "和你的",
-        "secretRecoveryPhrase": "秘密恢复短语",
+        "secretRecoveryPhrase": "助记词",
         "metaMaskdoesnothave": "MetaMask 没有",
-        "yourSecretRecoveryPhrase": "你的秘密恢复短语。",
+        "yourSecretRecoveryPhrase": "你的助记词。",
         "cancel": "取消",
         "confirm": "确认"
     },
@@ -1557,6 +1562,7 @@
     "error": {
         "500": "参数有误",
         "timeout": "此时网络繁忙。交易已放入队列，请稍等，不要再发送相同的交易。",
-        "netErr": "网络连接失败"
+        "netErr": "网络连接失败",
+        "stakeredeem":"还未到赎回时间"
     }
 }

@@ -151,12 +151,9 @@ export const getQuery = (url) => {
 
 
 chrome.alarms.onAlarm.addListener((e) => {
-  console.warn('pwd ...', e, eventTypes.pwdExpired)
   const pwdExpiredKey = eventTypes.pwdExpired
   const { name } = e
-  console.warn('pwd pwdExpired', e, pwdExpiredKey)
   if (name == pwdExpiredKey) {
-    console.warn('pwd pwdExpired', e)
     // 12 h password expired clear data
     handleRpcResponse[handleType.logout].sendResponse({}, null, null)
 

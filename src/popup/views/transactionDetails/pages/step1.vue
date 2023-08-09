@@ -530,7 +530,7 @@ export default {
         if(tokenAddress) {
           txType = 'contract'
         } else {
-          txType = !newData ? 'normal' : (newData.indexOf('wormholes') > -1 ? 'wormholes' : 'contract')
+          txType = !newData ? 'normal' : (newData.indexOf(store.getters['account/chainParsePrefix']) > -1 ? store.getters['account/chainParsePrefix'] : 'contract')
         }
         const { hash, from, type, value: newVal, contractAddress } = data;
         const txInfo =  {
@@ -635,7 +635,7 @@ export default {
         if(tokenAddress) {
           txType = 'contract'
         } else {
-          txType = !newData ? 'normal' : (newData.indexOf('wormholes') > -1 ? 'wormholes' : 'contract')
+          txType = !newData ? 'normal' : (newData.indexOf(store.getters['account/chainParsePrefix']) > -1 ? store.getters['account/chainParsePrefix'] : 'contract')
         }
         const txInfo =  {
           ...sendTx.value,

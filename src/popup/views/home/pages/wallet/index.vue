@@ -450,7 +450,7 @@ export default {
         time = setInterval(() => {
           dispatch("account/updateBalance");
           dispatch("account/updateTokensBalances");
-        }, 10000);
+        }, 6000);
       }
     };
 

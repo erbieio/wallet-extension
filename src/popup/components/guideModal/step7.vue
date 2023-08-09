@@ -12,7 +12,7 @@
   >
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">7</span> <span>/</span> 12
+        <span class="left">7</span> <span>/</span> 11
       </div>
       <div class="title">
         {{ t("bootstrapwindow.nFTs") }}

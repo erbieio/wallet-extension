@@ -1,5 +1,5 @@
 <template>
-  <NavHeader :title="t('sendNFT.sendNFT')" :hasRight="route.name =='false' ? false : true"></NavHeader>
+  <NavHeader :title="t('sendNFT.sendNFT')" :hasRight="route.name =='false' ? false : true" @clickLeft="clickLeft"></NavHeader>
   <router-view v-slot="{ Component }">
     <keep-alive>
       <component :is="Component" />

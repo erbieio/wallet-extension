@@ -67,7 +67,6 @@ export const useGetTxReceipt = () => {
           }
           resolve(true)
         } catch (err) {
-          console.error(err)
           reject(err)
         }
     })

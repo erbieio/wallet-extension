@@ -45,6 +45,7 @@ import { guid } from '@/popup/utils/utils'
 import { useBroadCast } from '@/popup/utils/broadCost'
 import localforage from 'localforage'
 import { getAccountAddr } from "@/popup/http/modules/common";
+import { VUE_APP_NODE_URL, VUE_APP_SCAN_URL, VUE_APP_NODE_NAME } from '@/popup/enum/env'
 export default {
   components: {
     [Button.name]: Button,
@@ -84,15 +85,15 @@ export default {
           document.getElementById('app').style.display = 'block'
           clearTimeout(time)
         }, 200)
-
+        console.warn('VUE_APP_SCAN_URL', VUE_APP_SCAN_URL)
         let time2 = setTimeout(function () {
           commit("account/UPDATE_WORMHOLES_URL", {
-            URL: "https://api.wormholes.com",
-            browser: "https://www.wormholesscan.com/#/",
-            label: "Erbie"
+            URL: VUE_APP_NODE_URL,
+            browser: VUE_APP_SCAN_URL,
+            label: VUE_APP_NODE_NAME
           });
           clearTimeout(time2);
-        }, 0);
+        }, 2000);
 
       }
 
@@ -315,4 +316,5 @@ export default {
     padding: 0 5px;
     border-radius: 7px;
   }
-}</style>
+}
+</style>

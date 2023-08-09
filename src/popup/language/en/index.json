@@ -30,6 +30,8 @@
 		"transactionrecord": "Transaction Record"
 	},
 	"bourse": {
+		"addProfit":"Additional income",
+		"addProfitDesc":"Additional amount of income generated in a year",
 		"placename": "Please enter the name of your NFT Staker",
 		"vainame": "The name cannot be empty",
 		"vainame2": "It is 4-20 in length and supports Chinese and English and numbers ",
@@ -231,7 +233,7 @@
 		"createbyPhrases": "Create by Phrases",
 		"passwordrule": "The password format is incorrect, it must contain any combination of uppercase and lowercase, numbers, and special characters, and the length is 8-16 digits",
 		"passwordformat": "The pssword you entered is not in the correct format",
-		"mnemonic": "Mnemonic",
+		"mnemonic": "Secret Recovery Phrase",
 		"checkLaw": "Please check the Privacy Notice. ",
 		"pwdRequired": "The password cannot be empty ",
 		"pwdWorng": "Password must be composed of 6-20 letters and numbers.",
@@ -250,7 +252,7 @@
 		"back": "Back",
 		"next": "Next",
 		"serviceandPrivacyNotice": "Please review the Erbie ERB Wallet Terms of Service and Privacy Notice.",
-		"memErr": "The mnemonic format is wrong, please confirm and resubmit",
+		"memErr": "The secret recovery format is wrong, please confirm and resubmit",
 		"isServiceandPrivacyNotice": "Please make sure to checkmthe Terms of Service and Privacy Notice. ",
 		"isServiceandPrivacyNotices": "Please check the user agreement ",
 		"pwdTip":"By proceeding, you agree to Erbie's {br} {link1} & {link2}",
@@ -261,7 +263,7 @@
 	},
 	"create": {
 		"createwallet": "Create wallet",
-		"usemnemonic": "Use the mnemonic to import"
+		"usemnemonic": "Use the secret recovery to import"
 	},
 	"addCurrency": {
 		"customtoken": "custom tokens",
@@ -306,11 +308,11 @@
 		"title": "Signature"
 	},
 	"mnemonic": {
-		"recoveryPhrase": "Recovery Phrase",
+		"recoveryPhrase": "Secret Recovery Phrase",
 		"hint": "Your wallet is not backed up!",
 		"tips": "Your funds will be at risk if you do not backup before using your wallet. Make sure to backup now.",
-		"yourRecoveryPhrase": "Your Recovery Phrase",
-		"yourRecoveryPhraseTitle": "Under no circumstances will Erbie ask for your recovery phrase. Protect your funds and do not share your recovery phrase with anyone.",
+		"yourRecoveryPhrase": "Your Secret Recovery Phrase",
+		"yourRecoveryPhraseTitle": "Under no circumstances will Erbie ask for your secret recovery phrase. Protect your funds and do not share your secret recovery phrase with anyone.",
 		"remindMeLater": "Remind Me Later",
 		"backUp": "Backup",
 		"hint1": "Write down or copy these words in the right order and keep them in a safe place.",
@@ -318,19 +320,20 @@
 		"getStarted": "Let’s Get Started",
 		"saveTips": "  Store your key in a secure Iocation. This is the only way to recover your wallet.Erbie does not keep a copy.",
 		"continue": "Continue",
-		"verifyMnemonicPhrase": "Verify Mnemonic Phrase",
-		"protectYourFunds": "Protect your funds and do not share your recovery phrase with anyone.",
+		"verifyMnemonicPhrase": "Verify Secret Recovery Phrase",
+		"protectYourFunds": "Protect your funds and do not share your secret recovery phrase with anyone.",
 		"correctOrder": "Tap each word in the corrrect order.",
-		"errorMessage": " Incorrect mnemonic phrase. please try again.",
+		"errorMessage": " Incorrect secret recovery phrase. please try again.",
 		"backUpSuccessful": "Backup Successful",
 		"backupQRcode": " You can also back up the QR code",
 		"QRCode": "QR Code",
 		"done": "Done",
 		"backup": "Back up QR code",
 		"saveQRcode": "Save QR Code to Photos",
-		"tryagain": "Incorrect mnemonic phrase, please try again.",
-		"checkthemnemonic": "Please check the mnemonic",
-		"backupyourQRcodeinasafeenvironment": "Please back up your QR code in a safe environment Screenshot is not advised"
+		"tryagain": "Incorrect secret recovery phrase, please try again.",
+		"checkthemnemonic": "Please check the secret recovery",
+		"backupyourQRcodeinasafeenvironment": "Please back up your QR code in a safe environment Screenshot is not advised",
+		"tit2":"Backup memorizing words"
 	},
 	"exchange": {
 		"autoExchange": "Auto Exchange",
@@ -426,7 +429,7 @@
 		"name": "Name",
 		"address": "NFT Address",
 		"amount": "Amount",
-		"more": "More",
+		"more": "Details",
 		"addAddress": "Input Wallet Address",
 		"errorAddress": "Please check whether the receiving address is correct and retype it.",
 		"my": "My",
@@ -732,17 +735,17 @@
 		"creator": "Creator"
 	},
 	"importByMnemonic": {
-		"importfrommnemonic": "Import from the mnemonic",
+		"importfrommnemonic": "Import from the secret recovery phrase",
 		"import": "import",
-		"mnemonic": "mnemonic",
+		"mnemonic": "Secret Recovery Phrase",
 		"password": "new password",
 		"password2": "confirm your password",
-		"input": "Enter your mnemonic here",
+		"input": "Enter your secret recovery phrase here",
 		"notmatch": "Entered passwords differ",
-		"mnemonicExport": "Mnemonic Backup",
-		"backUpDesc": "Mnemonic Backup, Export",
-		"unlock": "Please enter a password to unlock the mnemonic",
-		"errorMonic": "Invalid mnemonic"
+		"mnemonicExport": "Secret Recovery Phrase Backup",
+		"backUpDesc": "Secret Recovery Phrase Backup, Export",
+		"unlock": "Please enter a password to unlock the secret recovery phrase",
+		"errorMonic": "Invalid secret recovery phrase"
 	},
 	"setting": {
 		"close": "Close",
@@ -756,9 +759,9 @@
 		"languageSelection": "Language Selection",
 		"langTit": "Language",
 		"securityandPrivacy": "Security & Privacy",
-		"privacySetting": "Privacy Setting",
-		"privateKey": "Private Key",
-		"walletSecretRecoveryPhrase": "Wallet Secret Recovery Phrase",
+		"privacySetting": "Reset Password",
+		"privateKey": "Export Private Key",
+		"walletSecretRecoveryPhrase": "Export Secret Recovery Phrase",
 		"addNetworks": "Add & Edit Custom RPC Networks",
 		"contacts": "Contacts",
 		"addEditRemove": "Add & Edit & Remove",
@@ -817,7 +820,7 @@
 		"balance": "Assets",
 		"balanceMessage": "Click to show or hide total assets",
 		"transaction": "Transaction",
-		"transactionMessage": "You can Receive,Send,Buy,Swap",
+		"transactionMessage": "You can Receive,Send",
 		"tOKENs": "Tokens",
 		"tOKENsMessage": "View and add and transfer tokens",
 		"nFTs": "NFTs",
@@ -910,7 +913,7 @@
 		"hint": " Improved accounts are viewable in your wallet buare not recoverable with your Erbie Secret Recovery Phrase {a}",
 		"hintatag": "Viisit here to learn more",
 		"importaccount": "Import Account",
-		"announcement": "The imported account is viewable in your wallet but cannot be retrieved through the Erbie mnemonic.",
+		"announcement": "The imported account is viewable in your wallet but cannot be retrieved through the Erbie secret recovery phrase.",
 		"learnmore": "Learn more about the imported accounts here.",
 		"copy": "Paste your private key string below:",
 		"forexample": "For example, 3a1076bf45ab87712ad64ccb3b10217737faacbf2872e88fdd9a537d8fe266",
@@ -1203,6 +1206,7 @@
 		"network": "Network"
 	},
 	"common": {
+		"period":"Period",
 		"checkText":"Checking, please wait...",
 		"urlErr":"Invalid link",
 		"clearCancheSuccess": "Cache cleared successfully",
@@ -1261,7 +1265,7 @@
 		"switchNet": "Switch Network",
 		"helpCenter": "Help Center",
 		"all": "All",
-		"conver": "Conver",
+		"conver": "Convert",
 		"copyAddr": "Address Hash Copied",
 		"confirmExit": "Confirm exit",
 		"guideBtnTip":"Your digital wallet data is only saved on your browser's local storage; be sure to create a backup to avoid potential permanent losses. Uninstalling your browser and/or clearing your browser data will also potentially result in permanent losses!",
@@ -1563,6 +1567,8 @@
 	"error": {
 		"500": "Parameter is invalid.",
 		"timeout": "Network is busy at this moment.The transaction has been put into the queue,please wait for a moment and do not send same tranactions.",
-		"netErr": "Network connection failure"
+		"netErr": "Network connection failure",
+		"stakeredeem":"It's not redemption time yet"
+
 	}
 }

@@ -110,9 +110,6 @@
           </div>
         </div>
       </div>
-      <div class="protocol f-12 lh-16 pl-14 pr-14 mb-14 text-center">
-        {{ t("transferNft.buyatexchange") }}
-      </div>
       <div class="flex evenly pb-30 pl-16 pr-16">
         <van-button @click="cencel">{{ t("transferNft.cancel") }}</van-button>
         <van-button

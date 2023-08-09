@@ -1,6 +1,7 @@
 
 
 
+import { scanApi } from '../httpUrl'
 import { httpGet } from '../request'
 interface GetTransitionsParams {
     page: string
@@ -16,6 +17,7 @@ interface GetTransitionsParams {
  * @param params addr
  * @returns 
  */
+
 export function getTransitionsPage(params: GetTransitionsParams){
-    return httpGet(`https://api.wormholesscan.com/transaction/page`, params)
+    return httpGet(`${scanApi}/transaction/page`, params)
 }

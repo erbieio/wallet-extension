@@ -12,13 +12,5 @@ export default {
           auth: false,
         },
       },
-      {
-        path: "/guide/step2",
-        name: "guide-step2",
-        component: () => import("@/popup/views/guide/pages/step2.vue"),
-        meta: {
-          auth: false,
-        },
-      },
     ],
 }

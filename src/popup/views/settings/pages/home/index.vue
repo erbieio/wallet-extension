@@ -18,15 +18,16 @@
       <template v-slot:icon>
         <i class="iconfont icon-suo"></i>
       </template>
-      <setting-card
-        :label="t('setting.privacySetting')"
-        @handleClick="routerPush({name:'resetPwd-step1', query: { toName:'resetPwd-step2' }})"
-      />
+
       <setting-card
         @handleClick="routerPush({name: 'export-privateKey'})"
         :label="t('setting.privateKey')"
       />
       <setting-card @handleClick="routerPush({name: 'recovery-phrase'})" :label="t('setting.walletSecretRecoveryPhrase')" />
+      <setting-card
+        :label="t('setting.privacySetting')"
+        @handleClick="routerPush({name:'resetPwd-step1', query: { toName:'resetPwd-step2' }})"
+      />
     </SettingClass>
 
     <SettingClass :label="t('setting.networks')">

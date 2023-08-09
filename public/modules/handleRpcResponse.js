@@ -244,21 +244,16 @@ export const handleRpcResponse = {
     ['connectByAddress']: {
         status: 'close',
         sendResponse: async (v) => {
-            console.log('connectByAddress', v)
             const {sender, address } = v.data
             const acc = await addSenderByAddr(sender, address)
-            console.log('add addr end.', acc)
         }
     },
     // disconnect
     ['disconnectByAddress']: {
         status: 'close',
         sendResponse: async (v) => {
-            console.log('disconnectByAddress', v)
             const {sender, address } = v.data
             const acc= await delSenderByAddr(sender, address)
-            console.log('del addr end.', acc)
-
         }
     }
 };

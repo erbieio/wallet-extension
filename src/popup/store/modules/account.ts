@@ -368,14 +368,14 @@ export default {
       return state.tranactionModel
     },
     chainParsePrefix(state: State) {
-      const {name, version} = state.chainVersion
-      if(name == 'wormholes' && version < 'v0.14.0' ){
+      const { name, version } = state.chainVersion
+      if (name == 'wormholes' && version < 'v0.14.0') {
         return chainDataParse.wormholes
       }
-      if(name == 'erbie' && version >= 'v0.14.0' ){
+      if (name == 'erbie' && version >= 'v0.14.0') {
         return chainDataParse.erbie
       }
-      throw Error('chain version error')
+      return ''
     }
   },
   mutations: {
@@ -451,14 +451,9 @@ export default {
     ADD_ACCOUNT(state: State, value: Array<Object>) {
       state.accountList = value;
     },
-    // Update URL of wormholes network
     // Update wormholes URL
     UPDATE_WORMHOLES_URL(state: State, { URL, browser, label }: any) {
-      let flag = false
       if (state.currentNetwork.isMain) {
-        if (state.currentNetwork.URL != URL || state.currentNetwork.browser != browser) {
-          flag = true
-        }
         state.currentNetwork.URL = URL;
         state.currentNetwork.browser = browser;
         state.currentNetwork.label = label;

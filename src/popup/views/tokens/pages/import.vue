@@ -8,8 +8,7 @@
         </div>
         <i18n-t keypath="addtokens.title" tag="div" class="right text-left f-12 lh-16">
           <template v-slot:wormholesLink>
-            <a href="https://www.wormholes.com" class="ml-4 mr-4 wormholeslink" target="_blank"
-              rel="noopener noreferrer">
+            <a :href="OFFICIAL_WEBSITE" class="ml-4 mr-4 wormholeslink" target="_blank" rel="noopener noreferrer">
               {{ t("wallet.wormHoles") }}
             </a>
           </template>
@@ -22,10 +21,9 @@
             <span>*</span>
             {{ t("addtokens.contractAdd") }}
           </div>
-          <van-field submit-on-enter v-model="tokenContractAddress" name="contract" :class="tokenError ? 'error' : ''"
-            :placeholder="$t('addtokens.contractAddeg')" :rules="[
-              { validator: asynToken },
-            ]" />
+          <van-field submit-on-enter v-model="tokenContractAddress" name="contract" :class="tokenError ? 'error' : ''" :placeholder="$t('addtokens.contractAddeg')" :rules="[
+            { validator: asynToken },
+          ]" />
         </van-cell-group>
         <div class="btn-group">
           <div class="container pl-28 pr-28 flex between">
@@ -73,7 +71,7 @@ import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { getRandomIcon } from "@/popup/utils";
 import { ethers, utils } from "ethers";
-import { VUE_APP_NODE_WORM_URL } from '@/popup/enum/env';
+import { OFFICIAL_WEBSITE } from '@/popup/enum/env';
 const erc20Abi: any = require("@/popup/assets/json/erc20Abi.json");
 import { useBroadCast } from '@/popup/utils/broadCost'
 import { useDialog } from "@/popup/plugins/dialog";
@@ -103,7 +101,7 @@ export default {
     const name: Ref<string> = ref("");
     const symbol: Ref<string> = ref("");
     const tokenContractAddress: Ref<string> = ref("");
-      const {$dialog} = useDialog()
+    const { $dialog } = useDialog()
     const form = ref()
     const back = () => {
       router.go(-1);
@@ -114,61 +112,36 @@ export default {
       console.log("submit", data);
       await form.value.validate()
       $dialog.open({
-        type:'warn',
-        message: t("currencyList.sure",{tokenName: name.value}),
-        callBack: async() => {
+        type: 'warn',
+        message: t("currencyList.sure", { tokenName: name.value }),
+        callBack: async () => {
           debugger
           const { address } = await getWallet();
-        try {
-          Toast.loading({
-            message: t("userexchange.loading"),
-            forbidClick: true,
-            loadingType: "spinner",
-            duration: 0
+          try {
+            Toast.loading({
+              message: t("userexchange.loading"),
+              forbidClick: true,
+              loadingType: "spinner",
+              duration: 0
 
-          });
-          await dispatch("account/addToken", {
-            tokenContractAddress: tokenContractAddress.value.trim(),
-            address,
-          });
-          handleUpdate()
-          $toast.success(t("currencyList.Importsuccessful"));
-          router.replace({ name: "wallet" });
-        } catch (err: any) {
-          $toast.fail(err.toString());
-        } finally {
-          Toast.clear();
-        }
+            });
+            await dispatch("account/addToken", {
+              tokenContractAddress: tokenContractAddress.value.trim(),
+              address,
+            });
+            handleUpdate()
+            $toast.success(t("currencyList.Importsuccessful"));
+            router.replace({ name: "wallet" });
+          } catch (err: any) {
+            $toast.fail(err.toString());
+          } finally {
+            Toast.clear();
+          }
         },
-        cancelBack:() => {
+        cancelBack: () => {
 
         }
       })
-      // Dialog.confirm({
-      //   message: t("currencyList.sure",{tokenName: name.value}),
-      // }).then(async () => {
-      //   const { address } = await getWallet();
-      //   try {
-      //     Toast.loading({
-      //       message: t("userexchange.loading"),
-      //       forbidClick: true,
-      //       loadingType: "spinner",
-      //       duration: 0
-
-      //     });
-      //     await dispatch("account/addToken", {
-      //       tokenContractAddress: tokenContractAddress.value,
-      //       address,
-      //     });
-      //     handleUpdate()
-      //     $toast.success(t("currencyList.Importsuccessful"));
-      //     router.replace({ name: "wallet" });
-      //   } catch (err: any) {
-      //     $toast.fail(err.toString());
-      //   } finally {
-      //     Toast.clear();
-      //   }
-      // });
     };
 
     const asynToken = async (val: string) => {
@@ -195,22 +168,22 @@ export default {
       }
 
       try {
-          const wallet = await getWallet();
-          const contract = new ethers.Contract(
-            tokenAddr,
-            erc20Abi,
-            wallet.provider
-          );
-          const contractWithSigner = contract.connect(wallet);
-          name.value = await contractWithSigner.name();
-          // const decimal = await contractWithSigner.decimals();
-          // const symbol = await contractWithSigner.symbol();
-          return true;
+        const wallet = await getWallet();
+        const contract = new ethers.Contract(
+          tokenAddr,
+          erc20Abi,
+          wallet.provider
+        );
+        const contractWithSigner = contract.connect(wallet);
+        name.value = await contractWithSigner.name();
+        // const decimal = await contractWithSigner.decimals();
+        // const symbol = await contractWithSigner.symbol();
+        return true;
 
-        } catch (err) {
-          tokenError.value = true
-          return t('addCurrency.errTip')
-        }finally {
+      } catch (err) {
+        tokenError.value = true
+        return t('addCurrency.errTip')
+      } finally {
         Toast.clear()
       }
     };
@@ -233,7 +206,7 @@ export default {
       symbol,
       tokenContractAddress,
       onSubmit,
-      VUE_APP_NODE_WORM_URL,
+      OFFICIAL_WEBSITE,
       handleImport,
       form
     };

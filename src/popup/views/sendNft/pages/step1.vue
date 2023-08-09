@@ -8,8 +8,10 @@
        @click="showImg"
         v-if="!isAiNft"
         :src="nftInfo.meta_url"
-        width="6.8rem"
-        height="6.8rem"
+        width="300px"
+        fit="cover"
+        position="center"
+        height="300px"
       ></van-image>
       <div :class="`nft-ai ${nftInfo.category == 2 ? 'fail' : 'success'}`" v-else>
           <div class="flex center">
@@ -91,7 +93,7 @@ import NavHeader from "@/popup/components/navHeader/index.vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { addressMask, decimal } from "@/popup/utils/filters";
-
+import { toScan } from '@/popup/utils/utils'
 
 export default {
   components: {
@@ -123,7 +125,7 @@ export default {
       });
     };
     const tomore = () => {
-      Toast(t("sendNFT.tomore"));
+      toScan(pageData.data.address, '/NFTDetails')
     };
     const showImg = () => {
       ImagePreview({ images: [nftInfo.value.meta_url], closeable: true });

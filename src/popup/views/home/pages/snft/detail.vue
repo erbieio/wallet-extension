@@ -5,16 +5,19 @@
     <div class="flex between mt-14 snft-list pl-22 pr-22">
       <div :class="`img-box flex center van-hairline--surround hover  flex center  ${item.select ? 'active' : ''
         } ${item.isLight ? '' : 'gary'} ${item.hasConvertSNFT ? 'shining' : ''}`" :title="getTipText(item)" v-for="(item, idx) in pageData.data.children" :key="item.address" @click="hancleClick(item, idx)">
-        <img :src="`${metaDomain}${item.source_url}`" :class="`flex center snft-img  ${item.select ? 'active' : ''}`" fit="cover" />
+        <img v-show="!item.loadErr" :src="`${item.imgUrl}`"  @error="loadImg(item, idx)" :class="`flex center snft-img  ${item.select ? 'active' : ''}`" fit="cover" />
+        <img v-show="item.loadErr" loading="lazy" src="@/assets/default.png" />
       </div>
     </div>
     <div class="swipe-box">
       <i class="iconfont icon-fangda hover" @click="showImg"></i>
       <van-icon name="arrow-left hover" @click="to('prev')" />
       <van-swipe @change="onChange" ref="swipe" lazy-render :initial-swipe="swiperIdx">
-        <van-swipe-item class="flex center position relative swipe-slider" v-for="item in pageData.data.children" :key="item">
+        <van-swipe-item class="flex center position relative swipe-slider" v-for="(item, idx) in pageData.data.children" :key="item">
           <div :class="`swipe-img mt-10 position relative ${item.selectFlag ? 'select' : ''}`" @click="handleSelectSingleSnft(item)">
-            <img :src="`${metaDomain}${item.source_url}`" />
+            <img v-show="!item.loadErr" :src="`${item.imgUrl}`" loading="lazy" @error="loadImg(item, idx)" />
+            <img v-show="item.loadErr" loading="lazy" src="@/assets/default.png" />
+
             <!-- Transfer -->
             <div class="check-list flex" v-if="!hasMyConvertSnft">
               <div :class="`fg van-hairline--right van-hairline--bottom ${child.select ? 'select' : ''} ${child.disabled ? 'disabled' : ''}`" v-for="(child, idx) in mySnfts.list" :key="item" @click.stop="selectSnft(child, idx)"></div>
@@ -68,29 +71,18 @@
           </div>
           <div class="btn-txt text-center">{{ t("sendSNFT.convert") }}</div>
         </div>
-
-
-        <!-- <div class="btn" v-if="!chooseData.exchange" @click="handletoExchange">
-          <div class="flex center">
-            <div class="icon-in flex center">
-              <i class="iconfont icon-fangwujianzhuwugoujianbeifen"></i>
-            </div>
-          </div>
-          <div class="btn-txt text-center">{{ t("common.viewInExchange") }}</div>
-        </div> -->
-
-        <div class="btn" v-if="!chooseSnftData.exchange" @click="toScan(chooseSnftData.nft_address,'/NFTDetails')">
+        <!-- <div class="btn" v-if="!chooseSnftData.exchange" @click="toScan(chooseSnftData.nft_address, '/SNFTDetails')">
           <div class="flex center">
             <div class="icon-in flex center">
               <i class="iconfont icon-network"></i>
             </div>
           </div>
           <div class="btn-txt text-center">{{ t("common.viewInBrowser") }}</div>
-        </div>
+        </div> -->
       </div>
     </div>
 
-    
+
   </div>
   <!-- Transfer Erb -->
   <TransferNFTModal :selectNumber="selectText" :selectName="chooseName" :selectTotal="totalAmount" :selectList="selectList" type="1" :ratio="ratio" v-model="showModal" @confirm="handleConfirmConvert" @fail="reLoading" />
@@ -120,13 +112,12 @@ import ProgressBar from "@/popup/views/account/components/snftList/progressBar.v
 import { useRouter, useRoute } from "vue-router";
 import TransferNFTModal from "@/popup/views/home/components/transferNFTModal.vue";
 import { QuerySnftChip, queryAllSnftByCollection } from "@/popup/http/modules/nft";
-import { getWallet } from "@/popup/store/modules/account";
 import { useStore } from "vuex";
 import { addressMask } from "@/popup/utils/filters";
 import BigNumber from "bignumber.js";
 import NavHeader from "@/popup/components/navHeader/index.vue";
 import { useI18n } from "vue-i18n";
-import { VUE_APP_METAURL } from "@/popup/enum/env";
+import { VUE_APP_METAURL,VUE_APP_IMGURL } from "@/popup/enum/env";
 import TransferSingleSNFTModal from "@/popup/views/home/components/transferSingleSNFTModal.vue";
 import { useTradeConfirm } from "@/popup/plugins/tradeConfirmationsModal";
 import { web3 } from "@/popup/utils/web3";
@@ -164,13 +155,13 @@ export default {
     const route = useRoute();
     const store = useStore();
     const { state, dispatch } = store
-    const metaDomain = ref(`${VUE_APP_METAURL}`);
+    const metaDomain = ref(`${VUE_APP_IMGURL}`);
     const swipe: Ref = ref(null);
     const currentNetwork = computed(() => state.account.currentNetwork)
     const accountInfo = computed(() => state.account.accountInfo);
     const pageData: any = reactive({ data: JSON.parse(sessionStorage.getItem("compData")) });
     const conversion = computed(() => state.configuration.setting.conversion)
-    const mySnfts = reactive({list: []});
+    const mySnfts = reactive({ list: [] });
     const showModal = ref(false)
     console.warn('pageData', pageData.data)
     const { query } = route;
@@ -200,18 +191,23 @@ export default {
       const myAddr = accountInfo.value.address.toUpperCase()
       const currentColl = JSON.parse(sessionStorage.getItem('compData'))
       const { data: { snfts, snftChips } } = await getPageData()
-      console.warn('getPageData', snfts, snftChips)
-      // TODO: 根据 snftChips的状态，给snfts的每一项写入disabled状态
-
-      console.warn('mySnftsChips',snftChips)
       snfts.forEach((item) => {
-        const {mergelevel,exchange,ownaddr, nft_address} = item
-
+        const { mergelevel, exchange, ownaddr, nft_address } = item
         snftChips.forEach(child => {
-          const {mergelevel:childmergeLevel,exchange:childexchange,ownaddr: childownaddr, nft_address:childnft_address} = child
-          const theFatherAddr = (childnft_address.slice(0,41) + 'm').toUpperCase()
-          if(theFatherAddr == nft_address.toUpperCase()) {
-            if(!item.children) {
+          let imgUrl = ''
+
+try {
+  const re = JSON.parse(item.source_url)
+  imgUrl = re.meta_url
+} catch (err) {
+  imgUrl = `${metaDomain.value}${item.source_url}`
+}
+console.warn('metaDomain222', imgUrl)
+  item.imgUrl = imgUrl
+          const { mergelevel: childmergeLevel, exchange: childexchange, ownaddr: childownaddr, nft_address: childnft_address } = child
+          const theFatherAddr = (childnft_address.slice(0, 41) + 'm').toUpperCase()
+          if (theFatherAddr == nft_address.toUpperCase()) {
+            if (!item.children) {
               item.children = [child]
             } else {
               item.children.push(child)
@@ -220,7 +216,7 @@ export default {
         })
         const hasChips = item.children.filter(child => !child.exchange && child.ownaddr.toUpperCase() == myAddr && child.mergelevel == 0)
         const hasConvertSNFT = myAddr == ownaddr.toUpperCase() && !exchange && mergelevel == 1
-        console.warn('isLight', hasChips.length ,  hasConvertSNFT,  item)
+        console.warn('isLight', hasChips.length, hasConvertSNFT, item)
         item.hasConvertSNFT = hasConvertSNFT
         item.isLight = hasChips.length || hasConvertSNFT
       })
@@ -329,8 +325,9 @@ export default {
     const showImg = () => {
       const idx = pageData.data.children.findIndex((item) => item.select);
       const arr2 = pageData.data.children.map(
-        (item) => metaDomain.value + item.source_url
+        (item) => item.imgUrl
       );
+      console.warn('arr2', arr2)
       ImagePreview({
         images: [...arr2],
         startPosition: idx,
@@ -395,13 +392,13 @@ export default {
       const myAddr = accountInfo.value.address.toUpperCase()
       const { data: { snfts, snftChips } } = await getPageData()
       snfts.forEach((item) => {
-        const {mergelevel,exchange,ownaddr, nft_address} = item
+        const { mergelevel, exchange, ownaddr, nft_address } = item
 
         snftChips.forEach(child => {
-          const {mergelevel:childmergeLevel,exchange:childexchange,ownaddr: childownaddr, nft_address:childnft_address} = child
-          const theFatherAddr = (childnft_address.slice(0,41) + 'm').toUpperCase()
-          if(theFatherAddr == nft_address.toUpperCase()) {
-            if(!item.children) {
+          const { mergelevel: childmergeLevel, exchange: childexchange, ownaddr: childownaddr, nft_address: childnft_address } = child
+          const theFatherAddr = (childnft_address.slice(0, 41) + 'm').toUpperCase()
+          if (theFatherAddr == nft_address.toUpperCase()) {
+            if (!item.children) {
               item.children = [child]
             } else {
               item.children.push(child)
@@ -480,10 +477,10 @@ export default {
       const { mergelevel, mergenumber, ownaddr, exchange } = chooseSnftData.value
       const myAddr = accountInfo.value.address.toUpperCase()
       if (mergelevel == 1 && !exchange && ownaddr.toUpperCase() == myAddr) {
-        return `0(C)/1(N)/0(F)`
+        return `0(L2)/1(L1)/0(L0)`
       } else {
         const selectList = mySnfts.list.filter(item => item.select)
-        return `0(C)/0(N)/${selectList.length}(F)`
+        return `0(L2)/0(L1)/${selectList.length}(L0)`
       }
     })
     const to = (type: string) => {
@@ -503,7 +500,7 @@ export default {
       if (mergelevel == 1 && !exchange && ownaddr.toUpperCase() == myAddr) {
         return t1
       } else {
-       return t0
+        return t0
 
       }
     })
@@ -537,33 +534,12 @@ export default {
 
     const totalNotConvert = computed(() => {
       console.warn('total len', pageData.data)
-      if(!pageData.data.children ||!pageData.data.children.length){
+      if (!pageData.data.children || !pageData.data.children.length) {
         return 0
       }
       return pageData.data.children[swiperIdx.value].children.filter(item => !item.exchange).length
     })
 
-    
-
-    // const handletoBrowser = () => {
-    //   const { tag, nft_address,source_url, metaData } = chooseSnftData.value
-    //   const domain = 'https://www.wormholesscan.com/#/SNFTDetails'
-    //   const str = `?snftid=${nft_address}`
-    //   const newUrl = `${domain}${str}`
-    //   window.open(newUrl)
-    // }
-    // const handletoExchange = () => {
-    //   const { source_url, nft_token_id, MergeLevel, nft_contract_addr } = chooseSnftData.value
-    //   const domain = currentNetwork.value && currentNetwork.value.chainId === 51888 ? 'http://192.168.1.235:9006/c0x5051580802283c7b053d234d124b199045ead750/#' : 'https://hub.wormholes.com/c0x97807fd98c40e0237aa1f13cf3e7cedc5f37f23b/#'
-    //   let str = '/assets/detail'
-    //   if(pageData.value.MergeLevel > 0 || MergeLevel > 0) {
-    //     str += `?nft_contract_addr=${nft_contract_addr}&nft_token_id=${nft_token_id}`
-    //   } else {
-    //     str += `?nft_contract_addr=${nft_contract_addr}&nft_token_id=${nft_token_id}&source_url=${source_url}`
-    //   }
-    //   const newUrl = `${domain}${str}`
-    //   window.open(newUrl)
-    // }
 
     const { $tradeConfirm } = useTradeConfirm();
     const handleConfirmConvert = async () => {
@@ -597,7 +573,7 @@ export default {
       });
       try {
         for await (const item of selectList.value) {
-     
+
           const { nft_address, mergelevel, mergenumber } = item
           const nftAddr = nft_address.replaceAll('m', '')
           // switch (mergelevel) {
@@ -668,8 +644,12 @@ export default {
       return mergelevel == 1 && !exchange && myAddr == ownaddr.toUpperCase() ? true : false
     })
 
+    const loadImg = (child, idx) => {
+      child.loadErr = true
+    }
     return {
       hasMyConvertSnft,
+      loadImg,
       handleConfirmConvert,
       // handletoBrowser,
       // handletoExchange,

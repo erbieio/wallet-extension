@@ -64,6 +64,7 @@ import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { decode } from "js-base64";
 import { useToast } from "@/popup/plugins/toast";
+import {WALLET_DOC} from '@/popup/enum/env'
 
 export default defineComponent({
   name: "exchange-btn",
@@ -123,7 +124,7 @@ export default defineComponent({
       hideFlag.value = true;
     };
     const toHelp = () => {
-      window.open(decode('aHR0cHM6Ly93d3cud29ybWhvbGVzLmNvbS8=') + "docs/wallet/");
+      window.open(WALLET_DOC);
     };
 
     const isExchangerFlag = computed(

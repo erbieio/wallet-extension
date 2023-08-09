@@ -3,7 +3,7 @@
     <div class="container page-container flex center">
       <!--Create a New Account Import account button group -->
       <div class="account-groups">
-        <div class="tit-company text-center">Wormholes</div>
+        <div class="tit-company text-center">Erbie</div>
         <div class="create-btn acc-btn text-center van-hairline--top-bottom" @click="toCreate">
           {{t('create.createwallet')}}
         </div>

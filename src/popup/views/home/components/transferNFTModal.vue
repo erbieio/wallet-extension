@@ -32,10 +32,6 @@
           </div>
         </div>
         <Tip :message="t('common.converTip')" type="warn" />
-
-      </div>
-      <div class="protocol f-12 lh-16 pl-14 pr-14 mb-14 text-center">
-        {{ t("transferNft.buyatexchange") }}
       </div>
       <div class="flex evenly pb-30 pl-16 pr-16">
         <van-button @click="cencel">{{ t("transferNft.cancel") }}</van-button>
@@ -141,6 +137,7 @@ export default defineComponent({
     const showModal: Ref<boolean> = ref(false);
     const store = useStore();
     const { state } = store
+    let timer = null
     watch(
       () => props.modelValue,
       (n) => {
@@ -148,9 +145,9 @@ export default defineComponent({
         console.log("txtype", props.txtype);
         showModal.value = n;
         if (n) {
-          let t = setInterval(() => {
+          timer = setInterval(() => {
             if (time.value == 0) {
-              clearInterval(t);
+              clearInterval(timer);
             }
             time.value = time.value - 1;
           }, 1000);
@@ -166,8 +163,9 @@ export default defineComponent({
       () => showModal.value,
       (n) => {
         if (!n) {
-          time.value = 3;
           emit("update:modelValue", false);
+          clearInterval(timer);
+          time.value = 3;
           loading.value = false;
         }
       }

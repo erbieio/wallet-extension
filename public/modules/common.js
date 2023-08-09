@@ -553,7 +553,6 @@ export function hasOpenConnectPopup() {
             flag = true
           }
         }
-        console.warn('flag', flag)
        if(!flag){
         resolve(true)
        } else {
@@ -575,11 +574,6 @@ export async function openPopup(
 ) {
   await closeTabs()
   const senderParams = await getLocalParams(method)
-  // console.log('openPopup 2', senderParams)
-  // const { status } = senderParams
-  // if (status && status != 'close') {
-  //   return
-  // }
   senderParams.status = 'pendding'
   await chrome.storage.local.set({ [method]: senderParams })
   return new Promise(async (resolve) => {

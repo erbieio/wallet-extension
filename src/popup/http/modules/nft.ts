@@ -1,7 +1,7 @@
 
 
 import { httpGet, httpPost } from '../request'
-import { scanApi, snftUrl4, nftmintApi } from '@/popup/http/httpUrl'
+import { scanApi, snftUrl4, nftmintApi, nftUrl } from '@/popup/http/httpUrl'
 
 
 // Get snft by owner
@@ -154,7 +154,7 @@ export const getAccount = (address: string) => {
 
 
 export const getOwnerNftList = (params = {}) => {
-  return httpGet(`${scanApi}/nft/page`, params)
+  return httpGet(`${nftUrl}/nft/page`, params)
 }
 export interface GetDrawInfoParams {
   useraddr: string

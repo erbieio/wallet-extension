@@ -1,5 +1,5 @@
 <template>
-    <NavHeader @clickRight="handleRight" backReplaceName="wallet" :title="t('mnemonic.recoveryPhrase')"></NavHeader>
+    <NavHeader @clickRight="handleRight" backReplaceName="wallet" :title="title"></NavHeader>
   <router-view v-slot="{ Component }">
     <keep-alive>
       <component :is="Component" />
@@ -11,7 +11,7 @@ import { Icon, Toast, Button, Sticky, Field } from "vant";
 import NavHeader from "@/popup/components/navHeader/index.vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import Vue from "vue";
+import Vue, {computed} from "vue";
 export default {
   name: "pageMnemonic",
   components: {
@@ -32,8 +32,12 @@ export default {
             name: "wallet",
           });
     }
+    const title = computed(() => {
+      return route.name == 'mnemonic-step3' ? t('mnemonic.tit2') : t('mnemonic.recoveryPhrase') 
+    })
     return {
       t,
+      title,
       route,
       clickLeft,
       handleRight

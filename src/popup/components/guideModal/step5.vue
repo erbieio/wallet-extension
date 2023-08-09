@@ -1,5 +1,6 @@
 
 <template>
+  <div class="kuang" v-if="showModal"></div>
   <van-popover
     v-model:show="showModal"
     @click-overlay="beforeClose"
@@ -12,7 +13,7 @@
   >
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">5</span> <span>/</span> 12
+        <span class="left">5</span> <span>/</span> 11
       </div>
       <div class="title">
         {{ t("bootstrapwindow.transaction") }}
@@ -90,6 +91,16 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+.kuang {
+  border: 1px #fff dotted;
+  height: 70px;
+  left: 20px;
+  right: 20px;
+  border-radius: 5px;
+  top: 150px;
+  position: absolute;
+  z-index: 8888;
+}
 .dialog-box {
   // width: 340px;
   padding-bottom: 25px;

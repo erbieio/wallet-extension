@@ -246,7 +246,7 @@ import { useDialog } from "@/popup/plugins/dialog";
 import BigNumber from "bignumber.js";
 import { getWallet } from "@/popup/store/modules/account";
 import { decode } from "js-base64";
-
+import { VUE_APP_SCAN_URL,WALLET_DOC,OFFICIAL_WEBSITE } from '@/popup/enum/env'
 export default defineComponent({
   name: "slider-menu",
   components: {
@@ -350,7 +350,7 @@ export default defineComponent({
     };
     const network = computed(() => store.state.account.currentNetwork);
     const tobrowser = () => {
-      window.open(`${network.value.browser}`);
+      window.open(`${network.value.browser || VUE_APP_SCAN_URL}`)
     };
 
     const routerTo = (name: string) => {
@@ -388,26 +388,9 @@ export default defineComponent({
       });
     };
     const toOfficiaWebsite = () => {
-      window.open("https://www.wormholes.com");
+      window.open(OFFICIAL_WEBSITE);
     };
-    // One-click exchange click events
-    const oneClick = async () => {
-      Toast.loading({
-        duration: 0,
-      });
-      showSlider.value = false;
-      const exchangeStatus = await dispatch("account/getExchangeStatus");
-      Toast.clear();
-      if (exchangeStatus.ExchangerFlag) {
-        router.push({
-          name: "exchange-management",
-        });
-      } else {
-        router.push({
-          name: "bourse",
-        });
-      }
-    };
+    
 
     // Display qr code address
     const showCode = ref(false);
@@ -417,8 +400,8 @@ export default defineComponent({
 
     const { $dialog } = useDialog();
     const toHelp = () => {
-      // $toast.warn(t('common.commingsoon'))
-      window.open(decode('aHR0cHM6Ly93d3cud29ybWhvbGVzLmNvbS8=') + "docs/wallet/");
+      
+      window.open(WALLET_DOC);
     };
     // The account label pops up
     const showPopover = ref(false);
@@ -539,7 +522,6 @@ export default defineComponent({
       amount,
       createLoading,
       accountLoading,
-      oneClick,
       toReceive,
       toSend,
       handleLogout,

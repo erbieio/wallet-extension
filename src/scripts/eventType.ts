@@ -34,7 +34,7 @@ export enum handleType {
   eth_chainId = 'eth_chainId',
   // Gets the current wallet address
   eth_accounts = 'eth_accounts',
-  // TODO Subscribe to news
+  // TODO: Subscribe to news
   eth_subscription = 'eth_subscription',
   // Estimated gas cost
   eth_estimateGas = 'eth_estimateGas',

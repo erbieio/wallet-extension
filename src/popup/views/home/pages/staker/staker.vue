@@ -12,7 +12,7 @@
                     <div class="addr">{{ accountInfo.address }}</div>
                 </div>
                 <!-- icon-shangjiantou icon-shangjiantou -->
-                <div class="flex center">
+                <div class="flex center stakerArrow">
                     <i :class="`iconfont  f-14 ${showAccountModal ? 'icon-shangjiantou' : 'icon-xiajiantou'}`"></i>
                 </div>
             </div>
@@ -113,8 +113,8 @@
     </div>
 
     <ActionSheet v-model="showAccountModal" :hasBtn="false" />
-    <ValidListModal v-model="showValidModal" @confirm="childConfirm" @cancel="showValidModal = false" @error="handleMinusError" />
-    <MinusStackDialog v-model:show="showMinusDialog" @confirm="minusConfirm" :to="toAddr" :minusNumber="addNumber" :amount="totalPledgeAmount" />
+    <ValidListModal v-model="showValidModal" @confirm="childConfirm" @cancel="showValidModal = false"  />
+    <MinusStackDialog v-model:show="showMinusDialog" @confirm="minusConfirm" :to="toAddr" :minusNumber="addNumber" :amount="totalPledgeAmount" @error="handleMinusError"/>
     <CommonModal v-model="showReconveryModal" :title="t('validator.recoveryCred')">
         <ReconveryDetail @cancel="showReconveryModal = false" @confirm="reconveryConfirm" :data="reconveryDetail" />
     </CommonModal>
@@ -188,6 +188,7 @@ onMounted(() => {
         forbidClick: true,
         message: t('common.loading'),
     });
+    dispatch("configuration/getConfiguration");
     dispatch('account/getEthAccountInfo').finally(() => {
         toast.clear()
     })
@@ -399,16 +400,13 @@ const minusConfirm = async () => {
             $tradeConfirm.update({ status: "success", hash: res.transactionHash })
         }
         dispatch('account/waitTxQueueResponse')
-        // $toast.success('质押成功！')
     } catch (err) {
         $tradeConfirm.update({ status: "fail" })
         $toast.fail(err.reason)
     }
 }
 const handleMinusError = (err: any) => {
-    // showMinusDialog.value = false
-    console.warn('hahahah', err)
-    $toast.fail(err.reason)
+    $toast.fail(err.message.indexOf('too close to cancel') > -1 ? t('error.stakeredeem') : err.message)
 }
 const reconveryConfirm = async () => {
     showReconveryModal.value = false;
@@ -486,7 +484,8 @@ const addStakeConfirm = async () => {
         callBack
     })
     try {
-        const str = `${store.getters['account/chainParsePrefix']}:${JSON.stringify({ type: 9, proxy_address: accountInfo.value.address, fee_rate: 1000, name: "Staker", url: "", version: "v0.0.1" })}`;
+        const { fee_rate } = store.state.configuration.setting.staker
+        const str = `${store.getters['account/chainParsePrefix']}:${JSON.stringify({ type: 9, proxy_address: accountInfo.value.address, fee_rate: fee_rate || 1000, name: "Staker", url: "", version: "v0.0.1" })}`;
         const data3 = web3.utils.fromUtf8(str)
         const tx1 = {
             to: toAddr.value,
@@ -512,6 +511,7 @@ const addStakeConfirm = async () => {
 
 const handleAddError = (err: any) => {
     // showAddDialog.value = false
+    console.warn('aaaa', err.message)
     $toast.fail(err.reason)
 }
 
@@ -574,8 +574,7 @@ const isStaker = computed(() => {
 const freezeStatus = computed(() => {
     const select = stakerExtensions.value.find(item => item.selected)
     if (select && select.BlockNumber) {
-        // TODO: 6307200
-        return (blockNumber.value - select.BlockNumber) > 1 ? false : true
+        return (blockNumber.value - select.BlockNumber) > (process.env.VUE_APP_NODE_ENV == 'production' ? 6307200 : 1) ? false : true
     } else {
         return false
     }

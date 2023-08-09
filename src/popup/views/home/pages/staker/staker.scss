@@ -2,12 +2,17 @@ $fontColor: #848484;
 
 .staker-validator-page {
     padding: 15px 15px 0;
-
+    .stakerArrow{
+        position: absolute;
+        right: 10px;
+        top: 12px;
+    }
     .staker-card {
         .stakerAddr {
             background: #F3F3F3;
             border-radius: 5px;
             cursor: pointer;
+            position: relative;
 
             .addr {
                 color: $fontColor;
