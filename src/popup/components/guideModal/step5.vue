@@ -96,7 +96,7 @@ export default defineComponent({
   left: 20px;
   right: 20px;
   border-radius: 5px;
-  top: 150px;
+  top: 160px;
   position: absolute;
   z-index: 8888;
 }

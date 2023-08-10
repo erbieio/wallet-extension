@@ -141,7 +141,7 @@
 		"access": "Access",
 		"cmsandExchange": "CMS & Exchange",
 		"back": "Back",
-		"toBrowser": "View full history on {link}",
+		"toBrowser": "View full history on {link} ",
 		"scanLink": "Erbiescan",
 		"convertComplete": "For complete",
 		"selectSNFT": "You have not selected any SNFTs",

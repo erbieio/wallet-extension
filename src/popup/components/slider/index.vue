@@ -18,8 +18,8 @@
                     <div> {{ t("creatorSnft.labelPeriod") }}: {{ creatorStatus.count }}</div>
                     <div>{{ t("creatorSnft.labelProfit") }}: {{ creatorStatus.profitStr }} ERB</div>
                     <div>{{ t("creatorSnft.labelTimes") }}: {{ creatorStatus.count }}</div>
-                    <div>{{ t("creatorSnft.labelAward") }}: {{ creatorStatus.rewardEth }} ERB</div>
-                    <div>{{ t("creatorSnft.labelWeight") }}: {{ creatorStatus.weight }}</div>
+                    <!-- <div>{{ t("creatorSnft.labelAward") }}: {{ creatorStatus.rewardEth }} ERB</div>
+                    <div>{{ t("creatorSnft.labelWeight") }}: {{ creatorStatus.weight }}</div> -->
                   </div>
                   <template #reference>
                     <div class="tag-user type1 position relative hover" @mouseover="showPopover3 = true" @mouseleave="handleMouseLeave3" v-show="creatorStatus

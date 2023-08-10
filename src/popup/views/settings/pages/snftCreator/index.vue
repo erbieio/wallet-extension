@@ -91,7 +91,7 @@
         </div>
         <div class="c-bottom">{{ creatorStatus.count }}</div>
       </div>
-      <div class="card">
+      <!-- <div class="card">
         <div class="c-top">
           <div class="label">
             {{ t("creatorSnft.labelAward") }}
@@ -114,8 +114,8 @@
           </div>
         </div>
         <div class="c-bottom">{{ creatorStatus.rewardEth }} ERB</div>
-      </div>
-      <div class="card">
+      </div> -->
+      <!-- <div class="card">
         <div class="c-top">
           <div class="c-top">
             <div class="label">
@@ -139,9 +139,9 @@
           </div>
         </div>
         <div class="c-bottom">{{ creatorStatus.weight }}</div>
-      </div>
+      </div> -->
     </div>
-    <div class="text-center pl-30 pr-30 creatorTip">
+    <!-- <div class="text-center pl-30 pr-30 creatorTip">
       <i18n-t tag="div" keypath="creatorSnft.tip" class="lh-16">
         <template v-slot:link1
           ><a
@@ -162,7 +162,7 @@
           ></template
         >
       </i18n-t>
-    </div>
+    </div> -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -217,7 +217,7 @@ const pageType = window.pageType;
 .form {
   border: 1px solid #e4e7e8;
   border-radius: 5px;
-  min-height: 230px;
+  /* min-height: 230px; */
   margin: 20px 15px;
   .card {
     &:last-of-type {

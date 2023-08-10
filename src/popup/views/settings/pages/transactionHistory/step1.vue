@@ -105,7 +105,7 @@
   <Transition name="slider">
     <i18n-t tag="div" v-if="showBuyTip" keypath="wallet.toBrowser" :class="`flex center scan-link fixed-bottom ${bugTipClass}`">
       <template v-slot:link>
-        <span @click="toScan(accountInfo.address, '/AccountDetail')" class="f-12 view-history hover" rel="noopener noreferrer">{{ t("wallet.scanLink") }}</span>
+        <span @click="toScan(accountInfo.address, '/AccountDetail')" class="f-12 view-history hover ml-4" rel="noopener noreferrer">{{ t("wallet.scanLink") }}</span>
       </template>
     </i18n-t>
   </Transition>
@@ -601,7 +601,6 @@ export default {
 
         }
         await DEL_TXQUEUE(txInfo)
-        // store.commit("account/DEL_TXQUEUE",txInfo);
         const newres = {
           ...clone(txInfo),
           txId: guid(),
@@ -609,7 +608,6 @@ export default {
           sendType: 'speed',
         }
         await PUSH_TRANSACTION(newres)
-        // store.commit("account/PUSH_TRANSACTION",newres);
         sessionStorage.setItem("new tx", JSON.stringify(data));
         const receipt = await data.wallet.provider.waitForTransaction(data.hash);
         store.dispatch('account/clearWaitTime')
