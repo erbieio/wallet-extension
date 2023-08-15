@@ -191,14 +191,14 @@
         <van-tab name="b">
           <template #title>{{ $t("wallet.NFTs") }}</template>
           <template #default>
-            <NftList />
+            <NftList v-if="active == 'b'" />
           </template>
         </van-tab>
         <!-- snft list -->
         <van-tab name="c">
           <template #title>{{ $t("wallet.SNFTs") }}</template>
           <template #default>
-            <SnftList @changeSwitch="handleChangeIsselect" />
+            <SnftList @changeSwitch="handleChangeIsselect" v-if="active == 'c'" />
           </template>
         </van-tab>
       </van-tabs>

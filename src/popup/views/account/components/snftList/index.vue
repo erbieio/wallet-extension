@@ -175,10 +175,7 @@ export default defineComponent({
       status: "2",
     };
 
-    onActivated(() => {
-      params.owner_addr = accountInfo.value.address;
-      reLoading();
-    });
+
 
     const getCollects = (stage_addr: string) => {
       return queryAllSnftByStage({

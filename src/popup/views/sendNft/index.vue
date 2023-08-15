@@ -25,7 +25,7 @@ export default {
     const router = useRouter();
     const { t } = useI18n();
     const clickLeft = () => {
-      router.back();
+      router.replace({name:"wallet"});
     };
     return {
       route,

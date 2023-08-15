@@ -110,6 +110,8 @@ import { useToast } from "@/popup/plugins/toast";
 import { decode } from "js-base64";
 import SliderBottom from "@/popup/components/sliderBottom/index.vue";
 import { MasonryInfiniteGrid,PackingInfiniteGrid  } from "@egjs/vue3-infinitegrid";
+import { onActivated } from "vue";
+import { onDeactivated } from "vue";
 export default defineComponent({
   name: "nft-list",
   components: {
@@ -178,7 +180,11 @@ export default defineComponent({
         });
         const darwedList =
           drawList.data && drawList.data.length
-            ? drawList.data.map((item: any) => item.nft_address)
+            ? drawList.data.filter((item: any) => {
+              if(item.drawed && item.drawfee) {
+                return item
+              }
+            }).map(item => item.nft_address.toLowerCase())
             : [];
         // @ts-ignore
         if (nfts && nfts.length) {
@@ -188,7 +194,7 @@ export default defineComponent({
               // 1: normal  value = 0
               // 2: ai drawed value = 1
               // 3: ai not draw value = 2
-              const pa = JSON.parse(web3.utils.toUtf8(item.raw_meta_url));
+              const pa = JSON.parse(web3.utils.toUtf8(item.meta_url));
               if (darwedList.includes(item.address)) {
                 item.category = 1;
               } else {
@@ -201,7 +207,7 @@ export default defineComponent({
               item.meta_url = pa.meta_url;
               item.prompt = pa.meta_url;
               item.randomNumber = pa.randomNumber;
-              item.info = web3.utils.toUtf8(item.raw_meta_url);
+              item.info = JSON.stringify(pa);
             } catch (err) {
               console.error(err);
               item.info = {};
@@ -244,6 +250,7 @@ export default defineComponent({
       }
     };
 
+
     // Error, retry
     const reLoading = () => {
       nftErr.value = false;
@@ -258,7 +265,6 @@ export default defineComponent({
     // Update the current collectibles list each time you switch accounts
     eventBus.on("changeAccount", (address) => {
       params.owner = address;
-      ;
       reLoading();
     });
     const toCreate = () => {
