@@ -527,14 +527,19 @@ export default defineComponent({
         loadNft.value = false;
       }
     };
-    // The list load event updates the current Snft list each time the account is switched
-    eventBus.on("changeAccount", (address) => {
-      stagesparams.owner_addr = address;
-      let time = setTimeout(() => {
-        reLoading();
-        clearTimeout(time);
-      }, 1000);
-    });
+    onMounted(() => {
+      // The list load event updates the current Snft list each time the account is switched
+      eventBus.on("changeAccount", (address) => {
+        stagesparams.owner_addr = address;
+        let time = setTimeout(() => {
+          reLoading();
+          clearTimeout(time);
+        }, 1000);
+      });
+    })
+    onUnmounted(() => {
+      eventBus.off('changeAccount')
+    })
 
     // Error, retry
     const reLoading = () => {

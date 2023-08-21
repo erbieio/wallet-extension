@@ -35,7 +35,7 @@ export const useNetWork = () => {
         commit('account/UPDATE_NETWORKSTATUS', currentNetwork)
         showModalNetwork.value = true;
     };
-    let chooseN: any = null
+    let chooseN: NetWorkData = null
     const handleChoose = (data: NetWorkData) => {
         chooseN = data
         // Updated the network selection status in vuEX
@@ -52,6 +52,7 @@ export const useNetWork = () => {
             try {
                 await dispatch('account/setNetWork', chooseN).finally(() => networkLoading.value = false)
                 dispatch("account/updateAllBalance")
+                dispatch('account/getChainVersion')
                 showModalNetwork.value = false
                 eventBus.emit('changeNetwork',chooseN)
             } catch (err) {

@@ -24,6 +24,7 @@ export const useEvent = () => {
         const chainId = web3.utils.toHex(net.chainId)
         sendBackground({method:eventsEmitter.chainChanged, response:{code:"200",data:chainId}})
         dispatch("account/getEthAccountInfo");
+        dispatch('account/getChainVersion')
         handleUpdate()
     })
     // account Change

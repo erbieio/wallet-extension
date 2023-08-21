@@ -112,6 +112,8 @@ import SliderBottom from "@/popup/components/sliderBottom/index.vue";
 import { MasonryInfiniteGrid,PackingInfiniteGrid  } from "@egjs/vue3-infinitegrid";
 import { onActivated } from "vue";
 import { onDeactivated } from "vue";
+import { onMounted } from "vue";
+import { onUnmounted } from "vue";
 export default defineComponent({
   name: "nft-list",
   components: {
@@ -262,11 +264,16 @@ export default defineComponent({
       handleOnLoad();
     };
 
-    // Update the current collectibles list each time you switch accounts
+    onMounted(() => {
+         // Update the current collectibles list each time you switch accounts
     eventBus.on("changeAccount", (address) => {
       params.owner = address;
       reLoading();
     });
+    })
+    onUnmounted(() => {
+      eventBus.off('changeAccount')
+    })
     const toCreate = () => {
       if (Number(accountInfo.value.amount) == 0) {
         $toast.warn(t("wallet.haveNoMoney"));

@@ -8,22 +8,30 @@
             </van-field>
             <div class="valid-list scrollBar" @scroll="scrollList">
                 <div v-for="item in list" :key="item.useraddr" :class="`flex valid-card pl-10 pr-10 pt-12 pb-12 ${item.selected ? 'selected' : ''}`" :title="item.useraddr" @click="handleSelect(item)">
-                    <div class="flex center">
+                    <div class="flex center iconBox">
                         <AccountIcon :data="item.icon" />
+                        <div class="icon-mask flex center" @mousemove="item.showPopover = true" @mouseout="item.showPopover = false">
+                            <van-popover :class="`validPopover ${pageType}`" v-model:show="item.showPopover" placement="right" theme="light" :style="{ maxWidth: 500 }">
+                                <div class="p-10" style="word-space: pre-line;" v-html="pageType == 'Popup' ?t('validator.scoreTip2') :t('validator.scoreTip')"></div>
+                                <template #reference>
+                                    <div :class="`mask-text flex center ${item.scoreClass}`">{{ item.score }}</div>
+                                </template>
+                            </van-popover>
+                        </div>
                     </div>
                     <div class="info flex column between ml-8 flex-1">
                         <div class="flex between">
                             <div class="flex center">
                                 <img class="expresion" v-if="item.iconClass == 'smile'" src="@/assets/smile.png" alt="" />
-                                <img class="expresion" v-if="item.iconClass == 'sad'" src="@/assets/sad.png"  alt="" />
-                                <img class="expresion"  v-if="item.iconClass == 'neutral'" src="@/assets/neutral.png" alt="" />
+                                <img class="expresion" v-if="item.iconClass == 'sad'" src="@/assets/sad.png" alt="" />
+                                <img class="expresion" v-if="item.iconClass == 'neutral'" src="@/assets/neutral.png" alt="" />
                             </div>
                             <div>{{ item.Pledged }} ERB</div>
                         </div>
                         <div class="addr text-left van-ellipsis">{{ item.useraddr }}</div>
                     </div>
                 </div>
-                <div class="pt-10  flex center" v-show="loading" >
+                <div class="pt-10  flex center" v-show="loading">
                     <van-loading color="#9F54BA" size="22">{{ t('wallet.loading') }}</van-loading>
                 </div>
                 <NoData v-if="!list.length && !loading" class="pb-20" />
@@ -41,7 +49,7 @@ import AccountIcon from "@/popup/components/accountIcon/index.vue";
 import NoData from '@/popup/components/noData/index.vue'
 import CommonModal from '@/popup/components/commonModal/index.vue'
 import { watch, ref, onMounted, computed, nextTick } from 'vue';
-import { Field as VanField, Button as VanButton, Skeleton as VanSkeleton, Loading as VanLoading } from 'vant';
+import { Field as VanField, Button as VanButton, Skeleton as VanSkeleton, Loading as VanLoading, Popover as VanPopover } from 'vant';
 import { useStore } from "vuex";
 import { getWallet } from "@/popup/store/modules/account";
 import { ethers } from "ethers";
@@ -49,8 +57,9 @@ import { getRandomIcon } from "@/popup/utils";
 import BigNumber from "bignumber.js";
 import { useI18n } from "vue-i18n";
 import { useToast } from "@/popup/plugins/toast";
-import { getValidatorInfo, ValidParams } from '@/popup/http/modules/staker'
-
+import { getValidatorInfo, ValidParams, validatorPage, ValidatorPageParams } from '@/popup/http/modules/staker'
+// @ts-ignore
+const {pageType} = window
 const { t } = useI18n()
 const { state } = useStore()
 const accountInfo = computed(() => state.account.accountInfo)
@@ -78,32 +87,39 @@ watch(() => showModal.value, n => {
         nextTick(() => {
             cancelClick()
         })
-    } 
+    }
 })
 
 const list = ref([])
 
-const params: ValidParams = {
-    count: "10",
-    index: "0"
+const params: ValidatorPageParams = {
+    order: "score desc",
+    page: "1",
+    page_size: '10'
 }
 const getIconClass = (v: any) => {
-      const num = Number(v)
-      if (num < 40) return "sad";
-      if (num >= 40 && num <= 50) return "neutral";
-      if (num > 50) return "smile";
+    const num = Number(v)
+    if (num < 40) return "sad";
+    if (num >= 40 && num <= 50) return "neutral";
+    if (num > 50) return "smile";
+}
+const getScoreClass = (v: number) => {
+    const num = Number(v)
+    if (num <= 0) return "sad";
+    if (num > 0 && num <= 50) return "neutral";
+    if (num > 50) return "smile";
 }
 const getList = async () => {
-    if(loading.value || finished.value){
+    if (loading.value || finished.value) {
         return
     }
     loading.value = true
     try {
-        const { data } = await getValidatorInfo(params)
-        params.index = Number(params.index) + 10 + ''
+        const { data } = await validatorPage(params)
+        params.page = Number(params.page) + 1 + ''
         list.value.push(...(data && data.length ? data : []).map((item: any) => {
             //The field of Pledged's unit is GWEI
-            return { ...item, icon: getRandomIcon(), iconClass:getIconClass(item.coefficient),Pledged: new BigNumber(item.Pledged).div(1000000000).toNumber() }
+            return { ...item, icon: getRandomIcon(), scoreClass: getScoreClass(Number(item.score)), iconClass: getIconClass(item.weight), useraddr: item.address, Pledged: new BigNumber(item.amount).div(1000000000000000000).toNumber(), showPopover: false }
         }))
         if (!data || data.length < 10) {
             finished.value = true
@@ -114,14 +130,11 @@ const getList = async () => {
     }
 }
 
-onMounted(() => {
-
-})
 const scrollList = (e: any) => {
     const cHeight = e.target.clientHeight
     const sTop = e.target.scrollTop
     const sHeight = e.target.scrollHeight
-    if(((cHeight + sTop + 20) > sHeight) && !loading.value && !finished.value) {
+    if (((cHeight + sTop + 20) > sHeight) && !loading.value && !finished.value) {
         getList()
     }
 }
@@ -137,7 +150,7 @@ const handleSelect = (e: any) => {
 }
 const { $toast } = useToast()
 const btnLoading = ref(false)
-const handleConfirm = async() => {
+const handleConfirm = async () => {
     if (!value1.value) {
         $toast.fail(t('validator.addressErr'))
         return
@@ -146,9 +159,9 @@ const handleConfirm = async() => {
     try {
         ethers.utils.getAddress(value1.value)
         const wallet = await getWallet()
-        const acc = await wallet.provider.send('eth_getAccountInfo',  [value1.value, "latest"])
+        const acc = await wallet.provider.send('eth_getAccountInfo', [value1.value, "latest"])
         const PledgedBalance = acc.Worm?.PledgedBalance ? new BigNumber(acc.Worm?.PledgedBalance).div(1000000000000000000).toNumber() : 0
-        if(PledgedBalance < 700 && accountInfo.value.address.toUpperCase() != value1.value.toUpperCase()) {
+        if (PledgedBalance < 700 && accountInfo.value.address.toUpperCase() != value1.value.toUpperCase()) {
             $toast.warn(t('validator.fromPledgeErr'))
             return
         }
@@ -172,7 +185,7 @@ const handleConfirm = async() => {
 const cancelClick = () => {
     showModal.value = false
     finished.value = false
-    params.index = '0'
+    params.page = '1'
     let time = setTimeout(() => {
         list.value = []
         clearTimeout(time)
@@ -180,6 +193,25 @@ const cancelClick = () => {
 }
 </script>
 <style lang="scss" scoped>
+.mask-text {
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+
+    &.smile {
+        color: #45E86B;
+    }
+
+    &.neutral {
+        color: #F7BF03;
+    }
+
+    &.sad {
+        color: #E70218;
+    }
+}
 .valid-list {
     max-height: 226px;
     border-radius: 5px;
@@ -194,6 +226,25 @@ const cancelClick = () => {
         cursor: pointer;
         color: #838383;
         transition: ease .26s;
+
+        .iconBox {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid #fff;
+            position: relative;
+
+            .icon-mask {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: rgba($color: #000000, $alpha: 0.35);
+
+            }
+        }
 
         &:hover {
             background-color: #F8F3F9;

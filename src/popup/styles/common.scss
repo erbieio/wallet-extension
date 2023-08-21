@@ -183,7 +183,12 @@ img {
   background: #F8F3F9;
 }
 
-
+.validPopover {
+  max-width: 500px !important;
+  &.Popup {
+    max-width: 240px
+  }
+}
 .van-dialog {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
@@ -343,8 +348,6 @@ width: 420px;
 .closeGuideModal {
   background: rgba($color: #000, $alpha: 0.8);
   color: #fff;
-
-  .van-dialog__content {}
 
   .van-dialog__footer {
     &::after {
@@ -563,9 +566,6 @@ width: 420px;
       margin-left: -45vw;
       top: 40px;
     }
-    & .van-dialog__content {
-      // max-width: 90%;
-    }
   }
 
   .popover-btn-tip,
@@ -709,9 +709,6 @@ width: 420px;
     &.van-popup--center{
       margin-left: -180px;
       top: 60px;
-    }
-    & .van-dialog__content {
-      // max-width: 90%;
     }
   }
   .popover-btn-tip,
@@ -872,23 +869,12 @@ width: 420px;
       }
     }
 
-    //&.step13 {
-    //  top: 48px !important;
-    //  left: 400px !important;
-    //  .van-popover__arrow {
-    //    right: 0px;
-    //  }
-    //}
     &.step14 {
       top: inherit !important;
       right: 20px !important;
       left: inherit !important;
       bottom: 150px;
       position: fixed !important;
-
-      .van-popover__arrow {
-        //left: 321px;
-      }
     }
   }
 

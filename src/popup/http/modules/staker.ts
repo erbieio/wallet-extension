@@ -19,3 +19,15 @@ export const getUsersCoefficient = (params: GetCoefParams) => {
   
 }
 
+export type ValidatorPageParams = {
+    order: 'score desc' | 'score asc' | 'amount desc' | 'amount asc' | 'weight desc' | 'weight asc',
+    page: string,
+    page_size: string
+}
+
+
+export const validatorPage = (params: ValidatorPageParams) => {
+    return httpGet(`${scanApi}/validator/page`, params)
+  
+}
+
