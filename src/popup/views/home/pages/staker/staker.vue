@@ -502,7 +502,6 @@ const addStakeConfirm = async () => {
 }
 
 const handleAddError = (err: any) => {
-    // showAddDialog.value = false
     $toast.fail(err.reason)
 }
 

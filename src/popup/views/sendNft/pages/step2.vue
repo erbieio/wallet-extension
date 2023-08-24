@@ -644,6 +644,7 @@ export default {
   .line {
     height: 1px;
     width: 46%;
+    border-bottom: 1px solid #B3B3B3;
   }
 }
 
