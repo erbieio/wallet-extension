@@ -98,7 +98,7 @@
 		"tipprofit": "This is the total profit you have received by staking.",
 		"tipincome": "This is the estimated annual profit you will receive after redemption.",
 		"tipadd": "This is the additional amount of ERB you want to stake.",
-		"closeTip": "Sorry, you need to wait 365 days to redeem your stake.",
+		"closeTip": "Sorry, you need to wait one day to redeem your stake.",
 		"stakingPeriod": "Staking period"
 	},
 	"wallet": {
@@ -1158,7 +1158,7 @@
 		"ispoor": "Please make sure the balance is sufficient",
 		"addPl": "Stake Additional Tokens",
 		"pledgeRed": "Staking Redemption",
-		"addTips": "Sorry, you need to wait 365 days to close your staker and redeem your stake.",
+		"addTips": "Sorry, you need to wait one day to close your staker and redeem your stake.",
 		"redemption": "Redemption",
 		"snft": "SNFT",
 		"desc1": "You can stake your SNFTs to have a chance to get rewards when a new block is created.",
@@ -1464,7 +1464,7 @@
 		"selectErb": "Tips：Select ERB. Your pledge income will be returned in the form of ERB.",
 		"selectSnft": "Tips：Select SNFT. Your pledge income will be returned in the form of SNFTs.",
 		"closeTip": "If you do the redemption. your income will decrease.",
-		"closeTip2": "Sorry, the pledge is redeemable after 1 year.",
+		"closeTip2": "Sorry, the pledge is redeemable after 1 day.",
 		"addzhiya": "Stake Additional",
 		"stackFee": "Pledge fee",
 		"tip7": "The threshold value means the maxium amount of erb you can redeem while you can still be the staker. If you enter the amount bigger than this amount, you will redeem all of your erb.",
