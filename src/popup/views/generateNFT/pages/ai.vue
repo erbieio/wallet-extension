@@ -30,6 +30,7 @@
           :disabled="query.address ? true : false"
           autosize
           :rows="6"
+          :maxLength="112"
           clearable
           type="textarea"
           label=""
