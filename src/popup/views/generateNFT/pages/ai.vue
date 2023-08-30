@@ -173,6 +173,7 @@ const royaltyErr = ref(false);
 const showPopover3 = ref(false);
 const route = useRoute();
 const onSubmit = async () => {
+  console.warn('onSubmit')
   if (checked.value && RegUrl.test(promptWord.value)) {
     $toast.warn(t("generateNFT.normalNftTip"));
     return;
@@ -182,22 +183,32 @@ const onSubmit = async () => {
   const myAddr = state.account.accountInfo.address;
 
   // Not ordinary casting to determine whether pure ai drawing
-  if (!isNormalCreate) {
+  try {
+    if (!isNormalCreate) {
     const gas2 = await getGasFee({
       to: myAddr,
-      value: ethers.utils.parseEther("1"),
+      value: ethers.utils.parseEther("0"),
     });
-
     // Judge whether it is simple drawing or casting + drawing
     if (readonlySwitch.value) {
       gasFee.value = gas2;
+      console.log('gas2', gas2)
+
     } else {
       const gas1 = await handleGetGas();
       gasFee.value = new BigNumber(gas1).plus(gas2).toString();
+      console.log('gas1', gasFee.value)
+
     }
+
   } else {
     const gas1 = await handleGetGas();
     gasFee.value = gas1;
+    console.log('gas3', gasFee.value)
+  }
+  }catch(err){
+    console.error('err',err)
+    $toast.fail(err.message)
   }
 };
 
@@ -226,7 +237,7 @@ const handleGetGas = async () => {
     to: myAddr,
     from: myAddr,
     data: newdata,
-    value: "0",
+    value: isNormalCreate ? ethers.utils.parseEther('0') :ethers.utils.parseEther(sendVal.value.toString()),
   };
   const gas1 = await getGasFee(tx);
   return gas1;

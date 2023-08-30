@@ -26,3 +26,4 @@ npm run serve
 npm run build
 ```
 
+npx sb init --builder webpack5 -f
