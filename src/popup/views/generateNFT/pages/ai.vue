@@ -192,22 +192,16 @@ const onSubmit = async () => {
     // Judge whether it is simple drawing or casting + drawing
     if (readonlySwitch.value) {
       gasFee.value = gas2;
-      console.log('gas2', gas2)
-
     } else {
       const gas1 = await handleGetGas();
       gasFee.value = new BigNumber(gas1).plus(gas2).toString();
-      console.log('gas1', gasFee.value)
-
     }
 
   } else {
     const gas1 = await handleGetGas();
     gasFee.value = gas1;
-    console.log('gas3', gasFee.value)
   }
   }catch(err){
-    console.error('err',err)
     $toast.fail(err.message)
   }
 };
@@ -365,11 +359,9 @@ const handleSendCreate = async (nft_data = {}, call = (v: any) => {}) => {
   return { receipt, nft_address, owner: myAddr, hash: txRes.hash };
 };
 
-// const grnerateLoading = ref(false)
 const gasFee = ref("");
 const handleConfirm = async () => {
   const isNormalCreate = !checked.value && RegUrl.test(promptWord.value);
-  // grnerateLoading.value = true
   showGenerateModal.value = false;
   $tradeConfirm.open({
     disabled: [TradeStatus.pendding],
@@ -381,14 +373,12 @@ const handleConfirm = async () => {
   });
   try {
     const myAddr = state.account.accountInfo.address;
-    ;
     if (!readonlySwitch.value) {
       if (isNormalCreate) {
         await normalCreate();
       } else {
         if (checked.value) {
           const { nft_address, owner, hash }: any = await aiCreate();
-
           $tradeConfirm.update({
             status: "success",
             hash: hash,
@@ -416,7 +406,7 @@ const handleConfirm = async () => {
         }
       }
     } else {
-      ;
+
       const nft_address = query.address ? query.address.toString() : ""
       const sendData = {
         owner: myAddr,
@@ -430,7 +420,7 @@ const handleConfirm = async () => {
         drawflag: "1",
       };
       await drawImage(drawParams);
-            // Step 3 draw
+      // Step 3 draw
       const txData = await dispatch("account/transaction", {
         value: sendVal.value,
         to: sendAddr.value,

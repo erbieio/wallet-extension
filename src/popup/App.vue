@@ -116,7 +116,7 @@ export default {
     });
 
     eventBus.on('walletReady', newwallet => {
-      dispatch('system/getChainVersion', newwallet);
+      dispatch('account/getChainVersion', newwallet);
 
     })
     const animation = ref("slide");
