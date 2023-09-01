@@ -44,8 +44,8 @@ import { addressMask, transactionStatus } from "./utils/filters";
 import { guid } from '@/popup/utils/utils'
 import { useBroadCast } from '@/popup/utils/broadCost'
 import localforage from 'localforage'
-import { getAccountAddr } from "@/popup/http/modules/common";
-import { VUE_APP_NODE_URL, VUE_APP_SCAN_URL, VUE_APP_NODE_NAME } from '@/popup/enum/env'
+import { VUE_APP_NODE_URL, VUE_APP_SCAN_URL, VUE_APP_NODE_NAME } from '@/popup/enum/env';
+import { asyncStoreFromLocal } from './store';
 export default {
   components: {
     [Button.name]: Button,
@@ -72,7 +72,7 @@ export default {
         if (data && action) {
           // If the same-origin window updates the account
           if (action == 'wromHoles-update' && id != state.system.conversationId) {
-            window.location.reload()
+            asyncStoreFromLocal()
           }
         }
       }
@@ -116,7 +116,7 @@ export default {
     });
 
     eventBus.on('walletReady', newwallet => {
-      dispatch('system/getChainVersion', newwallet);
+      dispatch('account/getChainVersion', newwallet);
 
     })
     const animation = ref("slide");

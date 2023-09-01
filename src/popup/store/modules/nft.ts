@@ -88,7 +88,8 @@ export default {
       const { nft_address, to, checkTxQueue } = params
       // Update recent contacts
       store.commit("account/PUSH_RECENTLIST", to);
-      const str = `${store.getters['account/chainParsePrefix']}:{"version": "v0.0.1","type": 1,"nft_address":"${nft_address}"}`;
+      const str = `${store.getters['account/chainParsePrefix']}:${JSON.stringify({version: "v0.0.1",type: 1,nft_address})}`;
+      console.warn('snft str', str)
       const data3 = web3.utils.fromUtf8(str);
       const tx = {
         from: address,

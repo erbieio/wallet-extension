@@ -30,7 +30,6 @@
           :disabled="query.address ? true : false"
           autosize
           :rows="6"
-          :maxLength="112"
           clearable
           type="textarea"
           label=""
@@ -165,7 +164,7 @@ const { $toast } = useToast();
 const { $tradeConfirm } = useTradeConfirm();
 const router = useRouter();
 const store = useStore();
-const { dispatch, state } = store
+const { dispatch, state } = store;
 const { t } = useI18n();
 const showWord = ref(false);
 const emailErr = ref(false);
@@ -174,6 +173,7 @@ const royaltyErr = ref(false);
 const showPopover3 = ref(false);
 const route = useRoute();
 const onSubmit = async () => {
+  console.warn('onSubmit')
   if (checked.value && RegUrl.test(promptWord.value)) {
     $toast.warn(t("generateNFT.normalNftTip"));
     return;
@@ -183,12 +183,12 @@ const onSubmit = async () => {
   const myAddr = state.account.accountInfo.address;
 
   // Not ordinary casting to determine whether pure ai drawing
-  if (!isNormalCreate) {
+  try {
+    if (!isNormalCreate) {
     const gas2 = await getGasFee({
       to: myAddr,
-      value: ethers.utils.parseEther("1"),
+      value: ethers.utils.parseEther("0"),
     });
-
     // Judge whether it is simple drawing or casting + drawing
     if (readonlySwitch.value) {
       gasFee.value = gas2;
@@ -196,9 +196,13 @@ const onSubmit = async () => {
       const gas1 = await handleGetGas();
       gasFee.value = new BigNumber(gas1).plus(gas2).toString();
     }
+
   } else {
     const gas1 = await handleGetGas();
     gasFee.value = gas1;
+  }
+  }catch(err){
+    $toast.fail(err.message)
   }
 };
 
@@ -227,7 +231,7 @@ const handleGetGas = async () => {
     to: myAddr,
     from: myAddr,
     data: newdata,
-    value: "0",
+    value: isNormalCreate ? ethers.utils.parseEther('0') :ethers.utils.parseEther(sendVal.value.toString()),
   };
   const gas1 = await getGasFee(tx);
   return gas1;
@@ -355,11 +359,9 @@ const handleSendCreate = async (nft_data = {}, call = (v: any) => {}) => {
   return { receipt, nft_address, owner: myAddr, hash: txRes.hash };
 };
 
-// const grnerateLoading = ref(false)
 const gasFee = ref("");
 const handleConfirm = async () => {
   const isNormalCreate = !checked.value && RegUrl.test(promptWord.value);
-  // grnerateLoading.value = true
   showGenerateModal.value = false;
   $tradeConfirm.open({
     disabled: [TradeStatus.pendding],
@@ -371,14 +373,12 @@ const handleConfirm = async () => {
   });
   try {
     const myAddr = state.account.accountInfo.address;
-    ;
     if (!readonlySwitch.value) {
       if (isNormalCreate) {
         await normalCreate();
       } else {
         if (checked.value) {
           const { nft_address, owner, hash }: any = await aiCreate();
-
           $tradeConfirm.update({
             status: "success",
             hash: hash,
@@ -406,7 +406,7 @@ const handleConfirm = async () => {
         }
       }
     } else {
-      ;
+
       const nft_address = query.address ? query.address.toString() : ""
       const sendData = {
         owner: myAddr,
@@ -420,7 +420,7 @@ const handleConfirm = async () => {
         drawflag: "1",
       };
       await drawImage(drawParams);
-            // Step 3 draw
+      // Step 3 draw
       const txData = await dispatch("account/transaction", {
         value: sendVal.value,
         to: sendAddr.value,
