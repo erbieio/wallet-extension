@@ -1,7 +1,7 @@
 
 
 import store from '@/popup/store/index'
-
+import { BroadcastChannel } from 'broadcast-channel';
 export const useBroadCast = () => {
     let broad: any =  {
         onmessage:(e: any) =>{},

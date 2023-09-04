@@ -1,6 +1,5 @@
 <template>
   <div :class="`page-box container ${pageType}`" id="page-box">
-
     <div class="container" id="container">
       <div v-if="route.meta.keepAlive">
         <router-view v-slot="{ Component }">
@@ -66,10 +65,9 @@ export default {
       dispatch('system/setConversationid', guid())
       // Listen to the broadcast of the same source window
       const { broad } = useBroadCast()
-      broad.onmessage = async (e) => {
-        const { data }: any = e
-        const { action, id } = data
-        if (data && action) {
+      broad.onmessage = async (e: any) => {
+        const { action, id } = e
+        if (e && action) {
           // If the same-origin window updates the account
           if (action == 'wromHoles-update' && id != state.system.conversationId) {
             asyncStoreFromLocal()
