@@ -171,8 +171,61 @@ export default defineComponent({
       return Promise.resolve(data);
     };
 
-    // Get user NFT
-    const getNftList = async (params: any) => {
+    // // Get user NFT
+    // const getNftList = async (params: any) => {
+    //   // Get user NFT Gets the NFT list of the current account
+    //   try {
+    //     const { nfts, total }: any = await getOwnerNftList(params);
+    //     const nftaddrs = nfts.map((item: any) => item.address);
+    //     const drawList = await getDrawInfoByNftaddrs({
+    //       nftaddrs: JSON.stringify(nftaddrs),
+    //     });
+    //     const darwedList =
+    //       drawList.data && drawList.data.length
+    //         ? drawList.data.filter((item: any) => {
+    //           if(item.drawed && item.drawfee) {
+    //             return item
+    //           }
+    //         }).map(item => item.nft_address.toLowerCase())
+    //         : [];
+    //     // @ts-ignore
+    //     if (nfts && nfts.length) {
+    //       nfts.forEach((item: any) => {
+    //         try {
+    //           // three category nft
+    //           // 1: normal  value = 0
+    //           // 2: ai drawed value = 1
+    //           // 3: ai not draw value = 2
+    //           const pa = JSON.parse(web3.utils.toUtf8(item.meta_url));
+    //           if (darwedList.includes(item.address)) {
+    //             item.category = 1;
+    //           } else {
+    //             if (pa.meta_url) {
+    //               item.category = 0;
+    //             } else {
+    //               item.category = 2;
+    //             }
+    //           }
+    //           item.meta_url = pa.meta_url;
+    //           item.prompt = pa.meta_url;
+    //           item.randomNumber = pa.randomNumber;
+    //           item.info = JSON.stringify(pa);
+    //         } catch (err) {
+    //           console.error(err);
+    //           item.info = {};
+    //         }
+    //       });
+    //       // @ts-ignore
+    //       pageData.nftList.push(...nfts);
+    //     }
+    //     return Promise.resolve(nfts);
+    //   } catch (err) {
+    //   } finally {
+    //     loadNft.value = false;
+    //   }
+    // };
+        // Get user NFT
+        const getNftList = async (params: any) => {
       // Get user NFT Gets the NFT list of the current account
       try {
         const { nfts, total }: any = await getOwnerNftList(params);
@@ -180,13 +233,18 @@ export default defineComponent({
         const drawList = await getDrawInfoByNftaddrs({
           nftaddrs: JSON.stringify(nftaddrs),
         });
+        const nowTime = new Date().getTime()
         const darwedList =
           drawList.data && drawList.data.length
-            ? drawList.data.filter((item: any) => {
-              if(item.drawed && item.drawfee) {
-                return item
+            ? drawList.data.map((item: any) => {
+              const { drawtime } = item;
+              const isOverTime = (nowTime - (drawtime * 1000)) < 600000 ? false : true
+              return {
+                ...item,
+                // null | drawing | drawed
+                progress: isOverTime
               }
-            }).map(item => item.nft_address.toLowerCase())
+            })
             : [];
         // @ts-ignore
         if (nfts && nfts.length) {
@@ -196,9 +254,19 @@ export default defineComponent({
               // 1: normal  value = 0
               // 2: ai drawed value = 1
               // 3: ai not draw value = 2
+              // 4: ai is drawing value = 4
               const pa = JSON.parse(web3.utils.toUtf8(item.meta_url));
-              if (darwedList.includes(item.address)) {
-                item.category = 1;
+              const current = darwedList.find(child => item.address.toUpperCase() == child.nft_address.toUpperCase())
+              if (current) {
+                if(current.drawfee && current.drawed) {
+                  item.category = 1;
+                } else {
+                  if(!current.progress && current.drawtime) {
+                    item.category = 4;
+                  } else {
+                    item.category = 2;
+                  }
+                }
               } else {
                 if (pa.meta_url) {
                   item.category = 0;
@@ -206,15 +274,17 @@ export default defineComponent({
                   item.category = 2;
                 }
               }
+              item.progress = current && current.progress || '';
               item.meta_url = pa.meta_url;
               item.prompt = pa.meta_url;
               item.randomNumber = pa.randomNumber;
               item.info = JSON.stringify(pa);
             } catch (err) {
-              console.error(err);
+              console.error('-------------err', err);
               item.info = {};
             }
           });
+          console.warn('nfts', nfts)
           // @ts-ignore
           pageData.nftList.push(...nfts);
         }

@@ -66,7 +66,7 @@
           </van-popover>
         </div>
         <div class="form-item">
-          <van-switch v-model="checked" size="20" :disabled="readonlySwitch" />
+          <van-switch v-model="checked" size="20" :disabled="readonlySwitch" @change="handleChange" />
         </div>
 
         <div v-if="checked">
@@ -138,7 +138,7 @@ import {
   Popover as VanPopover,
   Switch as VanSwitch,
 } from "vant";
-import { onMounted, ref, Ref,watch } from "vue";
+import { onMounted, ref, Ref,watch, computed } from "vue";
 import BigNumber from "bignumber.js";
 import { useI18n } from "vue-i18n";
 import {
@@ -158,7 +158,7 @@ import { useTradeConfirm } from "@/popup/plugins/tradeConfirmationsModal";
 import { TradeStatus } from "@/popup/plugins/tradeConfirmationsModal/tradeConfirm";
 import { useToast } from "@/popup/plugins/toast";
 import { useRouter, useRoute } from "vue-router";
-import { getGasFee } from "@/popup/store/modules/account";
+import { getGasFee, getProvider } from "@/popup/store/modules/account";
 
 const { $toast } = useToast();
 const { $tradeConfirm } = useTradeConfirm();
@@ -170,7 +170,6 @@ const showWord = ref(false);
 const emailErr = ref(false);
 const wordErr = ref(false);
 const royaltyErr = ref(false);
-const showPopover3 = ref(false);
 const route = useRoute();
 const onSubmit = async () => {
   console.warn('onSubmit')
@@ -526,6 +525,20 @@ onMounted(async () => {
     emailAddr.value = resEmail.data;
   }
 });
+
+const accountInfo = computed(() => store.state.account.accountInfo)
+const handleChange = async(e) => {
+  if(e) {
+    const provider = await getProvider()
+    const balance = await provider.getBalance(accountInfo.value.address)
+    const am = ethers.utils.formatEther(balance);
+    const minVal = sendVal.value + 1
+    if(new BigNumber(am).lt(minVal)) {
+      $toast.warn(t('common.ispoor'))
+      checked.value = false
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .ai-page {

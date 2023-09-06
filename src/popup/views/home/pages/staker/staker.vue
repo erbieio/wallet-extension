@@ -275,11 +275,21 @@ const updateAddrInitData = async () => {
 const onSubmitAddNumber = () => {
 
 }
+
 const handleAddBlur = () => {
     if (new BigNumber(addNumber.value).gt(sliderMaxNum.value)) {
         addNumber.value = Number(sliderMaxNum.value)
+        value2.value = Number(sliderMaxNum.value)
+        return
     }
+    if(new BigNumber(addNumber.value).lt(0)){
+        value2.value = 0;
+        addNumber.value = 0;
+        return
+    }
+    value2.value = Number(addNumber.value);
 }
+
 
 const handleSliderChange = (e) => {
     addNumber.value = e

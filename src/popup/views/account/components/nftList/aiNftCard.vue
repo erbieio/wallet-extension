@@ -1,7 +1,7 @@
 <template>
-  <div @click="toDetail" :class="`nft-card    ${layoutType == 'list' ? ' flex between' : ''
+  <div @click="toDetail" :class="`nft-card ${layoutType == 'list' ? ' flex between' : ''
     } ${layoutType} pb-14`">
-    <div :class="`info clickActive  ${layoutType == 'list' ? 'flex between' : ''}`">
+    <div :class="`info ${layoutType == 'list' ? 'flex between' : 'clickActive'}`">
       <div class="icon flex center">
         <van-image :src="data.meta_url" fit="cover" v-if="data.meta_url" />
         <div :class="`nft-ai ${data.category == 2 ? 'fail' : 'success'}`" v-else>
@@ -21,6 +21,9 @@
         <!-- <div class="name">{{ (data.info.name) }}</div> -->
         <div class="add lh-14 h-14">{{ addressMask(data.address) }}</div>
         <div class="draw-btn" v-if="data.category == 2" @click.stop="toDraw">
+          {{ t("generateNFT.AIDrawing2") }}
+        </div>
+        <div class="draw-btn gary" v-if="data.category == 4">
           {{ t("generateNFT.AIDrawing2") }}
         </div>
       </div>
@@ -307,6 +310,10 @@ export default defineComponent({
   color: #fff;
   background: #9f54ba;
   border-radius: 12px;
+  &.gary {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 }
 
 @media screen and (min-width: 756px) {

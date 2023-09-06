@@ -252,24 +252,13 @@ export default {
         const sendList = JSON.parse(sessionStorage.getItem("sendSnftList"));
         const list = []
         for  (let item of sendList) {
-              let { MergeLevel, nft_address } = item
-              switch(MergeLevel){
-                case 0:
-                  break;
-                case 1:
-                nft_address = nft_address.substr(0,41)
-                  break;
-                case 2:
-                nft_address = nft_address.substr(0,40)
-                  break;
-              }
-              list.push(nft_address)
+              let { nft_address } = item
+              list.push(nft_address.replaceAll('m', ''))
             }
         tx.value = {
           from: accountInfo.value.address,
           to:toAddress.value,
           nft_address: list,
-
         }
         showSendModal.value = true
       } catch (err) {
@@ -476,20 +465,10 @@ export default {
           const receiptList = []
           try {
             for await (let item of sendList) {
-              let { MergeLevel, nft_address } = item
-              switch(MergeLevel){
-                case 0:
-                  break;
-                case 1:
-                nft_address = nft_address.substr(0,41)
-                  break;
-                case 2:
-                nft_address = nft_address.substr(0,40)
-                  break;
-              }
+              let { nft_address } = item
               const tx = {
                 to: toAddress.value,
-                nft_address,
+                nft_address: nft_address.replaceAll('m', '')
               };
               const txData = await dispatch("nft/send", tx);
               

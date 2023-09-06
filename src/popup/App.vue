@@ -69,6 +69,7 @@ export default {
         const { action, id } = e
         if (e && action) {
           // If the same-origin window updates the account
+          
           if (action == 'wromHoles-update' && id != state.system.conversationId) {
             asyncStoreFromLocal()
           }
