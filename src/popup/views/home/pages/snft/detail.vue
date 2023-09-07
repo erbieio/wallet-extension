@@ -71,18 +71,8 @@
           </div>
           <div class="btn-txt text-center">{{ t("sendSNFT.convert") }}</div>
         </div>
-        <!-- <div class="btn" v-if="!chooseSnftData.exchange" @click="toScan(chooseSnftData.nft_address, '/SNFTDetails')">
-          <div class="flex center">
-            <div class="icon-in flex center">
-              <i class="iconfont icon-network"></i>
-            </div>
-          </div>
-          <div class="btn-txt text-center">{{ t("common.viewInBrowser") }}</div>
-        </div> -->
       </div>
     </div>
-
-
   </div>
   <!-- Transfer Erb -->
   <TransferNFTModal :selectNumber="selectText" :selectName="chooseName" :selectTotal="totalAmount" :selectList="selectList" type="1" :ratio="ratio" v-model="showModal" @confirm="handleConfirmConvert" @fail="reLoading" />
@@ -417,7 +407,6 @@ export default {
     const hasChooseNum = computed(() => {
       let total = 0;
       if (pageData.data.children) {
-        const data = pageData.data.children[swiperIdx.value];
         return mySnfts.list.filter(item => item.ownaddr.toUpperCase() == accountInfo.value.address.toUpperCase()).length
       }
       return total;
@@ -425,18 +414,25 @@ export default {
 
     // Amount of data currently selected
     const chooseNum = computed(() => {
+      console.log('---', pageData.data, swiperIdx.value)
+      const current = pageData.data.children && pageData.data.children[swiperIdx.value || 0];
+      if (current && current.mergelevel == 1 && current.selectFlag) {
+        return current.mergenumber;
+      }
+      if(current && current.mergelevel == 1 && !current.selectFlag) {
+        return 0;
+      }
       return mySnfts.list.filter((item) => item.select).length;
     });
     // Currently selected fragment name
-    const chooseName = computed(() => {
-      return chooseSnftData.value.categories;
-    });
+    const chooseName = computed(() => chooseSnftData.value.categories);
 
     // Currently selected snft
     const chooseSnftData = computed(
       () => {
+        const idx = swiperIdx.value 
         if (pageData.data.children) {
-          return pageData.data.children[swiperIdx.value]
+          return pageData.data.children[idx]
         }
         return {
           nft_address: "",
@@ -491,19 +487,6 @@ export default {
       }
     })
 
-
-
-    // const getClass = (item: any) => {
-    //   const { disabled, MergeLevel } = item
-    //   if(disabled) {
-    //     return 'gary'
-    //   }
-    //   if(!disabled && MergeLevel){
-    //     return 'shining'
-    //   }
-    //   return ''
-
-    // }
     const getTipText = (item: any) => {
       const { isLight, mergelevel, exchange } = item
       if (exchange) {
@@ -559,20 +542,6 @@ export default {
 
           const { nft_address, mergelevel, mergenumber } = item
           const nftAddr = nft_address.replaceAll('m', '')
-          // switch (mergelevel) {
-          //   case 0:
-          //     nftAddr = nft_address
-          //     break;
-          //   case 1:
-          //     nftAddr = nft_address.replace('m', '')
-          //     break;
-          //   case 2:
-          //     nftAddr = nft_address.replace('mm', '')
-          //     break;
-          //   case 3:
-          //     nftAddr = nft_address.replace('mmm', '')
-          //     break;
-          // }
           const data3 = {
             type: 6,
             nft_address: nftAddr,
@@ -634,25 +603,14 @@ export default {
       hasMyConvertSnft,
       loadImg,
       handleConfirmConvert,
-      // handletoBrowser,
-      // handletoExchange,
       getTipText,
       totalNotConvert,
       handleSelectSingleSnft,
-      // selectSingleSnft,
-      // imgGary,
-      // imgGarySmall,
       showBtn,
-      // hasDisabled,
-      // handleSuccess,
-      // showStakingModal,
-      // selectStakingList,
-      // stakingTotalAmount,
       t,
       to,
       hancleClick,
       selectSnft,
-      // chooseData,
       totalAmount,
       reLoading,
       onChange,
@@ -660,9 +618,7 @@ export default {
       swipe,
       chooseNum,
       chooseName,
-      // chooseAddress,
       showImg,
-      // disabled,
       toScan,
       toSend,
       showModal,
