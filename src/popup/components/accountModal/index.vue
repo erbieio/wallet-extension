@@ -10,15 +10,15 @@
           {{ t("account.importaccount") }}
         </div>
         <div v-for="(item, index) in importList" :key="item.value" :data-selected="accountInfo.address.toUpperCase() == item.address.toUpperCase()
-            ? true
-            : false
-          " :class="` clickActive van-hairline--bottom`" @click="handleAccountFun2(item, index)">
+          ? true
+          : false
+          " :class="`clickActive border-bottom`" @click="handleAccountFun2(item, index)">
           <div class="flex account-card" :title="item.address">
             <div class="flex center select-box">
               <i :class="`iconfont ${item.address.toUpperCase() ==
-                  accountInfo.address.toUpperCase()
-                  ? 'icon-danxuan'
-                  : 'icon-danxuan1'
+                accountInfo.address.toUpperCase()
+                ? 'icon-danxuan'
+                : 'icon-danxuan1'
                 } `"></i>
             </div>
             <div class="account-icon flex center">
@@ -36,8 +36,8 @@
                   <div class="flex" v-if="popupType === 'Popup'">
                     <div :class="`connectStatus pl-6 pr-6 ${handleHasConnect(item.address) ? 'active' : 'disConnect'
                       } flex center`" :title="handleHasConnect(item.address)
-      ? t('common.isConnect')
-      : t('common.ununited')
+    ? t('common.isConnect')
+    : t('common.ununited')
     "></div>
                     <div class="connectTo" @click.stop="handleConnectTo(item.address)" :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', { size: activeTab.origin }) : t('common.disconnectToSize', { size: activeTab.origin })}`">
                       {{
@@ -63,15 +63,15 @@
           {{ t("account.createaccount") }}
         </div>
         <div v-for="(item, index) in defaultlist" :key="item.value" :data-selected="accountInfo.address.toUpperCase() == item.address.toUpperCase()
-            ? true
-            : false
-          " :class="` clickActive van-hairline--bottom`" @click="handleAccountFun(item, index)">
+          ? true
+          : false
+          " :class="` clickActive border-bottom`" @click="handleAccountFun(item, index)">
           <div class="flex account-card" :title="item.address">
             <div class="flex center select-box">
               <i :class="`iconfont ${item.address.toUpperCase() ==
-                  accountInfo.address.toUpperCase()
-                  ? 'icon-danxuan'
-                  : 'icon-danxuan1'
+                accountInfo.address.toUpperCase()
+                ? 'icon-danxuan'
+                : 'icon-danxuan1'
                 } `"></i>
             </div>
             <div class="account-icon flex center">
@@ -89,8 +89,8 @@
                   <div class="flex" v-if="popupType === 'Popup'">
                     <div :class="`connectStatus pl-6 pr-6 ${handleHasConnect(item.address) ? 'active' : 'disConnect'
                       } flex center`" :title="handleHasConnect(item.address)
-      ? t('common.isConnect')
-      : t('common.ununited')
+    ? t('common.isConnect')
+    : t('common.ununited')
     "></div>
                     <div class="connectTo" @click.stop="handleConnectTo(item.address)" :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', { size: activeTab.origin }) : t('common.disconnectToSize', { size: activeTab.origin })}`">
                       {{
@@ -451,6 +451,9 @@ function getHostName(url = "") {
 }
 </script>
 <style lang="scss" scoped>
+.border-bottom {
+  border-bottom: 1px solid #eee;
+}
 .name-box {
   max-width: 120px;
 }

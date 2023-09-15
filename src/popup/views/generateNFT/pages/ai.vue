@@ -55,7 +55,7 @@
         <div class="label mt-16 mb-8">
           {{ t("generateNFT.creativeMode") }}
           <van-popover v-model:show="showSwitch" theme="dark" placement="right">
-            <p class="pl-10 pr-10">{{ t("generateNFT.aiDrawTip") }}</p>
+            <p class="pl-10 pr-10">{{ t("generateNFT.aiDrawTip",{money: sendVal}) }}</p>
             <template #reference>
               <van-icon
                 name="question hover"
@@ -146,11 +146,10 @@ import {
   drawImage,
   getEmailByUser,
   DrawImageParams,
-getPaintFee,
+  getPaintFee,
 } from "@/popup/http/modules/nft";
 import CommonModal from "@/popup/components/commonModal/index.vue";
 import CreateModal from "../components/createModal.vue";
-import { getWallet } from "@/popup/store/modules/account";
 import { useStore } from "vuex";
 import { ethers } from "ethers";
 import { web3 } from "@/popup/utils/web3";
@@ -159,6 +158,7 @@ import { TradeStatus } from "@/popup/plugins/tradeConfirmationsModal/tradeConfir
 import { useToast } from "@/popup/plugins/toast";
 import { useRouter, useRoute } from "vue-router";
 import { getGasFee, getProvider } from "@/popup/store/modules/account";
+
 
 const { $toast } = useToast();
 const { $tradeConfirm } = useTradeConfirm();
@@ -172,7 +172,6 @@ const wordErr = ref(false);
 const royaltyErr = ref(false);
 const route = useRoute();
 const onSubmit = async () => {
-  console.warn('onSubmit')
   if (checked.value && RegUrl.test(promptWord.value)) {
     $toast.warn(t("generateNFT.normalNftTip"));
     return;
@@ -248,6 +247,7 @@ const isModif = ref(query.address ? true : false);
 const royalty: Ref<number | string> = ref(
   query.royalty_ratio ? Number(query.royalty_ratio) / 100 : ""
 );
+const sensitiveWords = computed(() => store.state.configuration.setting.sensitiveWords)
 
 const showGenerateModal = ref(false);
 
@@ -468,15 +468,31 @@ const validatorEmail = (v: string) => {
   emailErr.value = false;
   return true;
 };
+
 const validatorWord = (v: string) => {
   if (!v) {
     wordErr.value = true;
     return t("generateNFT.promptWordNotNull");
   }
   if (
-    (regAa.test(v) && !RegUrl.test(v)) ||
-    (!regAa.test(v) && RegUrl.test(v))
+    regAa.test(v) && !RegUrl.test(v)
   ) {
+    // Sensitive word blocking
+    const wordList = []
+    sensitiveWords.value.forEach(e => {
+      if (v.replace(/\s+/g, " ").toUpperCase().search(e.toUpperCase()) > -1) {
+        wordList.push(e)
+      }
+    })
+    if (wordList.length) {
+      wordErr.value = true;
+      return t("generateNFT.promptWordIsSensitive", { words: wordList.join(',') });
+    } else {
+      wordErr.value = false;
+      return true;
+    }
+  }
+  if (!regAa.test(v) && RegUrl.test(v)) {
     wordErr.value = false;
     return true;
   }
@@ -485,6 +501,7 @@ const validatorWord = (v: string) => {
     wordErr.value = true;
     return t("generateNFT.promptWordErr");
   }
+
   wordErr.value = false;
   return true;
 };

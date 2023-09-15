@@ -1066,6 +1066,7 @@
         "aiPromptTit":"AI 提示词",
         "title":"AI生成NFT",
         "promptTit":"提示词",
+        "promptWordIsSensitive":"您的提示词涉及到敏感词汇，请修改后再提交，\"{words}\"",
         "promptWord":"提示词/SourceUrl",
         "promptTip1":"使用人工智能:输入你想要描绘的提示或描述，选择人工智能模式，并支付一定的ERB费用。AI将专门为您创建NFT内容并将其发送到您的电子邮件。",
         "promptTip2":"使用URL:输入现有NFT内容的URL，这些内容可以从OpenSea等可以读取图像信息的平台上获取。",

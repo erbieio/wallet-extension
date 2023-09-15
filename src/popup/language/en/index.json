@@ -404,6 +404,7 @@
 		"promptTit":"Prompts Word",
 		"aiPromptTit":"AI Prompts Word",
 		"promptWord":"Prompts Word / Image source URL",
+		"promptWordIsSensitive":"Your prompt word involves sensitive words, please modify it before submitting.\"{words}\"",
 		"promptTip1":"By AI: Input the prompt or description you want to depict, select the AI mode, and pay a certain ERB fee. AI will create the NFT content specifically for you and send it to your email.",
 		"promptTip2":"By URL: Input the URL of the existing NFT content, which can be sourced from platforms like OpenSea that can read image information.",
 		"promptTip":"You can mint chain-layer NFTs in two ways:",
