@@ -396,6 +396,7 @@
 		"categorypopover": "Select Category~"
 	},
 	"generateNFT": {
+		"repeatImgUrl":"This URL has been cast, do not repeat the casting",
 		"noPic":"The creation",
 		"noPic2":"has failed",
 		"okPic":"Check your",

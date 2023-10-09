@@ -89,8 +89,6 @@ import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { regPassword1 } from "@/popup/enum/regexp";
 import WormholesTransition from '@/popup/components/wromTransition/index.vue'
-import localforage from 'localforage';
-import { VUE_APP_TERMSOFUSE, VUE_APP_PRIVACYNOTICE } from '@/popup/enum/env'
 export default {
   name: "newwallet",
   components: {
@@ -116,12 +114,14 @@ export default {
     const choice: Ref<boolean> = ref(false);
     const checked: Ref<boolean> = ref(false);
     const checked1: Ref<boolean> = ref(true);
+    const pw1Error = ref(false);
+    const pw2Error = ref(false);
     const btnDisabled = computed(() => {
       return false;
     });
     const onSubmit = async (value: object) => {
       // Verify that passwords are consistent
-      if (password.value == password2.value) {
+      if (password.value === password2.value) {
         loading.value = true;
         // Store password
         try {
@@ -175,8 +175,7 @@ export default {
         Toast(t("createwallet.notmatch"));
       }
     };
-    const pw1Error = ref(false);
-    const pw2Error = ref(false);
+
     const asynPwd = (val: string) => {
       pw1Error.value = false;
       if (!val) {
@@ -209,7 +208,7 @@ export default {
         pw2Error.value = true;
         return t("createAccountpage.pwdMessage");
       }
-      if (password2.value == password.value) {
+      if (password2.value === password.value) {
         return true;
       }
       pw2Error.value = true;
@@ -218,17 +217,15 @@ export default {
     const toggleMask = () => {
       choice.value ? (choice.value = false) : (choice.value = true);
     };
-    const modal1 = ref(false);
-    const modal2 = ref(false);
     const back = () => {
       router.back()
     }
 
     const routerTo = (name: any) => {
-      if (name == 'termsOfUse') {
+      if (name === 'termsOfUse') {
         window.open('https://limino.com/upload/tst.html')
       }
-      if (name == 'privacyNotice') {
+      if (name === 'privacyNotice') {
         window.open('https://limino.com/upload/pn.html')
       }
     }
@@ -251,10 +248,6 @@ export default {
       toggleMask,
       btnDisabled,
       loading,
-      modal1,
-      modal2,
-      VUE_APP_TERMSOFUSE,
-      VUE_APP_PRIVACYNOTICE
     };
   },
 };

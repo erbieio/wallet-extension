@@ -69,7 +69,6 @@ export default {
         const { action, id } = e
         if (e && action) {
           // If the same-origin window updates the account
-          
           if (action == 'wromHoles-update' && id != state.system.conversationId) {
             asyncStoreFromLocal()
           }
@@ -82,7 +81,7 @@ export default {
           document.getElementById('loading-page-box').style.display = 'none'
           document.getElementById('app').style.display = 'block'
           clearTimeout(time)
-        }, 200)
+        }, 500)
         let time2 = setTimeout(function () {
           commit("account/UPDATE_WORMHOLES_URL", {
             URL: VUE_APP_NODE_URL,
