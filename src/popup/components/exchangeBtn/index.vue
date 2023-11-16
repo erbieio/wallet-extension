@@ -20,11 +20,12 @@
         </div>
       </div>
     </Transition>
-    <Transition name="slider">
+    <GuideModal9 />
+    <!-- <Transition name="slider">
       <div v-if="active == 'b'" class="exchange-con">
         <div class="pl-20 pr-20">
           <div class="wallet-suspension hover" @mouseover="showExchange = true" @mouseout="showExchange = false" @click="toCreate">
-            <GuideModal9 />
+
             <van-icon name="plus" />
           </div>
           <Transition name="slider2">
@@ -37,7 +38,7 @@
           </Transition>
         </div>
       </div>
-    </Transition>
+    </Transition> -->
 
   </div>
 </template>

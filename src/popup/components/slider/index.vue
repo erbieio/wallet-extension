@@ -126,7 +126,7 @@
               </div>
               <van-icon name="arrow" />
             </div>
-            <div class="setting-btn flex between center-v clickActive " @click="toGenerate">
+            <!-- <div class="setting-btn flex between center-v clickActive " @click="toGenerate">
               <div class="flex center">
                 <van-icon name="photo-o" />
                 <span>{{
@@ -134,7 +134,7 @@
                 }}</span>
               </div>
               <van-icon name="arrow" />
-            </div>
+            </div> -->
 
             <div :class="`setting-btn flex between center-v clickActive ${pageType}`" @click="tobrowser">
               <div class="flex center">
