@@ -166,6 +166,13 @@
               </div>
               <van-icon name="arrow" />
             </div>
+            <div :class="`setting-btn flex between center-v clickActive ${pageType}`" @click="routerTo('crossChain')">
+              <div class="flex center">
+                <i class="iconfont icon-trading1"></i>
+                <span>{{ t("sidebar.crossChainTrading") }}</span>
+              </div>
+              <van-icon name="arrow" />
+            </div>
             <div :class="`setting-btn flex between center-v clickActive ${pageType}`" @click="routerTo('settings')">
               <div class="flex center">
                 <i class="iconfont icon-shezhi"></i>

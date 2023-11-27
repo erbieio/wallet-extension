@@ -685,7 +685,9 @@
         "help": "使用帮助",
         "logoutTip": "确定登出吗？",
         "snftCreator": "SNFT创造者",
-        "generateNFT":"AI生成NFT"
+        "generateNFT":"AI生成NFT",
+        "crossChainTrading":"跨链交易"
+
     },
     "creatorSnft": {
         "totalPeriod": "作为Creator成功创建期的总和",

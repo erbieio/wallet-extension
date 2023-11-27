@@ -24,7 +24,7 @@ import { getCookies } from "../utils/jsCookie";
 import store from "@/popup/store";
 import connect from '@/popup/views/connect/route'
 import generateNFT from '@/popup/views/generateNFT/route'
-
+import crossChain from '@/popup/views/crossChain/route'
 const routes: Array<RouteRecordRaw> = [
   // Transactions
   {
@@ -213,7 +213,8 @@ const routes: Array<RouteRecordRaw> = [
   // autograph
   signPage,
   connect,
-  generateNFT
+  generateNFT,
+  crossChain
 
 ];
 

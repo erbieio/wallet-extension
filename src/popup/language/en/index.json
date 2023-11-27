@@ -718,7 +718,8 @@
 		"help": "Help Center",
 		"logoutTip": "Are you sure to cancel?",
 		"snftCreator": "SNFT Creator",
-		"generateNFT":"AI Generate NFT"
+		"generateNFT":"AI Generate NFT",
+		"crossChainTrading":"Cross-chain trading"
 	},
 	"creatorSnft": {
 		"totalPeriod": "As the sum of the successful creation period of Creator",

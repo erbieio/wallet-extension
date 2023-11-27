@@ -1,6 +1,6 @@
 
 import { httpGet,httpPost } from '../request'
-import { scanApi,snftUrl4, nftmintApi } from '@/popup/http/httpUrl'
+import { scanApi, nftmintApi } from '@/popup/http/httpUrl'
 
 
 export type ValidParams = {
@@ -19,8 +19,9 @@ export const getUsersCoefficient = (params: GetCoefParams) => {
   
 }
 
+export type ValidatorSortType = 'score desc' | 'score asc' | 'amount desc' | 'amount asc' | 'weight desc' | 'weight asc'
 export type ValidatorPageParams = {
-    order: 'score desc' | 'score asc' | 'amount desc' | 'amount asc' | 'weight desc' | 'weight asc',
+    order: ValidatorSortType,
     page: string,
     page_size: string
 }

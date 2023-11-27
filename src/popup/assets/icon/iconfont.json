@@ -6,6 +6,41 @@
   "description": "钱包2.0",
   "glyphs": [
     {
+      "icon_id": "23187819",
+      "name": "trading",
+      "font_class": "trading1",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "6403457",
+      "name": "dots",
+      "font_class": "dots",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "7213038",
+      "name": "Add",
+      "font_class": "Add",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "18170098",
+      "name": "网络,地球",
+      "font_class": "network",
+      "unicode": "e95f",
+      "unicode_decimal": 59743
+    },
+    {
+      "icon_id": "11686794",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
       "icon_id": "6150969",
       "name": "key",
       "font_class": "key",
