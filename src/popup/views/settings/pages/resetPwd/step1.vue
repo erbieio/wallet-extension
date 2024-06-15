@@ -9,7 +9,7 @@
   <div class="input-header">
     <WormTransition size="small">
       <template v-slot:icon>
-        <img class="wormicon" src="@/assets/token/logowallet.png" alt="" >
+        <img class="wormicon" src="@/assets/token/logowallet.svg" alt="" >
       </template>
     </WormTransition>
     <div class="c1">{{t('loginwithpassword.confirmPwd')}}</div>
@@ -205,18 +205,19 @@ export default {
 .error {
   :deep(.van-field__body) {
     border: 1px solid #d73a49 !important;
-    background: #fbf2f3;
+    background: #24152f;
   }
 }
 
 .content {
+  color: #ccc;
   .title {
     margin: 17px 22px;
     font-size: 12px;
   }
   .userwarning {
     height: 70px;
-    background-color: #fbf2f3;
+    background-color: #24152f;
     padding: 0 15px 0 0;
     line-height: 12px;
     font-size: 12px;
@@ -244,10 +245,10 @@ export default {
 
 <style lang="scss" scoped>
 .error-field {
-  background-color: #000 !important;
+  background-color: white !important;
 }
 :deep(.error-field) {
-  background-color: #000 !important;
+  background-color: white !important;
 }
 .create-new-password {
   .rember_me{
@@ -259,7 +260,7 @@ export default {
       justify-content: space-between;
       .rember_me_left{
         margin-left: 20px;
-        color:#000;
+        color:white;
         font-size:14px;
       }
       .rember_me_right{
@@ -271,12 +272,12 @@ export default {
     color: #B3B3B3;
   }
   .right {
-    color: #9F54BA;
+    color: white;
     text-decoration: underline;
   }
 
   .icon-yanjing1 {
-    color: #9F54BA;
+    color: white;
   }
   :deep(.van-field__label) {
     display: none;
@@ -293,7 +294,7 @@ export default {
   :deep(.van-field__body) {
     margin-bottom: 10px;
     &:hover {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
     }
   }
 }
@@ -313,6 +314,7 @@ export default {
     margin-top: 10px;
     line-height: 30px;
     font-weight: 600;
+    color: white;
   }
   .c2 {
     font-size: 12px;
@@ -404,14 +406,14 @@ export default {
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       border-radius: 7.5px;
       box-sizing: border-box;
     }
     .active {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
       span {
-        color: #9F54BA;
+        color: white;
       }
     }
     .t1 {
@@ -430,7 +432,7 @@ export default {
       background-color: #f1f3f4 !important;
     }
     .active-d {
-      border: 1px solid #000;
+      border: 1px solid white;
     }
   }
   .bourse-container-btns {
@@ -447,7 +449,7 @@ export default {
   .bourse-container-error {
     margin: 0 15px 25px 15px;
     height: 56.5px;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     border-radius: 7.5px;
     display: flex;
     align-items: center;
@@ -459,7 +461,7 @@ export default {
   }
   .t1 {
     font-size: 14px;
-    color: #9F54BA;
+    color: white;
   }
   .t3 {
     font-size: 18px;
@@ -481,11 +483,11 @@ export default {
       color: #848484;
     }
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
     .icon-yanjing1 {
-      color: #9F54BA;
+      color: white;
     }
     :deep(.van-field__label) {
       display: none;
@@ -502,7 +504,7 @@ export default {
     :deep(.van-field__body) {
       margin-bottom: 10px;
       &:hover {
-        border: 1px solid #9F54BA;
+        border: 1px solid white;
       }
     }
     .error-field {
@@ -512,11 +514,11 @@ export default {
     }
     .success-field {
       :deep(.van-field__body) {
-      border: 1px solid #9F54BA !important;
+      border: 1px solid white !important;
       }
     }
     .tool {
-      color: #9F54BA;
+      color: #8AA4FF;
     }
     .pointer {
       cursor: pointer;
@@ -531,7 +533,7 @@ export default {
 }
 .bourse-img {
   height: 135px;
-  background-color: #F8F3F9;
+  background-color: rgba(255,255,255,.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -559,7 +561,7 @@ export default {
 .bourse-container-error,
 .bourse-container-warning {
   height: 72px;
-  background: #fbf2f3;
+  background: #24152f;
   border-radius: 7.5px;
   margin-top: 15px !important;
   display: flex;

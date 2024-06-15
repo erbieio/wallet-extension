@@ -466,13 +466,13 @@ function getHostName(url = "") {
 
 .connectAddr {
   font-size: 14px;
-  color: #000;
+  color: white;
   word-break: break-all;
   word-wrap: break-word;
 }
 
 .source-tit {
-  color: #000;
+  color: white;
   font-size: 14px;
   font-weight: bold;
   text-align: left;
@@ -493,20 +493,20 @@ function getHostName(url = "") {
 
   .origin {
     width: 90%;
-    color: #000;
+    color: white;
     font-size: 13px;
   }
 }
 
 .connectTip {
-  color: #000;
+  color: white;
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
 }
 
 .connectTo {
-  color: #9F54BA;
+  color: white;
   margin-left: 5px;
 }
 
@@ -535,7 +535,7 @@ function getHostName(url = "") {
 
   i {
     font-size: 18px;
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -565,12 +565,10 @@ function getHostName(url = "") {
     height: 34px;
     box-sizing: border-box;
     border-radius: 17px;
-    border: 1px solid #9F54BA;
+    border: 1px solid white;
     cursor: pointer;
 
     &:hover {
-      background: #9F54BA;
-
       i {
         color: #fff;
       }
@@ -578,12 +576,12 @@ function getHostName(url = "") {
 
     i {
       font-size: 16px;
-      color: #9F54BA;
+      color: white;
     }
   }
 
   .text {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
   }
 }
@@ -594,12 +592,12 @@ function getHostName(url = "") {
   transition: ease 0.3s;
 
   &:hover {
-    background: #F8F3F9;
-    color: #9F54BA;
+    background: #200125;
+    color: white;
 
     .account-value,
     .account-name i {
-      color: #9F54BA;
+      color: white;
 
     }
   }
@@ -616,7 +614,7 @@ function getHostName(url = "") {
   .account-name {
     line-height: 18px;
     font-size: 12px;
-
+    color: white;
     i {
       font-size: 14px;
       color: #a9a6a6;
@@ -643,10 +641,10 @@ function getHostName(url = "") {
 }
 
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 }
 

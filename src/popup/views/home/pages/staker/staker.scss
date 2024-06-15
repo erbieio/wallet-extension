@@ -9,10 +9,11 @@ $fontColor: #848484;
     }
     .staker-card {
         .stakerAddr {
-            background: #F3F3F3;
+            background: #24152f;
             border-radius: 5px;
             cursor: pointer;
             position: relative;
+            color: white;
 
             .addr {
                 color: $fontColor;
@@ -36,7 +37,7 @@ $fontColor: #848484;
     }
 
     .add-valid-btn {
-        background: #F3F3F3;
+        background: #24152f;
         height: 54px;
         border-radius: 4px 4px 4px 4px;
         border: 1px dashed #B3B3B3;
@@ -45,8 +46,8 @@ $fontColor: #848484;
         transition: ease .3;
 
         &:hover {
-            border-color: #9F54BA;
-            color: #9F54BA;
+            border-color: white;
+            color: white;
         }
     }
 

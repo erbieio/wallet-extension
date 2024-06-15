@@ -113,23 +113,23 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
 .savebtn {
   width: 250px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   border-radius: 30px;
-  color: #9F54BA;
+  color: white;
   i {
     font-size: 12px;
   }
   &:hover {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
   }
 }
 .code {
@@ -139,7 +139,7 @@ export default defineComponent({
 .code-box {
   width: 210px;
   height: 210px;
-  border: 7px solid #000;
+  border: 7px solid white;
   padding: 1px;
 }
 </style>

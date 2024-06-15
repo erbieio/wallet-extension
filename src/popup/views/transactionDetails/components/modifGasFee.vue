@@ -303,20 +303,21 @@ export default defineComponent({
 <style lang="scss" scoped>
 .userinfo-box {
   height: 248px;
+  background: #13051E;
 }
 
 .back {
-  color: #9F54BA;
+  color: white;
   font-size: 12px;
 }
 
 .slider-box {
   &:hover {
-    border: 1px solid #9F54BA !important;
+    border: 1px solid white !important;
 
     .van-hairline--bottom {
       &:after {
-        border-color: #9F54BA;
+        border-color: white;
       }
     }
   }
@@ -324,7 +325,7 @@ export default defineComponent({
 
 .title {
   font-size: 16px;
-  color: #000;
+  color: white;
   font-weight: bold;
 }
 
@@ -358,7 +359,7 @@ export default defineComponent({
   }
 
   .text-bold {
-    color: #000;
+    color: white;
   }
 
   .amount-info {
@@ -374,7 +375,7 @@ export default defineComponent({
       line-height: 18px;
 
       &.equal {
-        color: #000;
+        color: white;
       }
     }
 
@@ -465,7 +466,7 @@ export default defineComponent({
       :deep(.van-field input) {
         text-align: center;
         background: none;
-        color: #000;
+        color: white;
         font-weight: bold;
       }
     }
@@ -474,7 +475,7 @@ export default defineComponent({
       width: 17.5px;
       height: 17.5px;
       border-radius: 50%;
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
       cursor: pointer;
 
       &.disabled {
@@ -488,7 +489,7 @@ export default defineComponent({
 
       i {
         font-size: 12px;
-        color: #9F54BA;
+        color: white;
         font-weight: bold;
       }
     }

@@ -42,10 +42,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .setting-card {
   padding: 8px 10px 8px 12px;
+  color: #ccc;
   &:hover {
-    color: #9F54BA;
+    color: white;
     .value,i {
-      color: #9F54BA !important;
+      color: white !important;
     }
   }
   .label {

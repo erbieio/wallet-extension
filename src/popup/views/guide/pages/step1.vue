@@ -22,7 +22,7 @@
                 <img class="icon" src="../imgs/black.png" />
               </template>
               <template v-slot:icon>
-                <img class="logo" src="@/assets/token/logowallet.png" />
+                <img class="logo" src="@/assets/token/logowallet.svg" />
               </template>
             </WormTransition>
           </div>
@@ -232,7 +232,7 @@ export default {
   }
 
   .el-carousel__indicator.is-active button {
-    background: #9F54BA;
+    background: white;
   }
 
   .el-carousel__indicators--outside button {
@@ -258,6 +258,8 @@ export default {
 
   .tit-big {
     font-weight: bold;
+    color: white;
+
   }
 
   .tit-small {
@@ -272,7 +274,7 @@ export default {
 
 .el-carousel .el-carousel__item {
   margin-top: 20px;
-  color: #000;
+  color: white;
   font-size: 14px;
   text-align: center;
   background-repeat: no-repeat;

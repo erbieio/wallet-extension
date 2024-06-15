@@ -88,7 +88,7 @@
               <div class="van-hairline--right h-12 mr-14 ml-14 line-box" style="width: 1px"></div>
               <div class="token-info flex center-v between pr-6 pl-6 hover" @click="handleTokenModal">
                 <div class="xuanwo flex center">
-                  <img src="@/assets/token/logowallet.png" alt />
+                  <img src="@/assets/token/logowallet.svg" />
                 </div>
                 <div class="van-ellipsis ml-6 mr-6 token-name lh-14">
                   {{ chooseToken.name }}
@@ -698,13 +698,13 @@ export default {
 
 <style lang="scss" scoped>
 .back {
-  color: #9F54BA;
+  color: white;
   font-size: 12px;
 }
 
 .title {
   font-size: 16px;
-  color: #000;
+  color: white;
   font-weight: bold;
 }
 
@@ -722,7 +722,7 @@ export default {
 }
 
 .gasfee-icon i {
-  color: #9F54BA;
+  color: white;
   font-size: 24px;
 }
 
@@ -746,7 +746,7 @@ export default {
     bottom: 95px;
 
     .box {
-      background: #fbf2f3;
+      background: #24152f;
       border-radius: 7.5px;
       font-size: 12px;
     }
@@ -788,7 +788,7 @@ export default {
       width: 17.5px;
       height: 17.5px;
       border-radius: 50%;
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
       cursor: pointer;
 
       &.disabled {
@@ -802,7 +802,7 @@ export default {
 
       i {
         font-size: 12px;
-        color: #9F54BA;
+        color: white;
         font-weight: bold;
       }
     }
@@ -812,7 +812,7 @@ export default {
     height: 35px;
     min-width: 90px;
     max-width: 140px;
-    background: #f1f3f4;
+    background: #13051E;
     border-radius: 17.5px;
 
     .xuanwo {
@@ -831,7 +831,7 @@ export default {
     }
 
     .token-name {
-      color: #000;
+      color: white;
     }
   }
 
@@ -875,7 +875,7 @@ export default {
       z-index: 1;
 
       &.active {
-        background: #9F54BA;
+        background: white;
       }
     }
 
@@ -924,24 +924,24 @@ export default {
   }
 
   .userinfo-box {
-    background: #fff;
+    background: #13051E;
   }
 
   .clearAddress {
     font-size: 16px;
-    color: #9F54BA;
+    color: white;
   }
 
   .slider-box.amount-info {
     .value {
-      color: #000;
+      color: white;
       font-size: 12px;
     }
   }
 
   .cancel {
     font-size: 11px;
-    color: #9F54BA;
+    color: white;
   }
 
   .up-down-box {
@@ -952,7 +952,7 @@ export default {
     span {
       word-break: keep-all;
 
-      color: #9F54BA;
+      color: white;
     }
 
     .line-box::after {
@@ -960,7 +960,7 @@ export default {
     }
 
     font-size: 12px;
-    color: #9F54BA;
+    color: white;
   }
 
   :deep(input) {
@@ -984,7 +984,7 @@ export default {
       line-height: 18px;
 
       &.equal {
-        color: #000;
+        color: white;
       }
     }
 
@@ -997,7 +997,7 @@ export default {
 
     // width: 66px;
     i {
-      color: #9F54BA;
+      color: white;
       font-size: 20px;
     }
   }
@@ -1014,16 +1014,16 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: #fff;
+    background: #24152f;
     border: 1px solid #B3B3B3;
     border-radius: 5px;
 
     &.error {
       border-color: #d73a49;
-      background: #fbf2f3;
+      background: #24152f;
 
       .van-cell {
-        background: #fbf2f3;
+        background: #24152f;
       }
     }
 
@@ -1061,7 +1061,7 @@ export default {
 
       &:hover {
         transition: ease 0.3s;
-        background-color: #F8F3F9;
+        background-color: rgba(255,255,255,.05);
       }
 
       .closeIcon {

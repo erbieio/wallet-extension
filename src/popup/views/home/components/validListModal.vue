@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="pt-10  flex center" v-show="loading">
-                    <van-loading color="#9F54BA" size="22">{{ t('wallet.loading') }}</van-loading>
+                    <van-loading color="white" size="22">{{ t('wallet.loading') }}</van-loading>
                 </div>
                 <NoData v-if="!list.length && !loading" class="pb-20" />
             </div>
@@ -241,23 +241,23 @@ const cancelClick = () => {
                 right: 0;
                 top: 0;
                 bottom: 0;
-                background: rgba($color: #000000, $alpha: 0.35);
+                background: rgba($color: white, $alpha: 0.35);
 
             }
         }
 
         &:hover {
-            background-color: #F8F3F9;
+            background-color: rgba(255,255,255,.05);
         }
 
         &.selected {
-            background: #F8F3F9;
+            background: rgba(255,255,255,.05);
 
             .info {
-                color: #9F54BA;
+                color: white;
 
                 .addr {
-                    color: #9F54BA;
+                    color: white;
                 }
             }
         }

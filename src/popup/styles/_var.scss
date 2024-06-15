@@ -1,38 +1,48 @@
 :root {
+    --van-dialog-background-color: #150520;
+    --van-tabs-nav-background-color: #150520;
+    --van-field-input-text-color: white;
+    --van-cell-group-background-color: transparent;
+    --van-cell-background-color: transparent;
     // Popup fillet
     --van-dialog-border-radius: 10px;
     // Pop up window width
     --van-dialog-width: 350px;
-    --van-button-primary-background-color:#9F54BA;
+    --van-button-primary-background-color: #150520;
     // Pop up confirmation button color
-    --van-dialog-confirm-button-text-color: #9F54BA;
+    --van-dialog-confirm-button-text-color: white;
     // Pop up button font
     --van-font-size-lg: 12px;
     // Button border color
-    --van-button-primary-border-color: #9F54BA;
+    --van-button-primary-border-color: white;
     // Button font size
     --van-button-default-font-size: 16px;
     // Button fillet
     --van-button-border-radius: 22px;
-    // Default button font color
-    --van-button-primary-background-color: #9F54BA;
     // Border color
     --van-border-color: #eeeeee;
     // Button default height
     --van-button-default-height: 44px;
     // Mask mask color
-    --van-overlay-background-color: rgba(0, 0, 0, 0.5000);
+    --van-overlay-background-color: rgba(255, 255, 255, 0.1);
     --van-danger-color: #d5384b;
-    --van-button-default-border-color: #000;
+    --van-button-default-border-color: white;
     --van-button-danger-background-color: #D73A49;
     --van-button-danger-border-color: #D73A49;
     --van-border-width-base: 1px;
-    --van-background-color:#F8F3F9;
+    --van-background-color:rgba(255,255,255,0.5);
     --van-switch-node-box-shadow: 0 3px 1px 0 rgba(#c7c5c5, .05), 0 2px 2px 0 rgba(#c7c5c5, .1), 0 3px 3px 0 rgba(#c7c5c5, .05);
     --van-switch-background-color: #b3b3b3;
-    --van-switch-on-background-color:#9F54BA;
+    --van-switch-on-background-color:white;
     --van-cell-vertical-padding: 15px;
     --van-popover-action-height: 33px;
+    --van-button-default-background-color: transparent;
+    --van-button-plain-background-color: transparent;
+    --van-button-default-color: white;
+    --van-skeleton-row-background-color: #24152f;
+    --van-skeleton-avatar-background-color: #24152f;
+    --van-popover-light-background-color: #13051E;
+    --van-popover-light-text-color: #ccc;
 }
 
 .color-error {

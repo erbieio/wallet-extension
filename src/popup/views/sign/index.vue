@@ -1,7 +1,7 @@
 <template>
   <div class="page-sign1" @keydown.enter="goOn">
     <van-sticky>
-      <NavHeader :hasRight="false" :hasLeft="false" title="LiminoWallet"></NavHeader>
+      <NavHeader :hasRight="false" :hasLeft="false" title="ErbieWallt"></NavHeader>
     </van-sticky>
     <div class="page-container">
       <div class="sign-bg flex center">
@@ -9,33 +9,31 @@
           <div class="text-center sign-bg-icon">
             <i class="iconfont icon-dianziqianmingyuedingshu201"></i>
           </div>
-          <div class="text-center sign-bg-tit">{{t('sign.signatureIdentification')}}</div>
-          <div class="text-center sign-bg-tit1">{{t('sign.confirmsignaturedata')}}</div>
+          <div class="text-center sign-bg-tit">{{ t('sign.signatureIdentification') }}</div>
+          <div class="text-center sign-bg-tit1">{{ t('sign.confirmsignaturedata') }}</div>
         </div>
       </div>
       <div class="contract-info pb-20 pt-10 pl-20 pr-20">
-        <div class="type pt-10 pb-10">{{t('sign.sign')}}</div>
+        <div class="type pt-10 pb-10">{{ t('sign.sign') }}</div>
         <div class="origin pt-10 pb-10">
           <div class="pl-10 pr-10 source flex center-v">
-            {{ t('common.source') }}<span class="flex center-v van-ellipsis"
-              ><img :src="senderData.tab.favIconUrl" alt="" />{{
-                senderData.origin
-              }}</span
-            >
+            {{ t('common.source') }}<span class="flex center-v van-ellipsis"><img :src="senderData.tab.favIconUrl" alt="" />{{
+    senderData.origin
+  }}</span>
           </div>
         </div>
       </div>
       <div class="sign-info">
-        <div class="title">{{t('sign.walletaddress')}}</div>
+        <div class="title">{{ t('sign.walletaddress') }}</div>
         <div class="value">{{ accountInfo.address }}</div>
-        <div class="title">{{t('sign.signaturedata')}}</div>
+        <div class="title">{{ t('sign.signaturedata') }}</div>
         <div :class="`value hover ${signSelect ? 'focus' : ''}`" @click="toCopy">{{ sig }}</div>
       </div>
 
       <div class="btn-box">
         <div class="container flex between ml-24 mr-24">
-          <van-button type="default" @click="cancel" plain>{{t('sign.cancel')}}</van-button>
-          <van-button type="primary" @click="goOn" :loading="loading">{{t('sign.confirm')}}</van-button>
+          <van-button type="default" @click="cancel" plain>{{ t('sign.cancel') }}</van-button>
+          <van-button type="primary" @click="goOn" :loading="loading">{{ t('sign.confirm') }}</van-button>
         </div>
       </div>
     </div>
@@ -100,17 +98,17 @@ export default {
         sig: sig,
         isAdmin: false,
         call: (str: string) => {
-          sendBackground({method:signType,response:{code:'200',data: str, sendId}})
+          sendBackground({ method: signType, response: { code: '200', data: str, sendId } })
         }
       })
     }
 
     const cancel = () => {
-      sendBackground({method:handleType.handleReject,response:{method:signType, sendId}})
+      sendBackground({ method: handleType.handleReject, response: { method: signType, sendId } })
 
     }
     const handleKeydown = (e: any) => {
-      if(e.keyCode === 13) {
+      if (e.keyCode === 13) {
         goOn()
       }
     }
@@ -144,16 +142,19 @@ export default {
 .contract-info {
   .origin {
     background: #f3f4f5;
+
     .source {
       img {
         width: 13px;
         margin-right: 5px;
       }
+
       span {
         width: 87%;
       }
     }
   }
+
   .type {
     width: auto;
     display: inline-block;
@@ -163,41 +164,51 @@ export default {
     margin-bottom: 5px;
   }
 }
+
 .sign-bg-icon {
   i {
     font-size: 30px;
   }
 }
+
 .page-sign1 {
   padding-bottom: 100px;
+
   .back {
     font-size: 18px;
   }
+
   .btn-box {
     margin-top: 30px;
+
     .van-button {
       width: 160px;
     }
   }
+
   .sign-bg {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     height: 130px;
+
     &-icon {
       font-size: 40px;
-      color: #9F54BA;
+      color: white;
     }
+
     &-tit {
       line-height: 20px;
       font-size: 15px;
       font-weight: bold;
       margin-top: 5px;
     }
+
     &-tit1 {
       font-size: 12px;
       line-height: 16px;
       margin-top: 7.5px;
     }
   }
+
   .sign-info {
     margin: 0 20px;
     padding: 10px;
@@ -206,23 +217,28 @@ export default {
     border-radius: 4px;
     overflow-y: scroll;
     background: #f3f4f5;
+
     div {
       word-break: break-all;
       font-size: 14px;
     }
+
     .title {
       line-height: 30px;
     }
+
     .value {
       line-height: 14px;
+
       // &.select {
-      //   background: #9F54BA;
+      //   background: white;
       //   color:#fff;
       // }
       &:nth-of-type(1) {
         margin-bottom: 20px;
       }
     }
+
     .value.focus {
       background: #3897f7;
       color: #fff;

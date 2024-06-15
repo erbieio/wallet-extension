@@ -112,15 +112,17 @@
     font-size: 50px;
   } */
   .loading-bg {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     height: 135px;
     .tit-big {
       line-height: 21px;
+      color: white;
+
     }
     .step {
       width: 17px;
       height: 17px;
-      background-color: #9F54BA;
+      background-color: white;
       color: #fff;
       text-align: center;
       border-radius: 50%;
@@ -128,7 +130,7 @@
     .step2 {
       width: 17px;
       height: 17px;
-      background-color: #9F54BA;
+      background-color: white;
       color: #fff;
       text-align: center;
       border-radius: 50%;
@@ -137,7 +139,7 @@
       width: 16px;
       height: 16px;
       background-color: #fff;
-      border: 1PX solid #9F54BA;
+      border: 1PX solid white;
       color: #b3b3b3;
       text-align: center;
       border-radius: 50%;
@@ -146,11 +148,11 @@
       text-align: center;
       width: 88%;
       height: 0px;
-      border-bottom: 1px dashed #9F54BA;
+      border-bottom: 1px dashed white;
     }
   
     .tit-small {
-      color: #9F54BA;
+      color: white;
     }
   }
   .dotted-box {

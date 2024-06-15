@@ -12,7 +12,7 @@
         <template v-slot:icon>
           <img
             class="iconele flex center"
-            src="@/assets/token/logowallet.png"
+            src="@/assets/token/logowallet.svg"
           />
         </template>
       </WormholesTransition>
@@ -209,7 +209,7 @@ const pageType = window.pageType;
 .creatorTip {
   color: #b3b3b3;
   .link {
-    color: #9F54BA;
+    color: white;
     text-decoration: underline;
     display: inline-block;
   }

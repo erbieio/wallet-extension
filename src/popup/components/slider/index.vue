@@ -23,7 +23,7 @@
                   </div>
                   <template #reference>
                     <div class="tag-user type1 position relative hover" @mouseover="showPopover3 = true" @mouseleave="handleMouseLeave3" v-show="creatorStatus
-                      ">
+      ">
                       <span class="user flex center" @click="toCreator">
                         <i class="iconfont icon-Add"></i>
                       </span>
@@ -43,15 +43,15 @@
                     <i18n-t tag="div" v-if="expresionClass == 'sad'" keypath="minerspledge.homeTip">
                       <template v-slot:btn>
                         <span class="gotIt" @click="toStaker">{{
-                          t("minerspledge.gotIt")
-                        }}</span>
+      t("minerspledge.gotIt")
+    }}</span>
                       </template>
                     </i18n-t>
                     <i18n-t tag="div" v-if="expresionClass == 'neutral'" keypath="minerspledge.homeTip">
                       <template v-slot:btn>
                         <span class="gotIt" @click="toStaker">{{
-                          t("minerspledge.gotIt")
-                        }}</span>
+      t("minerspledge.gotIt")
+    }}</span>
                       </template>
                     </i18n-t>
                   </div>
@@ -72,7 +72,7 @@
                   </div>
                   <template #reference>
                     <div class="tag-user type3 position relative ml-8 hover" @mouseover="showPopover2 = true" @mouseleave="handleMouseLeave2" @click="toStaker" v-show="isStaker
-                      ">
+      ">
                       <span class="user flex center">
                         <i class="iconfont icon-fangwujianzhuwugoujianbeifen"></i>
                       </span>
@@ -89,7 +89,7 @@
               <div class="flex center-v name" @click="toAccountManagement">
                 {{ accountInfo.name }}
                 <i :class="`iconfont ml-4 f-14 ${showAccount ? 'icon-shangjiantou' : 'icon-xiajiantou'
-                  }`"></i>
+      }`"></i>
               </div>
               <!-- Address, copy, QR code-->
               <div :class="`address-card flex mt-6 ${pageType === 'Tab' ? 'mt-14' : ''}`" @click="toCopy">
@@ -109,20 +109,20 @@
           <!-- Group of transaction information buttons -->
           <div class="setting-list">
             <!-- websize -->
-            <div :class="`setting-btn flex between center-v clickActive ${pageType}`" @click="toOfficiaWebsite">
+            <!-- <div :class="`setting-btn flex between center-v clickActive ${pageType}`" @click="toOfficiaWebsite">
               <div class="flex center">
                 <i class="iconfont icon-zailiulanqidakai"></i>
                 <span>{{ t("sidebar.aboutAs") }}</span>
               </div>
 
               <van-icon name="arrow" />
-            </div>
+            </div> -->
             <div :class="`setting-btn flex between center-v clickActive ${pageType}`" @click="toStaker">
               <div class="flex center">
                 <i class="iconfont icon-chuiziicon"></i>
                 {{
-                  t('validator.pageTit')
-                }}
+      t('validator.pageTit')
+    }}
               </div>
               <van-icon name="arrow" />
             </div>
@@ -180,12 +180,12 @@
           <!-- logout -->
           <div class="logout-box flex center pl-14 pr-14">
             <van-button block @click="handleLogout" class="logoutBtn">{{
-              t("sidebar.logout")
-            }}</van-button>
+      t("sidebar.logout")
+    }}</van-button>
           </div>
           <!-- version number -->
           <div class="text-center f-12 lh-16 mt-12 mb-12 version">
-            LiminoWallet V{{ version }} ({{ new Date().getFullYear() }})
+            ErbieWallet V{{ version }} ({{ new Date().getFullYear() }})
           </div>
         </div>
       </div>
@@ -246,7 +246,7 @@ import { useDialog } from "@/popup/plugins/dialog";
 import BigNumber from "bignumber.js";
 import { getWallet } from "@/popup/store/modules/account";
 import { decode } from "js-base64";
-import { VUE_APP_SCAN_URL,WALLET_DOC,OFFICIAL_WEBSITE } from '@/popup/enum/env'
+import { VUE_APP_SCAN_URL, WALLET_DOC, OFFICIAL_WEBSITE } from '@/popup/enum/env'
 export default defineComponent({
   name: "slider-menu",
   components: {
@@ -389,7 +389,7 @@ export default defineComponent({
     const toOfficiaWebsite = () => {
       window.open(OFFICIAL_WEBSITE);
     };
-    
+
 
     // Display qr code address
     const showCode = ref(false);
@@ -399,7 +399,7 @@ export default defineComponent({
 
     const { $dialog } = useDialog();
     const toHelp = () => {
-      
+
       window.open(WALLET_DOC);
     };
     // The account label pops up
@@ -585,4 +585,3 @@ export default defineComponent({
   }
 }
 </style>
-

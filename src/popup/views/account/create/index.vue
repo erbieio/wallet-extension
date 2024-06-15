@@ -50,7 +50,7 @@ export default {
       margin-bottom: 30px;
     }
     .acc-btn {
-      color: #9F54BA;
+      color: white;
       font-size: 12px;
       line-height: 50px;
     }

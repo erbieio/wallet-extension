@@ -435,10 +435,10 @@ export default {
   width: 80px;
   padding: 0 5px;
   border-radius: 9.5px;
-  border: 1PX solid #9F54BA;
+  border: 1PX solid white;
   margin-right: 12.5px;
   flex: none;
-  color: #9F54BA;
+  color: white;
 
   span {
     font-size: 12px;
@@ -451,12 +451,12 @@ export default {
 }
 
 :deep(.van-tab--active) {
-  background: #9F54BA;
+  background: white;
   color: #fff;
 }
 
 :deep(.van-tabs__wrap) {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   padding: 15px 0;
   height: auto;
   // width: 375px
@@ -474,9 +474,7 @@ export default {
   padding-right: 14px;
 }
 
-.snft-list-con {
-  //   height: 800px;
-}
+
 
 :deep(.coll-icon-tabs) {
   &.coll-list {
@@ -493,22 +491,22 @@ export default {
   .van-tab {
     width: 60px;
     height: 60px;
-    background: #9F54BA;
+    background: white;
     border: 1PX solid #e4e7e8;
     border-radius: 50%;
-    color: #9F54BA;
+    color: #ccc;
     padding: 0;
     position: relative;
 
     &.van-tab--active {
       background: #fff;
-      border: 1PX solid #9F54BA;
+      border: 1PX solid white;
       border-radius: 50%;
-      color: #9F54BA;
+      color: white;
 
       .van-tab__text .icon-num {
-        border: 1PX solid #9F54BA;
-        color: #9F54BA;
+        border: 1PX solid white;
+        color: white;
       }
     }
 
@@ -523,7 +521,7 @@ export default {
       display: block;
       height: 100%;
       width: 60px;
-
+      color: #ccc;
       .icon-num {
         min-width: 15px;
         height: 15px;
@@ -594,8 +592,6 @@ export default {
     font-size: 12px;
     height: 32px;
 
-    .name {}
-
     .hold-num {
       color: #acacac;
     }
@@ -632,9 +628,6 @@ export default {
 .coll-amount {
   font-size: 12px;
   height: 32px;
-
-  .num {}
-
   .toUsd {
     color: #acacac;
   }

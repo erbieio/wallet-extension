@@ -416,7 +416,8 @@ export default defineComponent({
     border-radius: 50%;
   }
   .tit-big {
-    color: #0287db;
+    color: white;
+
     font-weight: 600;
   }
   .paragraph {

@@ -49,7 +49,7 @@ const percentColor = computed(() => {
     return 'black'
   }
   if(per > 66) {
-    return '#9F54BA'
+    return 'white'
   }
 })
 
@@ -64,7 +64,7 @@ const handleClick = () => {
 $fontColor: #848484;
 
 .valid-card {
-  background: #f3f3f3;
+  background: #24152f;
   border-radius: 5px;
   box-sizing: border-box;
   border: 1px solid #f3f3f3;
@@ -72,10 +72,7 @@ $fontColor: #848484;
   height: 54px;
   cursor: pointer;
   &.selected {
-    border: 1px solid #9F54BA;
-  }
-  .valid-info {
-
+    border: 1px solid white;
   }
   .expresion {
     width: 16px;

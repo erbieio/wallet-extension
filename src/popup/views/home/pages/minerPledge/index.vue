@@ -7,7 +7,7 @@
         <van-field v-model="nodeValue" :placeholder="t('minerspledge.please')" />
       </div>
       <div class="flex center-v between">
-        <van-button color="#000000" class="btn" plain block @click="clickLeft">{{$t('minerspledge.cancel')}}</van-button>
+        <van-button color="white" class="btn" plain block @click="clickLeft">{{$t('minerspledge.cancel')}}</van-button>
         <van-button type="primary" class="btn" round block @click="next">{{$t('minerspledge.next')}}</van-button>
       </div>
     </div>
@@ -159,7 +159,7 @@ export default {
 .miners {
   .cancel {
     font-size: 12px;
-    color: #9F54BA;
+    color: white;
     i {
       font-size: 20px;
     }

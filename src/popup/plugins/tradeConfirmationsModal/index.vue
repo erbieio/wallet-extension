@@ -10,7 +10,7 @@
             <div class="icon">
               <div class="flex">
                 <Loading
-                  color="#9F54BA"
+                  color="white"
                   v-show="defaultData.status == 'pendding'"
                 />
                 <i
@@ -31,7 +31,7 @@
               <div class="flex">
                 <div class="flex center">
                   <Loading
-                    color="#9F54BA"
+                    color="white"
                     v-show="defaultData.status == 'approve'"
                   />
                   <i
@@ -247,7 +247,7 @@ defineExpose({
   top: 0;
   bottom: 0;
   z-index: 5002;
-  background: rgba($color: #000000, $alpha: 0.5);
+  background: rgba($color: white, $alpha: 0.1);
   transition: opacity 0.3s ease;
   .okbtn {
     min-width: 100px;
@@ -256,7 +256,7 @@ defineExpose({
     overflow: hidden;
     .tit {
       line-height: 62px;
-      background: #F8F3F9;
+      background: #13051E;
       font-size: 15px;
       font-weight: 600;
     }

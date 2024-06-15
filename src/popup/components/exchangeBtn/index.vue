@@ -222,7 +222,7 @@ export default defineComponent({
   top: 10px;
   height: 30px;
   border-radius: 5px;
-  background: #9F54BA;
+  background: white;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
 
   span {
@@ -236,7 +236,7 @@ export default defineComponent({
     position: absolute;
     bottom: 9px;
     right: -12px;
-    border-left: 8px solid #9F54BA;
+    border-left: 8px solid white;
     border-right: 8px solid transparent;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
@@ -256,14 +256,14 @@ export default defineComponent({
     width: 50px;
     height: 50px;
     border-radius: 25px;
-    background: #fff;
+    background: #24152f;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1),
       0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     position: relative;
 
     i {
       font-size: 22px;
-      color: #9F54BA;
+      color: white;
     }
   }
 
@@ -272,14 +272,14 @@ export default defineComponent({
     z-index: -1;
     min-width: 85px;
     line-height: 30px;
-    background: #fff;
+    background: #24152f;
     border-radius: 7px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1),
       0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     right: 83px;
     top: 10px;
     text-align: center;
-    color: #9F54BA;
+    color: white;
 
     &:after {
       content: " ";
@@ -304,7 +304,7 @@ export default defineComponent({
   align-items: center;
   position: relative;
   border-radius: 50%;
-  background: #9F54BA;
+  background: white;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1),
     0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 

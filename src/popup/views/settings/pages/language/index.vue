@@ -69,10 +69,10 @@ export default {
     box-sizing: border-box;
     transition: ease 0.2s;
     &:hover {
-      color: #9F54BA;
+      color: white;
     }
     &.active {
-      border: 1PX solid #9F54BA;
+      border: 1PX solid white;
     }
     .tit {
       font-size: 12px;

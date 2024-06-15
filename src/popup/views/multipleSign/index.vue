@@ -1,7 +1,7 @@
 <template>
   <div class="page-sign1">
     <van-sticky>
-      <NavHeader :hasRight="false" :hasLeft="false" title="LiminoWallt">
+      <NavHeader :hasRight="false" :hasLeft="false" title="ErbieWallt">
       </NavHeader>
     </van-sticky>
     <div class="page-container">
@@ -21,7 +21,7 @@
         <div class="value">{{ accountInfo.address }}</div>
         <div class="title">{{ t('sign.signaturedata') }}</div>
         <div class="flex center" v-if="loading">
-          <van-loading color="#9F54BA" />
+          <van-loading color="white" />
         </div>
         <div v-else :class="`value ${signSelect ? 'focus' : ''}`">
           <div class="mb-14" v-for="(item, idx) in list" :key="idx">{{ item }}</div>
@@ -134,12 +134,12 @@ export default {
   }
 
   .sign-bg {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     height: 135px;
 
     &-icon {
       font-size: 40px;
-      color: #9F54BA;
+      color: white;
     }
 
     &-tit {
@@ -171,13 +171,14 @@ export default {
 
     .title {
       line-height: 30px;
+      color: white;
     }
 
     .value {
       line-height: 14px;
 
       // &.select {
-      //   background: #9F54BA;
+      //   background: white;
       //   color:#fff;
       // }
       &:nth-of-type(1) {
@@ -200,4 +201,5 @@ export default {
       user-select: text;
     }
   }
-}</style>
+}
+</style>

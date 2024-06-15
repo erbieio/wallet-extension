@@ -517,8 +517,8 @@ export default {
       const waits = []
       const approveMessage = t("wallet.conver_approve");
       const wattingMessage = t("wallet.conver_waiting", {
-        count: `<span style='color:#9F54BA;'>${len}</span>`,
-        amount: `<span style='color:#9F54BA;'>${totalAmount.value}</span>`,
+        count: `<span style='color:white;'>${len}</span>`,
+        amount: `<span style='color:white;'>${totalAmount.value}</span>`,
         countstr: `(${selectText.value})`,
       });
 
@@ -566,8 +566,8 @@ export default {
           $tradeConfirm.update({
             status: "success",
             successMessage: t("wallet.conver_success", {
-              count: `<span style='color:#9F54BA;'>${waits.length}</span>`,
-              amount: `<span style='color:#9F54BA;'>${totalAmount.value}</span>`,
+              count: `<span style='color:white;'>${waits.length}</span>`,
+              amount: `<span style='color:white;'>${totalAmount.value}</span>`,
             }),
             successMessageType: "html",
 

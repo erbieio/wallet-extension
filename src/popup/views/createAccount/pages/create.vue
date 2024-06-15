@@ -8,7 +8,7 @@
     <div class="title">
       <WormholesTransition size="small">
         <template v-slot:icon>
-          <img class="iconele flex center" src="@/assets/token/logowallet.png" />
+          <img class="iconele flex center" src="@/assets/token/logowallet.svg" />
         </template>
       </WormholesTransition>
       <div class="tit-big text-center f-24 mt-10">
@@ -25,24 +25,24 @@
             <span>{{ t("createAccountpage.password") }}</span>
             <span>
               <i @click="toggleMask" :class="`iconfont hover ${choice ? 'icon-yanjing1' : 'icon-yanjing'
-                }`"></i>
+    }`"></i>
             </span>
           </div>
           <van-field validate-trigger="onSubmit" :class="`text ${pw1Error ? 'error' : ''}`" v-model="password" name="password" :type="`${choice ? 'text' : 'password'}`" :placeholder="$t('createAccountpage.passwordPlaceholder')" :rules="[
-            // { required: true, message:t('createAccountpage.pwdMessage') },
-            { validator: asynPwd },
-          ]" />
+    // { required: true, message:t('createAccountpage.pwdMessage') },
+    { validator: asynPwd },
+  ]" />
           <div class="text-bold f-12 mt-20 mb-10 lh-16 flex between">
             <span>{{ t("createAccountpage.confirmPassword") }}</span>
           </div>
           <van-field validate-trigger="onSubmit" v-model="password2" :class="`text ${pw2Error ? 'error' : ''}`" :type="`${choice ? 'text' : 'password'}`" name="password2" :placeholder="t('createAccountpage.confirmPassword')" :rules="[
-            //  { required: true, message:t('createAccountpage.pwdMessage') },
-            { validator: asynPwd2 },
-            {
-              validator: asynPwd3,
-              message: t('createAccountpage.inconsistentPwd'),
-            },
-          ]" />
+    //  { required: true, message:t('createAccountpage.pwdMessage') },
+    { validator: asynPwd2 },
+    {
+      validator: asynPwd3,
+      message: t('createAccountpage.inconsistentPwd'),
+    },
+  ]" />
           <!-- Privacy agreement  -->
           <div class="yinsi flex con"></div>
         </van-cell-group>
@@ -223,10 +223,10 @@ export default {
 
     const routerTo = (name: any) => {
       if (name === 'termsOfUse') {
-        window.open('https://limino.com/upload/tst.html')
+        window.open('https://wallet.erbie.io/upload/tst.html')
       }
       if (name === 'privacyNotice') {
-        window.open('https://limino.com/upload/pn.html')
+        window.open('https://wallet.erbie.io/upload/pn.html')
       }
     }
     return {
@@ -254,19 +254,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 .back {
-  color: #9F54BA;
+  color: white;
   font-size: 12px;
 }
 
 .title {
   font-size: 16px;
-  color: #000;
+  color: white;
   font-weight: bold;
+  color: white;
 }
 
 .pwd-tip {
   span {
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -277,7 +278,7 @@ export default {
 .error {
   :deep(.van-field__body) {
     border: 1px solid #d73a49 !important;
-    background: #fbf2f3;
+    background: #24152f;
   }
 }
 
@@ -292,6 +293,7 @@ export default {
   .tit-big {
     line-height: 30px;
     font-weight: 600;
+    color: white;
   }
 
   .tit-small {
@@ -306,12 +308,12 @@ export default {
   }
 
   .right {
-    color: #9F54BA;
+    color: white;
     text-decoration: underline;
   }
 
   .icon-yanjing1 {
-    color: #9F54BA;
+    color: white;
   }
 
   :deep(.van-field__label) {
@@ -337,12 +339,12 @@ export default {
     font-size: 12px;
 
     &:hover {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
     }
   }
 
   .tool {
-    color: #9F54BA;
+    color: #8AA4FF;
   }
 
   .pointer {

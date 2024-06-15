@@ -2,7 +2,7 @@
   <van-overlay :show="dislogShow" :z-index="9999" class="custom-overlay">
     <div class="miners">
         <div class="miners-header">
-          <span style="color:#000;">{{t('bourse.closeExchange')}}</span>
+          <span style="color:white;">{{t('bourse.closeExchange')}}</span>
         </div>
         <div class="miners-container flex column between">
           <div class="miners-container-item">
@@ -89,7 +89,7 @@
           </div>
           <div class="container-btn flex center column">
             <div>
-              <van-button  color="#000000" class="btn" plain @click="dislogShow = false">{{t('common.cancel')}}</van-button>
+              <van-button  color="white" class="btn" plain @click="dislogShow = false">{{t('common.cancel')}}</van-button>
               <van-button style="width: 113px;" color="#D73A49" type="primary"  round @click="submit">{{t('common.confirm')}}</van-button>
           </div>
         </div>
@@ -179,7 +179,7 @@ export default {
       line-height: 62px;
       text-align: center;
       font-weight: bold;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       font-size: 14px;
       color: #B3B3B3;
     }
@@ -239,7 +239,7 @@ export default {
         }
         .ipt-text-b {
           margin: 5px 0 9px 0;
-          color: #000;
+          color: white;
           font-size: 12px;
           font-weight: bold;
         }
@@ -249,7 +249,7 @@ export default {
           font-weight: bold;
           span {
             font-weight: 400;
-            color: #000000;
+            color: white;
           }
           .ipt-server-i {
             width: 133px;
@@ -259,7 +259,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #F8F3F9;
+            background: rgba(255,255,255,.05);
             border-radius: 7px 7px 7px 7px;
             &:first-child {
               padding: 0 18px;
@@ -267,8 +267,8 @@ export default {
           }
           .ipt-server-i-active {
             color: #0287db;
-            background: #F8F3F9;
-            border: 1px solid #9F54BA;
+            background: rgba(255,255,255,.05);
+            border: 1px solid white;
             span {
               color: #0287db;
             }
@@ -280,7 +280,7 @@ export default {
           font-weight: bold;
           span {
             &:first-child {
-              color: #000000;
+              color: white;
             }
             &:last-child {
               color: #0287db;
@@ -347,7 +347,7 @@ export default {
   border: 1px solid #E4E7E8;
 }
 .c1 {
-  color: #8F8F8F;
+  color: white;
 }
 .exchange {
   margin-top: 7px;
@@ -367,7 +367,7 @@ export default {
   padding: 40px 15px 10px 15px;
   line-height: 20px;
   font-size: 12px;
-  color: #9F54BA;
+  color: white;
 }
 </style>
 <style>

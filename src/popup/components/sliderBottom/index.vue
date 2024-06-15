@@ -77,7 +77,7 @@ import { watch, ref, onMounted, onUnmounted } from "vue";
     border-radius: 5px;
    }
   a {
-    color: #9F54BA;
+    color: white;
   }
 }
 </style>

@@ -44,7 +44,7 @@
                   clickAccountIdx != null &&
                   clickAccountIdx == index
                 "
-                color="#9F54BA"
+                color="white"
               />
             </div> -->
         </div>
@@ -89,7 +89,7 @@
                   clickAccountIdx != null &&
                   clickAccountIdx == index
                 "
-                color="#9F54BA"
+                color="white"
               />
             </div> -->
         </div>
@@ -290,12 +290,10 @@ export default {
     height: 34px;
     box-sizing: border-box;
     border-radius: 17px;
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
     cursor: pointer;
 
     &:hover {
-      background: #9F54BA;
-
       i {
         color: #fff;
       }
@@ -303,12 +301,12 @@ export default {
 
     i {
       font-size: 16px;
-      color: #9F54BA;
+      color: white;
     }
   }
 
   .text {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
   }
 }
@@ -323,17 +321,17 @@ export default {
 
     i {
       font-size: 18px;
-      color: #9F54BA;
+      color: white;
     }
   }
 
   &:hover {
-    background: #F8F3F9;
-    color: #9F54BA;
+    background: #200125;
+    color: white;
 
     .account-value,
     .account-name i {
-      color: #9F54BA;
+      color: white;
 
     }
 
@@ -351,6 +349,7 @@ export default {
   .account-name {
     line-height: 18px;
     font-size: 12px;
+    color: white;
 
     i {
       font-size: 14px;
@@ -380,7 +379,7 @@ export default {
 // .title {
 //   color: #b3b3b3;
 //   line-height: 62px;
-//   background: #F8F3F9;
+//   background: rgba(255,255,255,.05);
 // }
 .account-list {
   // max-height: 400px;

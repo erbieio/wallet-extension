@@ -128,10 +128,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
@@ -165,7 +165,7 @@ export default defineComponent({
   border-radius: 5px;
   transition: ease 0.3s;
   &:hover {
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
   }
 }
 .language-card {
@@ -173,13 +173,13 @@ export default defineComponent({
   height: 52px;
   transition: ease 0.3s;
   &:hover {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
   }
   .net-status {
     width: 20px;
     color: #ccc;
     i {
-      color: #9F54BA;
+      color: white;
       font-size: 16px;
     }
     i.icon-xuanzhong1 {
@@ -190,6 +190,7 @@ export default defineComponent({
     line-height: 52px;
     margin-left: 13px;
     font-size: 13px;
+    color: white;
   }
   .net-icon {
     margin-left: 18px;

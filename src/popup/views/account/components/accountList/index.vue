@@ -31,6 +31,7 @@
   </div>
 </template>
 <script lang="ts">
+// @ts-nocheck
 import NoData from '@/popup/components/noData/index.vue';
 import { defineComponent, SetupContext, computed } from "vue";
 import { IndexBar, IndexAnchor } from "vant";
@@ -73,8 +74,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 
 :deep(.van-index-anchor) {
-    background: #f1f3f4;
-    color: #aeaeae;
+    background: #24152f;
+    color: #eee;
     line-height: 30px;
   }
   :deep(.van-index-bar__sidebar){
@@ -90,7 +91,7 @@ export default defineComponent({
       padding: 0;
     }
   :deep(.van-index-bar__index--active){
-    background: #9F54BA;
+    background: white;
     color: #fff;
     border-radius: 9px;
   }
@@ -101,10 +102,10 @@ export default defineComponent({
     transition: ease 0.3s;
     border-bottom: 1PX solid rgba($color: #B3B3B3, $alpha: 0.5);
     &:hover {
-      background: #F8F3F9;
-      color:#9F54BA;
+      background: rgba(255,255,255,.05);
+      color:white;
       .info .address {
-        color:#9F54BA;
+        color:white;
       }
     }
     .icon {

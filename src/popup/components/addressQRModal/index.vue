@@ -41,7 +41,6 @@ import useClipboard from 'vue-clipboard3'
 import { useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '@/popup/plugins/toast'
-
 export default defineComponent({
   name: 'qrcode-modal',
   components: {
@@ -132,26 +131,24 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
 .savebtn {
   width: 250px;
-  background: #f1f3f4;
+  background: #24152f;
+  color:white;
   border-radius: 30px;
   box-sizing: border-box;
   font-size: 12px;
   i {
     font-size: 12px;
   }
-  &:hover {
-    background: #F8F3F9;
-    color: #666;
-  }
+
 }
 .code {
   width: 230px !important;
@@ -160,7 +157,7 @@ export default defineComponent({
 .code-box {
   width: 250px;
   height: 250px;
-  border: 7px solid #000;
+  border: 7px solid white;
   padding: 1px;
 }
 .btn-group {
@@ -173,21 +170,21 @@ export default defineComponent({
     height: 34px;
     box-sizing: border-box;
     border-radius: 17px;
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
     cursor: pointer;
     &:hover {
-      background: #9F54BA;
+    /* color: #24152f; */
       i {
         color: #fff;
       }
     }
     i {
       font-size: 18px;
-      color: #9F54BA;
+      color: white;
     }
   }
   .text {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
   }
 }

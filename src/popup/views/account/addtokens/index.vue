@@ -135,10 +135,11 @@ export default {
     .title {
       width: 345px;
       height: 56px;
-      background-color: #F8F3F9;
+      background-color: rgba(255,255,255,.05);
       margin: 0 auto;
       font-size: 14px;
       align-items: center;
+      color: white;
       .warning-icon {
         margin-left: 15px;
       }

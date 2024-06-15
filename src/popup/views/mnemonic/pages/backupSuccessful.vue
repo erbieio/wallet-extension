@@ -101,9 +101,11 @@ export default {
   color: #3eae58;
 }
 .mnemonic-bg {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   .tit-big {
     line-height: 21px;
+    color: white;
+
   }
   .tit-small {
     width: 290px;

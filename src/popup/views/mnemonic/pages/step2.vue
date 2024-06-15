@@ -156,7 +156,7 @@ export default {
    
           .van-field__body{
         border: 1px solid #D73A49;
-        background: #FBF2F3;
+        background: #24152f;
       }
         }
       
@@ -166,23 +166,25 @@ export default {
     }
   }
   .tip-card {
-    border: 1px solid #9F54BA;
+    border: 1px solid white;
     .icon {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
       border-radius: 50%;
     }
   }
 .mnemonic-bg {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   .tit-big {
     line-height: 21px;
+    color: white;
+
   }
   .tit-small {
     width: 290px;
     color: rgba(132, 132, 132, 1);
   }
   .color-p {
-    color: #9F54BA;
+    color: white;
   }
 }
 .icon-box {
@@ -208,12 +210,12 @@ export default {
     width: 90px;
     height: 23px;
     line-height: 23px !important;
-    background: #F8F3F9;
-    color: #9F54BA;
+    background: rgba(255,255,255,.05);
+    color: white;
     position: relative;
     border-radius: 12px;
     &:hover {
-      background: #9F54BA;
+      background: white;
       color: #fff;
 
     }
@@ -233,7 +235,7 @@ export default {
     }
     &:after,
     .icon:after {
-      border-color: #9F54BA;
+      border-color: white;
       border-radius: 45px;
     }
   }

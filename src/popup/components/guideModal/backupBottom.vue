@@ -87,15 +87,18 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .backup-box {
-  background: #F8F3F9;
+  background: #13051E;
   padding-bottom: 24px;
 }
 .title {
   line-height: 20px;
   font-size: 15px;
+  color: white;
 }
 .small-tit {
   font-size: 15px;
+  color: white;
+
 }
 .tip {
   color: #848484;

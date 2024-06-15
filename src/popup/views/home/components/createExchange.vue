@@ -266,7 +266,7 @@ export default defineComponent({
 
 const gradientColor = {
       '0%': '#d0e1ee',
-      '100%': '#9F54BA',
+      '100%': 'white',
     };
     return {
       gradientColor,
@@ -294,7 +294,7 @@ const gradientColor = {
   :deep(.van-circle__text){
     font-size: 18px;
 font-weight: 400;
-color: #9F54BA;
+color: white;
 line-height: 25px;
   }
 .exchange-container1 {
@@ -304,7 +304,7 @@ line-height: 25px;
     height: 62px;
     font-size: 15px;
     line-height: 62px;
-    background-color: #F8F3F9;
+    background-color: rgba(255,255,255,.05);
     color: #b3b3b3;
   }
   .exchange-welcome-icon {
@@ -337,7 +337,7 @@ line-height: 25px;
     margin: 21px auto 23px;
     text-align: center;
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
   }
@@ -353,7 +353,7 @@ line-height: 25px;
     height: 62px;
     font-size: 15px;
     line-height: 62px;
-    background-color: #F8F3F9;
+    background-color: rgba(255,255,255,.05);
   }
   .exchange-welcome-icon {
     height: 40px;
@@ -379,7 +379,7 @@ line-height: 25px;
     margin: 21px auto 23px;
     text-align: center;
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
   }
@@ -416,7 +416,7 @@ line-height: 25px;
     .down {
       height: 24px;
       line-height: 24px;
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
       white-space: nowrap;
       overflow: hidden;

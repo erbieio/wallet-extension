@@ -203,7 +203,8 @@ export default defineComponent({
   line-height: 62px;
   font-weight: bold;
   font-size: 14px;
-  background: #F8F3F9;
+  color: white;
+  background: rgba(255,255,255,.05);
 }
 .category-list {
   max-height: 350px;
@@ -236,7 +237,7 @@ export default defineComponent({
   //   font-size: 15px;
   // }
   span {
-    color: #000;
+    color: white;
     display: block;
     font-size: 15px;
   }

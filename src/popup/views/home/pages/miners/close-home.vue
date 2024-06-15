@@ -1,7 +1,7 @@
 <template>
     <div v-if="show" class="dialog-warning-dark">
       <div v-if="show" class="dialog-warning">
-        <div class="dialog-warning-header"  style="color:#000;">Closing of the Exchange </div>
+        <div class="dialog-warning-header"  style="color:white;">Closing of the Exchange </div>
         <div class="warning-icon">
             <van-icon color="#3AAE55" name="checked" size="35" />
         </div>
@@ -100,7 +100,7 @@ export default {
       text-align: center;
       font-size: 15px;
       color: #B3B3B3;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
     }
     .warning-icon {
         padding: 25px;
@@ -111,7 +111,7 @@ export default {
         text-align: center;
         padding: 0 75px;
         font-size: 14px;
-        color: #000;
+        color: white;
     }
     .footer-btns {
       display: flex;
@@ -131,9 +131,9 @@ export default {
                 line-height: 45px;
                 box-sizing: border-box;
                 &:first-child {
-                    color: #000;
+                    color: white;
                     margin-right: 40px;
-                    border: 1px solid #000;
+                    border: 1px solid white;
                 }
                 &:last-child {
                     background-color: #D73A49;

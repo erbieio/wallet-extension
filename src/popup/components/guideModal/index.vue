@@ -6,17 +6,17 @@
         <div class="flex center">
           <WormTransition size="small">
             <template v-slot:t1>
-              <img class="icon" src alt />
+              <img class="icon" src=""  />
             </template>
             <template v-slot:t2>
-              <img class="icon" src alt />
+              <img class="icon" src=""  />
             </template>
             <template v-slot:t3>
-              <img class="icon" src alt />
+              <img class="icon" src=""  />
             </template>
             <template v-slot:icon>
               <span class="wromIcon">
-                <img class="wromIcon" src="@/assets/logo1.png" alt />
+                <img class="wromIcon" src="@/assets/logo1.png"  />
               </span>
             </template>
           </WormTransition>
@@ -37,7 +37,7 @@
           <WormTransition size="small">
             <template v-slot:icon>
               <span class="wromIcon">
-                <img class="wromIcon" src="@/assets/logo1.png" alt />
+                <img class="wromIcon" src="@/assets/logo1.png" />
               </span>
             </template>
           </WormTransition>
@@ -142,10 +142,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
@@ -156,20 +156,22 @@ export default defineComponent({
 
 .small-tit {
   margin-top: 20px;
+  color: white;
+
 }
 
 .savebtn {
   width: 250px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   border-radius: 30px;
-  color: #9F54BA;
+  color: white;
 
   i {
     font-size: 12px;
   }
 
   &:hover {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
   }
 }
 

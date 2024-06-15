@@ -159,20 +159,21 @@ defineExpose({
   z-index: 5000;
   transition: all 0.3s ease;
   &.light {
-    background: rgba($color: #000000, $alpha: 0.5);
+    background: rgba($color: white, $alpha: 0.5);
     .wormholes-dialog {
       overflow: hidden;
       background: #fff;
       .text {
-        color: #000;
+        color: white;
       }
     }
   }
   &.dark {
-    // background: rgba($color: #fff, $alpha: 0.2);
+    /* background: rgba($color: #fff, $alpha: 0.1); */
     .wormholes-dialog {
       overflow: hidden;
-      background: rgba($color: #000000, $alpha: 0.7);
+      border: 1PX solid #460e70;
+      background: rgba($color: #13051E, $alpha: 1);
       .text {
         color: #fff;
       }
@@ -186,9 +187,10 @@ defineExpose({
   .title {
     line-height: 60px;
     text-align: center;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     font-weight: bold;
     font-size: 15px;
+    color: white;
     box-shadow: 0 1px 1px rgb(135 134 134 / 10%);
   }
   .okbtn {

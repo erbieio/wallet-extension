@@ -3,7 +3,7 @@
     <div class="choose-token-card-left flex">
       <div class="token-icon flex center">
         <div class="icon-box">
-          <img v-if="data" :src="data.logoUrl" alt />
+          <img v-if="data" :src="data.logoUrl" />
         </div>
       </div>
       <div class="token-info flex center">
@@ -59,6 +59,7 @@ export default defineComponent({
     .token-icon {
       width: 26px;
       height: 100%;
+      color: white;
       .icon-box {
         width: 26px;
         border-radius: 50%;
@@ -69,6 +70,8 @@ export default defineComponent({
     }
     .token-info {
       padding: 0 0 0 22px;
+      color: white;
+
       .name {
         font-size: 12px;
         line-height: 16px;

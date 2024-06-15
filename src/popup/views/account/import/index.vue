@@ -32,7 +32,6 @@
         </div>
       </van-form>
     </div>
-  </div>
 </template>
 <script lang="ts">
 import { encryptPrivateKey, EncryptPrivateKeyParams } from "@/popup/utils/web3";
@@ -136,7 +135,7 @@ export default {
 .introduce {
   width: 100%;
   height: 319px;
-  background-color: #9F54BA;
+  background-color: white;
   .close-icon {
     display: inline-block;
     position: absolute;
@@ -185,9 +184,6 @@ export default {
   .text {
     margin: 29px auto 0;
     padding: 50px 0px;
-    background: #ffffff;
-    // border-radius: 3px;
-    // border: 1PX solid #e8e9eb;
     .content {
       padding: 0 20px;
       font-size: 14px;
@@ -203,7 +199,7 @@ export default {
     margin: 20px 25px;
     width: 325px;
     height: 45px;
-    background: #9F54BA;
+    background: white;
     border-radius: 24px;
   }
 }

@@ -95,10 +95,11 @@ export default {
   .title {
     margin: 17px 22px;
     font-size: 12px;
+    color: white;
   }
   .userwarning {
     height: 70px;
-    background-color: #fbf2f3;
+    background-color: #24152f;
     padding: 0 15px 0 0;
     line-height: 12px;
     font-size: 12px;

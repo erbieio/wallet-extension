@@ -96,8 +96,8 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 :deep(.van-index-anchor) {
-  background: #f1f3f4;
-  color: #aeaeae;
+  background: #24152f;
+  color: #eee;
   line-height: 30px;
 }
 :deep(.van-index-bar__sidebar) {
@@ -113,7 +113,7 @@ export default defineComponent({
   padding: 0;
 }
 :deep(.van-index-bar__index--active) {
-  background: #9F54BA;
+  background: white;
   color: #fff;
   border-radius: 9px;
 }
@@ -123,7 +123,7 @@ export default defineComponent({
   padding-right: 15px;
   &:hover {
     cursor: pointer;
-    background: #eef4fa;
+    background: #24152f;
     box-shadow: 0 2px 4px rgb(6 58 95 / 10%);
   }
   .contact-icon {
@@ -134,6 +134,7 @@ export default defineComponent({
   .contact-info {
     padding: 2px 0;
     &-name {
+      color: white;
     }
     &-address {
       color: #909090;

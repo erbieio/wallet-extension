@@ -41,7 +41,7 @@
     </div>
     <div class="btns-footer">
       <div class="bourse-container-error">
-        <van-icon name="warning" color="#9F54BA" />
+        <van-icon name="warning" color="white" />
         <span>{{ t('bourse.tip11') }}</span>
       </div>
       <div class="pl-28 pr-28">
@@ -77,19 +77,12 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n'
-import dialogWarning from "@/components/dialogWarning/message.vue";
 import {
   defineComponent,
-  Ref,
   ref,
-  watch,
   SetupContext,
   computed,
-  toRaw,
-  onMounted,
-  ComputedRef,
   nextTick,
-  onBeforeMount,
   inject
 } from "vue";
 import useClipboard from 'vue-clipboard3'
@@ -97,17 +90,8 @@ import { useRouter, useRoute } from "vue-router";
 import { useStore, mapState } from "vuex";
 import { useNetWork } from "@/popup/components/navHeader/hooks/netWork";
 import {
-  Dialog,
-  Form,
-  Field,
-  CellGroup,
   Button,
-  Popup,
-  Circle,
   Icon,
-  Toast,
-  Slider,
-  Checkbox,
 } from "vant";
 import SwitchNetwork from "@/popup/components/switchNetwork/index.vue";
 import { useToast } from '@/popup/plugins/toast';
@@ -235,7 +219,7 @@ export default defineComponent({
       border-radius: 4px;
 
       .label-icon {
-        color: #000000;
+        color: white;
       }
 
       .da {
@@ -250,10 +234,10 @@ export default defineComponent({
 
         &:hover {
           .da-c {
-            color: #9F54BA;
+            color: white;
 
             i {
-              color: #9F54BA;
+              color: white;
             }
           }
         }
@@ -271,7 +255,7 @@ export default defineComponent({
 
       i {
         font-size: 20px;
-        color: #9F54BA;
+        color: white;
       }
     }
 
@@ -303,7 +287,7 @@ export default defineComponent({
 
       &:hover {
         i {
-          color: #9F54BA;
+          color: white;
 
         }
       }
@@ -345,16 +329,16 @@ export default defineComponent({
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       border-radius: 7.5px;
       box-sizing: border-box;
     }
 
     .active {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
 
       span {
-        color: #9F54BA;
+        color: white;
       }
     }
 
@@ -377,7 +361,7 @@ export default defineComponent({
     }
 
     .active-d {
-      border: 1px solid #000;
+      border: 1px solid white;
     }
   }
 
@@ -397,7 +381,7 @@ export default defineComponent({
   .bourse-container-error {
     margin: 0 15px 25px 15px;
     height: 56.5px;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     border-radius: 7.5px;
     display: flex;
     align-items: center;
@@ -415,7 +399,7 @@ export default defineComponent({
 
   .t1 {
     font-size: 14px;
-    color: #9F54BA;
+    color: white;
   }
 
   .t3 {
@@ -442,12 +426,12 @@ export default defineComponent({
     }
 
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
 
     .icon-yanjing1 {
-      color: #9F54BA;
+      color: white;
     }
 
     :deep(.van-field__label) {
@@ -473,7 +457,7 @@ export default defineComponent({
       font-size: 12px;
 
       &:hover {
-        border: 1px solid #9F54BA;
+        border: 1px solid white;
       }
     }
 
@@ -485,12 +469,12 @@ export default defineComponent({
 
     .success-field {
       :deep(.van-field__body) {
-        border: 1px solid #9F54BA !important;
+        border: 1px solid white !important;
       }
     }
 
     .tool {
-      color: #9F54BA;
+      color: #8AA4FF;
     }
 
     .pointer {
@@ -509,7 +493,7 @@ export default defineComponent({
 
 .bourse-img {
   height: 135px;
-  background-color: #F8F3F9;
+  background-color: rgba(255,255,255,.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -535,7 +519,7 @@ export default defineComponent({
 .bourse-container-warning {
   margin-top: 160px;
   height: 40px;
-  background: #fbf2f3;
+  background: #24152f;
   border-radius: 7.5px;
   display: flex;
   align-items: center;
@@ -588,7 +572,7 @@ export default defineComponent({
         display: inline-block;
         z-index: 999999;
         transform: rotate(90deg);
-        border-top: 1px dotted #9F54BA;
+        border-top: 1px dotted white;
       }
 
       &:after {
@@ -598,7 +582,7 @@ export default defineComponent({
         left: 120.5px;
         width: 4px;
         height: 4px;
-        background-color: #9F54BA;
+        background-color: white;
         border-radius: 50%;
         display: inline-block;
         z-index: 999999;
@@ -635,7 +619,7 @@ export default defineComponent({
       display: block;
       width: 25px;
       height: 130px;
-      border: 1px dotted #9F54BA;
+      border: 1px dotted white;
       border-radius: 5px;
       position: absolute;
       right: 13px;
@@ -647,7 +631,7 @@ export default defineComponent({
       display: block;
       width: 230px;
       height: 130px;
-      border: 1px dotted #9F54BA;
+      border: 1px dotted white;
       border-radius: 5px;
       position: absolute;
       left: 10px;
@@ -692,7 +676,7 @@ export default defineComponent({
       }
 
       &:last-child {
-        background-color: #9F54BA;
+        background-color: white;
       }
     }
   }
@@ -715,7 +699,7 @@ export default defineComponent({
       display: inline-block;
       z-index: 999999;
       transform: rotate(90deg);
-      border-top: 1px dotted #9F54BA;
+      border-top: 1px dotted white;
     }
 
     &:after {
@@ -725,7 +709,7 @@ export default defineComponent({
       left: 121.5px;
       width: 4px;
       height: 4px;
-      background-color: #9F54BA;
+      background-color: white;
       border-radius: 50%;
       display: inline-block;
       z-index: 999999;
@@ -747,7 +731,7 @@ export default defineComponent({
     font-size: 12px;
 
     .left {
-      color: #9F54BA;
+      color: white;
     }
   }
 
@@ -762,6 +746,7 @@ export default defineComponent({
     font-size: 24px;
     font-weight: bold;
     line-height: 30px;
+    color: white;
   }
 
   .small-tit {

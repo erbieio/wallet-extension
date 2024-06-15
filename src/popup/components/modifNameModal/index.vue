@@ -121,10 +121,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
@@ -134,7 +134,7 @@ export default defineComponent({
   top: 12px;
   font-size: 14px;
   &:hover{
-    color: #9F54BA !important;
+    color: white !important;
   }
 }
 .label {
@@ -169,7 +169,7 @@ export default defineComponent({
   border-radius: 5px;
   transition: ease 0.3s;
   &:hover {
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
   }
 }
 </style>

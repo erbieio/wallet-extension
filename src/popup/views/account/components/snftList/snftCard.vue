@@ -533,7 +533,7 @@ export default defineComponent({
   margin-bottom: 15px;
   .coll-info {
     .more {
-      color: #9F54BA;
+      color: white;
     }
     .info {
       background: #fff;
@@ -578,7 +578,7 @@ export default defineComponent({
         z-index: 100;
       }
       .check-icon {
-        color: #9F54BA;
+        color: white;
         font-size: 20px;
         display: block;
         position: absolute;
@@ -626,7 +626,7 @@ export default defineComponent({
     .select-box {
     }
     .am-box {
-      color: #9F54BA;
+      color: white;
       font-weight: bold;
       font-size: 15px;
       span {
@@ -639,10 +639,10 @@ export default defineComponent({
   .all-box {
     color: #b3b3b3;
     &.active {
-      color: #9F54BA;
+      color: white;
     }
     & .icon-duihao2 {
-      color: #9F54BA;
+      color: white;
       font-size: 14px;
     }
     & .icon-check_line {
@@ -689,7 +689,7 @@ export default defineComponent({
   &::after {
     content: '';
     position: absolute;
-    background: rgba($color: #000, $alpha: .5);
+    background: rgba($color: white, $alpha: .5);
     left: 0;
     right: 0;
     top: 0;

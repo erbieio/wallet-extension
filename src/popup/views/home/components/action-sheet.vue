@@ -48,7 +48,7 @@
                     clickAccountIdx != null &&
                     clickAccountIdx == index
                   "
-                  color="#9F54BA"
+                  color="white"
                 /> -->
             </div>
           </div>
@@ -235,7 +235,7 @@ export default defineComponent({
   }
 
   i.icon-xuanzhong1 {
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -249,7 +249,7 @@ export default defineComponent({
 
 .account-groups {
   .createBtn {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
     line-height: 50px;
     border: none !important;
@@ -257,7 +257,7 @@ export default defineComponent({
   }
 
   .acc-btn {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
     line-height: 50px;
   }
@@ -272,7 +272,7 @@ export default defineComponent({
 
     .account-value,
     .account-name {
-      color: #9F54BA;
+      color: white;
     }
   }
 
@@ -293,6 +293,8 @@ export default defineComponent({
     font-size: 15px;
     justify-content: flex-start;
     font-weight: bold;
+    color: white;
+
   }
 
   .account-value {
@@ -336,10 +338,10 @@ export default defineComponent({
 
 .account-list {
   .bt.select {
-    color: #9F54BA;
+    color: white;
 
     .account-value {
-      color: #9F54BA;
+      color: white;
     }
   }
 }
@@ -347,13 +349,13 @@ export default defineComponent({
 .create {
   text-align: center;
   font-size: 12px;
-  color: #9F54BA;
+  color: white;
 }
 
 .import {
   text-align: center;
   font-size: 12px;
-  color: #9F54BA;
+  color: white;
 }
 
 .bt {
@@ -366,14 +368,9 @@ export default defineComponent({
   text-align: center;
   align-items: center;
   justify-content: center;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-size: 15px;
+  color: white;
+
   font-weight: bold;
-  // border-radius: 20px 20px 0px 0px;
-  // div {
-  //   width: 45px;
-  //   height: 5px;
-  //   background-color: #c1c5ca;
-  //   border-radius: 3.25px;
-  // }
 }</style>

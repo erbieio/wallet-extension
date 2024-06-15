@@ -67,7 +67,7 @@ export default {
 <style lang="scss" scoped>
     .dialog-warning {
         width: 250px;
-        background: rgba($color: #000000, $alpha: 0.8);
+        background: rgba($color: white, $alpha: 0.8);
         position: fixed;
         top: 50%;
         left: 50%;

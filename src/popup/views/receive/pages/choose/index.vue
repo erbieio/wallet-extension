@@ -173,15 +173,15 @@ export default {
 
 .title {
   font-size: 16px;
-  color: #000;
+  color: white;
   font-weight: bold;
 }
 
 .choose-list {
 
   :deep(.van-index-anchor) {
-    background: #f1f3f4;
-    color: #aeaeae;
+    background: #24152f;
+    color: #eee;
     line-height: 30px;
   }
 
@@ -201,7 +201,7 @@ export default {
   }
 
   :deep(.van-index-bar__index--active) {
-    background: #9F54BA;
+    background: white;
     color: #fff;
     border-radius: 9px;
   }
@@ -220,7 +220,7 @@ export default {
     border-radius: 5px;
 
     &:hover {
-      border-color: #9F54BA;
+      border-color: white;
     }
   }
 
@@ -228,7 +228,7 @@ export default {
     width: 96%;
 
     i {
-      color: #9F54BA;
+      color: white;
       font-size: 22px;
     }
   }
@@ -238,7 +238,7 @@ export default {
 
     i {
       font-size: 18px;
-      color: #9F54BA;
+      color: white;
     }
   }
 }

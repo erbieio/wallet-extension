@@ -140,10 +140,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
@@ -164,6 +164,7 @@ export default defineComponent({
 .content {
   padding: 0 37px;
   font-size: 15px;
+  color: white;
   .tosure {
     font-weight: 700;
     margin-bottom: 20px;

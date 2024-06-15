@@ -234,10 +234,10 @@ export default defineComponent({
 }
 
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
@@ -286,14 +286,8 @@ export default defineComponent({
     }
   }
 
-  // input {
-  //   display: inline-block;
-  //   width: auto;
-  //   border: none;
-  //   font-size: 15px;
-  // }
   span {
-    color: #000;
+    color: white;
     display: block;
     font-size: 15px;
   }
@@ -303,31 +297,29 @@ export default defineComponent({
   height: 35px;
   min-width: 90px;
   max-width: 150px;
-  background: #f1f3f4;
+  background: #24152f;
   border-radius: 17.5px;
 
   .xuanwo {
     width: 24px;
     height: 24px;
     border-radius: 10px;
-    // background: #0b80d7;
     padding: 2px;
 
     img {
       display: block;
       width: 100%;
       height: 100%;
-      // border-radius: 50%;
     }
   }
 
   i {
-    color: #9F54BA;
+    color: white;
     font-size: 15px;
   }
 
   .token-name {
-    color: #000;
+    color: white;
   }
 }
 </style>

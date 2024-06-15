@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Hello LiminoWallet</h1>
-  <hello-world />
+    <h1>Hello ErbieWallet</h1>
+    <hello-world />
   </div>
 </template>
 

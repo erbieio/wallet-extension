@@ -145,7 +145,7 @@
         "recive": "接收",
         "tokens": "代币",
         "NFTs": "收藏品",
-        "SNFTs": "SNFTs",
+        "SNFTs": "CSBT",
         "importToken": "导入代币",
         "createAnExchange": "成为质押者",
         "autoexchange": "成为质押者",
@@ -163,8 +163,8 @@
         "buySnft": "你有SNFT吗？{link}",
         "findMore": "寻找更多",
         "conver_approve": "请求被批准了。转换事务将被启动。请稍等。",
-        "conver_waiting":"{count}<span style='color:#9F54BA;'>个SNFT{countstr}</span>正在兑换，兑换成功，将获得{amount}<span style='color:#9F54BA;'>ERB</span>，您也可以在个人中心的历史记录查看兑换详情",
-        "conver_success":"{count}<span style='color:#9F54BA;'>个SNFT</span>兑换成功，已获得{amount}<span style='color:#9F54BA;'>ERB</span>，您也可以在个人中心的历史记录查看兑换详情",
+        "conver_waiting":"{count}<span style='color:white;'>个SNFT{countstr}</span>正在兑换，兑换成功，将获得{amount}<span style='color:white;'>ERB</span>，您也可以在个人中心的历史记录查看兑换详情",
+        "conver_success":"{count}<span style='color:white;'>个SNFT</span>兑换成功，已获得{amount}<span style='color:white;'>ERB</span>，您也可以在个人中心的历史记录查看兑换详情",
         "conver_wrong": "{count}个SNFT兑换失败，您可以在个人中心历史记录查看兑换详情"
     },
     "converSnft": {

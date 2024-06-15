@@ -24,7 +24,7 @@
         <div class="value">{{ address }}</div>
         <div class="title">{{t('sign.signaturedata')}}</div>
         <div class="flex center" v-if="loading">
-          <van-loading color="#9F54BA" />
+          <van-loading color="white" />
         </div>
         <div v-else :class="`value ${signSelect ? 'focus' : ''}`" @click="toCopy">
           {{ sign }}
@@ -122,11 +122,11 @@ export default {
     }
   }
   .sign-bg {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     height: 135px;
     &-icon {
       font-size: 40px;
-      color: #9F54BA;
+      color: white;
     }
     &-tit {
       line-height: 20px;
@@ -153,11 +153,12 @@ export default {
     }
     .title {
       line-height: 30px;
+      color: white;
     }
     .value {
       line-height: 14px;
       // &.select {
-      //   background: #9F54BA;
+      //   background: white;
       //   color:#fff;
       // }
       &:nth-of-type(1) {

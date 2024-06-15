@@ -11,10 +11,10 @@
   white-space: nowrap;
   cursor: pointer;
   font-size: 12px;
-  color: #9F54BA;
+  color: white;
 }
 .create-box {
-  background: #f1f3f4;
+  background: #24152f;
   height: 30px;
   padding: 0 15px;
   .label {
@@ -23,8 +23,8 @@
   .add {
     width: 36px;
 height: 18px;
-background: #9F54BA;
 border-radius: 9px;
+background: #150520;
 cursor: pointer;
 i {
   color: #fff;
@@ -50,7 +50,7 @@ i {
   }
 }
 .tag-text-info {
-  color: #000;
+  color: white;
   margin-bottom: 30px;
   margin-top: 8px;
 }
@@ -58,19 +58,19 @@ i {
   min-height: 200px;
   color: #fff !important;
   &.hasExchange {
-    background: #9F54BA;
+    background: white;
     .account-card {
       .card {
-        background: rgba($color: #fff, $alpha: 0.1);
+        background: #24152f;
       }
     }
     .actions-btn {
   
 
       .action-icon {
-        background: #fff;
+        background: #24152f;
         i {
-          color: #9F54BA;
+          color: white;
         }
       }
       .action-name {
@@ -82,7 +82,7 @@ i {
     .card {
       height: 120px;
       border-radius: 7.5px;
-      background: #9F54BA;
+      background: #24152f;
       width: 100%;
       .icon-circle {
         width: 36px;
@@ -118,8 +118,6 @@ i {
             border-left: 1px solid #fff;
             width: 0;
           }
-        }
-        .at {
         }
       }
     }
@@ -161,7 +159,7 @@ i {
     padding-left: 50px;
     padding-right: 50px;
     height: 75px;
-    background: rgba($color: #fff, $alpha: 0.1);
+    background: #24152f;
   }
 }
 .wallet {
@@ -169,7 +167,7 @@ i {
     width: 20px;
     height: 20px;
     i {
-      color: #9F54BA;
+      color: white;
       font-size: 22px;
     }
   }
@@ -189,7 +187,7 @@ i {
     top: 4px;
     padding: 10px;
     &:hover i {
-      color: #9F54BA;
+      color: white;
     }
     i {
       color: #9a9a9a;
@@ -200,7 +198,7 @@ i {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
     background: rgba(234, 234, 234, 1);
     overflow: hidden;
     display: flex;
@@ -216,6 +214,8 @@ i {
     font-size: 20px;
     margin-bottom: 5px;
     line-height: 28px;
+    color: white;
+
   }
 
   .account-amount {
@@ -244,7 +244,7 @@ i {
     margin-top: 17px;
     &-btn:hover {
       .action-icon {
-        background: #9F54BA;
+        background: #24152f;
         i {
           color: #fff;
         }
@@ -258,7 +258,7 @@ i {
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        background: #9F54BA;
+        background: #24152f;
         i {
           font-size: 18px;
           color: #fff;
@@ -267,7 +267,7 @@ i {
 
       .action-name {
         line-height: 16px;
-        color: #9F54BA;
+        color: white;
         font-size: 12px;
         margin-top: 7px;
       }
@@ -284,7 +284,7 @@ i {
     }
 
     .tip2 {
-      color: #9F54BA;
+      color: white;
       font-size: 12px;
       line-height: 15px;
     }
@@ -292,11 +292,15 @@ i {
   .no-list {
     i {
       font-size: 40px;
-      color: #9F54BA;
+      color: white;
     }
   }
   .van-tab {
     position: inherit;
+          .van-tab__text {
+            color: #ccc;
+
+          }
   }
   .van-tabs__nav--line {
     height: 43PX;
@@ -305,13 +309,13 @@ i {
   }
   .van-tabs__line {
     height: 0.5px;
-    background: #9F54BA;
+    background: white;
     display: none;
   }
  
 
   .van-tab--active {
-    color:#9F54BA  !important;
+    color:white  !important;
     .van-tab__text {
       text-decoration: underline;
     }
@@ -326,7 +330,7 @@ i {
     height: 14px;
     font-weight: bold;
     line-height: 14px;
-    color: #000;
+    color: #ccc;
   }
 }
 

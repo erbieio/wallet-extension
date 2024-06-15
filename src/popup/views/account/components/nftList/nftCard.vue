@@ -80,17 +80,17 @@ export default defineComponent({
   &.card:hover {
     cursor: pointer;
     box-shadow: 0px 2px 14px rgba($color: #ccc, $alpha: 0.4);
-    /* background:#F8F3F9; */
-    color:#9F54BA;
+    /* background:rgba(255,255,255,.05); */
+    color:white;
     .usd,.address .add {
-      color:#9F54BA;
+      color:white;
     }
   }
   &.list:hover {
-    background:#F8F3F9;
-    color:#9F54BA;
+    background:rgba(255,255,255,.05);
+    color:white;
     .usd,.address .add {
-      color:#9F54BA !important;
+      color:white !important;
     }
   }
   &.list {
@@ -101,7 +101,7 @@ export default defineComponent({
       .icon {
         width: 40px;
         height: 40px;
-        /* background: #9F54BA; */
+        /* background: white; */
         border-radius: 6px;
         margin-right: 15px;
         overflow: hidden;

@@ -92,7 +92,7 @@ export default defineComponent({
     font-size: 12px;
 
     .left {
-      color: #9F54BA;
+      color: white;
     }
   }
 
@@ -101,6 +101,7 @@ export default defineComponent({
     font-size: 24px;
     font-weight: bold;
     line-height: 30px;
+    color: white;
     margin-top: 22px;
   }
 

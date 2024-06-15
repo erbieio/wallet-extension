@@ -7,7 +7,7 @@
   <div class="mnemonic-page">
     <WormTransition size="small">
       <template v-slot:icon>
-        <img class="logo" src="@/assets/logo1.png" alt />
+        <img class="logo" src="@/assets/logo1.png"  />
       </template>
     </WormTransition>
     <div class="title f-24 lh-30 text-center mt-10">{{ t("createAccountpage.mneTit") }}</div>
@@ -185,6 +185,8 @@ export default {
 .title-w {
   .tit-big {
     font-weight: bold;
+    color: white;
+
   }
 }
 
@@ -193,7 +195,7 @@ export default {
 }
 
 .icon-yanjing1 {
-  color: #9F54BA;
+  color: white;
   font-size: 16px;
 }
 
@@ -208,11 +210,12 @@ export default {
 .title {
   font-weight: 600;
   font-size: 16px;
+  color: white;
 }
 
 .tit-small {
   line-height: 15px;
-  color: #848484;
+  color: #ccc;
   margin-bottom: 42px;
 }
 
@@ -234,9 +237,9 @@ export default {
   .ipt {
     width: 89px;
     height: 25px;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     border-radius: 25px;
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
     position: relative;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -262,7 +265,7 @@ export default {
       width: 24px;
       line-height: 24px;
       height: 24px;
-      background: #9F54BA;
+      background: white;
       border-radius: 12px;
       position: absolute;
       left: -0.5px;
@@ -276,7 +279,7 @@ export default {
       width: 65px;
       border: none;
       text-align: center;
-      color: #9F54BA;
+      color: white;
       border-radius: 25px;
       font-size: 12px;
       margin-right: 2px;
@@ -291,12 +294,12 @@ export default {
 
   .card {
     line-height: 25px;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     border-radius: 12.5px;
     padding: 0 13px;
     margin-right: 10px;
     margin-bottom: 10px;
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -308,7 +311,7 @@ export default {
 }
 
 .link {
-  color: #9F54BA;
+  color: white;
 }
 
 :deep() {

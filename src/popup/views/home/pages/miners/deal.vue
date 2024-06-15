@@ -104,7 +104,7 @@
             <div :class="isError ? 'error-field' : isSuccess ? 'success-field' : ''">
               <van-field maxlength="25" v-model="addNumber" class="text" @blur="handleAddBlur" type="number" :placeholder="t('bourse.placeamount')">
                 <template #right-icon>
-                  <span style="font-weight: bold; font-size: 16px; color: #000">ERB</span>
+                  <span style="font-weight: bold; font-size: 16px; color: white">ERB</span>
                 </template>
               </van-field>
             </div>
@@ -264,7 +264,7 @@
       </div>
       <div class="loading-box flex center" v-else>
         <div class="p-30">
-          <van-loading color="#9F54BA" />
+          <van-loading color="white" />
         </div>
       </div>
     </div>
@@ -1216,7 +1216,7 @@ export default defineComponent({
 
 .rightIcon {
   i {
-    color: #9F54BA;
+    color: white;
     font-size: 16px;
   }
 }
@@ -1281,7 +1281,7 @@ export default defineComponent({
     height: 62px;
     font-size: 15px;
     line-height: 62px;
-    background-color: #F8F3F9;
+    background-color: rgba(255,255,255,.05);
   }
 
   .exchange-welcome-icon {
@@ -1319,7 +1319,7 @@ export default defineComponent({
     text-align: center;
 
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
   }
@@ -1337,7 +1337,7 @@ export default defineComponent({
     height: 62px;
     font-size: 15px;
     line-height: 62px;
-    background-color: #F8F3F9;
+    background-color: rgba(255,255,255,.05);
   }
 
   .exchange-welcome-icon {
@@ -1368,7 +1368,7 @@ export default defineComponent({
     text-align: center;
 
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
   }
@@ -1412,7 +1412,7 @@ export default defineComponent({
     .down {
       height: 24px;
       line-height: 24px;
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
       white-space: nowrap;
       overflow: hidden;
@@ -1458,7 +1458,7 @@ export default defineComponent({
     line-height: 62px;
     text-align: center;
     font-weight: bold;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     font-size: 14px;
     color: #0f0f0f;
   }
@@ -1541,7 +1541,7 @@ export default defineComponent({
 
       .ipt-text-b {
         margin: 5px 0 9px 0;
-        color: #000;
+        color: white;
         font-size: 12px;
         font-weight: bold;
       }
@@ -1553,7 +1553,7 @@ export default defineComponent({
 
         span {
           font-weight: 400;
-          color: #000000;
+          color: white;
         }
 
         .ipt-server-i {
@@ -1564,7 +1564,7 @@ export default defineComponent({
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: #F8F3F9;
+          background: rgba(255,255,255,.05);
           border-radius: 7px 7px 7px 7px;
 
           &:first-child {
@@ -1574,8 +1574,8 @@ export default defineComponent({
 
         .ipt-server-i-active {
           color: #0287db;
-          background: #F8F3F9;
-          border: 1px solid #9F54BA;
+          background: rgba(255,255,255,.05);
+          border: 1px solid white;
 
           span {
             color: #0287db;
@@ -1590,7 +1590,7 @@ export default defineComponent({
 
         span {
           &:first-child {
-            color: #000000;
+            color: white;
           }
 
           &:last-child {
@@ -1781,7 +1781,7 @@ export default defineComponent({
 
   div {
     &:first-child {
-      color: #000;
+      color: white;
     }
   }
 }
@@ -1820,7 +1820,7 @@ export default defineComponent({
     line-height: 62px;
     text-align: center;
     font-weight: bold;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     font-size: 14px;
     color: #0f0f0f;
   }
@@ -2032,16 +2032,16 @@ export default defineComponent({
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       border-radius: 7.5px;
       box-sizing: border-box;
     }
 
     .active {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
 
       span {
-        color: #9F54BA;
+        color: white;
       }
     }
 
@@ -2064,7 +2064,7 @@ export default defineComponent({
     }
 
     .active-d {
-      border: 1px solid #000;
+      border: 1px solid white;
     }
   }
 
@@ -2090,7 +2090,7 @@ export default defineComponent({
     width: 100%;
     margin-bottom: 20px;
     height: 40px;
-    background: #fbf2f3;
+    background: #24152f;
     border-radius: 7.5px;
     display: flex;
     align-items: center;
@@ -2106,7 +2106,7 @@ export default defineComponent({
     width: 100%;
     margin-bottom: 20px;
     height: 40px;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     border-radius: 7.5px;
     display: flex;
     align-items: center;
@@ -2136,7 +2136,7 @@ export default defineComponent({
 
   .t1 {
     font-size: 14px;
-    color: #9F54BA;
+    color: white;
   }
 
   .t3 {
@@ -2165,12 +2165,12 @@ export default defineComponent({
     }
 
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
 
     .icon-yanjing {
-      color: #9F54BA;
+      color: white;
     }
 
     :deep(.van-field__label) {
@@ -2194,25 +2194,25 @@ export default defineComponent({
       border-radius: 5px;
       transition: ease 0.3s;
       // &:hover {
-      //   border: 1px solid #9F54BA;
+      //   border: 1px solid white;
       // }
     }
 
     .error-field {
       :deep(.van-field__body) {
         border: 1px solid #d73a49 !important;
-        background: #fbf2f3;
+        background: #24152f;
       }
     }
 
     .success-field {
       :deep(.van-field__body) {
-        border: 1px solid #9F54BA !important;
+        border: 1px solid white !important;
       }
     }
 
     .tool {
-      color: #9F54BA;
+      color: #8AA4FF;
     }
 
     .pointer {
@@ -2240,30 +2240,30 @@ export default defineComponent({
   height: 30px;
   min-width: 30px;
   border-radius: 50%;
-  background-color: #9F54BA;
+  background-color: white;
   display: block;
   margin-right: 10px;
 }
 
 :deep(.el-icon) {
-  color: #9F54BA !important;
+  color: white !important;
 }
 </style>
 <style>
 .appendto1,
 .appendto2 {
-  background-color: #9F54BA !important;
+  background-color: white !important;
   border: none !important;
   max-width: 267px !important;
 }
 
 .appendto2>span::before {
-  background-color: #9F54BA !important;
+  background-color: white !important;
   border: none !important;
 }
 
 .appendto1>span::before {
-  background-color: #9F54BA !important;
+  background-color: white !important;
   border: none !important;
 }
 

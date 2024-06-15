@@ -148,7 +148,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .nft-ai {
-    background: #F3F3F3;
+    background: #24152f;
     padding: 5px 0;
     width: 256px;
     height: 256px;
@@ -158,7 +158,7 @@ export default {
       background: #FCF5FF;
     }
     &.fail {
-      background: #F3F3F3;
+      background: #24152f;
     }
     img {
       display: block;
@@ -193,7 +193,7 @@ export default {
   padding-bottom: 50px;
   .back {
     font-size: 18px;
-    color: #9F54BA;
+    color: white;
   }
 
   .code {
@@ -213,13 +213,13 @@ export default {
     .card {
       width: 105px;
       height: 65px;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       border-radius: 7.5px;
       text-align: center;
       padding: 4px 0;
       box-sizing: border-box;
       &.active {
-        border: 1px solid #9F54BA;
+        border: 1px solid white;
       }
       & > div {
         line-height: 20px;
@@ -267,7 +267,7 @@ export default {
       margin: 0 auto;
       width: 35px;
       height: 35px;
-      background-color: #9F54BA;
+      background-color: white;
       border-radius: 50%;
       i {
         font-size: 16px;
@@ -276,7 +276,7 @@ export default {
     }
     .send-action {
       line-height: 16px;
-      color: #9F54BA;
+      color: white;
       font-size: 12px;
       margin-top: 7px;
     }

@@ -724,7 +724,7 @@ export default {
 }
 
 .view-history {
-  color: #9F54BA;
+  color: white;
 
   &:hover {
     text-decoration: underline;
@@ -737,14 +737,16 @@ export default {
 }
 
 .tabs-box {
-  background: #fff;
+  background: #13051E;
 }
-
+.amount {
+  color: white;
+}
 .tabs {
   width: 260px;
 
   &::after {
-    border-color: #9F54BA;
+    border-color: white;
     border-radius: 26px;
   }
 
@@ -753,12 +755,14 @@ export default {
     line-height: 26px;
     border-radius: 12px;
     font-size: 12px;
-
+    color: #ccc;
     &.active {
-      background: #9F54BA;
-      // border: 1PX solid #9F54BA;
+      background: rgba(255, 255, 255, 0.4);
       color: #fff;
     }
   }
+}
+.scan-link {
+  color: #ccc;
 }
 </style>

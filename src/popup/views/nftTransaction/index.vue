@@ -270,7 +270,7 @@ export default {
 }
 .cancel {
   font-size: 11px;
-  color: #9F54BA;
+  color: white;
 }
 .btn-group {
   padding: 0 15px;

@@ -326,13 +326,14 @@ export default {
   .error {
     :deep(.van-field__body) {
       border-color: #d73a49;
-      background: #fbf2f3;
+      background: #24152f;
     }
   }
 
   .tip-tit {
     font-size: 15px;
     font-weight: bold;
+    color: white;
   }
 
   .w-tips {
@@ -346,13 +347,13 @@ export default {
   }
 
   .w-tips {
-    // background: #F8F3F9;
+    // background: rgba(255,255,255,.05);
     border-radius: 7px;
 
     // margin: 15px 0;
     .icon {
       width: 28px;
-      color: #9F54BA;
+      color: white;
       font-size: 18px;
     }
 
@@ -366,7 +367,7 @@ export default {
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 6px;
-
+    color:#ccc;
     span {
       color: #e0707d;
     }
@@ -403,7 +404,7 @@ export default {
     margin-bottom: 20px;
 
     &:hover {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
     }
   }
 }

@@ -174,16 +174,18 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mnemonic-bg {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   .tit-big {
     line-height: 21px;
+    color: white;
+
   }
   .tit-small {
     width: 290px;
     color: rgba(132, 132, 132, 1);
   }
   .color-p {
-    color: #9F54BA;
+    color: white;
   }
 }
 .icon-box {
@@ -210,12 +212,12 @@ export default {
   }
   &-card {
     width: 90px;
-    background: #F8F3F9;
-    color: #9F54BA;
+    background: rgba(255,255,255,.05);
+    color: white;
     transition: ease 0.3s;
     border-radius: 12px;
     &:hover {
-      background: #cae5fc;
+      background: #13051E;
     }
     &.error {
       &:after,
@@ -235,7 +237,7 @@ export default {
     .icon {
       width: 24px;
       height: 24px;
-      background: #9F54BA;
+      background: white;
       border-radius: 50%;
       color: #fff;
       &.error {
@@ -247,7 +249,7 @@ export default {
     }
     &:after,
     .icon:after {
-      border-color: #9F54BA;
+      border-color: white;
       border-radius: 45px;
     }
   }

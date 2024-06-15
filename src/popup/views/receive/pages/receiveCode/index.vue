@@ -144,21 +144,24 @@ export default {
 .code-box {
   width: 236px;
   height: 236px;
-  border: 7px solid #000;
+  border: 5px solid #b713e1;
   padding: 1px;
 }
 .load-btn {
   max-width: 350px;
-  background: #f1f3f4;
+  /* background: #f1f3f4; */
+  border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 30px;
   margin: 15px auto 0;
-  color: #9F54BA;
+  color: white;
   i {
     font-size: 12px;
   }
   &:hover {
-    background: #F8F3F9;
+    /* background: rgba(255,255,255,.05); */
+    color: #b713e1;
+    border: 1px solid #b713e1;
   }
 }
 .btn-group {
@@ -171,21 +174,22 @@ export default {
     height: 34px;
     box-sizing: border-box;
     border-radius: 17px;
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
     cursor: pointer;
     &:hover {
-      background: #9F54BA;
+      color: #b713e1;
+      border: 1PX solid #b713e1;
       i {
-        color: #fff;
+        color: #b713e1;
       }
     }
     i {
       font-size: 18px;
-      color: #9F54BA;
+      color: white;
     }
   }
   .text {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
   }
 }

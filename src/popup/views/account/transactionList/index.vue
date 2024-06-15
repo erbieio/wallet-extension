@@ -88,13 +88,14 @@ export default {
 .transactionList {
   .cancel {
     font-size: 12px;
-    color: #9F54BA;
+    color: white;
     i {
       font-size: 20px;
     }
   }
   .title {
     font-size: 17px;
+    color: white;
   }
 }
 </style>

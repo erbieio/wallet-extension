@@ -148,8 +148,8 @@
 		"buySnft": "Do you have SNFTs? {link}",
 		"findMore": "Find More",
 		"conver_approve": "The request is approved.The convert tansaction will be started.Please wait for seconds.",
-		"conver_waiting":"{count} <span style='color:#9F54BA;'>SNFT{countstr}</span> are being exchanged. You will receive {amount}<span style='color:#9F54BA;'>ERB</span> if you are successfully exchanged. You can also check the exchange details in the history of the Personal Center",
-		"conver_success":"{count} <span style='color:#9F54BA;'>SNFT</span> have been successfully exchanged and you have obtained {amount}<span style='color:#9F54BA;'>ERB</span>. You can also check the exchange details in the history of the Personal center",
+		"conver_waiting":"{count} <span style='color:white;'>SNFT{countstr}</span> are being exchanged. You will receive {amount}<span style='color:white;'>ERB</span> if you are successfully exchanged. You can also check the exchange details in the history of the Personal Center",
+		"conver_success":"{count} <span style='color:white;'>SNFT</span> have been successfully exchanged and you have obtained {amount}<span style='color:white;'>ERB</span>. You can also check the exchange details in the history of the Personal center",
 		"conver_wrong": "{count} SNFT failed to exchange, you can check the exchange details in the Personal center history"
 	},
 	"addtokens": {
@@ -689,7 +689,7 @@
 	"sidebar": {
 		"recive": "Receive",
 		"shareMyPublicAddress": "Share My Public Address",
-		"transationHistory": "Transation History",
+		"transationHistory": "History",
 		"settings": "Settings",
 		"autoNFTExchange": "Auto NFT Exchange",
 		"openExchange": "Open my exchange",
@@ -776,7 +776,7 @@
 		"transitionHistory": "Transaction History"
 	},
 	"transationHistory": {
-		"transationHistory": "Transation History",
+		"transationHistory": "History",
 		"all": "All",
 		"receive": "Receive",
 		"send": "Send",
@@ -827,7 +827,7 @@
 		"tOKENsMessage": "View and add and transfer tokens",
 		"nFTs": "NFTs",
 		"nFTsMessage": "View,Add,Transfer,Exchange NFTs",
-		"sNFTs": "SNFTs",
+		"sNFTs": "CSBT",
 		"sNFTsMessage": "View,Transfer,Exchange SNFTs",
 		"exchange": "Become a Staker",
 		"exchangeMessage": "Become a Staker",
@@ -869,7 +869,7 @@
 		"actionlog": "activity log",
 		"recive": "Receive",
 		"swap": "Swap",
-		"transationHistoryDetails": "Transation History Details",
+		"transationHistoryDetails": "History Details",
 		"date": "Date",
 		"transferAmount": "Transfer Amount",
 		"gasfee": "Gas Fee",
@@ -1480,8 +1480,8 @@
 	"validator":{
         "modalTit":"Staker",
         "placeholder":"Select or enter an address",
-		"addValids":"Add Validators",
-		"pageTit":"Validator/Staker",
+		"addValids":"Search Validator",
+		"pageTit":"Builder",
 		"recoveryCred":"Credibility Recovery",
 		"addressErr":"Please enter or select the address to pledge",
 		"addrHasExits":"Address already exists",

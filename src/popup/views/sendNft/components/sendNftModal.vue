@@ -195,10 +195,10 @@ export default defineComponent({
   line-height: 62px;
   font-weight: bold;
   font-size: 14px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
+  color: white;
 }
 
-.createNftModal {}
 
 .btn-box {
   padding: 0 52px 20px;

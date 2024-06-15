@@ -44,6 +44,6 @@ export default {
 }
 .back-btn {
   font-size: 18px;
-  color: #9F54BA;
+  color: white;
 }
 </style>

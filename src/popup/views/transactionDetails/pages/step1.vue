@@ -28,14 +28,6 @@
               {{ t("wallet.send") }}
             </div>
           </div>
-          <!-- <div class="actions-list-card">
-            <div class="actions-list-card-icon flex center" @click="toSwap">
-              <i class="iconfont icon-icon_huabanfuben"></i>
-            </div>
-            <div class="actions-list-card-label text-center">
-              {{ t("wallet.swap") }}
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -117,6 +109,7 @@
   </Transition>
 </template>
 <script lang="ts">
+// @ts-nocheck
 import {
   ref,
   Ref,
@@ -674,11 +667,11 @@ export default {
 .tx-tit {
   height: 30px;
   color: #848484;
-  background: #F1F3F4;
+  background: #24152f;
 }
 
 .view-history {
-  color: #9F54BA;
+  color: white;
 
   &:hover {
     text-decoration: underline;
@@ -687,12 +680,12 @@ export default {
 
 .currency {
   .currency-bd {
-    background: #F8F3F9;
+    background: #13051E;
     height: 235px;
   }
 
   .currency-icon {
-    // background: #9F54BA;
+    // background: white;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -710,6 +703,7 @@ export default {
     font-size: 24px;
     margin-top: 8px;
     word-break: break-all;
+    color: white;
   }
 
   .balance {
@@ -723,19 +717,19 @@ export default {
 
       &-icon {
         height: 32px;
-        background: #9F54BA;
+        background: #24152f;
         border-radius: 32px;
         transition: ease 0.3s;
 
         &:hover {
-          background: #9F54BA;
-          box-shadow: 0 3px 4px #F8F3F9;
+          background: white;
+          box-shadow: 0 3px 4px rgba(255,255,255,.05);
         }
       }
 
       &-label {
         line-height: 16px;
-        color: #9F54BA;
+        color: white;
         font-size: 12px;
         margin-top: 7px;
       }
@@ -745,5 +739,8 @@ export default {
 
 .iconfont {
   color: #fff;
+}
+.scan-link {
+  color: #ccc;
 }
 </style>

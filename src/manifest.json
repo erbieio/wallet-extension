@@ -1,5 +1,5 @@
 {
-  "name": "LiminoWallet",
+  "name": "ErbieWallet",
   "description": "It is used for digital signature and digital asset management, and for storing and trading crypto assets",
   "default_locale": "en",
   "version": "0.2.9",
@@ -12,28 +12,30 @@
     "unlimitedStorage",
     "tabs"
   ],
-  "host_permissions":[
+  "host_permissions": [
     "*://*/*",
     "*://*/popup.html",
     "*://*/home.html"
   ],
-  "optional_permissions": [
-    
-  ],
+  "optional_permissions": [],
   "content_scripts": [
-		{
-			"matches": ["*://*/*"],
+    {
+      "matches": [
+        "*://*/*"
+      ],
       "run_at": "document_start",
-      "js": ["js/chunk-vendors.js","js/content-script.js"]
-
-		}
-	],
+      "js": [
+        "js/chunk-vendors.js",
+        "js/content-script.js"
+      ]
+    }
+  ],
   "icons": {
     "128": "icons/logo-128.png"
   },
-  "background":{
+  "background": {
     "service_worker": "background.js",
-    "type":"module"
+    "type": "module"
   },
   "action": {
     "default_popup": "popup.html",
@@ -43,12 +45,16 @@
       "128": "icons/logo-128.png"
     }
   },
-  "web_accessible_resources": [{
-    "resources": ["js/inject-script.js"],
-    "matches": [
-      "<all_urls>"
-    ]
-  }],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "js/inject-script.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "content_security_policy": {
     "extension_pages": "script-src 'self' ; object-src 'self'"
   }

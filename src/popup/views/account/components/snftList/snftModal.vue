@@ -2,7 +2,6 @@
 <template>
   <van-dialog
     v-model:show="show"
-    show-cancel-button
     teleport="#page-box"
     :showConfirmButton="false"
     :showCancelButton="false"
@@ -141,8 +140,8 @@ export default defineComponent({
 .btn-box {
   padding: 12px 45px;
   button:hover {
-    border: 1px solid #9F54BA;
-    color: #9F54BA;
+    border: 1px solid white;
+    color: white;
     background: none;
   }
 }
@@ -156,7 +155,7 @@ export default defineComponent({
     font-size: 20px;
   }
   i.icon-xuanzhong1 {
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -166,9 +165,11 @@ export default defineComponent({
   text-align: center;
   align-items: center;
   justify-content: center;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-size: 15px;
   font-weight: bold;
+  color: white;
+
 }
 .card {
   margin: 15px 15px;
@@ -177,22 +178,22 @@ export default defineComponent({
   border: 1px solid #848484;
   cursor: pointer;
   &:hover {
-    color: #9F54BA;
+    color: white;
     .desc,
     i {
-      color: #9F54BA;
+      color: white;
     }
   }
   .info {
     padding-right: 10px;
   }
   &.active {
-    color: #9F54BA;
-    border: 1px solid #9F54BA;
-    background: #F8F3F9;
+    color: white;
+    border: 1px solid white;
+    background: rgba(255,255,255,.05);
     .desc,
     i {
-      color: #9F54BA;
+      color: white;
     }
   }
   .label {

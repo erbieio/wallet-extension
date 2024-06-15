@@ -339,22 +339,22 @@ setup(props: any) {
 </script>
 <style lang="scss" scoped>
 .back {
-color: #9F54BA;
+color: white;
 font-size: 12px;
 }
 .slider-box {
 &:hover {
-  border: 1px solid #9F54BA !important;
+  border: 1px solid white !important;
   .van-hairline--bottom {
     &:after {
-      border-color: #9F54BA;
+      border-color: white;
     }
   }
 }
 }
 .title {
 font-size: 16px;
-  color: #000;
+  color: white;
 font-weight: bold;
 }
 :deep(){
@@ -376,7 +376,7 @@ z-index: 1000;
 .gas-fee-page {
 font-size: 12px;
 .text-bold {
-  color: #000;
+  color: white;
 }
 .amount-info {
   .van-cell {
@@ -390,7 +390,7 @@ font-size: 12px;
     color: #9a9a9a;
     line-height: 18px;
     &.equal {
-      color: #000;
+      color: white;
     }
   }
   .second {
@@ -467,7 +467,7 @@ font-size: 12px;
     :deep(.van-field input) {
       text-align: center;
       background: none;
-      color: #000;
+      color: white;
       font-weight: bold;
     }
   }
@@ -475,7 +475,7 @@ font-size: 12px;
     width: 17.5px;
     height: 17.5px;
     border-radius: 50%;
-    border: 1px solid #9F54BA;
+    border: 1px solid white;
     cursor: pointer;
     &.disabled {
       border: 1px solid #ccc;
@@ -486,7 +486,7 @@ font-size: 12px;
     }
     i {
       font-size: 12px;
-      color: #9F54BA;
+      color: white;
       font-weight: bold;
     }
   }

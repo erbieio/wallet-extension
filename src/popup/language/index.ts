@@ -28,9 +28,9 @@ export const vantLangs = {
 const i18n:any = createI18n({
   silentFallbackWarn: true,
   legacy: false,
-  fallbackLocale,
+  fallbackLocale: 'en',
   globalInjection: true,
-  locale: ref(fallbackLocale),
+  locale: ref('en'),
   messages,
 });
 localforage.getItem('vuex').then(store => {

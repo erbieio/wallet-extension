@@ -274,9 +274,9 @@ export default defineComponent({
 .title {
   font-size: 15px;
   font-weight: bold;
-  color: #000000;
+  color: white;
   line-height: 60px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
 }
 .form-box {
   border-radius: 10px;
@@ -291,7 +291,7 @@ export default defineComponent({
     color: #8f8f8f;
   }
   .value {
-    color: #000000;
+    color: white;
     margin-top: 5px;
     &.gas {
       color: #3aae55;
@@ -304,13 +304,13 @@ export default defineComponent({
 .tips {
   margin: 15px;
   padding: 12px 15px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   border-radius: 5px;
   .text {
     line-height: 16px;
   }
   i {
-    color: #9F54BA;
+    color: white;
     margin-right: 9px;
   }
 }

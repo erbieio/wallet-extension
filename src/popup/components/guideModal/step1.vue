@@ -86,7 +86,7 @@ export default defineComponent({
     font-size: 12px;
 
     .left {
-      color: #9F54BA;
+      color: white;
     }
   }
 
@@ -101,13 +101,15 @@ export default defineComponent({
     font-size: 24px;
     font-weight: bold;
     line-height: 30px;
+    color: white;
   }
 
   .small-tit {
     text-align: center;
     margin-bottom: 30px;
     font-size: 12px;
-    color: #848484;
+    color: white;
+
   }
 
   :deep {

@@ -88,9 +88,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mnemonic-bg {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   .tit-big {
     line-height: 21px;
+    color: white;
+
   }
   .tit-small {
     width: 290px;
@@ -129,7 +131,7 @@ export default {
 }
 .remind {
   font-weight: bold;
-  color: #000;
+  color: white;
   text-decoration: underline;
 }
 .btn-group {

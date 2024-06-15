@@ -408,7 +408,7 @@ export default defineComponent({
   font-size: 18px;
 }
 .create-box {
-  background: #f1f3f4;
+  background: #24152f;
   height: 36px;
   padding: 0 15px;
   position: relative;
@@ -418,9 +418,9 @@ export default defineComponent({
   .add {
     width: 36px;
     height: 18px;
-    background: #9f54ba;
     border-radius: 9px;
     cursor: pointer;
+    background: #150520;
     i {
       color: #fff;
       font-size: 14px;
@@ -445,7 +445,7 @@ export default defineComponent({
 }
 .tip1 {
   .toCreate {
-    color: #9f54ba;
+    color: white;
     font-size: 12px;
     &:hover {
       text-decoration: underline;

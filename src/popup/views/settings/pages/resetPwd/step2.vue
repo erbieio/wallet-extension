@@ -5,7 +5,7 @@
       <img class="iconele flex center" src="@/assets/logoeth.png" />
     </template>
   </WormTransition>
-  <div class="f-24 text-center text-bold mt-10">{{t('resetPwd.resetpasswords')}}</div>
+  <div class="f-24 text-center text-bold mt-10 tit">{{t('resetPwd.resetpasswords')}}</div>
   <div class="text-center text-bold f-12 tit-2 mt-14">{{t('resetPwd.enternewpassword')}}</div>
   <div class="pl-26 pr-26">
     <van-form @submit="onSubmit">
@@ -218,12 +218,15 @@ export default {
   width: 20px;
   // height: 60px;
 }
+.tit {
+  color: white;
+}
 .tit-2 {
   color: #848484;
   margin-bottom: 40px;
 }
 .icon-yanjing1 {
-  color: #9F54BA;
+  color: white;
 }
 .btn-groups {
   margin-top: 30px;
@@ -250,7 +253,7 @@ export default {
   transition: ease 0.3s;
   font-size: 12px;
   &:hover {
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
   }
 }
 </style>

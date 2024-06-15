@@ -101,7 +101,7 @@ export default defineComponent({
   }
 
   &.fail {
-    background: #F3F3F3;
+    background: #24152f;
   }
 
   &-text {
@@ -157,8 +157,6 @@ export default defineComponent({
     }
   }
 
-  .icon {}
-
   .draw-btn {
     width: 82px;
     margin-top: 5px;
@@ -174,23 +172,23 @@ export default defineComponent({
       transition: 0.3s ease;
       box-shadow: 0px 2px 14px rgba($color: #ccc, $alpha: 0.4);
 
-      /* background:#F8F3F9; */
-      color: #9f54ba;
+      /* background:rgba(255,255,255,.05); */
+      color: white;
     }
 
     .usd,
     .address .add {
-      color: #9f54ba;
+      color: white;
     }
   }
 
   &.list:hover {
-    background: #f8f3f9;
-    color: #9f54ba;
+    background: rgba(255,255,255,.05);
+    color: white;
 
     .usd,
     .address .add {
-      color: #9f54ba !important;
+      color: white !important;
     }
   }
 
@@ -205,7 +203,7 @@ export default defineComponent({
       .icon {
         width: 60px;
         height: 60px;
-        /* background: #9F54BA; */
+        /* background: white; */
         border-radius: 6px;
         margin-right: 15px;
         overflow: hidden;
@@ -308,14 +306,11 @@ export default defineComponent({
   line-height: 24px;
   text-align: center;
   color: #fff;
-  background: #9f54ba;
+  background: white;
   border-radius: 12px;
   &.gary {
     background-color: #ccc;
     cursor: not-allowed;
   }
 }
-
-@media screen and (min-width: 756px) {
-  .nft-card.card {}
-}</style>
+</style>

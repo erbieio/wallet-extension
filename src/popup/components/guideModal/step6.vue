@@ -116,7 +116,7 @@ export default defineComponent({
     padding-right: 14px;
     font-size: 12px;
     .left {
-      color: #9F54BA;
+      color: white;
     }
   }
   .tip2 {
@@ -216,6 +216,7 @@ export default defineComponent({
     font-weight: bold;
     line-height: 30px;
     margin-top: 22px;
+    color: white;
   }
   .small-tit {
     text-align: center;

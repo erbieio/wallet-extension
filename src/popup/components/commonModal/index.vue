@@ -82,9 +82,9 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #000;
+  color: white;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 }
 .savebtn {
@@ -97,7 +97,7 @@ export default defineComponent({
     font-size: 12px;
   }
   &:hover {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     color: #666;
   }
 }
@@ -108,7 +108,7 @@ export default defineComponent({
 .code-box {
   width: 200px;
   height: 200px;
-  border: 7px solid #000;
+  border: 7px solid white;
   padding: 1px;
 }
 .btn-group {
@@ -121,21 +121,21 @@ export default defineComponent({
     height: 34px;
     box-sizing: border-box;
     border-radius: 17px;
-    border: 1PX solid #9F54BA;
+    border: 1PX solid white;
     cursor: pointer;
     &:hover {
-      background: #9F54BA;
+      background: white;
       i {
         color: #fff;
       }
     }
     i {
       font-size: 18px;
-      color: #9F54BA;
+      color: white;
     }
   }
   .text {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
   }
 }

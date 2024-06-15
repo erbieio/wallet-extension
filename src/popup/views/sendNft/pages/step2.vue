@@ -568,41 +568,41 @@ export default {
 }
 
 .userinfo-box {
-  background: #fff;
+  background: #13051E;
 }
 
 .clearAddress {
   font-size: 16px;
-  color: #9F54BA;
+  color: white;
 }
 
 .slider-box.amount-info {
   width: 100% !important;
 
   .value {
-    color: #000;
+    color: white;
     font-size: 12px;
   }
 }
 
 .cancel {
   font-size: 11px;
-  color: #9F54BA;
+  color: white;
 }
 
 .up-down-box {
   i {
-    color: #9F54BA;
+    color: white;
     font-size: 16px;
   }
 
   span {
-    color: #9F54BA;
+    color: white;
     word-break: keep-all;
   }
 
   font-size: 12px;
-  color: #9F54BA;
+  color: white;
 }
 
 :deep(input) {
@@ -626,7 +626,7 @@ export default {
     line-height: 18px;
 
     &.equal {
-      color: #000;
+      color: white;
     }
   }
 }
@@ -635,7 +635,7 @@ export default {
   width: 20px;
 
   i {
-    color: #9F54BA;
+    color: white;
     font-size: 20px;
   }
 }
@@ -687,7 +687,7 @@ export default {
 
     &:hover {
       transition: ease 0.3s;
-      background-color: #F8F3F9;
+      background-color: rgba(255,255,255,.05);
     }
 
     .closeIcon {
@@ -802,7 +802,7 @@ export default {
 }
 
 :deep(.van-tab--active) {
-  color: #9F54BA;
+  color: white;
 }
 
 :deep(.van-tabs__line) {

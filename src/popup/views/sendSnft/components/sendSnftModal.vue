@@ -183,7 +183,7 @@ export default defineComponent({
   line-height: 62px;
   font-weight: bold;
   font-size: 14px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
 }
 
 .createNftModal {}

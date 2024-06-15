@@ -8,14 +8,14 @@
     color: #F7BF03;
 }
 .add-amount {
-    color: #000;
+    color: white;
 }
 .active-d {
     border: 1px solid #B3B3B3;
 }
 .pwd-tip {
     span {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
   }
@@ -83,7 +83,7 @@
         height: 62px;
         font-size: 15px;
         line-height: 62px;
-        background-color: #F8F3F9;
+        background-color: rgba(255,255,255,.05);
     }
 
     .exchange-welcome-icon {
@@ -121,7 +121,7 @@
         text-align: center;
 
         .right {
-            color: #9F54BA;
+            color: white;
             text-decoration: underline;
         }
     }
@@ -139,7 +139,7 @@
         height: 62px;
         font-size: 15px;
         line-height: 62px;
-        background-color: #F8F3F9;
+        background-color: rgba(255,255,255,.05);
     }
 
     .exchange-welcome-icon {
@@ -170,7 +170,7 @@
         text-align: center;
 
         .right {
-            color: #9F54BA;
+            color: white;
             text-decoration: underline;
         }
     }
@@ -214,7 +214,7 @@
         .down {
             height: 24px;
             line-height: 24px;
-            color: #9F54BA;
+            color: white;
             text-decoration: underline;
             white-space: nowrap;
             overflow: hidden;
@@ -243,7 +243,7 @@
         line-height: 62px;
         text-align: center;
         font-weight: bold;
-        background: #F8F3F9;
+        background: rgba(255,255,255,.05);
         font-size: 14px;
         color: #0f0f0f;
     }
@@ -326,7 +326,7 @@
 
             .ipt-text-b {
                 margin: 5px 0 9px 0;
-                color: #000;
+                color: white;
                 font-size: 12px;
                 font-weight: bold;
             }
@@ -338,7 +338,7 @@
 
                 span {
                     font-weight: 400;
-                    color: #000000;
+                    color: white;
                 }
 
                 .ipt-server-i {
@@ -349,7 +349,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    background: #F8F3F9;
+                    background: rgba(255,255,255,.05);
                     border-radius: 7px 7px 7px 7px;
 
                     &:first-child {
@@ -359,8 +359,8 @@
 
                 .ipt-server-i-active {
                     color: #0287db;
-                    background: #F8F3F9;
-                    border: 1px solid #9F54BA;
+                    background: rgba(255,255,255,.05);
+                    border: 1px solid white;
 
                     span {
                         color: #0287db;
@@ -375,7 +375,7 @@
 
                 span {
                     &:first-child {
-                        color: #000000;
+                        color: white;
                     }
 
                     &:last-child {
@@ -464,7 +464,7 @@
 .text.error {
     :deep(.van-field__body) {
         border: 1px solid #d73a49 !important;
-        background: #fbf2f3;
+        background: #24152f;
     }
 }
 
@@ -496,7 +496,7 @@
         line-height: 62px;
         text-align: center;
         font-weight: bold;
-        background: #F8F3F9;
+        background: rgba(255,255,255,.05);
         font-size: 14px;
         color: #0f0f0f;
     }
@@ -691,7 +691,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background: #F8F3F9;
+            background: rgba(255,255,255,.05);
             border-radius: 7.5px;
             cursor: pointer;
             box-sizing: border-box;
@@ -699,10 +699,10 @@
         }
 
         .active {
-            border: 1px solid #9F54BA;
+            border: 1px solid white;
 
             span {
-                color: #9F54BA;
+                color: white;
             }
         }
         .disabled {
@@ -731,7 +731,7 @@
                 font-weight: normal;
 
                 &.icon-duigouxiao {
-                    color: #9F54BA;
+                    color: white;
                 }
             }
         }
@@ -777,7 +777,7 @@
     .bourse-container-warning {
         margin-top: 160px;
         height: 40px;
-        background: #fbf2f3;
+        background: #24152f;
         border-radius: 7.5px;
         display: flex;
         align-items: center;
@@ -791,7 +791,7 @@
 
     .t1 {
         font-size: 14px;
-        color: #9F54BA;
+        color: white;
     }
 
     .t3 {
@@ -818,12 +818,12 @@
         }
 
         .right {
-            color: #9F54BA;
+            color: white;
             text-decoration: underline;
         }
 
         .icon-yanjing {
-            color: #9F54BA;
+            color: white;
         }
 
         :deep(.van-field__label) {
@@ -850,7 +850,7 @@
             transition: ease 0.3s;
             font-size: 12px;
             // &:hover {
-            //   border: 1px solid #9F54BA;
+            //   border: 1px solid white;
             // }
         }
 
@@ -862,12 +862,12 @@
 
         .success-field {
             :deep(.van-field__body) {
-                border: 1px solid #9F54BA !important;
+                border: 1px solid white !important;
             }
         }
 
         .tool {
-            color: #9F54BA;
+            color: #8AA4FF;
         }
 
         .pointer {
@@ -890,12 +890,12 @@
 }
 
 .appendto2>span::before {
-    background-color: #9F54BA !important;
+    background-color: white !important;
     border: none !important;
 }
 
 .appendto1>span::before {
-    background-color: #9F54BA !important;
+    background-color: white !important;
     border: none !important;
 }
 

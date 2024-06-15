@@ -230,12 +230,10 @@ export default defineComponent({
 .tips-icon {
   i {
     font-size: 18px;
-    color: #9F54BA;
+    color: white;
     margin-right: 9px;
   }
 }
-
-.btn-box {}
 
 .account-container {
 
@@ -252,7 +250,7 @@ export default defineComponent({
 
 .tips {
   padding: 11px 15px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   border-radius: 7px;
   margin: 15px 0;
 }
@@ -330,8 +328,9 @@ export default defineComponent({
   text-align: center;
   align-items: center;
   justify-content: center;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-size: 15px;
   font-weight: bold;
+  color: white;
 }
 </style>

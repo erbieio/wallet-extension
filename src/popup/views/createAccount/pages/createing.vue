@@ -7,7 +7,7 @@
       <van-progress
         :percentage="percentage"
         stroke-width="5"
-        color="#9F54BA"
+        color="white"
         :show-pivot="false"
       />
       <div class="text-center mt-16 process">{{ percentage }}%</div>
@@ -102,19 +102,19 @@ export default {
 </script>
 <style lang="scss" scoped>
 .loading-bg {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   height: 135px;
   padding: 25px 0 0;
   .tit-big {
     line-height: 20px;
     font-size: 15px;
-    color: #9F54BA;
+    color: white;
   }
   .loading {
     margin: 0 62px;
   }
   .process {
-    color: #9F54BA;
+    color: white;
   }
 }
 .icon-box {

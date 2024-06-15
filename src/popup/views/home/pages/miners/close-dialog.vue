@@ -241,8 +241,8 @@ export default {
   line-height: 62px;
   text-align: center;
   font-size: 15px;
-  background: #F8F3F9;
-  color: #000;
+  background: rgba(255,255,255,.05);
+  color: white;
   font-weight: bold;
 }
 .warning-icon {
@@ -255,7 +255,7 @@ export default {
   padding: 0 15px;
   margin-top: 30px;
   font-size: 12px;
-  color: #9F54BA;
+  color: white;
 }
 .footer-btns {
   display: flex;
@@ -275,9 +275,9 @@ export default {
       line-height: 45px;
       box-sizing: border-box;
       &:first-child {
-        color: #000;
+        color: white;
         margin-right: 40px;
-        border: 1px solid #000;
+        border: 1px solid white;
       }
       &:last-child {
         background-color: #d73a49;

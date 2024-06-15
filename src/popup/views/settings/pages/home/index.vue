@@ -3,13 +3,12 @@
     <NavHeader :title="t('sidebar.settings')" :hasNet="false" :hasRight="false"></NavHeader>
   </van-sticky>
   <div class="settings settings-index">
-    <SettingClass :label="t('setting.general')">
+    <!-- <SettingClass :label="t('setting.general')">
       <template v-slot:icon>
         <i class="iconfont icon-filter2"></i>
       </template>
-      <!-- <setting-card :label="t('setting.currencyConversion')" @handleClick="handleToggleCurrency" value="USD" /> -->
       <setting-card :label="t('setting.languageSelection')" @handleClick="handleToggleLanguage" :value="lang.label" />
-    </SettingClass>
+    </SettingClass> -->
     <!-- Switch legal currency -->
     <ToggleCurrencyModal v-model="showCurrency" />
     <!-- Switch language Popup -->
@@ -37,13 +36,6 @@
       </template>
       <setting-card @handleClick="routerPush({ name: 'contacts-list' })" :label="t('setting.addEditRemove')" />
     </SettingClass>
-    <!-- 
-    <SettingClass :label="t('setting.aboutWormHoles')" @handleClick="towebsite">
-      <template v-slot:icon>
-        <i class="iconfont icon-zuanshi_o"></i>
-      </template>
-      <setting-card :label="t('setting.wormHolesIntroduction')" />
-    </SettingClass> -->
     <div class="btn-groups">
       <div class="container flex center  pl-26 pr-26">
         <van-button type="primary" block :loading="loading" @click="handleClearCanche">{{ t('common.clearCanche') }}</van-button>
@@ -160,7 +152,7 @@ export default {
     transition: ease 0.3s;
 
     &:hover {
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
     }
 
     .title {

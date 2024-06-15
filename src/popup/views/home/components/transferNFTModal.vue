@@ -251,10 +251,10 @@ function toHex(str: string) {
 }
 
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 }
 
@@ -264,7 +264,7 @@ function toHex(str: string) {
 
 .pintu {
   i {
-    color: #9F54BA;
+    color: white;
     font-size: 38px;
   }
 }
@@ -273,7 +273,7 @@ function toHex(str: string) {
   color: #b3b3b3;
 
   span {
-    color: #9F54BA;
+    color: white;
     text-decoration: underline;
   }
 }

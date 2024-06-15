@@ -3,7 +3,7 @@
     <van-nav-bar :title="$t('createsuccessexchange.title')" left-arrow @click-left="onClickLeft" />
     <div class="create-success-content">
       <!-- page -->
-      <van-tabs title-active-color="#9F54BA" title-inactive-color v-model:active="activeName">
+      <van-tabs title-active-color="white" title-inactive-color v-model:active="activeName">
         <van-tab :title="$t('createsuccessexchange.cms')" name="a">
           <div class="con-box">
             <H5 class="header-title">{{t('createsuccessexchange.sendlink')}}</H5>
@@ -115,7 +115,7 @@ export default {
     .van-tabs__line {
     width: 50%;
     height: 0.05333rem;
-    background: #9F54BA;
+    background: white;
   }
   .van-tab {
     position: inherit;
@@ -134,6 +134,7 @@ export default {
     text-align: center;
     font-size: 12px;
     margin-top: 20px;
+    color: white;
   }
   .display-box {
     height: 100px;
@@ -141,7 +142,7 @@ export default {
     justify-content: center;
     align-items: center;
     .link-display {
-      color: #9F54BA;
+      color: white;
       word-break: break-all;
     }
   }

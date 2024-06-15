@@ -72,15 +72,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 .loading-bg {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   height: 135px;
   .tit-big {
     line-height: 21px;
+    color: white;
+
   }
   .step{
     width: 17px;
     height: 17px;
-    background-color: #9F54BA;
+    background-color: white;
     color: #fff;
     text-align: center;
     border-radius: 50%;
@@ -107,7 +109,7 @@ export default {
       text-align: center;
       width: 80px;
       height: 0px;
-      border: 1PX dashed #000000;
+      border: 1PX dashed white;
       transform: scale(0.8);
     }
      .dotted-line2{
@@ -119,7 +121,7 @@ export default {
       transform: scale(0.8);
     }
   .tit-small{
-  color: #9F54BA;
+  color: white;
   }
   .now{
     color: #68B1E6;

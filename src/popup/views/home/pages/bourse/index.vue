@@ -20,9 +20,9 @@
         <van-form @submit="onSubmit" ref="formDom">
           <div v-if="false">
             <van-field :disabled="isExchangerFlag" maxlength="20" validate-trigger="onSubmit" v-model="name" readonly :class="`text ${nameError ? 'error' : ''}`" type="text" :placeholder="t('bourse.placename')" :rules="[
-              // { required: true, message: t('bourse.vainame') },
-              { validator: asynPwd2, message: t('bourse.vainame2') },
-            ]" />
+      // { required: true, message: t('bourse.vainame') },
+      { validator: asynPwd2, message: t('bourse.vainame2') },
+    ]" />
           </div>
         </van-form>
       </div>
@@ -244,7 +244,7 @@
       </div>
     </div>
     <div class="flex center loading-page" v-else>
-      <van-loading color="#9F54BA" />
+      <van-loading color="white" />
     </div>
     <CustomExchangeModal v-model="showAcount" :maxBalance="10" :minBalance="1" :defaultAmount="moneyStr" @handleConfirm="handleConfirm" />
 
@@ -634,7 +634,7 @@ export default defineComponent({
       }
     };
     const routerTo = () => {
-      window.open('https://limino.com/upload/tsm.html')
+      window.open('https://wallet.erbie.io/upload/tsm.html')
 
     }
     // Additional pledge confirmation pop-up window

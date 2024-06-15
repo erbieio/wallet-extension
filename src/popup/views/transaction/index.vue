@@ -234,7 +234,7 @@ export default {
 .transaction {
   .back {
     font-size: 18px;
-    color: #9F54BA;
+    color: white;
   }
   :deep(.van-cell__title) {
     flex: inherit;

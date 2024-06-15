@@ -220,7 +220,7 @@ export default {
 }
 .ipt {
   min-height: 44px;
-  background: #ffffff;
+  background: #24152f;
   margin: 0 15px 0;
   border-radius: 5px;
   //border: 1px solid #B3B3B3;
@@ -229,7 +229,7 @@ export default {
       .van-field {
         .van-field__body {
     border: 1px solid #D73A49;
-    background: #FBF2F3;
+    background: #24152f;
   }
       }
     }
@@ -241,26 +241,28 @@ export default {
 .tab-box {
   .flex-1.active {
     i {
-      color: #9F54BA;
+      color: white;
     }
-    color: #9F54BA;
+    color: white;
   }
   i {
     font-size: 32px;
+    color: #ccc;
   }
 }
 .bg-box {
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   margin: 15px 15px 25px;
   border-radius: 7.5px;
   .icon-box {
-    color: #9F54BA;
+    color: white;
     i {
       font-size: 16px;
     }
   }
   .text-box {
     width: 100%;
+    color: #ccc
   }
   .btn-box {
     i {
@@ -270,7 +272,7 @@ export default {
       font-size: 42px;
     }
     .flex-1.active {
-      color: #9F54BA;
+      color: white;
     }
   }
 }
@@ -279,7 +281,7 @@ export default {
   padding: 15px;
   box-sizing: border-box;
   word-break: break-all;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   position: relative;
   border-radius: 5px;
   border: 1px solid #B3B3B3;
@@ -287,7 +289,7 @@ export default {
   i {
     position: absolute;
     right: 10px;
-    color: #9F54BA;
+    color: white;
     bottom: 10px;
   }
 }
@@ -298,20 +300,20 @@ export default {
 .code-box {
   width: 236px;
   height: 236px;
-  border: 7px solid #000;
+  border: 7px solid white;
   padding: 1px;
 }
 .load-btn {
   width: 250px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   border-radius: 30px;
   margin: 15px auto 0;
-  color: #9F54BA;
+  color: white;
   i {
     font-size: 12px;
   }
   &:hover {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
   }
 }
 </style>

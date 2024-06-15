@@ -4,7 +4,7 @@
     <div class="title">
       <WormTransition size="small">
         <template v-slot:icon>
-          <img class="iconele" src="@/assets/token/logowallet.png" />
+          <img class="iconele" src="@/assets/token/logowallet.svg" />
         </template>
       </WormTransition>
       <!-- <img class="iconele flex center" src="@/assets/token/icon_blue.svg" alt /> -->
@@ -239,7 +239,7 @@ export default {
 }
 
 .reset-box {
-  color: #828184;
+  color: #eee;
 }
 
 .title {
@@ -250,6 +250,8 @@ export default {
   .tit-big {
     line-height: 21px;
     font-weight: bolder;
+    color: white;
+
   }
 
   .tit-small {
@@ -263,12 +265,12 @@ export default {
   }
 
   .right {
-    color: #9F54BA;
+    color: white;
     text-decoration: underline;
   }
 
   .icon-yanjing1 {
-    color: #9F54BA;
+    color: white;
   }
 
   :deep(.van-field__label) {
@@ -299,7 +301,7 @@ export default {
 }
 
 .tool {
-  color: #9F54BA;
+  color: #8AA4FF;
 }
 
 .underline {

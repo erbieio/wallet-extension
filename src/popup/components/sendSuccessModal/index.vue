@@ -114,13 +114,11 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .title {
-  color: #b3b3b3;
+  color: white;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
-}
-.send-success-modal {
 }
 .modal-box {
   padding-top: 50px;

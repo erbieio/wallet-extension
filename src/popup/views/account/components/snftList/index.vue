@@ -31,7 +31,7 @@
             <div v-if="item.load && item.showDetails" :class="['snft-list-out', showSNFTIdx > 8 ? 'sec' : '']" @mousemove="handleSNFTSMouseOver" @mouseleave="handleSNFTSMouseLeave({ item, index })">
               <div class="snft-list">
                 <div class="flex center" v-show="item.load == 'loading'">
-                  <van-loading size="28" color="#9F54BA"></van-loading>
+                  <van-loading size="28" color="white"></van-loading>
                 </div>
                 <div v-for="(sun, i) in showSNFTList" class="snft-child hover" :key="sun.nft_address" @click="toDetail(sun, i)">
                   <img loading="lazy" v-if="!sun.loadErr" @error="loadImg(sun, i)" :src="`${sun.imgUrl}`" class="snft-img" />
@@ -78,7 +78,7 @@
 
   <Transition name="slider">
     <div class="load-tip flex center" v-if="showConvert && loadNft">
-      <div class="load-tip-con flex-1 flex center"><van-loading color="#9F54BA" size="13" /> <span class="ml-4">{{ t('common.loading') }}</span></div>
+      <div class="load-tip-con flex-1 flex center"><van-loading color="white" size="13" /> <span class="ml-4">{{ t('common.loading') }}</span></div>
     </div>
   </Transition>
 
@@ -753,8 +753,8 @@ export default defineComponent({
       const waits = []
       const approveMessage = t("wallet.conver_approve");
       const wattingMessage = t("wallet.conver_waiting", {
-        count: `<span style='color:#9F54BA;'>${len}</span>`,
-        amount: `<span style='color:#9F54BA;'>${selectTotal.value}</span>`,
+        count: `<span style='color:white;'>${len}</span>`,
+        amount: `<span style='color:white;'>${selectTotal.value}</span>`,
         countstr: `(${selectedText.value})`,
       });
 
@@ -814,8 +814,8 @@ export default defineComponent({
           $tradeConfirm.update({
             status: "success",
             successMessage: t("wallet.conver_success", {
-              count: `<span style='color:#9F54BA;'>${waits.length}</span>`,
-              amount: `<span style='color:#9F54BA;'>${selectTotal.value}</span>`,
+              count: `<span style='color:white;'>${waits.length}</span>`,
+              amount: `<span style='color:white;'>${selectTotal.value}</span>`,
             }),
             successMessageType: "html",
             historyCallBack,

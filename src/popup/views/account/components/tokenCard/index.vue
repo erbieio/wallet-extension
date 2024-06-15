@@ -3,9 +3,7 @@
     <div class="token-card-left flex between">
       <div class="token-icon flex center">
         <div class="icon-box flex center">
-          <img src="@/assets/icon_black.svg" v-show="!isMouse" />
-          <img src="@/assets/token/logowallet.png" v-show="isMouse" />
-          
+          <img src="@/assets/token/logowallet.svg" />
         </div>
       </div>
       <div class="token-info flex center f-12">{{ data.name }}</div>
@@ -90,13 +88,14 @@ export default defineComponent({
   &:hover {
     transition: ease 0.3s;
     cursor: pointer;
-    background: #F8F3F9;
-    color:#9F54BA;
+    background: #200125;
+    color:white;
   }
   &-left {
     .token-icon {
       width: 70px;
       height: 100%;
+      color: white;
       .icon-box {
         border-radius: 50%;
         width: 36px;
@@ -106,10 +105,14 @@ export default defineComponent({
         }
       }
     }
+    .token-info {
+      color: white;
+    }
   }
   &-right {
     font-size: 16px;
     padding: 0 0 0 16px;
+    color: white;
     .name {
       font-size: 12px;
       line-height: 12px;

@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
     .mask {
-        background: rgba($color: #000000, $alpha: 0.7);
+        background: rgba($color: white, $alpha: 0.7);
         position: absolute;
         left: 0;
         right: 0;
@@ -83,7 +83,7 @@ export default {
         height: 236px;
         border-radius: 8px;
         &.dark {
-            background: rgba($color: #000000, $alpha: 0.8);
+            background: rgba($color: white, $alpha: 0.8);
             color: #fff;
             .footer-btns {
                 div span {
@@ -93,7 +93,7 @@ export default {
                     margin-right: 40px;
                 }
                 &:last-child {
-                    background-color: #9F54BA;
+                    background-color: white;
                 }
             }
             }
@@ -101,17 +101,17 @@ export default {
         }
         &.light {
             background: rgba($color: #fff, $alpha: 1);
-            color: #000;
+            color: white;
             .footer-btns {
                 div span {
-                color: #000000;
+                color: white;
                 &:first-child {
-                    border: 1px solid #000;
+                    border: 1px solid white;
                     margin-right: 40px;
                 }
                 &:last-child {
                     color: #fff;
-                    background-color: #9F54BA;
+                    background-color: white;
                 }
             }
             }

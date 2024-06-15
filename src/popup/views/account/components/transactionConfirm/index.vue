@@ -145,7 +145,7 @@ export default defineComponent({
       .gasfree {
         margin-bottom: 7px;
         .label {
-          color: #000;
+          color: white;
           font-weight: bold;
           min-width: 100%;
           i {

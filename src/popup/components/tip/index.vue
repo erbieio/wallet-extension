@@ -33,11 +33,12 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .wormholes-tip {
+  color: white;
     border-radius: 5px;
     &.primary {
-      background: #F8F3F9;
+      /* background: rgba(255,255,255,.05); */
       .icon i {
-        color: #9F54BA;
+        color: white;
       }
     }
     &.warn {
@@ -47,7 +48,7 @@ export default defineComponent({
       }
     }
     &.error {
-      background: #FBF2F3;
+      background: #24152f;
       .icon i {
         color: #D73A49;
       }
@@ -60,6 +61,6 @@ export default defineComponent({
 
 .msg {
     padding-left: 9px;
-    color: #000000;
+    color: #eee;
 }
 </style>

@@ -265,7 +265,7 @@ export default {
       line-height: 62px;
       text-align: center;
       font-weight: bold;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       font-size: 15px;
       color: #0f0f0f;
     }
@@ -336,7 +336,7 @@ export default {
 
         .ipt-text-b {
           margin: 5px 0 9px 0;
-          color: #000;
+          color: white;
           font-size: 12px;
           font-weight: bold;
         }
@@ -348,7 +348,7 @@ export default {
 
           span {
             font-weight: 400;
-            color: #000000;
+            color: white;
           }
 
           .ipt-server-i {
@@ -359,7 +359,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #F8F3F9;
+            background: rgba(255,255,255,.05);
             border-radius: 7px 7px 7px 7px;
 
             &:first-child {
@@ -369,8 +369,8 @@ export default {
 
           .ipt-server-i-active {
             color: #0287db;
-            background: #F8F3F9;
-            border: 1px solid #9F54BA;
+            background: rgba(255,255,255,.05);
+            border: 1px solid white;
 
             span {
               color: #0287db;
@@ -385,7 +385,7 @@ export default {
 
           span {
             &:first-child {
-              color: #000000;
+              color: white;
             }
 
             &:last-child {
@@ -464,7 +464,7 @@ export default {
 }
 
 .c1 {
-  color: #8f8f8f;
+  color: white;
 }
 
 .exchange {

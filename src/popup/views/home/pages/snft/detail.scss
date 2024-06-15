@@ -51,7 +51,7 @@
                     width: 34px;
                     height: 34px;
                     border-radius: 5px;
-                    background: rgba($color: #000, $alpha: .5);
+                    background: rgba($color: white, $alpha: .5);
                     // left: 2px;
                     // top: 2px;
                     z-index: 888;
@@ -111,11 +111,11 @@
             }
 
             &.active {
-                border: 1px solid #9F54BA;
+                border: 1px solid white;
                 border-radius: 5px;
 
                 &::after {
-                    border-color: #9F54BA;
+                    border-color: white;
                 }
             }
 
@@ -152,7 +152,7 @@
         position: relative;
 
         i {
-            color: #9F54BA;
+            color: white;
             font-size: 18px;
             position: absolute;
             top: 120px;
@@ -197,7 +197,7 @@
         }
 
         img:hover {
-            border: 1PX solid #9F54BA;
+            border: 1PX solid white;
         }
 
         &.select::after {
@@ -207,10 +207,10 @@
             top: 0;
             right: 0;
             bottom: 0;
-            background: rgba($color: #9F54BA, $alpha: .4);
+            background: rgba($color: white, $alpha: .4);
             display: block;
             border-radius: 7px;
-            border: 1px solid #9F54BA;
+            border: 1px solid white;
         }
     }
 
@@ -222,7 +222,7 @@
         width: 255px;
         height: 25px;
         margin: 25px auto 0;
-        background: #F8F3F9;
+        background: rgba(255,255,255,.05);
         font-size: 12px;
         text-align: center;
         line-height: 25px;
@@ -290,7 +290,7 @@
             }
 
             .icon-in {
-                background: #9F54BA;
+                background: white;
                 width: 35px;
                 border-radius: 50%;
                 height: 35px;
@@ -314,7 +314,7 @@
                 font-size: 12px;
                 line-height: 16px;
                 font-weight: bold;
-                color: #9F54BA;
+                color: white;
                 margin-top: 2px;
             }
         }
@@ -341,7 +341,7 @@
             }
 
             &:hover {
-                border: 1PX solid #9F54BA;
+                border: 1PX solid white;
             }
 
             &.disabled {
@@ -355,7 +355,7 @@
 
                 &::before {
                     content: '';
-                    background: rgba($color: #000, $alpha: .5);
+                    background: rgba($color: white, $alpha: .5);
                     position: absolute;
                     left: 0;
                     top: 0;
@@ -366,7 +366,7 @@
             }
 
             &.select {
-                background: rgba($color: #9F54BA, $alpha: 0.6);
+                background: rgba($color: white, $alpha: 0.6);
 
                 &::after {
                     border-bottom-width: 0;
@@ -401,11 +401,11 @@
         border-radius: 8px;
 
         &:hover {
-            border: 1PX solid #9F54BA;
+            border: 1PX solid white;
         }
 
         &.selected {
-            background: rgba($color: #9F54BA, $alpha: 0.6);
+            background: rgba($color: white, $alpha: 0.6);
         }
 
     }

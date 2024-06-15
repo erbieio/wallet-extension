@@ -8,7 +8,7 @@
     </template>
     <template v-slot:right>
       <div>
-        <i v-if="pageType == 'Popup'" class="iconfont icon-zhankai" :title="t('common.expandView')" @click="extendView" :style="{ color: hasExchange ? '#fff' : '#9F54BA' }"></i>
+        <i v-if="pageType == 'Popup'" class="iconfont icon-zhankai" :title="t('common.expandView')" @click="extendView" :style="{ color: hasExchange ? '#fff' : 'white' }"></i>
       </div>
     </template>
   </NavHeader>
@@ -188,12 +188,12 @@
             <TokenCard v-for="(item, idx) in accountTokens" :key="idx" :data="item" toName="transactionDetails-step1" />
           </template>
         </van-tab>
-        <van-tab name="b">
+        <!-- <van-tab name="b">
           <template #title>{{ $t("wallet.NFTs") }}</template>
           <template #default>
             <NftList v-if="active == 'b'" />
           </template>
-        </van-tab>
+        </van-tab> -->
         <!-- snft list -->
         <van-tab name="c">
           <template #title>{{ $t("wallet.SNFTs") }}</template>

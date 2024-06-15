@@ -9,7 +9,7 @@
     <div class="title">
       <WromTransition size="small">
         <template v-slot:icon>
-          <img class="iconele flex center" src="@/assets/token/logowallet.png" />
+          <img class="iconele flex center" src="@/assets/token/logowallet.svg" />
         </template>
       </WromTransition>
       <div class="tit-big text-center f-24 mt-10">
@@ -30,18 +30,18 @@
             </span>
           </div>
           <van-field :class="`${pwd1Err ? 'error' : ''}`" v-model="password" name="password" :type="`${choice ? 'text' : 'password'}`" :placeholder="$t('createAccountpage.passwordPlaceholder')" :rules="[
-            // { required: true, message:t('createAccountpage.pwdRequired') },
-            { validator: asynPwd, message: t('createAccountpage.pwdWorng') },
-          ]" />
+    // { required: true, message:t('createAccountpage.pwdRequired') },
+    { validator: asynPwd, message: t('createAccountpage.pwdWorng') },
+  ]" />
           <!-- <div class="tit-small f-12" v-if="password.length<6||password.length>20">{{$t('createAccountpage.pwdMessage')}}</div> -->
           <div class="text-bold f-12 mt-20 mb-10 lh-16 flex between">
             <span>{{ t('createAccountpage.confirmPassword') }}</span>
           </div>
           <van-field v-model="password2" :type="`${choice ? 'text' : 'password'}`" name="password2" :class="` ${pwd2Err ? 'error' : ''}`" :placeholder="t('createAccountpage.confirmPassword')" :rules="[
-            //  { required: true, message:t('createAccountpage.pwdRequired') },
-            { validator: asynPwd2, message: t('createAccountpage.pwdWorng') },
-            { validator: asynPwd3, message: t('createAccountpage.inconsistentPwd') },
-          ]" />
+    //  { required: true, message:t('createAccountpage.pwdRequired') },
+    { validator: asynPwd2, message: t('createAccountpage.pwdWorng') },
+    { validator: asynPwd3, message: t('createAccountpage.inconsistentPwd') },
+  ]" />
         </van-cell-group>
         <div style="margin: 16px">
           <van-button :loading="loading" round block type="primary" native-type="submit">{{ t('createAccountpage.create') }}</van-button>
@@ -232,10 +232,10 @@ export default {
     const modal2 = ref(false);
     const routerTo = (name: any) => {
       if (name == 'termsOfUse') {
-        window.open('https://limino.com/upload/tst.html')
+        window.open('https://wallet.erbie.io/upload/tst.html')
       }
       if (name == 'privacyNotice') {
-        window.open('https://limino.com/upload/pn.html')
+        window.open('https://wallet.erbie.io/upload/pn.html')
       }
     }
     return {
@@ -265,7 +265,7 @@ export default {
 <style lang="scss" scoped>
 .pwd-tip {
   span {
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -273,20 +273,21 @@ export default {
   .van-field.error {
     .van-field__body {
       border: 1px solid #D73A49;
-      background: #FBF2F3;
+      background: #24152f;
     }
   }
 }
 
 .pwd-tip {
   a {
-    color: #9F54BA;
+    color: white;
   }
 }
 
 .title {
   font-weight: 600;
   font-size: 16px;
+  color: white;
 }
 
 .iconele {
@@ -299,12 +300,12 @@ export default {
   }
 
   .right {
-    color: #9F54BA;
+    color: white;
     text-decoration: underline;
   }
 
   .icon-yanjing1 {
-    color: #9F54BA;
+    color: white;
   }
 
   :deep(.van-field__label) {
@@ -333,12 +334,12 @@ export default {
     font-size: 12px;
 
     &:hover {
-      border: 1PX solid #9F54BA;
+      border: 1PX solid white;
     }
   }
 
   .tool {
-    color: #9F54BA;
+    color: #8AA4FF;
   }
 
   .pointer {

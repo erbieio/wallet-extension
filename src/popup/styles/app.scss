@@ -3,10 +3,6 @@
     position: relative;
     box-sizing: border-box;
     padding-bottom: 30px;
-    // &::-webkit-scrollbar {
-    //   display: none;
-    //   /* Chrome Safari */
-    // }
   }
   :deep(.van-popup) {
     position: absolute;
@@ -19,10 +15,6 @@
     margin: 0 auto;
     background: #fff;
     box-sizing: border-box;
-    // &::-webkit-scrollbar {
-    //   width: 0 !important;
-    //   display: none;
-    // }
     :deep(.van-toast) {
       word-break: keep-all !important;
     }
@@ -36,24 +28,24 @@
         transition: ease 0.3s;
       }
       .num1 {
-        background: #9F54BA;
-        border: 1PX solid #9F54BA;
+        background: white;
+        border: 1PX solid white;
         color: #fff;
       }
       &.receive {
         .line1::after,
         .line2::after {
-          border-color: #9F54BA !important;
+          border-color: white !important;
         }
         .num3 {
-          background: #9F54BA;
-          border: 1PX solid #9F54BA;
+          background: white;
+          border: 1PX solid white;
           color: #fff;
         }
       }
       .num2 {
-        background: #9F54BA;
-        border: 1PX solid #9F54BA;
+        background: white;
+        border: 1PX solid white;
         color: #fff;
       }
       &.pending {
@@ -76,7 +68,7 @@
       }
       &.pending {
         .send {
-          color: #9F54BA;
+          color: white;
         }
         .con {
           color: #68b1e6;
@@ -85,11 +77,11 @@
       &.receive {
         .send,
         .done {
-          color: #9F54BA;
+          color: white;
         }
       }
       .con {
-        color: #9F54BA;
+        color: white;
       }
     }
     .num {
@@ -136,4 +128,8 @@
       padding: 0 5px;
       border-radius: 7px;
     }
+  }
+
+  .tit-big {
+    color: white;
   }

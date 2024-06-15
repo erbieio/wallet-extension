@@ -15,7 +15,7 @@
         }
 
         .more {
-            color: #9F54BA;
+            color: white;
             cursor: pointer;
         }
     }
@@ -37,7 +37,7 @@
         }
         i.icon-duihao2 {
             font-size: 18px;
-            color: #9F54BA;
+            color: white;
         }
 
     }
@@ -81,7 +81,7 @@
                   bottom: 0;
                   right: 0;
                   border-radius: 5px;
-                  background: rgba($color: #000, $alpha: .5);
+                  background: rgba($color: white, $alpha: .5);
                   z-index: 11;
               }
                     }
@@ -110,7 +110,7 @@
             }
 
             .check-icon {
-                color: #9F54BA;
+                color: white;
                 font-size: 20px;
                 display: block;
                 position: absolute;
@@ -164,68 +164,6 @@
                 }
             }
         }
-
-        .coll-card.shining {
-            // &::before{
-            //     border: 2px solid gold;
-            //     animation: clippath infinite 5.4s cubic-bezier(1,.78,.71,.57);
-
-            // }
-       
-                // border: 2px solid #FBC332;
-                // position: relative;
-
-                // &::before {
-                //     content: "";
-                //     width: 35px;
-                //     height: 35px;
-                //     border-radius: 4px;
-                //     background-image: linear-gradient(var(--rotate), #fff, #f3e3ba 45%, #f8b305);
-                //     position: absolute;
-                //     z-index: 1;
-                //     top: 0;
-                //     left: 0;
-                //     animation: spin 3s linear infinite;
-                // }
-
-                // & img {
-                //     width: 29px !important;
-                //     height: 29px !important;
-                //     position: absolute;
-                //     left: 3px;
-                //     top: 3px;
-                //     border-radius: 4px;
-                //     z-index: 10;
-                // }
-
-                // &::after {
-                //     position: absolute;
-                //     content: "";
-                //     top: 7px;
-                //     left: 0;
-                //     right: 0;
-                //     z-index: 1;
-                //     height: 100%;
-                //     width: 100%;
-                //     margin: 0 auto;
-                //     transform: scale(0.8);
-                //     filter: blur(calc(50px / 6));
-                //     background-image: linear-gradient(var(--rotate), #fff, rgb(245, 222, 190) 30%, #f8b305);
-                //     opacity: 1;
-                //     transition: opacity .5s;
-                //     animation: spin 3s linear infinite;
-                // }
-   
-            // .snft-img {
-            //     width: 34px;
-            //     height: 34px;
-            //     left: 2px;
-            //     right: 2px;
-            //     top: 2px;
-            //     bottom: 2px;
-            // }
-        }
-
         .coll-card:nth-last-of-type(1) {
             margin-right: 0;
         }
@@ -243,7 +181,7 @@
         .snft-list {
             flex-wrap: wrap;
             padding: 10px;
-            // border: 1px solid #9F54BA;
+            // border: 1px solid white;
             border-radius: 5px;
             min-height: 50px;
             margin-bottom: 10px;
@@ -419,13 +357,6 @@
                     height: 37.6px;
                 }
             }
-
-            .coll-card.shining {
-                img {
-                    // width: 33px;
-                    // height: 33px;
-                }
-            }
         }
     }
 }
@@ -473,9 +404,8 @@
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     background: #fff;
-    color: #9F54BA;
+    color: white;
 
-    &-con {}
 }
 
 .nft-list-box {
@@ -502,7 +432,7 @@
     }
 
     a {
-        color: #9F54BA;
+        color: white;
 
         &:hover {
             text-decoration: underline;
@@ -516,7 +446,7 @@
     }
 
     .van-switch--on {
-        background: #9F54BA;
+        background: white;
     }
 }
 
@@ -538,7 +468,7 @@
 }
 
 .nfttransfer-box {
-    background: #f1f3f4;
+    background: #24152f;
     height: 36px;
 
     .tit {
@@ -549,10 +479,10 @@
         }
 
         &:hover {
-            color: #9F54BA;
+            color: white;
 
             i {
-                color: #9F54BA;
+                color: white;
             }
         }
     }
@@ -561,17 +491,17 @@
         width: 35px;
         height: 18px;
         line-height: 18px;
-        background: #9F54BA;
+        background: white;
         color: #fff;
         text-align: center;
         border-radius: 9px;
 
         &.outline {
             background: #fff;
-            border: 1px solid #9F54BA;
+            border: 1px solid white;
             padding: 0 4px;
             display: inline-block;
-            color: #9F54BA;
+            color: white;
             line-height: 16px;
             width: auto;
         }

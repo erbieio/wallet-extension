@@ -274,9 +274,9 @@ export default defineComponent({
 .title {
   font-size: 15px;
   font-weight: bold;
-  color: #000000;
+  color: white;
   line-height: 60px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
 }
 
 .form-box {
@@ -295,7 +295,7 @@ export default defineComponent({
   }
 
   .value {
-    color: #000000;
+    color: white;
 
     &.gasFee {
       color: #3aae55;

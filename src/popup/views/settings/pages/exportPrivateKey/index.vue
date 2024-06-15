@@ -273,7 +273,7 @@ export default {
   .tab-box {
     .card {
       &.active {
-        color: #9F54BA;
+        color: white;
       }
       .icon i {
         font-size: 30px;
@@ -287,7 +287,7 @@ export default {
 
   }
 .icon-yanjing1 {
-  color: #9F54BA;
+  color: white;
   font-size: 14px !important;
 }
 .icon-yanjing {
@@ -300,7 +300,7 @@ export default {
       .pwd-ipt.error  {
     :deep(.van-field__body) {
     border: 1px solid #d73a49 !important;
-        background: #fbf2f3;
+        background: #24152f;
     }
   }
 .err-msg {
@@ -336,7 +336,7 @@ export default {
       border-top: 1px solid rgba(104, 113, 123, 1);
       text-align: center;
       font-size: 12px;
-      color: #9F54BA;
+      color: white;
       line-height: 28px;
       padding: 15px;
     }
@@ -346,7 +346,7 @@ export default {
     z-index: 0;
     width: 50%;
     height: 0.05333rem;
-    background: #9F54BA;
+    background: white;
   }
   .van-tab {
     position: inherit;
@@ -362,7 +362,7 @@ export default {
   width: 100%;
 
   .qccode-display {
-    border: 7px solid #000;
+    border: 7px solid white;
     padding: 5px;
     margin: 0 auto;
   }
@@ -378,7 +378,7 @@ export default {
     :deep(.van-field__body) {
       margin-bottom: 10px;
       &:hover {
-        border: 1px solid #9F54BA;
+        border: 1px solid white;
       }
     }
 .bourse {
@@ -462,14 +462,14 @@ export default {
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background: #F8F3F9;
+      background: rgba(255,255,255,.05);
       border-radius: 7.5px;
       box-sizing: border-box;
     }
     .active {
-      border: 1px solid #9F54BA;
+      border: 1px solid white;
       span {
-        color: #9F54BA;
+        color: white;
       }
     }
     .t1 {
@@ -488,7 +488,7 @@ export default {
       background-color: #f1f3f4 !important;
     }
     .active-d {
-      border: 1px solid #000;
+      border: 1px solid white;
     }
   }
   .bourse-container-btns {
@@ -505,7 +505,7 @@ export default {
   .bourse-container-error {
     margin: 0 15px 25px 15px;
     height: 56.5px;
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
     border-radius: 7.5px;
     display: flex;
     align-items: center;
@@ -517,7 +517,7 @@ export default {
   }
   .t1 {
     font-size: 14px;
-    color: #9F54BA;
+    color: white;
   }
   .t3 {
     font-size: 18px;
@@ -539,11 +539,11 @@ export default {
       color: #848484;
     }
     .right {
-      color: #9F54BA;
+      color: white;
       text-decoration: underline;
     }
     .icon-yanjing1 {
-      color: #9F54BA;
+      color: white;
     }
     :deep(.van-field__label) {
       display: none;
@@ -559,11 +559,11 @@ export default {
     }
     .success-field {
       :deep(.van-field__body) {
-        border: 1px solid #9F54BA !important;
+        border: 1px solid white !important;
       }
     }
     .tool {
-      color: #9F54BA;
+      color: #8AA4FF;
     }
     .pointer {
       cursor: pointer;
@@ -578,7 +578,7 @@ export default {
 }
 .bourse-img {
   height: 135px;
-  background-color: #F8F3F9;
+  background-color: rgba(255,255,255,.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -599,7 +599,7 @@ export default {
 .bourse-container-error,
 .bourse-container-warning {
   height: 72px;
-  background: #fbf2f3;
+  background: #24152f;
   border-radius: 7.5px;
   margin-top: 15px !important;
   display: flex;

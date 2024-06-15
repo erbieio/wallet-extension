@@ -20,16 +20,17 @@
   top: 0;
   bottom: 0;
   right: 0;
-  background: #fff;
+  background:  rgba(34,10,53,.8);
   box-shadow: 0 1px 2px rgba(108, 173, 220, 0.1);
+  color: white;
   &.paddingTop {
     padding-top: 12PX;
   }
   .netIcon {
-    color:  #9F54BA !important;
+    color:  white !important;
   }
   &.hasExchange {
-    background: #9F54BA;
+    background: white;
     box-shadow: 0 1px 2px rgba(5, 126, 214, .1);
     .netIcon {
       color: #fff !important;
@@ -44,17 +45,14 @@
   .title-big,.title-small {
     color: #fff !important;
   }
-  .title:hover {
-    // background: #1d7ac1;
-  }
 }
 .nav-header-slider-box {
     position: fixed;
-    background: #fff;
+    background: #13051E;
     z-index: 1000;
     top: 0;
     // position: fixed;
-    // background: #F8F3F9;
+    // background: rgba(255,255,255,.05);
     // z-index: 1000;
     // top: 0;
     // left: 0;
@@ -63,7 +61,7 @@
 .pay-success {
   text-align: center;
   font-size: 20px;
-  color: #9F54BA;
+  color: white;
 }
 .circle-loading {
   width: 103px;
@@ -71,11 +69,11 @@
 }
 .circle-success-text {
   font-size: 16px;
-  color: #9F54BA;
+  color: white;
 }
 .to-exchanges {
   a {
-    color: #9F54BA;
+    color: white;
     font-size: 12px;
     display: inline-block;
     text-decoration: underline;
@@ -94,7 +92,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #9F54BA;
+    background: white;
     margin-right: 4px;
   }
   .title-slot {
@@ -105,19 +103,13 @@
   }
   .title {
     padding: 0 10px;
-    &:hover {
-      // background: #9F54BA;
-    }
-    &-big {
-      // line-height: 17PX;
-    }
     &-small {
       color: rgba(132, 140, 150, 1);
       font-size: 12px;
       transform: scale(.8);
       transform-origin: center center;
       i {
-        color: #9F54BA;
+        color: white;
       }
     }
   }
@@ -130,17 +122,17 @@
       width: 25px;
       height: 20PX;
       i {
-        color: #9F54BA;
+        color: white;
         font-size: 22px;
       }
       i,span:hover {
-        color: #9F54BA;
+        color: white;
         font-weight: bold;
       }
     }
   }
   .code {
-    color: #9F54BA;
+    color: white;
     width: 60px;
     font-size: 12px;
     .icon-box {
@@ -154,15 +146,15 @@
     padding: 20px 0 14px 15px;
     box-sizing: border-box;
     &.blue {
-      background: #9F54BA;
+      background: white;
       color: #fff;
       .add {
         background: rgba(255,255,255,0.1);
         color: #fff;
       }
     }
-    background: #f1f3f4;
-    color: #000;
+    background: #24152f;
+    color: white;
     .slider-top {
       font-size: 12px;
       line-height: 16px;
@@ -226,7 +218,7 @@
       line-height: 20px;
       padding: 0 5px;
       border-radius: 10px;
-      background-color: #F8F3F9;
+      background-color: rgba(255,255,255,.05);
       letter-spacing: -0.3px;
     }
     // .icon-copy {
@@ -246,7 +238,7 @@
   }
   .slider-bottom {
     .send-groups-box {
-      background: #9F54BA;
+      background: white;
       &>div {
         background-color: rgba($color: #ffffff, $alpha: .1);
       }
@@ -258,7 +250,7 @@
       .icon-btn {
         color: #fff;
         i {
-          color: #9F54BA;
+          color: white;
         }
         .icon-box {
           width: 35px;
@@ -276,45 +268,33 @@
       }
       .setting-btn {
         padding: 0  10px 0 15px;
-        border-bottom: 1px solid #E4E7E8;
+        border-bottom: 1px solid #cecbcb;
         overflow: hidden;
         font-size: 12px;
         font-weight: 600;
         line-height: 6vh;
-        // &.Tab {
-        //   line-height: 48px;
-        // }
-        // &.Popup {
-        //   line-height: 42px;
-        // }
         transition: ease .3s;
         display: flex;
         align-items: center;
-        color: #3D3D3D;
+        color: #cecbcb;
 
         &:hover {
-          color: #9F54BA;
-          background: #F8F3F9;
+          color: white;
+          background: rgba(255,255,255,.05);
           .van-icon-arrow  {
-            color: #9F54BA;
+            color: white;
           }
         }
         i {
           margin-right: 9px;
           font-size: 15px;
-          color: #9F54BA;
+          color: white;
           font-weight: normal;
         }
         .van-icon-arrow {
           color: #3D3D3D;
           font-size: 15px;
           margin-right: 0;
-        }
-        &.active {
-          // background: #9F54BA;
-          // border-top-right-radius: 19px;
-          // border-bottom-right-radius: 19px;
-          // color: #9F54BA;
         }
       }
     }
@@ -328,7 +308,7 @@
     width: 40px;
     height: 4px;
     border-radius: 2px;
-    background: rgba($color: #000, $alpha: 0.3);
+    background: rgba($color: white, $alpha: 0.3);
   }
 }
 
@@ -357,7 +337,7 @@
   i:hover {
     font-weight: bolder;
   }
-  color: #9F54BA;
+  color: white;
   font-size: 12px;
 
 }

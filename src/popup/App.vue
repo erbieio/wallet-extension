@@ -132,11 +132,14 @@ export default {
 };
 </script>
 <style lang="scss">
+/* #app {
+  background: radial-gradient(ellipse at center, #220a35, #0d0316 55%, #0d0316);
+} */
 .page-container {
   position: relative;
   box-sizing: border-box;
   padding-bottom: 30px;
-
+  color: white;
   &::-webkit-scrollbar {
     display: none;
     /* Chrome Safari */
@@ -157,13 +160,11 @@ export default {
   position: relative;
   margin: 0 auto;
   overflow-y: hidden;
-  background: #fff;
+  background: radial-gradient(ellipse at center, #270d3b, #0d0316 55%, #0d0316);
+
   box-sizing: border-box;
 
-  // box-shadow: 0 1px 2px #f4f5f7;
-  &:hover {
-    box-shadow: 0 2px 10px #ebedf0;
-  }
+
 
   :deep(.van-toast) {
     word-break: keep-all !important;
@@ -189,8 +190,8 @@ export default {
     }
 
     .num1 {
-      background: #9F54BA;
-      border: 1PX solid #9F54BA;
+      background: white;
+      border: 1PX solid white;
       color: #fff;
     }
 
@@ -198,19 +199,19 @@ export default {
 
       .line1::after,
       .line2::after {
-        border-color: #9F54BA !important;
+        border-color: white !important;
       }
 
       .num3 {
-        background: #9F54BA;
-        border: 1PX solid #9F54BA;
+        background: white;
+        border: 1PX solid white;
         color: #fff;
       }
     }
 
     .num2 {
-      background: #9F54BA;
-      border: 1PX solid #9F54BA;
+      background: white;
+      border: 1PX solid white;
       color: #fff;
     }
 
@@ -238,7 +239,7 @@ export default {
 
     &.pending {
       .send {
-        color: #9F54BA;
+        color: white;
       }
 
       .con {
@@ -250,12 +251,12 @@ export default {
 
       .send,
       .done {
-        color: #9F54BA;
+        color: white;
       }
     }
 
     .con {
-      color: #9F54BA;
+      color: white;
     }
   }
 

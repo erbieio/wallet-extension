@@ -1,5 +1,5 @@
 <template>
-    <NavHeader :title="route.query.name" :hasRight="route.name =='transactionDetails-step1' ? false : true" backUrl="wallet">
+    <NavHeader :title="route.query.name as string" :hasRight="route.name =='transactionDetails-step1' ? false : true" backUrl="wallet">
     </NavHeader>
   <router-view v-slot="{ Component }">
     <keep-alive>

@@ -161,16 +161,16 @@ export default defineComponent({
   cursor: pointer;
   transition: ease .3s;
   &.active {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
   }
   &:hover {
-    background: #F8F3F9;
+    background: rgba(255,255,255,.05);
   }
   &-left {
     .token-icon {
       width: 30px;
       height: 100%;
-      color: #9F54BA;
+      color: white;
       &-box {
         width: 28px;
         height: 28px;
@@ -220,7 +220,7 @@ export default defineComponent({
       font-size: 12px;
     }
     .val {
-      color: #000;
+      color: white;
       font-weight: bold;
     }
     .usd {

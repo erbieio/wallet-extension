@@ -2,7 +2,7 @@
   <div class="startpages flex center">
     <div class="startcotop flex between column">
       <div class="startcontop_img flex center">
-        <img src="@/assets/token/logowallet.png" alt="" id="container" />
+        <img src="@/assets/token/logowallet.svg" alt="" id="container" />
       </div>
       <div class="startcotop_txt">{{ t("introductorypage.bootstrap1") }}</div>
     </div>
@@ -35,7 +35,7 @@ onMounted(() => {
       }
     }
     .startcotop_txt {
-      color: #000;
+      color: white;
       font-weight: bold;
       font-size: 20px;
       text-align: center;

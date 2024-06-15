@@ -189,6 +189,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .btn-box {
+   color: white;
   i {
     font-size: 38px;
   }
@@ -198,7 +199,7 @@ export default {
   }
 
   .flex-1.active {
-    color: #9F54BA;
+    color: white;
   }
 }
 
@@ -214,13 +215,13 @@ export default {
 
   i {
     font-size: 16px;
-    color: #9F54BA;
+    color: white;
   }
 }
 
 a {
   text-decoration: underline;
-  color: #9F54BA;
+  color: white;
 }
 
 .operate {
@@ -236,8 +237,6 @@ a {
 
   .text {
     margin: 29px auto 0;
-    // padding: 15px 15px 59px;
-    background: #ffffff;
     border-radius: 3px;
     border: 1px solid #e8e9eb;
 
@@ -257,11 +256,11 @@ a {
   }
 
   .van-cell-group.error {
-    background: #FBF2F3;
+    background: transparent;
     border-color: #D73A49;
 
     .van-field {
-      background: none;
+      background: transparent;
     }
   }
 }

@@ -89,7 +89,7 @@
                 <div :class="`${isError ? 'error' : ''} mt-10`">
                     <van-field maxlength="25" v-model="addNumber" class="text" @blur="handleAddBlur" type="number" :placeholder="t('bourse.placeamount')">
                         <template #right-icon>
-                            <span style="font-weight: bold; font-size: 16px; color: #000">ERB</span>
+                            <span style="font-weight: bold; font-size: 16px; color: white">ERB</span>
                         </template>
                     </van-field>
                 </div>

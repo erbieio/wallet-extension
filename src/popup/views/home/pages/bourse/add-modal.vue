@@ -315,9 +315,9 @@ export default defineComponent({
 .title {
   font-size: 15px;
   font-weight: bold;
-  color: #000000;
+  color: white;
   line-height: 60px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
 }
 .form-box {
   border-radius: 10px;
@@ -332,7 +332,7 @@ export default defineComponent({
     color: #8f8f8f;
   }
   .value {
-    color: #000000;
+    color: white;
     margin-top: 5px;
     &.gasFee {
       color: #3aae55;

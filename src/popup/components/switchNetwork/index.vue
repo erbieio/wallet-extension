@@ -78,7 +78,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .switch-net-con {
-  background: #fff;
+  background: #13051E;
   width: 320px;
   max-height: 520px;
   border-radius: 12px;
@@ -90,10 +90,10 @@ export default defineComponent({
 }
 
 .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: #24152f;
   font-weight: bold;
 
 }

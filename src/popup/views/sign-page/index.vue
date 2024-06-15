@@ -1,18 +1,18 @@
 <template>
-    <NavHeader :hasRight="false"  title="LiminoWallet"></NavHeader>
+    <NavHeader :hasRight="false" title="ErbieWallt"></NavHeader>
     <div>
         <div class="flex center p-20">
             <textarea @blur="handleSig" class="text" name="" id="" cols="30" rows="10" v-model="sign"></textarea>
         </div>
         <!-- Ordinary signature -->
-        <div class="mb-10 f-12 ml-20 mr-20">{{  t("sign.ordinarysignature")  }}</div>
+        <div class="mb-10 f-12 ml-20 mr-20">{{ t("sign.ordinarysignature") }}</div>
         <div class="p-10 sig-text mb-30 ml-20 mr-20 van-hairline--surround">
-            {{  sig1  }} <i class="iconfont icon-copy" @click="handleCopy(1)"></i>
+            {{ sig1 }} <i class="iconfont icon-copy" @click="handleCopy(1)"></i>
         </div>
         <!-- Background signature -->
-        <div class="mb-10 f-12 ml-20 mr-20">{{  t("sign.exchangesignature")  }}</div>
+        <div class="mb-10 f-12 ml-20 mr-20">{{ t("sign.exchangesignature") }}</div>
         <div class="p-10 sig-text van-hairline--surround ml-20 mr-20">
-            {{  sig2  }} <i class="iconfont icon-copy" @click="handleCopy(2)"></i>
+            {{ sig2 }} <i class="iconfont icon-copy" @click="handleCopy(2)"></i>
         </div>
     </div>
 </template>

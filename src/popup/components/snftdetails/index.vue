@@ -114,10 +114,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .snft-details{
   .title {
-  color: #000;
+  color: white;
   font-size: 15px;
   line-height: 62px;
-  background: #F8F3F9;
+  background: rgba(255,255,255,.05);
   font-weight: bold;
 
 }
