@@ -185,7 +185,7 @@ export default {
   .miners {
     width: 341px;
     height: 646px;
-    background: #fff;
+    background: #150520;
     margin: auto;
     border-radius: 8px;
 
@@ -194,9 +194,10 @@ export default {
       line-height: 62px;
       text-align: center;
       font-weight: bold;
-      background: rgba(255,255,255,.05);
+      background: #24152f;
+      color: white;
       font-size: 14px;
-      color: #0f0f0f;
+      color: white;
     }
 
     .miners-container {
@@ -246,7 +247,7 @@ export default {
           &:last-child {
             font-weight: bold;
             font-size: 14px;
-            color: #0f0f0f;
+            color: white;
           }
         }
       }
@@ -258,7 +259,7 @@ export default {
         padding: 11px 15px 20px 15px;
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
-        border: 1px solid #e4e7e8;
+        border: 1px solid #363232;
 
         :deep() {
           .van-field__control:disabled {

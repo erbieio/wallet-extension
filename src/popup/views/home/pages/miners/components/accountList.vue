@@ -15,14 +15,6 @@
             <div class="address f-12">{{ item.address }}</div>
           </div>
         </div>
-        <!-- <div class="icon-box flex center">
-          <i
-            class="iconfont icon-duihao2"
-            v-if="
-              item.address.toUpperCase() == selectAccount.address.toUpperCase()
-            "
-          ></i>
-        </div> -->
       </div>
     </div>
   </van-dialog>

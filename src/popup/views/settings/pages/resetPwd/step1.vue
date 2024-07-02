@@ -343,7 +343,7 @@ export default {
     font-size: 14px;
     .bourse-container-w {
       height: 160px;
-      border: 1px solid #E4E7E8;
+      border: 1px solid #363232;
       padding: 0 17.5px;
       .da {
         height: 80px;
@@ -351,7 +351,7 @@ export default {
         align-items: center;
         justify-content: space-between;
         &:first-child {
-          border-bottom: 1px solid #E4E7E8;
+          border-bottom: 1px solid #363232;
         }
       }
     }
@@ -369,7 +369,7 @@ export default {
     }
     .right {
       padding-left: 15px;
-      border-left: 1px solid #E4E7E8;
+      border-left: 1px solid #363232;
       img {
         width: 14px;
         height: 14px;
@@ -529,7 +529,7 @@ export default {
   }
 }
 .bt {
-  border-top: 1px solid #e4e7e8;
+  border-top: 1px solid #363232;
 }
 .bourse-img {
   height: 135px;

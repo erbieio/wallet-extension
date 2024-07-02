@@ -214,7 +214,7 @@ export default defineComponent({
 
     .bourse-container-w {
       height: 160px;
-      border: 1px solid #E4E7E8;
+      border: 1px solid #363232;
       padding: 0 17.5px;
       border-radius: 4px;
 
@@ -229,7 +229,7 @@ export default defineComponent({
         justify-content: space-between;
 
         &:first-child {
-          border-bottom: 1px solid #E4E7E8;
+          border-bottom: 1px solid #363232;
         }
 
         &:hover {
@@ -267,13 +267,13 @@ export default defineComponent({
 
     .right {
       padding-left: 15px;
-      // border-left: 1px solid #E4E7E8;
+      // border-left: 1px solid #363232;
       position: relative;
 
       &:after {
         content: "";
         width: 1px;
-        background: #E4E7E8;
+        background: #363232;
         position: absolute;
         left: 0;
         top: 2px;
@@ -488,7 +488,7 @@ export default defineComponent({
 }
 
 .bt {
-  border-top: 1px solid #e4e7e8;
+  border-top: 1px solid #363232;
 }
 
 .bourse-img {

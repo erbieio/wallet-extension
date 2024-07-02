@@ -170,7 +170,7 @@ export default {
   .miners {
     width: 341px;
     height: 620.5px;
-    background: #fff;
+    background: #150520;
     margin: auto;
     overflow: hidden;
     border-radius: 8px;
@@ -202,7 +202,7 @@ export default {
           &:last-child {
             font-weight: bold;
             font-size: 14px;
-            color: #0f0f0f;
+            color: white;
           }
         }
       }
@@ -213,7 +213,7 @@ export default {
         padding: 11px 15px 20px 15px;
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
-        border: 1px solid #e4e7e8;
+        border: 1px solid #363232;
         .ipt {
           width: 280px;
           span {
@@ -344,7 +344,9 @@ export default {
   padding: 17px 15px 0 15px;
   font-size: 12px;
   border-radius: 4px;
-  border: 1px solid #E4E7E8;
+  border: 1px solid #363232;
+  color: white;
+
 }
 .c1 {
   color: white;
@@ -352,7 +354,7 @@ export default {
 .exchange {
   margin-top: 7px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #E4E7E8;
+  border-bottom: 1px solid #363232;
 }
 .bourse-container-meaning {
   margin-bottom: 16px;

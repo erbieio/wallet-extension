@@ -284,7 +284,7 @@ export default defineComponent({
     const ethAccountInfo = computed(() => store.state.account.ethAccountInfo);
     const creatorStatus = computed(() => store.state.account.creatorStatus)
     const isStaker = computed(() => {
-      return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(700)
+      return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(350)
     })
     const isValidator = computed(() => {
       return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(70000)

@@ -155,7 +155,7 @@ export default defineComponent({
   }
   .bar {
     height: 10px;
-    background: #e4e7e8;
+    background: #363232;
     border-radius: 10px;
     position: relative;
     // overflow: hidden;

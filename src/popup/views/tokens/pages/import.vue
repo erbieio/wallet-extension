@@ -306,6 +306,7 @@ export default {
   line-height: 16px;
   margin-bottom: 10px;
   font-weight: bold;
+  color: white;
   position: relative;
 
   span {

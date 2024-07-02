@@ -352,7 +352,7 @@ export default {
 .list {
   .card {
     padding: 19px 15px;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid #363232;
 
     .label {
       font-size: 15px;

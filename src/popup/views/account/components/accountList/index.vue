@@ -100,7 +100,7 @@ export default defineComponent({
     padding-left: 15px;
     padding-right: 15px;
     transition: ease 0.3s;
-    border-bottom: 1PX solid rgba($color: #B3B3B3, $alpha: 0.5);
+    border-bottom: 1PX solid rgba($color: #363232, $alpha: 0.5);
     &:hover {
       background: rgba(255,255,255,.05);
       color:white;

@@ -126,7 +126,7 @@ export default defineComponent({
 
     const calcFee = async () => {
       const newTx = { ...props.tx, category: props.tx.category.value }
-      const str = `${store.getters['account/chainParsePrefix']}:{"version": "0.0.1","type":0,"royalty":${props.tx.royalty},"exchanger":"","meta_url":"${encode(JSON.stringify(newTx))}"}`;
+      const str = `erbie:{"version": "0.0.1","type":0,"royalty":${props.tx.royalty},"exchanger":"","meta_url":"${encode(JSON.stringify(newTx))}"}`;
       const data3 = web3.utils.fromUtf8(str);
       const myAddr = accountInfo.value.address
       const tx = {
@@ -215,7 +215,7 @@ export default defineComponent({
 }
 
 .content {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   border-radius: 5px;
 
   .label {

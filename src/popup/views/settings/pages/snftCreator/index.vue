@@ -215,7 +215,7 @@ const pageType = window.pageType;
   }
 }
 .form {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   border-radius: 5px;
   /* min-height: 230px; */
   margin: 20px 15px;
@@ -223,7 +223,7 @@ const pageType = window.pageType;
     &:last-of-type {
       border-bottom: none;
     }
-    border-bottom: 1px solid #e4e7e8;
+    border-bottom: 1px solid #363232;
     margin: 0 13px;
     padding: 14px 0;
     font-size: 14px;

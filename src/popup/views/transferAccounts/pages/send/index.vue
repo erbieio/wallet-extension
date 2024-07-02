@@ -763,6 +763,7 @@ export default {
 
     .value {
       max-width: 375px;
+      color: white;
     }
 
     div {
@@ -936,6 +937,7 @@ export default {
     .value {
       color: white;
       font-size: 12px;
+      
     }
   }
 

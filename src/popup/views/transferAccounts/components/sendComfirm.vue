@@ -271,7 +271,7 @@ export default defineComponent({
 }
 
 .border-top {
-  border-top: 1px solid #e4e7e8;
+  border-top: 1px solid #363232;
   padding-top: 9px;
 }
 
@@ -299,7 +299,7 @@ export default defineComponent({
 }
 
 .content {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   border-radius: 5px;
 
   .label {
@@ -310,6 +310,9 @@ export default defineComponent({
   .value {
     line-height: 16px;
     padding: 6px 0;
+  }
+  .value {
+    color: white;
   }
 }
 </style>

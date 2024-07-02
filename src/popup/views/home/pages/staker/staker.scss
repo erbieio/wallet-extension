@@ -16,7 +16,7 @@ $fontColor: #848484;
             color: white;
 
             .addr {
-                color: $fontColor;
+                color: white;
             }
 
             i {
@@ -27,12 +27,14 @@ $fontColor: #848484;
         .label {
             color: $fontColor;
             font-size: 12px;
+            margin-top: 10px;
         }
 
         .staker-con {
             font-size: 20px;
             margin-bottom: 8px;
             font-weight: bold;
+            color: white;
         }
     }
 

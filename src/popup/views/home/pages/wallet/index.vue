@@ -30,10 +30,10 @@
                   <span @click="showaccount" class="clickActive f-12 accName flex center-v" id="guide-step1" :title="accountInfo.name">
                     <GuideModal1></GuideModal1>
                     <span class="accNameSpan van-ellipsis">{{
-                      accountInfo.name
-                    }}</span>
+    accountInfo.name
+  }}</span>
                     <i :class="`iconfont ml-4 f-14 ${showModal ? 'icon-shangjiantou' : 'icon-xiajiantou'
-                        }`"></i>
+    }`"></i>
                   </span>
                   <!-- Account list Popup-->
                   <AccountModal v-model="showModal" />
@@ -61,23 +61,23 @@
                         <i18n-t tag="div" v-if="expresionClass == 'smile'" keypath="minerspledge.smileTip">
                           <template v-slot:value>{{ Coefficient }}</template>
                           <template v-slot:btn>
-                            
+
                           </template>
                         </i18n-t>
                         <i18n-t tag="div" v-if="expresionClass == 'sad'" keypath="minerspledge.homeTip">
                           <!-- <template v-slot:value>{{Coefficient}}</template> -->
                           <template v-slot:btn>
                             <span class="gotIt" @click="minerpledge">{{
-                              t("minerspledge.gotIt")
-                            }}</span>
+    t("minerspledge.gotIt")
+  }}</span>
                           </template>
                         </i18n-t>
                         <i18n-t tag="div" v-if="expresionClass == 'neutral'" keypath="minerspledge.homeTip">
                           <!-- <template v-slot:value>{{Coefficient}}</template> -->
                           <template v-slot:btn>
                             <span class="gotIt" @click="minerpledge">{{
-                              t("minerspledge.gotIt")
-                            }}</span>
+    t("minerspledge.gotIt")
+  }}</span>
                           </template>
                         </i18n-t>
                       </div>
@@ -126,10 +126,10 @@
             <div class="card-bottom flex right center-v pr-16 pl-16">
               <div class="flex right">
                 <i :class="`iconfont  mr-6 ${amountType == 'mask' ? 'icon-yanjing' : 'icon-yanjing1'
-                  } hover`" @click="changeType"></i>
+    } hover`" @click="changeType"></i>
                 <GuideModal4></GuideModal4>
                 <div :class="`flex amount-box van-ellipsis ${amountClass} ${amountType == 'mask' ? 'pt-6' : ''
-                  }`">
+    }`">
                   {{ amountStr }}
                 </div>
               </div>
@@ -178,8 +178,8 @@
             <van-sticky offset-top="91">
               <div class="flex between center-v create-box">
                 <span class="f-12 text-bold label">{{
-                  t("wallet.importToken")
-                }}</span>
+    t("wallet.importToken")
+  }}</span>
                 <span class="add flex center" :title="t('wallet.importToken')" @click="toCreate"><van-icon name="plus" /></span>
               </div>
             </van-sticky>
@@ -188,13 +188,6 @@
             <TokenCard v-for="(item, idx) in accountTokens" :key="idx" :data="item" toName="transactionDetails-step1" />
           </template>
         </van-tab>
-        <!-- <van-tab name="b">
-          <template #title>{{ $t("wallet.NFTs") }}</template>
-          <template #default>
-            <NftList v-if="active == 'b'" />
-          </template>
-        </van-tab> -->
-        <!-- snft list -->
         <van-tab name="c">
           <template #title>{{ $t("wallet.SNFTs") }}</template>
           <template #default>
@@ -238,15 +231,9 @@ import {
   reactive,
   onMounted,
   computed,
-  toRefs,
-  watch,
-  onBeforeMount,
   onUnmounted,
-  onActivated,
   onDeactivated,
-  getCurrentInstance,
-  ComponentInternalInstance,
-  nextTick,
+
 } from "vue";
 import NavHeader from "@/popup/components/navHeader/index.vue";
 import Slider from "@/popup/components/slider/index.vue";
@@ -254,7 +241,7 @@ import TokenCard from "@/popup/views/account/components/tokenCard/index.vue";
 import CollectionCard from "@/popup/views/account/components/collectionCard/index.vue";
 import TransactionDetail from "@/popup/views/account/components/transactionDetail/index.vue";
 import NftList from "@/popup/views/account/components/nftList/index.vue";
-import SnftList from "@/popup/views/account/components/snftList/index.vue";
+import SnftList from "@/popup/views/home/pages/snft/snftList.vue";
 import AccountIcon from "@/popup/components/accountIcon/index.vue";
 import AcceptCode from "@/popup/views/account/components/acceptCode/index.vue";
 import AccountModal from "@/popup/components/accountModal/index.vue";
@@ -384,11 +371,7 @@ export default {
       showModal.value = true;
     };
 
-    const tofaucet = () => {
-      window.open(
-        "http://faucet.wormholesscan.com/?address=" + accountInfo.value.address
-      );
-    };
+
     const tobuy = () => { };
     // Transaction details data
     let transactionData: any = reactive({ data: {} });
@@ -570,7 +553,7 @@ export default {
       return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(70000)
     })
     const isStaker = computed(() => {
-      return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(700)
+      return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(350)
     })
 
     const showPopoverText = ref(false);
@@ -693,7 +676,6 @@ export default {
       toReceive,
       layoutType,
       isSelect,
-      tofaucet,
       tobuy,
       dispatch,
       accountTokens,
@@ -713,6 +695,6 @@ export default {
   },
 };
 </script>
-<style lang="scss" >
+<style lang="scss">
 @import "./index.scss";
 </style>

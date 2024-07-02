@@ -7,16 +7,19 @@ function generateRandom() {
 
 var events = [
   "connect",
-  // 'disconnect',
   "chainChanged",
   "accountsChanged",
   "message",
   "pwdExpired",
   "loginIn",
   "logout",
-  // 'error',
-  // 'data'
 ];
+// var METHOD_KEY = 'erbie-callback'
+// var METHOD_CALL_KEY = 'erbie-callback-event'
+// var REQUEST_SIGN_KEY = 'erbie-inpage'
+var METHOD_KEY = 'erbie-callback'
+var METHOD_CALL_KEY = 'erbie-callback-event'
+var REQUEST_SIGN_KEY = 'erbie-inpage'
 function Provider() {
   var _this = this;
   this._state = {
@@ -34,18 +37,17 @@ function Provider() {
   this.init = () => {
     // Registers a custom signature callback event
     var event = document.createEvent("Event");
-    event.initEvent("wormHoles-callback-event", true, true);
+    event.initEvent(METHOD_CALL_KEY, true, true);
 
     // Listen for callback events
-    document.addEventListener("wormHoles-callback-event", (res) => {
+    document.addEventListener(METHOD_CALL_KEY, (res) => {
       // accepting of data
       let { type, data, sendId } = res.detail;
-      if (type == "wormholes-callback") {
+      if (type == METHOD_KEY) {
         var { method, response } = data;
         if (!events.includes(method)) {
           if (method && sendId && response) {
-            // ethereum.runCallBackByIdWithMethod(method, sendId, { ...response, sendId })
-            wormholes.runCallBackByIdWithMethod(method, sendId, {
+            erbie.runCallBackByIdWithMethod(method, sendId, {
               ...response,
               sendId,
             });
@@ -53,8 +55,7 @@ function Provider() {
         } else {
           let { method } = data;
           if (method) {
-            // ethereum.runCallBackEventByMethod(method, response.data)
-            wormholes.runCallBackEventByMethod(method, response.data);
+            erbie.runCallBackEventByMethod(method, response.data);
           }
         }
       }
@@ -102,7 +103,7 @@ function Provider() {
   this._rpcSendCallbacks = {};
   this._eventCallbacks = {};
   this.postMsg = function (data, callback = function () {}) {
-    var target = "wormholes-inpage";
+    var target = REQUEST_SIGN_KEY;
     var { method, params } = data;
     if (method && method !== "message") {
       var id = generateRandom();
@@ -378,24 +379,19 @@ Provider.prototype = {
   },
 };
 
-// const ethereum = new Provider()
-var wormholes = new Provider();
-// window.ethereum = ethereum
-window.wormholes = wormholes;
-// ethereum.init()
-wormholes.init();
-
+var erbie = new Provider();
+window.erbie = erbie;
+erbie.init();
 // Listen for callback events
-document.addEventListener("wormHoles-callback-event", (res) => {
+document.addEventListener(METHOD_CALL_KEY, (res) => {
   // accepting of data
   let { type, data, sendId } = res.detail;
 
-  if (type == "wormholes-callback") {
+  if (type == METHOD_KEY) {
     var { method, response } = data;
     if (!events.includes(method)) {
       if (method && sendId && response) {
-        // ethereum.runCallBackByIdWithMethod(method, sendId, { ...response, sendId })
-        wormholes.runCallBackByIdWithMethod(method, sendId, {
+        erbie.runCallBackByIdWithMethod(method, sendId, {
           ...response,
           sendId,
         });
@@ -403,8 +399,7 @@ document.addEventListener("wormHoles-callback-event", (res) => {
     } else {
       let { method } = data;
       if (method) {
-        // ethereum.runCallBackEventByMethod(method, response.data)
-        wormholes.runCallBackEventByMethod(method, response.data);
+        erbie.runCallBackEventByMethod(method, response.data);
       }
     }
   }

@@ -127,7 +127,7 @@ export default {
   .miners {
     width: 341px;
     height: 646px;
-    background: #fff;
+    background: #150520;
     margin: auto;
     border-radius: 8px;
     .miners-header {
@@ -137,7 +137,7 @@ export default {
       font-weight: bold;
       background: rgba(255,255,255,.05);
       font-size: 14px;
-      color: #0f0f0f;
+      color: white;
       span {
         margin-left: 80px;
       }
@@ -147,11 +147,11 @@ export default {
       .miners-container-text {
         line-height: 18px;
         font-size: 12px;
-        color: #0f0f0f;
+        color: white;
         .text-a {
           font-size: 14px;
           font-weight: bold;
-          color: #0f0f0f;
+          color: white;
         }
         .text-b {
           margin-bottom: 15px;

@@ -32,17 +32,17 @@ chrome.runtime.onMessage.addListener(async function (request, sender, sendRespon
     return false
   }
   const { method, params: newParams, sendId } = data
-  if (target != 'wormholes-inpage' && target != 'wormholes-popup' && (!data || !data.method)) {
+  if (target != 'erbie-inpage' && target != 'wormholes-popup' && (!data || !data.method)) {
     const errMsg = errorCode['4100']
     sendMessage({ ...createMsg(errMsg, data.method || 'unknow'), sendId }, {}, sender)
     return false
   }
 
-  // Check whether target is a Content-script injected wormholes-inpage
+  // Check whether target is a Content-script injected erbie-inpage
   // Authentication to check whether the connection is established
   const isConnect = await isConnected(sender)
   //  When not connected
-  if ((target == 'wormholes-inpage' && !isConnect) && (method != handleType.wallet_requestPermissions && method != handleType.eth_requestAccounts && method !== 'message')) {
+  if ((target == 'erbie-inpage' && !isConnect) && (method != handleType.wallet_requestPermissions && method != handleType.eth_requestAccounts && method !== 'message')) {
     const errMsg = errorCode['4100']
     sendMessage({ ...createMsg(errMsg, method || 'unknow'), sendId }, {}, sender)
     return false
@@ -60,7 +60,7 @@ chrome.runtime.onMessage.addListener(async function (request, sender, sendRespon
 
 
   // form web page message
-  if (target == 'wormholes-inpage') {
+  if (target == 'erbie-inpage') {
     // Check whether the RPC Method is supported
     if (wallet_methods.includes(method)) {
       // Return error messages are not supported

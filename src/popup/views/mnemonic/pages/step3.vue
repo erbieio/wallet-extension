@@ -16,13 +16,8 @@
       </div>
     </div>
     <div class="tip pl-14 pr-14 pb-14 van-hairline--surround flex">
-      <div
-        :class="`tip-card clickActive mt-16 f-12 flex van-hairline--surround  ${
-          item.status ? 'error' : ''
-        }`"
-        v-for="(item, idx) in chooseList.data"
-        :key="idx"
-      >
+      <div :class="`tip-card clickActive mt-16 f-12 flex van-hairline--surround  ${item.status ? 'error' : ''
+          }`" v-for="(item, idx) in chooseList.data" :key="idx">
         <div :class="`icon lh-24 van-hairline--surround text-center`">
           <span v-if="!item.status">
             {{ idx + 1 }}
@@ -33,12 +28,7 @@
       </div>
     </div>
     <div class="tip tip-2 pl-14 pr-14 pb-14 van-hairline--surround flex">
-      <div
-        class="tip-card h-24 clickActive mt-16 f-12 flex van-hairline--surround"
-        v-for="(item, idx) in list.data"
-        :key="idx"
-        @click="sort(item, idx)"
-      >
+      <div class="tip-card h-24 clickActive mt-16 f-12 flex van-hairline--surround" v-for="(item, idx) in list.data" :key="idx" @click="sort(item, idx)">
         <div class="word lh-24 text-center van-ellipsis">{{ item.name }}</div>
       </div>
     </div>
@@ -135,7 +125,7 @@ export default {
     onMounted(async () => {
       // Get the decrypted mnemonic
       const password = await getCookies("password");
-      const realmm = await parseMnemonic(password,store.state.mnemonic.keyStore);
+      const realmm = await parseMnemonic(password, store.state.mnemonic.keyStore);
       // Correct sorting
       const nlist = realmm
         .split(" ")
@@ -174,20 +164,24 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mnemonic-bg {
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
+
   .tit-big {
     line-height: 21px;
     color: white;
 
   }
+
   .tit-small {
     width: 290px;
     color: rgba(132, 132, 132, 1);
   }
+
   .color-p {
     color: white;
   }
 }
+
 .icon-box {
   .iconele {
     width: 100px;
@@ -196,9 +190,11 @@ export default {
     overflow: hidden;
   }
 }
+
 .warn {
   color: #d73a49;
 }
+
 .tip {
   width: 320px;
   margin: 30px auto;
@@ -207,46 +203,58 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: flex-start;
+
   &:after {
     border-radius: 4px;
   }
+
   &-card {
     width: 90px;
-    background: rgba(255,255,255,.05);
+    background: rgba(255, 255, 255, .05);
     color: white;
     transition: ease 0.3s;
     border-radius: 12px;
+
     &:hover {
       background: #13051E;
     }
+
     &.error {
+
       &:after,
       .icon:after {
         border-color: #d73a49;
       }
+
       .icon {
         background: #d73a49;
       }
+
       i:hover {
         color: #fff;
       }
+
       .word {
         color: #d73a49;
       }
     }
+
     .icon {
       width: 24px;
       height: 24px;
-      background: white;
+      /* background: white; */
       border-radius: 50%;
       color: #fff;
+
       &.error {
         background: #d73a49;
       }
     }
+
     .word {
       width: calc(90px - 26px);
     }
+
     &:after,
     .icon:after {
       border-color: white;
@@ -254,18 +262,22 @@ export default {
     }
   }
 }
+
 .tip-2 {
   margin-bottom: 15px !important;
+
   .tip-card .word {
     width: 100% !important;
   }
 }
+
 .btn-group {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 50px;
 }
+
 .m-page {
   padding-bottom: 100px;
 }

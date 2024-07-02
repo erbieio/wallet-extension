@@ -319,7 +319,7 @@ line-height: 25px;
     margin: 11px auto 20px;
   }
   .exchange-create-form {
-    // border: 1PX solid #e4e7e8;
+    // border: 1PX solid #363232;
     width: 315px;
     margin: auto;
     .form-title {
@@ -367,7 +367,7 @@ line-height: 25px;
     margin: 11px auto 20px;
   }
   .exchange-create-form {
-    // border: 1PX solid #e4e7e8;
+    // border: 1PX solid #363232;
     width: 315px;
     margin: auto;
   }
@@ -394,7 +394,7 @@ line-height: 25px;
 }
 
 .exchange-create {
-  border: 1PX solid #e4e7e8;
+  border: 1PX solid #363232;
   width: 315px;
   height: 116px;
   margin: auto;
@@ -425,7 +425,7 @@ line-height: 25px;
   .exchange-line {
     height: 1px;
     width: 285px;
-    background-color: #e4e7e8;
+    background-color: #363232;
     margin: auto;
   }
 }

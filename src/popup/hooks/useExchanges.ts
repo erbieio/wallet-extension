@@ -217,7 +217,7 @@ export const useExchanges = () => {
     // const baseName = encode(name);
     try {
       const rate_str: number = fee_rate ? new BigNumber(fee_rate).multipliedBy(10).toNumber() : 100
-      const str = `${store.getters['account/chainParsePrefix']}:{"version": "0","type": 11,"fee_rate": ${rate_str},"name":"${name}","url":""}`;
+      const str = `erbie:{"version": "0","type": 11,"fee_rate": ${rate_str},"name":"${name}","url":""}`;
       const data3 = web3.utils.fromUtf8(str);
       const tx1 = {
         from: address,
@@ -307,7 +307,7 @@ export const useExchanges = () => {
     try {
       const wallet = await getWallet()
       const { address } = wallet
-      const str = `${store.getters['account/chainParsePrefix']}:{"type":9,"proxy_address":"${proxy_address}","proxy_sign":"${proxy_sign}","version":"v0.0.1"}`
+      const str = `erbie:{"type":9,"proxy_address":"${proxy_address}","proxy_sign":"${proxy_sign}","version":"v0.0.1"}`
       const data3 = toHex(str);
       const tx1 = {
         to: address,
@@ -450,7 +450,7 @@ export const useExchanges = () => {
     })
     const wallet = await getWallet();
     const { address } = wallet;
-    const str = `${store.getters['account/chainParsePrefix']}:{"version":"0.0.1","type":12}`;
+    const str = `erbie:{"version":"0.0.1","type":12}`;
     const data3 = toHex(str);
     const tx1 = {
       from: address,
@@ -545,7 +545,7 @@ export const useExchanges = () => {
     const wallet = await getWallet();
     const { address } = wallet;
     // Add the pledge amount
-    const str = `${store.getters['account/chainParsePrefix']}:{"version": "0.0.1","type": 21}`;
+    const str = `erbie:{"version": "0.0.1","type": 21}`;
     const data3 = toHex(str);
     const tx1 = {
       from: address,
@@ -597,7 +597,7 @@ export const useExchanges = () => {
   const miunsExchangeBalance = async (amount: number) => {
     const wallet = await getWallet();
     const { address } = wallet;
-    const str = `${store.getters['account/chainParsePrefix']}:{"type":22,"version":"v0.0.1"}`;
+    const str = `erbie:{"type":22,"version":"v0.0.1"}`;
     const data3 = toHex(str);
     const tx1 = {
       from: address,

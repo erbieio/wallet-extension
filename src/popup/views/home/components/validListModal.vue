@@ -161,7 +161,7 @@ const handleConfirm = async () => {
         const wallet = await getWallet()
         const acc = await wallet.provider.send('eth_getAccountInfo', [value1.value, "latest"])
         const PledgedBalance = acc.Worm?.PledgedBalance ? new BigNumber(acc.Worm?.PledgedBalance).div(1000000000000000000).toNumber() : 0
-        if (PledgedBalance < 700 && accountInfo.value.address.toUpperCase() != value1.value.toUpperCase()) {
+        if (PledgedBalance < 350 && accountInfo.value.address.toUpperCase() != value1.value.toUpperCase()) {
             $toast.warn(t('validator.fromPledgeErr'))
             return
         }
@@ -272,6 +272,7 @@ const cancelClick = () => {
 
             .addr {
                 width: 100%;
+                
             }
         }
     }

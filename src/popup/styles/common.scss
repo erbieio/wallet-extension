@@ -5,14 +5,12 @@ body {
   user-select: none;
   min-width: 375PX;
   min-height: 601PX;
-  // font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  // font-variant: tabular-nums;
-  // font-feature-settings: "tnum","tnum";
-  font-family: Roboto,Arial,sans-serif;
+  font-family: Roboto, Arial, sans-serif;
+  color: white;
 }
 
 body {
-  background: #0a0112;
+  background: #2e203b;
 }
 
 .loading-box {
@@ -98,21 +96,25 @@ img {
   width: 0;
   display: none;
 }
+
 .scrollBar {
   overflow-y: scroll;
+
   &:hover {
-    &::-webkit-scrollbar-track{
+    &::-webkit-scrollbar-track {
       background: #333;
     }
   }
+
   &::-webkit-scrollbar {
     display: inherit;
   }
+
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
-  
+
   &::-webkit-scrollbar-track {
     width: 6px;
     background: transparent;
@@ -122,7 +124,7 @@ img {
     opacity: .6;
     transition: ease .3s;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: #555;
     background-clip: padding-box;
@@ -134,15 +136,17 @@ img {
     cursor: pointer;
     opacity: .6;
   }
-  
+
   &::-webkit-scrollbar-thumb:hover {
-    background-color:  #666;
+    background-color: #666;
     opacity: 1;
   }
 }
+
 .clickActive {
   transition: ease .3s;
   cursor: pointer;
+
   &:active {
     background: rgba($color: white, $alpha: 0.15);
   }
@@ -184,15 +188,18 @@ img {
 
 .validPopover {
   max-width: 500px !important;
+
   &.Popup {
     max-width: 240px
   }
 }
+
 .van-dialog {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-width: 420px;
+  -moz-osx-font-smoothing: grayscale;
+  width: 420px;
+
   .van-dialog__content {
     border-radius: 10px;
   }
@@ -530,6 +537,7 @@ width: 420px;
 
     &.type2 {
       color: #fff;
+
       // orange
       .user,
       .tag-label {
@@ -553,15 +561,18 @@ width: 420px;
 .el-popper {
   z-index: 9999 !important;
 }
+
 // When the width is less than 750, control the pop-up window width to guide the user to operate
 @media screen and (max-width: 750px) {
   .minus-miner-stack-dialog {
     top: 0 !important;
   }
+
   .van-dialog {
     width: 90vw;
     overflow: hidden;
-    &.van-popup--center{
+
+    &.van-popup--center {
       margin-left: -45vw;
       top: 40px;
     }
@@ -579,6 +590,7 @@ width: 420px;
 
     &.step1 {
       top: 110px !important;
+
       .van-popover__arrow {
         left: 115px;
       }
@@ -596,7 +608,7 @@ width: 420px;
       top: 130px !important;
 
       .van-popover__arrow {
-        left:225px;
+        left: 225px;
       }
     }
 
@@ -612,6 +624,7 @@ width: 420px;
 
     &.step5 {
       top: 290px !important;
+
       .van-popover__arrow {
         right: 50% !important;
         margin-right: -10px;
@@ -688,15 +701,17 @@ width: 420px;
   }
 
 }
+
 .serial-number {
   font-size: 14px;
 }
 
 
-@media  screen and (min-width: 750px) and (max-width: 1281px){
+@media screen and (min-width: 750px) and (max-width: 1281px) {
   html {
     font-size: 48PX !important; // ignored
   }
+
   .container {
     max-width: 700px;
   }
@@ -704,12 +719,14 @@ width: 420px;
   .van-dialog {
     overflow-y: scroll;
     overflow-x: hidden;
-    width:370px;
-    &.van-popup--center{
+    width: 370px;
+
+    &.van-popup--center {
       margin-left: -180px;
       top: 60px;
     }
   }
+
   .popover-btn-tip,
   .el-popper,
   .van-popover {
@@ -722,12 +739,15 @@ width: 420px;
   html {
     font-size: 52PX !important; // ignored
   }
+
   .container {
     max-width: 750px;
   }
+
   .van-popover {
     max-width: 250px;
   }
+
   .popover-btn-tip,
   .el-popper {
     max-width: 220px;
@@ -739,6 +759,7 @@ width: 420px;
     &.step1 {
       top: 90px !important;
       left: 18px !important;
+
       .van-popover__arrow {
         left: 115px;
       }
@@ -758,7 +779,7 @@ width: 420px;
       left: 18px !important;
 
       .van-popover__arrow {
-        left:225px;
+        left: 225px;
       }
     }
 
@@ -789,6 +810,7 @@ width: 420px;
     &.step6 {
       top: 320px !important;
       left: 20px !important;
+
       .van-popover__arrow {
         left: 100px;
       }
@@ -799,6 +821,7 @@ width: 420px;
       top: 316px !important;
       left: 50% !important;
       margin-left: -120px !important;
+
       .van-popover__arrow {
         left: 51%;
       }
@@ -808,9 +831,10 @@ width: 420px;
       top: 320px !important;
       right: 0 !important;
       left: inherit !important;
+
       // left: 400px !important;
       .van-popover__arrow {
-        left:51%;
+        left: 51%;
       }
     }
 
@@ -820,14 +844,15 @@ width: 420px;
       margin-left: -130px !important;
 
       .van-popover__arrow {
-        left:51%;
+        left: 51%;
       }
     }
-    
+
     &.step10 {
       top: 90px !important;
       right: 20px !important;
       left: inherit !important;
+
       .van-popover__arrow {
         left: inherit;
         right: 14px;
@@ -863,6 +888,7 @@ width: 420px;
       left: 50% !important;
       margin-left: -125px !important;
       top: 50px !important;
+
       .van-popover__arrow {
         left: 51% !important;
       }
@@ -878,33 +904,40 @@ width: 420px;
   }
 
   .van-dialog {
-    width:390px;
-    &.van-popup--center{
+    width: 390px;
+
+    &.van-popup--center {
       margin-left: -195px;
       top: 40px;
     }
   }
-  .minerAdditionalModal,.minus-miner-stack-dialog {
+
+  .minerAdditionalModal,
+  .minus-miner-stack-dialog {
     top: 20px !important;
   }
 }
 
 
 .van-button--primary {
-  border: 2px solid #8f41e9;
+  border: 2px solid #E25AC4;
+
   // border-image: linear-gradient(to right, #facb7c,#8f41e9) 1;
   // clip-path: inset(0 0 round 30px);
   &:hover {
     background: none;
   }
 }
+
 .van-button--default {
   &:hover {
     background: rgba($color: #eee, $alpha: 0.1);
   }
 }
+
 .van-button--plain {
-  border:1px solid #fff;
+  border: 1px solid #fff;
+
   &:hover {
     background: rgba($color: #eee, $alpha: 0.1);
   }

@@ -88,7 +88,7 @@ export default defineComponent({
   &:hover {
     transition: ease 0.3s;
     cursor: pointer;
-    background: #200125;
+    background: #0f0011;
     color:white;
   }
   &-left {

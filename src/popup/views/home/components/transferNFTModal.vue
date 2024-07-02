@@ -200,7 +200,7 @@ export default defineComponent({
           nftAddr = nft_address.replace('mmm', '');
           break;
       }
-      const str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nftAddr}","version":"v0.0.1"}`
+      const str = `erbie:{"type":6,"nft_address":"${nftAddr}","version":"v0.0.1"}`
       const data3 = toHex(str);
       const tx1 = {
         from: address,
@@ -242,7 +242,7 @@ function toHex(str: string) {
 }
 
 .card-form {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   border-radius: 5px;
 }
 

@@ -181,8 +181,8 @@ export default defineComponent({
           const bigAmount = new Bignumber(props.amount);
           const { address } = state.account.accountInfo;
           const str = bigAmount.gte(props.fee)
-            ? `${store.getters['account/chainParsePrefix']}:{"version":"0.0.1","type":12}`
-            : `${store.getters['account/chainParsePrefix']}:{"type":22,"version":"v0.0.1"}`;
+            ? `erbie:{"version":"0.0.1","type":12}`
+            : `erbie:{"type":22,"version":"v0.0.1"}`;
           const realAm = bigAmount.gte(props.fee) ? 0 : props.amount;
           const data3 = toHex(str);
           const tx1 = {
@@ -281,13 +281,13 @@ export default defineComponent({
 
 .form-box {
   border-radius: 10px;
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   margin: 27px 15px 15px;
   padding: 12px 15px 0;
 }
 
 .card {
-  border-bottom: 1px solid #e4e7e8;
+  border-bottom: 1px solid #363232;
   padding: 11px 0;
 
   .label {

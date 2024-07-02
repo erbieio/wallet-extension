@@ -3,7 +3,7 @@
     <div class="currency-bd">
       <div class="flex center">
         <div class="flex center currency-icon" v-for="item in accountInfo.token" :key="item">
-          <img class="currency-symbol" v-if="item" src="@/assets/icon_black.svg" />
+          <img class="currency-symbol" v-if="item" src="@/assets/token/logowallet.svg" />
         </div>
       </div>
       <div class="amount text-center text-bold pl-14 pr-14">
@@ -722,7 +722,7 @@ export default {
         transition: ease 0.3s;
 
         &:hover {
-          background: white;
+          /* background: white; */
           box-shadow: 0 3px 4px rgba(255,255,255,.05);
         }
       }

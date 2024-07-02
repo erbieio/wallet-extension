@@ -151,7 +151,8 @@ export default {
   .title-label {
     margin: 17px 15px;
     font-size: 12px;
-    font-weight:700
+    font-weight:700;
+    color: white;
   }
   .form-button {
     display: flex;

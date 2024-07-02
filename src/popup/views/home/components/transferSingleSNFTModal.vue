@@ -305,15 +305,15 @@ export default defineComponent({
           switch (props.txtype) {
             // transfer
             case "2":
-              str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nftAdd}","version":"v0.0.1"}`;
+              str = `erbie:{"type":6,"nft_address":"${nftAdd}","version":"v0.0.1"}`;
               break;
             // pledge
             case "3":
-              str = `${store.getters['account/chainParsePrefix']}:{"type":7,"nft_address":"${nftAdd}","version":"0.0.1"}`;
+              str = `erbie:{"type":7,"nft_address":"${nftAdd}","version":"0.0.1"}`;
               break;
             // redemption
             case "1":
-              str = `${store.getters['account/chainParsePrefix']}:{"type":8,"nft_address":"${nftAdd}","version":"0.0.1"}`;
+              str = `erbie:{"type":8,"nft_address":"${nftAdd}","version":"0.0.1"}`;
               break;
           }
           const data3 = toHex(str);
@@ -438,14 +438,14 @@ export default defineComponent({
         switch (props.txtype) {
           // To pledge
           case "3":
-            str = `${store.getters['account/chainParsePrefix']}:{"type":7,"nft_address":"${nft_address}","version":"0.0.1"}`;
+            str = `erbie:{"type":7,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
           // redeemable
           case "1":
-            str = `${store.getters['account/chainParsePrefix']}:{"type":8,"nft_address":"${nft_address}","version":"0.0.1"}`;
+            str = `erbie:{"type":8,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
           case "2":
-            str = `${store.getters['account/chainParsePrefix']}:{"type":6,"nft_address":"${nft_address}","version":"0.0.1"}`;
+            str = `erbie:{"type":6,"nft_address":"${nft_address}","version":"0.0.1"}`;
             break;
         }
         const data3 = toHex(str);
@@ -538,7 +538,7 @@ function toHex(str: string) {
 </script>
   <style lang="scss" scoped>
 .card-form {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   border-radius: 5px;
 }
 .gasFee {

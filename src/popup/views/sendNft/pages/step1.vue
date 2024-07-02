@@ -259,7 +259,7 @@ export default {
     }
     .line {
       height: 1px;
-      background-color: #e4e7e8;
+      background-color: #363232;
     }
   }
   .actions-btn {

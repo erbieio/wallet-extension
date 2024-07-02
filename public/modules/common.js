@@ -505,7 +505,7 @@ export function sendMessage(msg = {}, opt = {}, sender) {
 
 }
 // Encapsulate returned data
-export function createMsg(response = null, method = 'unknow', type = 'wormholes-callback') {
+export function createMsg(response = null, method = 'unknow', type = 'erbie-callback') {
   return {
     type,
     data: {
@@ -582,8 +582,8 @@ export async function openPopup(
         {
           url,
           type: 'popup',
-          left: e.width - 355,
-          top: -10,
+          left: 0,
+          top: 0,
           width: 390,
           height: 610,
         }, async (e) => {

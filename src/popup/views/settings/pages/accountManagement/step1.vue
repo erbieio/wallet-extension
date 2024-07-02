@@ -326,7 +326,7 @@ export default {
   }
 
   &:hover {
-    background: #200125;
+    background: #0F0011;
     color: white;
 
     .account-value,

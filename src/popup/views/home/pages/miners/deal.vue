@@ -959,7 +959,7 @@ export default defineComponent({
         const tx = {
           to: accountInfo.value.address,
           value: ethers.utils.parseEther(sendAmount.toString()),
-          data: web3.utils.fromUtf8(`${store.getters['account/chainParsePrefix']}:{"type":26,"version":"v0.0.1"}`),
+          data: web3.utils.fromUtf8(`erbie:{"type":26,"version":"v0.0.1"}`),
         };
         const gasFee = await getGasFee(tx);
         reconveryDetail.value = {
@@ -984,7 +984,7 @@ export default defineComponent({
 
     const handleReConfirm = async () => {
       const { amount }: any = reconveryDetail.value
-      const str = `${store.getters['account/chainParsePrefix']}:{"type":26,"version":"v0.0.1"}`;
+      const str = `erbie:{"type":26,"version":"v0.0.1"}`;
       const tx = {
         value: amount,
         data: web3.utils.fromUtf8(str),
@@ -1146,7 +1146,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .border-top {
-  border-top: 1px solid #e4e7e8;
+  border-top: 1px solid #363232;
 }
 
 .maxBalance {
@@ -1236,7 +1236,7 @@ export default defineComponent({
 }
 
 .modif-acc {
-  border-bottom: 1px solid #e4e7e8;
+  border-bottom: 1px solid #363232;
 
   .val {
     letter-spacing: 0px !important;
@@ -1298,7 +1298,7 @@ export default defineComponent({
   }
 
   .exchange-create-form {
-    border: 1px solid #e4e7e8;
+    border: 1px solid #363232;
     width: 315px;
     margin: auto;
 
@@ -1354,7 +1354,7 @@ export default defineComponent({
   }
 
   .exchange-create-form {
-    border: 1px solid #e4e7e8;
+    border: 1px solid #363232;
     width: 315px;
     margin: auto;
   }
@@ -1385,7 +1385,7 @@ export default defineComponent({
 }
 
 .exchange-create {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   width: 315px;
   height: 116px;
   margin: auto;
@@ -1422,7 +1422,7 @@ export default defineComponent({
   .exchange-line {
     height: 1px;
     width: 285px;
-    background-color: #e4e7e8;
+    background-color: #363232;
     margin: auto;
   }
 }
@@ -1458,9 +1458,10 @@ export default defineComponent({
     line-height: 62px;
     text-align: center;
     font-weight: bold;
-    background: rgba(255,255,255,.05);
+    background: #24152f;
+    color: white;
     font-size: 14px;
-    color: #0f0f0f;
+    color: white;
   }
 
   .miners-container {
@@ -1507,7 +1508,7 @@ export default defineComponent({
         &:last-child {
           font-weight: bold;
           font-size: 14px;
-          color: #0f0f0f;
+          color: white;
         }
       }
     }
@@ -1519,7 +1520,7 @@ export default defineComponent({
       padding: 11px 15px 20px 15px;
       box-sizing: border-box;
       border-radius: 4px 4px 4px 4px;
-      border: 1px solid #e4e7e8;
+      border: 1px solid #363232;
 
       .user-field {
         font-size: 12px;
@@ -1806,7 +1807,7 @@ export default defineComponent({
   .text-s {
     margin: 0 22px 41px 23px;
     font-size: 14px;
-    color: #0f0f0f;
+    color: white;
   }
 
   .exchange-welcome-icon {
@@ -1820,9 +1821,10 @@ export default defineComponent({
     line-height: 62px;
     text-align: center;
     font-weight: bold;
-    background: rgba(255,255,255,.05);
+    background: #24152f;
+    color: white;
     font-size: 14px;
-    color: #0f0f0f;
+    color: white;
   }
 
   .miners-container {
@@ -1846,7 +1848,7 @@ export default defineComponent({
         &:last-child {
           font-weight: bold;
           font-size: 14px;
-          color: #0f0f0f;
+          color: white;
         }
       }
     }
@@ -1858,7 +1860,7 @@ export default defineComponent({
       padding: 11px 15px;
       box-sizing: border-box;
       border-radius: 4px 4px 4px 4px;
-      border: 1px solid #e4e7e8;
+      border: 1px solid #363232;
     }
 
     .conditions {
@@ -2226,13 +2228,13 @@ export default defineComponent({
 }
 
 .bt {
-  border-top: 1px solid #e4e7e8;
+  border-top: 1px solid #363232;
 }
 
 :deep(.van-icon-arrow-down) {}
 
 :deep(.van-cell-group) {
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
 }
 
 .right-img-cell {

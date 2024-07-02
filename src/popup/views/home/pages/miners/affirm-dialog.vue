@@ -83,7 +83,7 @@ export default {
       const { address } = store.state.account.accountInfo
 
       // Agent pledge
-      const str = `${store.getters['account/chainParsePrefix']}:{"type":9,"proxy_address":"","proxy_sign":"","version":"v0.0.1"}`
+      const str = `erbie:{"type":9,"proxy_address":"","proxy_sign":"","version":"v0.0.1"}`
       const data3 = toHex(str);
       
       const tx1 = {
@@ -153,7 +153,7 @@ export default {
   .miners {
     width: 341px;
     height: 480.5px;
-    background: #fff;
+    background: #150520;
     margin: auto;
     border-radius: 8px;
     overflow: hidden;
@@ -163,10 +163,11 @@ export default {
       line-height: 62px;
       text-align: center;
       font-weight: bold;
-      background: rgba(255,255,255,.05);
+      background: #24152f;
+      color: white;
       font-size: 14px;
-      color: #0f0f0f;
-      border-bottom: 1px solid #f2f4f5;
+      color: white;
+      border-bottom: 1px solid #363232;
 
       span {
         font-size: 15px;
@@ -194,7 +195,7 @@ export default {
           &:last-child {
             font-weight: bold;
             font-size: 14px;
-            color: #0f0f0f;
+            color: white;
           }
         }
       }
@@ -206,7 +207,7 @@ export default {
         padding: 11px 15px 20px 15px;
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
-        border: 1px solid #e4e7e8;
+        border: 1px solid #363232;
 
         .ipt {
           width: 280px;
@@ -367,7 +368,9 @@ export default {
   padding: 17px 15px 0 15px;
   font-size: 12px;
   border-radius: 4px;
-  border: 1px solid #E4E7E8;
+  border: 1px solid #363232;
+  color: white;
+
 }
 
 .c1 {
@@ -377,7 +380,7 @@ export default {
 .exchange {
   margin-top: 7px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #E4E7E8;
+  border-bottom: 1px solid #363232;
 }
 
 .bourse-container-meaning {

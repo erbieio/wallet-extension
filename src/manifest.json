@@ -31,7 +31,7 @@
     }
   ],
   "icons": {
-    "128": "icons/logo-128.png"
+    "128": "icons/logowallet.png"
   },
   "background": {
     "service_worker": "background.js",
@@ -42,7 +42,7 @@
     "default_title": "__MSG_extName__",
     "browser_style": true,
     "default_icon": {
-      "128": "icons/logo-128.png"
+      "128": "icons/logowallet.png"
     }
   },
   "web_accessible_resources": [

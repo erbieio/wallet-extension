@@ -146,7 +146,7 @@ export default {
     max-height: 327px;
     border-radius: 4px;
     overflow-y: scroll;
-    border: 1PX solid #e4e7e8;
+    border: 1PX solid #363232;
     div {
       word-break: break-all;
       font-size: 14px;

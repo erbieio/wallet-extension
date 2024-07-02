@@ -195,7 +195,7 @@ export default defineComponent({
   &.list {
     padding: 5px 15px;
     overflow: hidden;
-    border-bottom: 1px solid #e4e7e8;
+    border-bottom: 1px solid #363232;
 
     .info {
       width: 100%;
@@ -248,7 +248,7 @@ export default defineComponent({
 
     .info {
       padding: 7.5px 7.5px 8px 7.5px;
-      border: 1px solid #e4e7e8;
+      border: 1px solid #363232;
       border-radius: 6px;
       overflow: hidden;
 

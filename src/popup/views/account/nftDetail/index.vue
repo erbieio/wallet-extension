@@ -167,12 +167,12 @@ export default {
         line-height: 20px;
         padding:15px 10px;
         .form-titie{
-          color:#E4E7E8 ;
+          color:#363232 ;
         }
       }
       .line{
         height: 1px;
-        background-color: #E4E7E8;
+        background-color: #363232;
       }
   }
   .actions-btn{

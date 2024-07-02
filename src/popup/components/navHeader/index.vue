@@ -148,7 +148,7 @@ export default defineComponent({
     const accountInfo = computed(() => store.state.account.accountInfo)
     const ethAccountInfo = computed(() => store.state.account.ethAccountInfo)
     const isStaker = computed(() => {
-      return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(700)
+      return new BigNumber(ethAccountInfo.value.PledgedBalance || 0).div(1000000000000000000).gte(350)
     })
 
     // Whether open through the exchange open exchange discoloration

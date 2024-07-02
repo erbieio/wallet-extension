@@ -80,7 +80,7 @@
   .components-box {
     padding: 15px;
     .recovery-detail {
-      border: 1px solid #e4e7e8;
+      border: 1px solid #363232;
       border-radius: 5px;
       padding: 0 15px;
       margin-bottom: 15px;

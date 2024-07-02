@@ -36,7 +36,7 @@
           </div>
           <div class="slider-dian">
             <span :class="`slider-icon slider-l ${gasFee == 1 || gasFee == 2 ? 'active' : ''
-              }`"></span>
+        }`"></span>
             <span :class="`slider-icon slider-c ${gasFee == 2 ? 'active' : ''}`"></span>
             <span class="slider-icon slider-r"></span>
             <div class="speed-label speed-l">{{ t("sendto.slow") }}</div>
@@ -451,7 +451,7 @@ export default defineComponent({
 
   .limit-box {
     height: 44px;
-    background: #f1f3f4;
+    background: #2c0746;
     border-radius: 22px;
 
     .ipt-box {

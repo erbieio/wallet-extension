@@ -65,7 +65,7 @@ const { t } = useI18n();
 .create-modal {
   margin: 25px 15px;
   padding: 0 15px;
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   border-radius: 5px;
   .form-item {
     padding: 9px 0;

@@ -74,7 +74,7 @@
         </el-tooltip>
       </div>
       <div class="t3" v-if="!isExchangerFlag">
-        700ERB
+        350ERB
       </div>
 
       <!--
@@ -257,7 +257,7 @@
     <close-home v-model:isWarning="isCloseHome" v-if="isCloseHome"></close-home>
     <AddModal v-model="showAddModal" :amount="addAmount" :fee="exchangerBalance" :name="name" />
     <MinusModal v-model="showMinusModal" :amount="minusAmount" :fee="exchangerBalance" :name="name" />
-    <ModifPledgeModal v-model="showPledgeModal" :max="parseInt(exchangerBalance)" :defaultValue="700" @confirm="handleConfirmMinus" />
+    <ModifPledgeModal v-model="showPledgeModal" :max="parseInt(exchangerBalance)" :defaultValue="350" @confirm="handleConfirmMinus" />
   </div>
 </template>
 <script lang="ts">
@@ -464,7 +464,7 @@ export default defineComponent({
     const name = ref("Exchanger");
     const store = useStore();
     const { dispatch } = store;
-    const amount = ref(700);
+    const amount = ref(350);
     const accountInfo = computed(() => store.state.account.accountInfo);
 
     let visible1 = computed(() => serverIndex.value === 0);
@@ -556,7 +556,7 @@ export default defineComponent({
           });
           await sendTo(
             name.value,
-            700,
+            350,
             // serverIndex.value == 0 ? false : true,
             false,
             fee_rate
@@ -642,7 +642,7 @@ export default defineComponent({
     const handleAddAmount = () => {
       const am = new BigNumber(accountInfo.value.amount);
       const addnum = new BigNumber(addAmount.value);
-      if (addnum.lt(700)) {
+      if (addnum.lt(350)) {
         isCloseDialog.value = true;
         return;
       }

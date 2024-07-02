@@ -16,19 +16,6 @@
                     <i :class="`iconfont  f-14 ${showAccountModal ? 'icon-shangjiantou' : 'icon-xiajiantou'}`"></i>
                 </div>
             </div>
-
-            <div class="label lh-28 flex center-v">
-                <span>{{ t('validator.ownValidator') }}</span>
-                <van-popover v-model:show="stakerModal" theme="dark" placement="bottom-start">
-                    <p class="pl-10 pr-10">{{ t("validator.ownValidatorTip") }}</p>
-                    <template #reference>
-                        <van-icon name="question hover" @mouseover="stakerModal = true" @mouseleave="stakerModal = false" />
-                    </template>
-                </van-popover>
-            </div>
-            <div>
-                <ValidCard v-for="item in myAccounts" :key="item.Addr" :title="item.Addr" :data="item" @handleClick="handleClick(item)" />
-            </div>
             <div class="flex between  pt-10 " v-if="coefficient < 70 && isValidator">
                 <div class="lh-14 flex center-v pr-10 neutral ">{{ t('minerspledge.resetBtnTip', { value: resetWeightNum }) }}</div>
                 <div class="flex center">
@@ -38,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="label lh-28  flex center-v">
+            <div class="label lh-28 flex center-v">
                 <span>{{ t('validator.otherValidator') }}</span>
                 <van-popover v-model:show="validModal" theme="dark" placement="bottom-start">
                     <p class="pl-10 pr-10">{{ t("validator.otherValidatorTip") }}</p>
@@ -85,7 +72,7 @@
             <div class="pl-10 pr-10">
                 <el-slider v-model="value2" @change="handleSliderChange" :max="sliderMaxNum" :step="1" :min="0" :marks="marks" class="lider-ipt" />
             </div>
-            <van-form @submit="onSubmitAddNumber" ref="formDom">
+            <van-form ref="formDom">
                 <div :class="`${isError ? 'error' : ''} mt-10`">
                     <van-field maxlength="25" v-model="addNumber" class="text" @blur="handleAddBlur" type="number" :placeholder="t('bourse.placeamount')">
                         <template #right-icon>
@@ -113,8 +100,8 @@
     </div>
 
     <ActionSheet v-model="showAccountModal" :hasBtn="false" />
-    <ValidListModal v-model="showValidModal" @confirm="childConfirm" @cancel="showValidModal = false"  />
-    <MinusStackDialog v-model:show="showMinusDialog" @confirm="minusConfirm" :to="toAddr" :minusNumber="addNumber" :amount="totalPledgeAmount" @error="handleMinusError"/>
+    <ValidListModal v-model="showValidModal" @confirm="childConfirm" @cancel="showValidModal = false" />
+    <MinusStackDialog v-model:show="showMinusDialog" @confirm="minusConfirm" :to="toAddr" :minusNumber="addNumber" :amount="totalPledgeAmount" @error="handleMinusError" />
     <CommonModal v-model="showReconveryModal" :title="t('validator.recoveryCred')">
         <ReconveryDetail @cancel="showReconveryModal = false" @confirm="reconveryConfirm" :data="reconveryDetail" />
     </CommonModal>
@@ -154,6 +141,7 @@ import { getGasFee, getWallet } from "@/popup/store/modules/account";
 import { useRouter } from "vue-router";
 
 import { TradeStatus } from "@/popup/plugins/tradeConfirmationsModal/tradeConfirm";
+import { validatorPage } from '../../../../http/modules/staker';
 const { t } = useI18n()
 const stakerModal = ref(false)
 const amountModal = ref(false)
@@ -210,6 +198,7 @@ watch(() => ethAccountInfo.value, (n) => {
 
 const updateAddrInitData = async () => {
     const list = ethAccountInfo.value.StakerExtension?.StakerExtensions || []
+
     const totalPledge = list.length ? list.reduce((cur: any, b: any) => cur + new BigNumber(b.Balance).div(1000000000000000000).toNumber(), 0) : 0
     stakerExtensions.value = list.map((item: any, idx: number) => {
         const { Balance } = item
@@ -233,11 +222,11 @@ const updateAddrInitData = async () => {
     })
     const users = list.map((item: { Addr: string; }) => item.Addr)
     if (users && users.length) {
-        getUsersCoefficient({ users: JSON.stringify(users) }).then(res => {
-            res.data.forEach((item: any) => {
+        validatorPage({ page: 1, page_size: 10000, order: '' }).then(res => {
+            res.data.forEach(item => {
                 stakerExtensions.value.forEach(child => {
-                    if (child.Addr.toUpperCase() == item.useraddr.toUpperCase()) {
-                        child.Coefficient = item.coefficient
+                    if (child.Addr.toUpperCase() == item.address.toUpperCase()) {
+                        child.Coefficient = item.weight
                         child.isValidator = true
                     }
                 })
@@ -254,17 +243,6 @@ const updateAddrInitData = async () => {
     const wallet = await getWallet();
     const blockNum = await wallet.provider.getBlockNumber();
     blockNumber.value = blockNum
-    const myAccount = stakerExtensions.value.find(item => item.Addr.toUpperCase() == accountInfo.value.address.toUpperCase())
-    if (!myAccount) {
-        const { address, icon } = accountInfo.value
-        stakerExtensions.value.unshift({
-            Addr: address,
-            icon,
-            Balance: 0,
-            percent: 0,
-            selected: true
-        })
-    }
     toAddr.value = stakerExtensions.value.length ? stakerExtensions.value[0].Addr : ''
     if (stakerExtensions.value && stakerExtensions.value.length) {
         stakerExtensions.value[0].selected = true
@@ -272,9 +250,6 @@ const updateAddrInitData = async () => {
 
 }
 
-const onSubmitAddNumber = () => {
-
-}
 
 const handleAddBlur = () => {
     if (new BigNumber(addNumber.value).gt(sliderMaxNum.value)) {
@@ -282,7 +257,7 @@ const handleAddBlur = () => {
         value2.value = Number(sliderMaxNum.value)
         return
     }
-    if(new BigNumber(addNumber.value).lt(0)){
+    if (new BigNumber(addNumber.value).lt(0)) {
         value2.value = 0;
         addNumber.value = 0;
         return
@@ -324,7 +299,7 @@ const handleShowReconveryModal = async () => {
         const tx = {
             to: accountInfo.value.address,
             value: ethers.utils.parseEther(sendAmount.toString()),
-            data: web3.utils.fromUtf8(`${store.getters['account/chainParsePrefix']}:{"type":26,"version":"v0.0.1"}`),
+            data: web3.utils.fromUtf8(`erbie:{"type":5,"version":"v0.0.1"}`),
         };
         const gasFee = await getGasFee(tx);
         reconveryDetail.value = {
@@ -343,6 +318,10 @@ const handleShowReconveryModal = async () => {
 
 
 const handleMinusClick = () => {
+    if (!toAddr.value) {
+        $toast.warn('Please select a miner address')
+        return
+    }
     if (!addNumber.value) {
         $toast.warn(t('validator.redemAmountErr2'))
         return
@@ -355,9 +334,9 @@ const handleMinusClick = () => {
         $toast.warn(t('validator.redemAmountErr'))
         return
     }
-    // Total pledge amount - Redemption amount must be greater than or equal to 700 or equal to 0
+    // Total pledge amount - Redemption amount must be greater than or equal to 350 or equal to 0
     const bigLeftPledgeAmount = new BigNumber(totalPledgeAmount.value).minus(addNumber.value)
-    if (bigLeftPledgeAmount.lt(700) && bigLeftPledgeAmount.gt(0)) {
+    if (bigLeftPledgeAmount.lt(350) && bigLeftPledgeAmount.gt(0)) {
         $toast.warn(t('validator.leftPledgeErr'))
         return
     }
@@ -387,7 +366,7 @@ const minusConfirm = async () => {
         callBack
     })
     try {
-        const str = `${store.getters['account/chainParsePrefix']}:${JSON.stringify({ type: 10, version: "0.0.1" })}`;
+        const str = `erbie:${JSON.stringify({ type: 4, version: "0.0.1" })}`;
         const data3 = web3.utils.fromUtf8(str)
         const tx1 = {
             to: toAddr.value,
@@ -414,7 +393,7 @@ const handleMinusError = (err: any) => {
 const reconveryConfirm = async () => {
     showReconveryModal.value = false;
     const { amount }: any = reconveryDetail.value
-    const str = `${store.getters['account/chainParsePrefix']}:{"type":26,"version":"v0.0.1"}`;
+    const str = `erbie:{"type":5,"version":"v0.0.1"}`;
     const tx = {
         value: amount,
         data: web3.utils.fromUtf8(str),
@@ -465,12 +444,12 @@ const handleAddClick = () => {
         return
     }
     const bigTotalPledge = new BigNumber(e.Balance)
-    // If the amount pledged in the current account at the time of the pledge is 0, the amount pledged must be greater than or equal to 700
-    if (bigTotalPledge.lt(700) && (!addNumber.value || new BigNumber(addNumber.value).lt(700))) {
+    // If the amount pledged in the current account at the time of the pledge is 0, the amount pledged must be greater than or equal to 350
+    if (bigTotalPledge.lt(350) && (!addNumber.value || new BigNumber(addNumber.value).lt(350))) {
         $toast.warn(t('validator.pledgeAmountErr'))
         return
     }
-    if (bigTotalPledge.gte(700) && !Number(addNumber.value)) {
+    if (bigTotalPledge.gte(350) && !Number(addNumber.value)) {
         $toast.warn(t('validator.pledgeAmountErr1'))
         return
     }
@@ -487,8 +466,7 @@ const addStakeConfirm = async () => {
         callBack
     })
     try {
-        const { fee_rate } = store.state.configuration.setting.staker
-        const str = `${store.getters['account/chainParsePrefix']}:${JSON.stringify({ type: 9, proxy_address: accountInfo.value.address, fee_rate: fee_rate || 1000, name: "Staker", url: "", version: "v0.0.1" })}`;
+        const str = `erbie:${JSON.stringify({ type: 3, proxy_address: '', version: "v0.0.1" })}`;
         const data3 = web3.utils.fromUtf8(str)
         const tx1 = {
             to: toAddr.value,
@@ -567,6 +545,7 @@ const isValidator = computed(() => {
 
 const isStaker = computed(() => {
     const myExtension = stakerExtensions.value.find(item => item.Balance && item.selected)
+    console.log('myExtension', myExtension, stakerExtensions.value)
     return myExtension ? true : false
 })
 
@@ -587,10 +566,6 @@ const resetWeightNum = computed(() => {
 
 const otherAccounts = computed(() => {
     return stakerExtensions.value.filter(item => item.Addr.toUpperCase() != accountInfo.value.address.toUpperCase())
-})
-
-const myAccounts = computed(() => {
-    return stakerExtensions.value.filter(item => item.Addr.toUpperCase() == accountInfo.value.address.toUpperCase())
 })
 
 </script>

@@ -1,6 +1,6 @@
 
 import useClipboard from 'vue-clipboard3'
-import { VUE_APP_SCAN_URL } from "@/popup/enum/env";
+import { SCAN_PATH, VUE_APP_SCAN_URL } from "@/popup/enum/env";
 import store from '@/popup/store';
 
 const { toClipboard } = useClipboard()
@@ -148,18 +148,18 @@ export function guid() {
   return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
 
-type ScanPaths = '/AccountDetail' | '/TradeDetail' | '/NFTDetails' | '/SNFTDetails' | '/BlockDetails'
+type ScanPaths = '/accountDetail' | '/TradeDetail' | '/NFTDetails' | '/SNFTDetails' | '/blockDetail' | '/home'
 
-export const toScan = (addr: string, path: ScanPaths = '/AccountDetail') => {
+export const toScan = (addr: string, path: ScanPaths = '/accountDetail') => {
   if(addr) {
     if(store.state.account.currentNetwork.id === 'wormholes-network-1') {
-      window.open(`${VUE_APP_SCAN_URL}${path}?addr=${addr}`);
+      window.open(`${SCAN_PATH}${path}/${addr}`);
     } else {
       const defaultUrl = store.state.account.currentNetwork.browser
       if(defaultUrl) {
         window.open(`${defaultUrl}`);
       } else {
-        window.open(`${VUE_APP_SCAN_URL}${path}?addr=${addr}`);
+        window.open(`${SCAN_PATH}${path}/${addr}`);
       }
     }
   } else {

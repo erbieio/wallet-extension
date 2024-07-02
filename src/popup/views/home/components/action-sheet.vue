@@ -1,4 +1,3 @@
-
 <template>
   <van-dialog v-model:show="show" teleport="#page-box" class="account-list-modal1" :showConfirmButton="false" :showCancelButton="false" closeOnClickOverlay>
     <!-- <van-action-sheet v-model:show="show" class="account-action-sheet" teleport="#page-box"> -->
@@ -7,19 +6,19 @@
     </div>
     <div class="account-container">
       <div class="account-list scrollBar" ref="listDom" id="listDom">
-        <div v-for="(item, index) in options" :key="item.value" :class="`bt clickActive ${accountInfo.address.toUpperCase() ==
-            item.address.toUpperCase()
-            ? 'select'
-            : ''
-          }`" @click="handleSelect(item, index)" :data-selected="accountInfo.address.toUpperCase() ==
+        <div v-for="(item, index) in options" :key="item.value" :class="`clickActive ${options.length - 1 != index ? 'bt' : ''} ${accountInfo.address.toUpperCase() ==
+    item.address.toUpperCase()
+    ? 'select'
+    : ''
+    }`" @click="handleSelect(item, index)" :data-selected="accountInfo.address.toUpperCase() ==
     item.address.toUpperCase() ? true : false">
           <div class="flex account-card-s" :title="item.address">
             <div class="flex center account-icon">
               <i :class="`iconfont f-14 ${accountInfo.address.toUpperCase() ==
-                  item.address.toUpperCase()
-                  ? 'icon-xuanzhong1'
-                  : 'icon-danxuanxuanzhong'
-                }`"></i>
+    item.address.toUpperCase()
+    ? 'icon-xuanzhong1'
+    : 'icon-danxuanxuanzhong'
+    }`"></i>
             </div>
             <div class="account-icon-s flex center">
               <div class="account-icon-box-s">
@@ -38,8 +37,8 @@
             <div class="account-import-tag flex center"></div>
             <div class="flex right center-v add-choose-icon">
               <span v-show="item.imported" class="imported">{{
-                t("sidebar.imported")
-              }}</span>
+    t("sidebar.imported")
+  }}</span>
               <!-- <van-loading
                   class="ml-14"
                   size="22px"
@@ -62,14 +61,16 @@
       </div>
       <div class="import hoverx">
         <van-button plain block @click="toImport">{{
-          t("account.importaccount")
-        }}</van-button>
+    t("account.importaccount")
+  }}</van-button>
       </div>
     </div>
     <!-- </van-action-sheet> -->
   </van-dialog>
 </template>
+
 <script lang="ts">
+// @ts-nocheck
 import {
   defineComponent,
   Ref,
@@ -218,7 +219,7 @@ export default defineComponent({
     border-radius: 0;
 
     &:nth-of-type(1) {
-      border-bottom: 1px solid #ECEDEF;
+      border-bottom: 1px solid #363232;
     }
   }
 }
@@ -359,7 +360,7 @@ export default defineComponent({
 }
 
 .bt {
-  border-bottom: 1px solid #ecedef;
+  border-bottom: 1px solid #363232;
 }
 
 .sheet-header {
@@ -368,9 +369,10 @@ export default defineComponent({
   text-align: center;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   font-size: 15px;
   color: white;
 
   font-weight: bold;
-}</style>
+}
+</style>

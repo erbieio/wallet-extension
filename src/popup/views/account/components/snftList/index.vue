@@ -796,7 +796,7 @@ export default defineComponent({
             nft_address: nftAddr,
             version: "0.0.1"
           }
-          const data = web3.utils.fromUtf8(`${store.getters['account/chainParsePrefix']}:${JSON.stringify(data3)}`)
+          const data = web3.utils.fromUtf8(`erbie:${JSON.stringify(data3)}`)
           const tx = {
             from: address,
             to: address,

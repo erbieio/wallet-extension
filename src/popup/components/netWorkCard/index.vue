@@ -100,7 +100,7 @@ export default defineComponent({
   padding: 0 15px;
   height: 52px;
   transition: ease 0.3s;
-  border-bottom: 1px solid #E4E7E8;
+  border-bottom: 1px solid #363232;
   .dot {
     margin-right: 6px;
     .circle {

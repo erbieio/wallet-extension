@@ -16,14 +16,8 @@
     <div class="con-box" v-if="checkFlag">
       <div class="tab-box">
         <div class="flex between btn-box mt-22">
-          <div
-            :class="`flex-1 hover ${item.select ? 'active' : ''} ${
-              item.value == 1 ? 'van-hairline--right' : ''
-            }`"
-            v-for="item in btnList"
-            :key="item.value"
-            @click="handleClick(item)"
-          >
+          <div :class="`flex-1 hover ${item.select ? 'active' : ''} ${item.value == 1 ? 'van-hairline--right' : ''
+      }`" v-for="item in btnList" :key="item.value" @click="handleClick(item)">
             <div class="flex center">
               <i :class="`iconfont ${item.icon}`"></i>
             </div>
@@ -40,37 +34,26 @@
       <div v-show="tabVal.value == 2" class>
         <div class="flex center">
           <div class="code-box flex center mt-16">
-            <qrcode-vue
-              :value="mnemonicData"
-              class="code"
-              :size="300"
-              level="L"
-              ref="coderef"
-            ></qrcode-vue>
+            <qrcode-vue :value="mnemonicData" class="code" :size="300" level="L" ref="coderef"></qrcode-vue>
           </div>
         </div>
       </div>
       <div class="btn-groups">
-      <div class="container pl-28 pr-28">
-        <van-button   @click="toCopy" v-show="tabVal.value == 1" icon="iconfont icon-fuzhi2" block><i class="iconfont icon-fuzhi2 "></i> {{t('transferNft.copy')}}</van-button>
-        <van-button  @click="download" v-show="tabVal.value == 2"  block><i class="iconfont icon-xiazai "></i> {{t('transferNft.downQR')}}</van-button>
-      </div>
+        <div class="container pl-28 pr-28">
+          <van-button @click="toCopy" v-show="tabVal.value == 1" icon="iconfont icon-fuzhi2" block><i class="iconfont icon-fuzhi2 "></i> {{ t('transferNft.copy') }}</van-button>
+          <van-button @click="download" v-show="tabVal.value == 2" block><i class="iconfont icon-xiazai "></i> {{ t('transferNft.downQR') }}</van-button>
         </div>
+      </div>
     </div>
     <div v-else>
-      <div class="pwd-tit lh-20 mb-4 f-12 text-bold">{{t('createAccountpage.password')}}</div>
+      <div class="pwd-tit lh-20 mb-4 f-12 text-bold">{{ t('createAccountpage.password') }}</div>
       <div :class="`ipt ${pwdErr ? 'error' : ''}`">
-        <van-field
-          v-model="password"
-          type="password"
-          :placeholder="t('exportprivatekey.unlockP')"
-          @keydown.enter="unlock"
-        />
+        <van-field v-model="password" type="password" :placeholder="t('exportprivatekey.unlockP')" @keydown.enter="unlock" />
       </div>
-      <div v-if="pwdErr" class="ipt-message">{{pwdErrMsg}}</div>
+      <div v-if="pwdErr" class="ipt-message">{{ pwdErrMsg }}</div>
       <div class="btn-groups">
         <div class="container pl-28 pr-28">
-          <van-button @click="unlock" type="primary" block>{{t('transferNft.confirm')}}</van-button>
+          <van-button @click="unlock" type="primary" block>{{ t('transferNft.confirm') }}</van-button>
         </div>
       </div>
     </div>
@@ -99,7 +82,7 @@ import { useStore } from "vuex";
 // @ts-ignore
 import { encrypt, decrypt } from "@/popup/utils/cryptoJS.js";
 import { useI18n } from "vue-i18n";
-import {parseMnemonic} from "@/popup/utils/web3";
+import { parseMnemonic } from "@/popup/utils/web3";
 import QrcodeVue from "qrcode.vue";
 import { downloadBase64Img } from "@/popup/utils/utils";
 import NavHeader from "@/popup/components/navHeader/index.vue";
@@ -168,23 +151,23 @@ export default {
     // Selected tab
     const tabVal = computed(() => btnList.value.find((item) => item.select));
     const pwdErr = ref(false)
-    const  unlock = async () => {
+    const unlock = async () => {
       pwdErr.value = false
-      if(!password.value) {
+      if (!password.value) {
         pwdErr.value = true
         pwdErrMsg.value = t('loginwithpassword.pleaseinput')
         return false
       }
       try {
         // Unlock the keystore file of the current account through the password
-          parseMnemonic(password.value,store.state.mnemonic.keyStore).then(res => {
-             mnemonic.value = res;
-             checkFlag.value = true;
-          }).catch(err => {
-            pwdErr.value = true
-        // $toast.fail(err.toString());
-        pwdErrMsg.value = err.toString()
-          });
+        parseMnemonic(password.value, store.state.mnemonic.keyStore).then(res => {
+          mnemonic.value = res;
+          checkFlag.value = true;
+        }).catch(err => {
+          pwdErr.value = true
+          // $toast.fail(err.toString());
+          pwdErrMsg.value = err.toString()
+        });
       } catch (err) {
         pwdErr.value = true
         // $toast.fail(err.toString());
@@ -214,78 +197,94 @@ export default {
 .pwd-tit {
   padding: 0 14px 0;
 }
+
 .ipt-message {
   color: #D73A49;
   margin: 8px 15px 0;
 }
+
 .ipt {
   min-height: 44px;
   background: #24152f;
   margin: 0 15px 0;
   border-radius: 5px;
+
   //border: 1px solid #B3B3B3;
   &.error {
-    :deep(){
+    :deep() {
       .van-field {
         .van-field__body {
-    border: 1px solid #D73A49;
-    background: #24152f;
-  }
+          border: 1px solid #D73A49;
+          background: #24152f;
+        }
       }
     }
   }
+
   .van-field {
     padding: 0;
   }
 }
+
 .tab-box {
   .flex-1.active {
     i {
       color: white;
     }
+
     color: white;
   }
+
   i {
     font-size: 32px;
     color: #ccc;
   }
 }
+
 .bg-box {
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   margin: 15px 15px 25px;
   border-radius: 7.5px;
+
   .icon-box {
     color: white;
+
     i {
       font-size: 16px;
     }
   }
+
   .text-box {
     width: 100%;
     color: #ccc
   }
+
   .btn-box {
     i {
       font-size: 38px;
     }
+
     .icon-QRcode {
       font-size: 42px;
     }
+
     .flex-1.active {
       color: white;
     }
   }
 }
+
 .mnemonic-box {
   min-height: 100px;
   padding: 15px;
   box-sizing: border-box;
   word-break: break-all;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   position: relative;
   border-radius: 5px;
   border: 1px solid #B3B3B3;
   color: #848484;
+
   i {
     position: absolute;
     right: 10px;
@@ -293,27 +292,32 @@ export default {
     bottom: 10px;
   }
 }
+
 .code {
   width: 214px !important;
   height: 214px !important;
 }
+
 .code-box {
   width: 236px;
   height: 236px;
-  border: 7px solid white;
+  border: 5px solid #57096b;
   padding: 1px;
 }
+
 .load-btn {
   width: 250px;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   border-radius: 30px;
   margin: 15px auto 0;
   color: white;
+
   i {
     font-size: 12px;
   }
+
   &:hover {
-    background: rgba(255,255,255,.05);
+    background: rgba(255, 255, 255, .05);
   }
 }
 </style>

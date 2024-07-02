@@ -86,7 +86,7 @@ export default defineComponent({
 }
 
 .title {
-  border-bottom: 1px solid #E4E7E8;
+  border-bottom: 1px solid #363232;
 }
 
 .title {

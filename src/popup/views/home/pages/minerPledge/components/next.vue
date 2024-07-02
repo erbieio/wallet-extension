@@ -70,7 +70,7 @@ export default {
   .miners {
     width: 341px;
     height: 327px;
-    background: #fff;
+    background: #150520;
     margin: auto;
     border-radius: 8px;
     .miners-icons {
@@ -79,7 +79,7 @@ export default {
     .text-s {
       margin: 0 22px 41px 23px;
       font-size: 14px;
-      color: #0f0f0f;
+      color: white;
     }
     .exchange-welcome-icon {
       width: 41px;
@@ -93,7 +93,7 @@ export default {
       font-weight: bold;
       background: rgba(255,255,255,.05);
       font-size: 14px;
-      color: #0f0f0f;
+      color: white;
     }
     .miners-container {
       .contaienr-top-header {
@@ -114,7 +114,7 @@ export default {
           &:last-child {
             font-weight: bold;
             font-size: 14px;
-            color: #0f0f0f;
+            color: white;
           }
         }
       }
@@ -125,7 +125,7 @@ export default {
         padding: 11px 15px;
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
-        border: 1PX solid #e4e7e8;
+        border: 1PX solid #363232;
       }
       .conditions {
         margin: 0px 0 20px 0;
@@ -148,7 +148,7 @@ export default {
         display: inline-block;
         padding-bottom: 12px;
         margin-bottom: 11px;
-        border-bottom: 1px solid #ecedef;
+        border-bottom: 1px solid #363232;
       }
     }
   }

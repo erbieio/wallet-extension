@@ -254,16 +254,18 @@ defineExpose({
   }
   .wormholes-dialog {
     overflow: hidden;
+    border: 1PX solid #460e70;
     .tit {
       line-height: 62px;
       background: #13051E;
       font-size: 15px;
       font-weight: 600;
+      color: white;
     }
     width: 340px;
     min-height: 230px;
     max-height: 500px;
-    background: #fff;
+    background: #24152f;
     border-radius: 7px;
     padding-bottom: 25px;
     .approve-msg {
@@ -292,6 +294,7 @@ defineExpose({
     .approve {
       font-size: 15px;
       font-weight: bold;
+      color: white;
     }
     .approve-msg {
       line-height: 18px;

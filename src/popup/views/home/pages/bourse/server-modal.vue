@@ -280,12 +280,12 @@ export default defineComponent({
 }
 .form-box {
   border-radius: 10px;
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   margin: 26px 15px 15px;
   padding: 12px 15px 0;
 }
 .card {
-  border-bottom: 1px solid #e4e7e8;
+  border-bottom: 1px solid #363232;
   padding: 11px 0;
   .label {
     color: #8f8f8f;

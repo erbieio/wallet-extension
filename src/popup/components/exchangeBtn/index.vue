@@ -286,7 +286,7 @@ export default defineComponent({
       position: absolute;
       bottom: 8px;
       right: -12px;
-      border-left: 8px solid #fff;
+      border-left: 8px solid #24152f;
       border-right: 8px solid transparent;
       border-top: 8px solid transparent;
       border-bottom: 8px solid transparent;

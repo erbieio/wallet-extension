@@ -6,82 +6,13 @@
       </div>
       <div class="miners-container flex column between">
         <div class="miners-container-item">
-          <!-- <div class="bourse-container-meaning bt">
-            <span class="c1">{{ t("bourse.marketName") }} </span>
-            <el-tooltip
-              popper-class="tooltip2-abc"
-              class="box-item"
-              style="z-index: 10000"
-              effect="dark"
-              :content="t('bourse.tip1')"
-              placement="bottom"
-              trigger="hover"
-            >
-              <van-icon name="question" color="#9A9A9A" />
-            </el-tooltip>
-            <div class="exchange">{{ name }}</div>
-          </div>
-          <div class="bourse-container-meaning bt">
-            <span class="c1">{{ t("bourse.marketCom") }} </span>
-            <el-tooltip
-              popper-class="tooltip2-abc"
-              class="box-item"
-              effect="dark"
-              :content="t('bourse.tip2')"
-              placement="bottom"
-              trigger="hover"
-            >
-              <van-icon name="question" color="#9A9A9A" />
-            </el-tooltip>
-            <div class="exchange">{{ money }}%</div>
-          </div> -->
           <div class="bourse-container-meaning bt">
             <span class="c1">{{ t("bourse.stakingFee") }} </span>
             <el-tooltip popper-class="tooltip2-abc" class="box-item" effect="dark" :content="t('bourse.tip3')" placement="bottom" trigger="hover">
               <van-icon name="question" color="#9A9A9A" />
             </el-tooltip>
-            <!-- <div class="exchange">{{money * 10}} ERB(≈$20)</div> -->
-            <div class="exchange">700 ERB</div>
+            <div class="exchange">350 ERB</div>
           </div>
-          <!-- <div class="bourse-container-meaning bt">
-            <span class="c1">{{ t("bourse.marketServer") }} </span>
-            <el-tooltip
-              popper-class="tooltip2-abc"
-              class="box-item"
-              effect="dark"
-              :content="t('bourse.tip4')"
-              placement="bottom"
-              trigger="hover"
-            >
-              <van-icon name="question" color="#9A9A9A" />
-            </el-tooltip>
-            <div class="exchange">
-              {{ serverIndex === 0 ? 0 : 200 }} ERB(≈${{
-                serverIndex != 0 ? toUsd(200, 0) : 0
-              }})
-            </div>
-          </div> -->
-          <!-- <div
-            class="bourse-container-meaning bt"
-            v-if="!exchangeStatus.ExchangerFlag && exchangeStatus.status == 0"
-          >
-            <span class="c1">{{ t("bourse.totalAmount") }} </span>
-            <el-tooltip
-              popper-class="tooltip2-abc"
-              class="box-item"
-              effect="dark"
-              :content="t('bourse.totalAmount')"
-              placement="bottom"
-              trigger="hover"
-            >
-              <van-icon name="question" color="#9A9A9A" />
-            </el-tooltip>
-            <div class="exchange">
-              {{ serverIndex == 0 ? 700 : 900 }} ERB(≈${{
-                toUsd(serverIndex == 0 ? 700 : 900, 0)
-              }})
-            </div>
-          </div> -->
           <div class="">
             <span class="c1">{{ t("bourse.gasFee") }} </span>
             <el-tooltip popper-class="tooltip2-abc" class="box-item" effect="dark" :content="t('common.gasFee')" placement="bottom" trigger="hover">
@@ -168,13 +99,13 @@ export default {
           const { address } = state.account.accountInfo;
           const baseName = encode(props.name);
           //The first gas
-          const str = `${store.getters['account/chainParsePrefix']}:{"version": "0","type": 11,"fee_rate": 100,"name":"${baseName}","url":""}`;
+          const str = `erbie:{"version": "0","type": 11,"fee_rate": 100,"name":"${baseName}","url":""}`;
 
           const data3 = toHex(str);
           const tx1 = {
             from: address,
             to: address,
-            value: ethers.utils.parseEther(700 + ""),
+            value: ethers.utils.parseEther(350 + ""),
             data: `0x${data3}`,
           };
 
@@ -255,7 +186,7 @@ export default {
   .miners {
     width: 341px;
     padding-bottom: 20px;
-    background: #fff;
+    background:#150520;
     margin: auto;
     border-radius: 8px;
     overflow: hidden;
@@ -267,7 +198,7 @@ export default {
       font-weight: bold;
       background: rgba(255,255,255,.05);
       font-size: 15px;
-      color: #0f0f0f;
+      color: white;
     }
 
     .miners-container {
@@ -291,7 +222,7 @@ export default {
           &:last-child {
             font-weight: bold;
             font-size: 14px;
-            color: #0f0f0f;
+            color: white;
           }
         }
       }
@@ -303,7 +234,7 @@ export default {
         padding: 11px 15px 20px 15px;
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
-        border: 1px solid #e4e7e8;
+        border: 1px solid #363232;
 
         .ipt {
           width: 280px;
@@ -460,7 +391,8 @@ export default {
   padding: 17px 15px 0 15px;
   font-size: 12px;
   border-radius: 4px;
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
+  color: white;
 }
 
 .c1 {
@@ -470,7 +402,7 @@ export default {
 .exchange {
   margin-top: 7px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e4e7e8;
+  border-bottom: 1px solid #363232;
 }
 
 .bourse-container-meaning {

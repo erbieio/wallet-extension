@@ -344,11 +344,11 @@ export default defineComponent({
   height: 438px;
   border-radius: 4px;
   margin: 25px 12.5px;
-  border: 1px solid #e4e7e8;
+  border: 1px solid #363232;
   padding: 0 15px;
   .card {
     height: 72px;
-    border-bottom: 1px solid #e4e7e8;
+    border-bottom: 1px solid #363232;
     padding: 16px 0;
     &:nth-last-of-type(1) {
       border-bottom: none;

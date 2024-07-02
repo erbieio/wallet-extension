@@ -492,7 +492,7 @@ export default {
     width: 60px;
     height: 60px;
     background: white;
-    border: 1PX solid #e4e7e8;
+    border: 1PX solid #363232;
     border-radius: 50%;
     color: #ccc;
     padding: 0;
@@ -526,13 +526,13 @@ export default {
         min-width: 15px;
         height: 15px;
         line-height: 15px;
-        border: 1PX solid #e4e7e8;
+        border: 1PX solid #363232;
         border-radius: 50%;
         text-align: center;
         font-size: 12px;
         position: absolute;
         background: #fff;
-        color: #e4e7e8;
+        color: #363232;
         bottom: 0px;
         left: 0px;
         z-index: 9;

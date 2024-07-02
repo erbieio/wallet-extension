@@ -159,7 +159,7 @@ export default {
     const http = async () => {
       try {
         isLoading.value = true;
-        const str = `${store.getters['account/chainParsePrefix']}:{"version": "0.0.1", "type": 25, "reward_flag": ${select.value}}`;
+        const str = `erbie:{"version": "0.0.1", "type": 25, "reward_flag": ${select.value}}`;
         const data3 = toHex(str);
         const tx1 = {
           from: accountInfo.value.address,

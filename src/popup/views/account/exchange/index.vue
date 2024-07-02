@@ -212,7 +212,7 @@ export default {
   .miners {
     width: 341px;
     height: 646px;
-    background: #fff;
+    background:#150520;
     margin: auto;
     border-radius: 8px;
     .miners-header {
@@ -222,7 +222,7 @@ export default {
       font-weight: bold;
       background: rgba(255,255,255,.05);
       font-size: 14px;
-      color: #0f0f0f;
+      color: white;
     }
     .miners-container {
       ::-webkit-input-placeholder {
@@ -263,7 +263,7 @@ export default {
           &:last-child {
             font-weight: bold;
             font-size: 14px;
-            color: #0f0f0f;
+            color: white;
           }
         }
       }
@@ -274,10 +274,10 @@ export default {
         padding: 11px 15px 20px 15px;
         box-sizing: border-box;
         border-radius: 4px 4px 4px 4px;
-        border: 1px solid #e4e7e8;
+        border: 1px solid #363232;
         .user-field {
           font-size: 12px;
-          border-bottom: 1px solid #ecedef;
+          border-bottom: 1px solid #363232;
         }
         > span {
           font-size: 12px;
@@ -286,7 +286,7 @@ export default {
         .ipt-text-a {
           padding-top: 20px;
           margin-top: 30px;
-          border-top: 1px solid #ecedef;
+          border-top: 1px solid #363232;
           font-size: 12px;
           color: #8f8f8f;
         }

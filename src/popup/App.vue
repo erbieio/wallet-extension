@@ -18,15 +18,11 @@
 import { provide as appProvide } from "@/popup/provides/app";
 import { useRoute, useRouter } from "vue-router";
 import {
-  Ref,
   ref,
-  watch,
   onBeforeMount,
-  onActivated,
   onMounted,
   computed,
   provide,
-  nextTick
 } from "vue";
 import { useStore, mapActions } from "vuex";
 import { Button, Loading } from "vant";
@@ -138,8 +134,9 @@ export default {
 .page-container {
   position: relative;
   box-sizing: border-box;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
   color: white;
+
   &::-webkit-scrollbar {
     display: none;
     /* Chrome Safari */
@@ -284,7 +281,7 @@ export default {
 }
 
 .receive-info {
-  border: 1PX solid #E4E7E8;
+  border: 1PX solid #363232;
   border-radius: 5px;
 
   * {

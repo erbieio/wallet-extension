@@ -125,7 +125,7 @@ export default {
         overflow-y: scroll;
         border: 1PX solid #ccc;
         .card.active {
-          background: #eff4f8;
+          background: #3f4040;
         }
     }
 
@@ -141,6 +141,7 @@ export default {
         height: 40px;
         width: 70%;
         border-radius: 20px;
+        color: white;
         .icon {
             img {
                 width: 20px;

@@ -87,7 +87,7 @@ export default defineComponent({
     }
   }
   &.list:hover {
-    background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.5);
     color:white;
     .usd,.address .add {
       color:white !important;
@@ -96,7 +96,7 @@ export default defineComponent({
   &.list {
     padding: 15px;
     overflow: hidden;
-    border-bottom:1px solid #E4E7E8;
+    border-bottom:1px solid #363232;
     .info {
       .icon {
         width: 40px;

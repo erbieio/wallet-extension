@@ -144,7 +144,7 @@ export default {
   .snft {
     width: 48%;
     height: 205px;
-    border: 0.5px solid #e4e7e8;
+    border: 0.5px solid #363232;
     border-radius: 5px;
     margin-bottom: 10px;
     :deep(.van-image){
@@ -165,7 +165,7 @@ export default {
     }
     .snft-address {
       margin-left: 7px;
-      color: #e4e7e8;
+      color: #363232;
     }
   }
 }

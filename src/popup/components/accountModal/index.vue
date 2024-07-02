@@ -10,16 +10,16 @@
           {{ t("account.importaccount") }}
         </div>
         <div v-for="(item, index) in importList" :key="item.value" :data-selected="accountInfo.address.toUpperCase() == item.address.toUpperCase()
-          ? true
-          : false
-          " :class="`clickActive border-bottom`" @click="handleAccountFun2(item, index)">
+    ? true
+    : false
+    " :class="`clickActive border-bottom`" @click="handleAccountFun2(item, index)">
           <div class="flex account-card" :title="item.address">
             <div class="flex center select-box">
               <i :class="`iconfont ${item.address.toUpperCase() ==
-                accountInfo.address.toUpperCase()
-                ? 'icon-danxuan'
-                : 'icon-danxuan1'
-                } `"></i>
+    accountInfo.address.toUpperCase()
+    ? 'icon-danxuan'
+    : 'icon-danxuan1'
+    } `"></i>
             </div>
             <div class="account-icon flex center">
               <div class="account-icon-box">
@@ -35,16 +35,16 @@
                   </div>
                   <div class="flex" v-if="popupType === 'Popup'">
                     <div :class="`connectStatus pl-6 pr-6 ${handleHasConnect(item.address) ? 'active' : 'disConnect'
-                      } flex center`" :title="handleHasConnect(item.address)
+    } flex center`" :title="handleHasConnect(item.address)
     ? t('common.isConnect')
     : t('common.ununited')
     "></div>
                     <div class="connectTo" @click.stop="handleConnectTo(item.address)" :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', { size: activeTab.origin }) : t('common.disconnectToSize', { size: activeTab.origin })}`">
                       {{
-                        !handleHasConnect(item.address)
-                        ? t("common.connectTo")
-                        : t("common.disconnect")
-                      }}
+    !handleHasConnect(item.address)
+      ? t("common.connectTo")
+      : t("common.disconnect")
+  }}
                     </div>
                   </div>
                 </div>
@@ -63,16 +63,16 @@
           {{ t("account.createaccount") }}
         </div>
         <div v-for="(item, index) in defaultlist" :key="item.value" :data-selected="accountInfo.address.toUpperCase() == item.address.toUpperCase()
-          ? true
-          : false
-          " :class="` clickActive border-bottom`" @click="handleAccountFun(item, index)">
+    ? true
+    : false
+    " :class="` clickActive border-bottom`" @click="handleAccountFun(item, index)">
           <div class="flex account-card" :title="item.address">
             <div class="flex center select-box">
               <i :class="`iconfont ${item.address.toUpperCase() ==
-                accountInfo.address.toUpperCase()
-                ? 'icon-danxuan'
-                : 'icon-danxuan1'
-                } `"></i>
+    accountInfo.address.toUpperCase()
+    ? 'icon-danxuan'
+    : 'icon-danxuan1'
+    } `"></i>
             </div>
             <div class="account-icon flex center">
               <div class="account-icon-box">
@@ -88,16 +88,16 @@
                   </div>
                   <div class="flex" v-if="popupType === 'Popup'">
                     <div :class="`connectStatus pl-6 pr-6 ${handleHasConnect(item.address) ? 'active' : 'disConnect'
-                      } flex center`" :title="handleHasConnect(item.address)
+    } flex center`" :title="handleHasConnect(item.address)
     ? t('common.isConnect')
     : t('common.ununited')
     "></div>
                     <div class="connectTo" @click.stop="handleConnectTo(item.address)" :title="`${!handleHasConnect(item.address) ? t('common.connectToSize', { size: activeTab.origin }) : t('common.disconnectToSize', { size: activeTab.origin })}`">
                       {{
-                        !handleHasConnect(item.address)
-                        ? t("common.connectTo")
-                        : t("common.disconnect")
-                      }}
+    !handleHasConnect(item.address)
+      ? t("common.connectTo")
+      : t("common.disconnect")
+  }}
                     </div>
                   </div>
                 </div>
@@ -159,7 +159,7 @@
       <div class="flex between p-30 connect-btns">
         <van-button @click="showConnectModal = false">{{
           t("common.cancel")
-        }}</van-button>
+          }}</van-button>
         <van-button type="primary" @click="handleConnectFun" :loading="connectLoading">{{ connectModalTit }}</van-button>
       </div>
     </div>
@@ -452,8 +452,9 @@ function getHostName(url = "") {
 </script>
 <style lang="scss" scoped>
 .border-bottom {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #363232;
 }
+
 .name-box {
   max-width: 120px;
 }
@@ -592,7 +593,7 @@ function getHostName(url = "") {
   transition: ease 0.3s;
 
   &:hover {
-    background: #200125;
+    background: #0F0011;
     color: white;
 
     .account-value,
@@ -615,6 +616,7 @@ function getHostName(url = "") {
     line-height: 18px;
     font-size: 12px;
     color: white;
+
     i {
       font-size: 14px;
       color: #a9a6a6;
@@ -644,13 +646,16 @@ function getHostName(url = "") {
   color: white;
   font-size: 15px;
   line-height: 62px;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   font-weight: bold;
 }
 
 .account-list {
   max-height: 300px;
   overflow-y: scroll;
+  .border-bottom:nth-last-of-type(1) {
+    border-bottom: none
+  }
 }
 
 .icon-weibiaoti-1_xinzengzhanghu {

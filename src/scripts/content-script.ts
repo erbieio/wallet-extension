@@ -21,7 +21,7 @@ injectScript(chrome.runtime.getURL("js/inject-script.js"), "body");
 
 // The received information is sent to the background
 window.addEventListener("message", function (ev) {
-  if (ev.data && ev.data.target && ev.data.target == "wormholes-inpage") {
+  if (ev.data && ev.data.target && ev.data.target == "erbie-inpage") {
     sendMessageToBackground(ev.data);
   }
 });
@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // The callback event
     const { type, data, origin } = request;
     // The callback event that invokes the function
-    if (type && type == "wormholes-callback") {
+    if (type && type == "erbie-callback") {
       // if case accountsChanged | chainChanged | connect | disconnect Check the permission. If no permission is granted, no response is received
       if (origin != location.origin) {
         return;
@@ -53,7 +53,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       //   }
       // }
       // Custom events
-      var cEvt = new CustomEvent("wormHoles-callback-event", {
+      var cEvt = new CustomEvent("erbie-callback-event", {
         detail: request,
       });
       // Sends events to the page
