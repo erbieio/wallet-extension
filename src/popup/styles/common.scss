@@ -352,7 +352,7 @@ img {
 
 // Interrupt boot Popup
 .closeGuideModal {
-  background: rgba($color: white, $alpha: 0.8);
+  background: #281635;
   color: #fff;
 
   .van-dialog__footer {
@@ -363,12 +363,15 @@ img {
 
   .van-dialog__cancel {
     margin: 25px;
+    background-color: none;
+    border: 2px solid #fff;
   }
 
   .van-dialog__confirm {
-    background: white;
-    color: #fff;
     margin: 25px;
+    background-color: none;
+
+    border: 2px solid #E25AC4;
 
     &::after {
       display: none;

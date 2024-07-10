@@ -1,20 +1,19 @@
-
 <template>
   <van-popover v-model:show="showModal" @click-overlay="beforeClose" :close-on-click-overlay="false" trigger="manual" class="popover-dialog step8" placement="bottom-end" teleport="#page-box" overlay>
     <div class="dialog-box">
       <div class="serial-number">
-        <span class="left">8</span> <span>/</span> 11
+        <span class="left">7</span> <span>/</span> 11
       </div>
       <div class="title">
-        {{ t("bootstrapwindow.sNFTs") }}
+        CSBT
       </div>
       <div class="small-tit pl-30 pr-30 mt-20">
-        {{ t("bootstrapwindow.sNFTsMessage") }}
+        The CSBT you currently have
       </div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(9)">{{
-          t("bootstrapwindow.next")
-        }}</van-button>
+        <van-button type="primary" @click="handleClick(8)">{{
+    t("bootstrapwindow.next")
+          }}</van-button>
       </div>
       <span class="tip3"></span>
       <span class="tip2"></span>
@@ -41,20 +40,21 @@ export default defineComponent({
   props: {
     type: {
       type: Number,
-      default: 8,
+      default: 7,
     },
   },
   setup(props: any, context: SetupContext) {
     const { t } = useI18n();
-    const { state, dispatch } = useStore();
-    const show8 = computed(() => state.system.show8);
+    const { state, dispatch, getters } = useStore();
+    const showGuideModalVal = computed(() => getters['system/getGuideModalVal'])
+
     const handleClick = (v: number) => {
       dispatch("system/showDialog", v);
     };
     const showModal = ref(false);
     watch(
-      () => show8,
-      (n) => (showModal.value = n.value),
+      () => showGuideModalVal,
+      (n) => (showModal.value = n.value === 7 ? true : false),
       { immediate: true, deep: true }
     );
     const beforeClose = async () => {
@@ -74,7 +74,6 @@ export default defineComponent({
     };
     return {
       t,
-      show8,
       beforeClose,
       handleClick,
       showModal,
@@ -227,4 +226,5 @@ export default defineComponent({
   :deep(.van-popover__wrapper) {
     height: 0;
   }
-}</style>
+}
+</style>

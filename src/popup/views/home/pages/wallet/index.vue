@@ -6,7 +6,9 @@
         <i class="iconfont icon-gengduo2"></i>
       </div>
     </template>
+
     <template v-slot:right>
+      <!-- <GuideModal12 /> -->
       <div>
         <i v-if="pageType == 'Popup'" class="iconfont icon-zhankai" :title="t('common.expandView')" @click="extendView" :style="{ color: hasExchange ? '#fff' : 'white' }"></i>
       </div>
@@ -164,10 +166,10 @@
           <div class="flex1">
             <GuideModal6></GuideModal6>
           </div>
-          <div class="flex2">
+          <!-- <div class="flex2">
             <GuideModal7></GuideModal7>
-          </div>
-          <div class="flex3">
+          </div> -->
+          <div class="flex1">
             <GuideModal8></GuideModal8>
           </div>
         </div>
@@ -263,9 +265,10 @@ import GuideModal5 from "@/popup/components/guideModal/step5.vue";
 import GuideModal6 from "@/popup/components/guideModal/step6.vue";
 import GuideModal7 from "@/popup/components/guideModal/step7.vue";
 import GuideModal8 from "@/popup/components/guideModal/step8.vue";
-import GuideModal9 from "@/popup/components/guideModal/step8.vue";
+// import GuideModal9 from "@/popup/components/guideModal/step9.vue";
 import GuideModal10 from "@/popup/components/guideModal/step10.vue";
 import GuideModal11 from "@/popup/components/guideModal/step11.vue";
+// import GuideModal12 from "@/popup/components/guideModal/step12.vue";
 import GuideModal13 from "@/popup/components/guideModal/step13.vue";
 import BackUp from "@/popup/components/guideModal/backUp.vue";
 import BackUpBottom from "@/popup/components/guideModal/backupBottom.vue";
@@ -310,9 +313,10 @@ export default {
     GuideModal6,
     GuideModal7,
     GuideModal8,
-    GuideModal9,
+    // GuideModal9,
     GuideModal10,
     GuideModal11,
+    // GuideModal12,
     GuideModal13,
     BackUp,
     BackUpBottom,

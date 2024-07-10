@@ -7,6 +7,7 @@ function generateRandom() {
 
 var events = [
   "connect",
+  "disconnect",
   "chainChanged",
   "accountsChanged",
   "message",
@@ -17,9 +18,9 @@ var events = [
 // var METHOD_KEY = 'erbie-callback'
 // var METHOD_CALL_KEY = 'erbie-callback-event'
 // var REQUEST_SIGN_KEY = 'erbie-inpage'
-var METHOD_KEY = 'erbie-callback'
-var METHOD_CALL_KEY = 'erbie-callback-event'
-var REQUEST_SIGN_KEY = 'erbie-inpage'
+var METHOD_KEY = "erbie-callback";
+var METHOD_CALL_KEY = "erbie-callback-event";
+var REQUEST_SIGN_KEY = "erbie-inpage";
 function Provider() {
   var _this = this;
   this._state = {
@@ -43,6 +44,7 @@ function Provider() {
     document.addEventListener(METHOD_CALL_KEY, (res) => {
       // accepting of data
       let { type, data, sendId } = res.detail;
+      console.log("res", res);
       if (type == METHOD_KEY) {
         var { method, response } = data;
         if (!events.includes(method)) {
@@ -86,6 +88,7 @@ function Provider() {
       "loginIn",
       () => {
         this._state.isUnlocked = true;
+        console.log("loginIn");
       },
       callId
     );
@@ -93,6 +96,17 @@ function Provider() {
       "logout",
       () => {
         this._state.isUnlocked = false;
+        this.selectedAddress = null;
+      },
+      callId
+    );
+    this.on("connect", function (e) {}, callId);
+    this.on(
+      "disconnect",
+      function (e) {
+        this.selectedAddress = "";
+        this._state.accounts = [];
+        this._state.isConnected = false;
       },
       callId
     );
@@ -115,9 +129,6 @@ function Provider() {
   this.request = function (params) {
     var _this = this;
     var { method } = params;
-    // if(!this._state.isConnected && (method !== 'wallet_requestPermissions' || method !== 'eth_requestAccounts')){
-    //   return Promise.reject('Request denied')
-    // }
     if (
       (method === "wallet_requestPermissions" ||
         method == "eth_requestAccounts") &&

@@ -6,17 +6,17 @@
         <div class="flex center">
           <WormTransition size="small">
             <template v-slot:t1>
-              <img class="icon" src=""  />
+              <img class="icon" src="" />
             </template>
             <template v-slot:t2>
-              <img class="icon" src=""  />
+              <img class="icon" src="" />
             </template>
             <template v-slot:t3>
-              <img class="icon" src=""  />
+              <img class="icon" src="" />
             </template>
             <template v-slot:icon>
               <span class="wromIcon">
-                <img class="wromIcon" src="@/assets/logo1.png"  />
+                <img class="wromIcon" src="@/assets/logo1.png" />
               </span>
             </template>
           </WormTransition>
@@ -25,7 +25,7 @@
         <div class="small-tit text-center text-bold f-24">{{ t('bootstrapwindow.wormHoles') }}</div>
         <div class="tip f-12 lh-16 text-center pl-24 pr-24 mt-12 mb-12">{{ t('bootstrapwindow.wormHolesMessage') }}</div>
         <div class="flex center pb-30 pl-14 pr-14 mt-20">
-          <van-button type="primary" @click="handleClick(0)">{{ t('bootstrapwindow.getStared') }}</van-button>
+          <van-button type="primary" @click="handleClick(1)">{{ t('bootstrapwindow.getStared') }}</van-button>
         </div>
       </van-dialog>
     </div>
@@ -77,23 +77,12 @@ export default defineComponent({
     const showModal: Ref<boolean> = ref(false)
     const showModal2: Ref<boolean> = ref(false)
     const { state, dispatch, getters, commit } = useStore()
-    // commit('system/UPDATE_GUIDEFLAG', false)
-    const show0 = computed(() => getters['system/getGuideModal'])
-    const show16 = computed(() => state.system.show16)
+    const showGuideModalVal = computed(() => getters['system/getGuideModalVal'])
     watch(
-      () => show0,
+      () => showGuideModalVal,
       n => {
-        showModal.value = n.value
-      },
-      {
-        immediate: true,
-        deep: true
-      }
-    )
-    watch(
-      () => show16,
-      n => {
-        showModal2.value = n.value
+        showModal2.value = n.value === 16 ? true : false
+        showModal.value = n.value === 0 ? true : false
       },
       {
         immediate: true,
@@ -107,7 +96,7 @@ export default defineComponent({
       }
     }
     const complete = () => {
-      dispatch('system/showDialog', 16)
+      dispatch('system/showDialog', null)
       showModal2.value = false
     }
 
@@ -131,7 +120,6 @@ export default defineComponent({
     return {
       t,
       showModal,
-      show0,
       handleClick,
       showModal2,
       complete,
@@ -145,7 +133,7 @@ export default defineComponent({
   color: white;
   font-size: 15px;
   line-height: 62px;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   font-weight: bold;
 
 }
@@ -162,7 +150,7 @@ export default defineComponent({
 
 .savebtn {
   width: 250px;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   border-radius: 30px;
   color: white;
 
@@ -171,7 +159,7 @@ export default defineComponent({
   }
 
   &:hover {
-    background: rgba(255,255,255,.05);
+    background: rgba(255, 255, 255, .05);
   }
 }
 

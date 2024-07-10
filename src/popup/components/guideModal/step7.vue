@@ -1,4 +1,3 @@
-
 <template>
   <van-popover v-model:show="showModal" @click-overlay="beforeClose" :close-on-click-overlay="false" trigger="manual" class="popover-dialog step7" placement="bottom" teleport="#page-box" overlay>
     <div class="dialog-box">
@@ -12,9 +11,9 @@
         {{ t("bootstrapwindow.nFTsMessage") }}
       </div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(7)">{{
-          t("bootstrapwindow.next")
-        }}</van-button>
+        <van-button type="primary" @click="handleClick(8)">{{
+    t("bootstrapwindow.next")
+          }}</van-button>
       </div>
     </div>
   </van-popover>
@@ -34,12 +33,7 @@ export default defineComponent({
     [Button.name]: Button,
     WormTransition,
   },
-  props: {
-    type: {
-      type: Number,
-      default: 7,
-    },
-  },
+
   setup(props: any, context: SetupContext) {
     const { t } = useI18n();
     const { state, dispatch } = useStore();

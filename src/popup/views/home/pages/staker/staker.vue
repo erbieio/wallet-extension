@@ -28,7 +28,7 @@
             <div class="label lh-28 flex center-v">
                 <span>{{ t('validator.otherValidator') }}</span>
                 <van-popover v-model:show="validModal" theme="dark" placement="bottom-start">
-                    <p class="pl-10 pr-10">{{ t("validator.otherValidatorTip") }}</p>
+                    <p class="pl-10 pr-10">Stake ERB with highly stable validators to earn inflation rewards.</p>
                     <template #reference>
                         <van-icon name="question hover" @mouseover="validModal = true" @mouseleave="validModal = false" />
                     </template>
@@ -45,7 +45,7 @@
             <div class="label lh-28  flex center-v">
                 <span>{{ t('validator.totalStaking') }}</span>
                 <van-popover v-model:show="totalModal" theme="dark" placement="bottom-start">
-                    <p class="pl-10 pr-10">{{ t("common.exchange_pledge") }}</p>
+                    <p class="pl-10 pr-10">The minimum staking amount is 350 ERB.</p>
                     <template #reference>
                         <van-icon name="question hover" @mouseover="totalModal = true" @mouseleave="totalModal = false" />
                     </template>
@@ -60,7 +60,7 @@
             <div class="label lh-28  flex center-v">
                 <span>{{ t('validator.amount') }}</span>
                 <van-popover v-model:show="amountModal" theme="dark" placement="bottom-start">
-                    <p class="pl-10 pr-10">{{ t("validator.amountTip") }}</p>
+                    <p class="pl-10 pr-10">The remaining available balance in your account.</p>
                     <template #reference>
                         <van-icon name="question hover" @mouseover="amountModal = true" @mouseleave="amountModal = false" />
                     </template>

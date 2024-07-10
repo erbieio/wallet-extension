@@ -1,19 +1,19 @@
 // @ts-nocheck
-import localforage from 'localforage';
-window.localforage = localforage
-import { clone } from 'pouchdb-utils';
-import { createStore } from 'vuex'
-import common from './modules/common'
-import account from './modules/account'
-import price from './modules/price'
-import system from './modules/system'
-import transfer from './modules/transfer'
-import mnemonic from './modules/mnemonic'
-import nft from './modules/nft'
-import txList from './modules/txList'
-import configuration from './modules/configuration'
-import VuexPersistence from 'vuex-persist';
-import deepmerge from 'deepmerge'
+import localforage from "localforage";
+window.localforage = localforage;
+import { clone } from "pouchdb-utils";
+import { createStore } from "vuex";
+import common from "./modules/common";
+import account from "./modules/account";
+import price from "./modules/price";
+import system from "./modules/system";
+import transfer from "./modules/transfer";
+import mnemonic from "./modules/mnemonic";
+import nft from "./modules/nft";
+import txList from "./modules/txList";
+import configuration from "./modules/configuration";
+import VuexPersistence from "vuex-persist";
+import deepmerge from "deepmerge";
 export const vuexLocal = new VuexPersistence({
   storage: localforage,
   asyncStorage: true,
@@ -27,8 +27,8 @@ export const vuexLocal = new VuexPersistence({
       transfer,
       mnemonic,
       txList,
-      configuration
-    } = store
+      configuration,
+    } = store;
     const {
       amountType,
       ethAccountInfo,
@@ -38,6 +38,7 @@ export const vuexLocal = new VuexPersistence({
       language,
       lastDelayTime,
       layoutType,
+      showGuideVal,
       show0,
       show1,
       show2,
@@ -56,9 +57,9 @@ export const vuexLocal = new VuexPersistence({
       show15,
       show16,
       wallet_token,
-      chainVersion
-    } = system
-    return clone(({
+      chainVersion,
+    } = system;
+    return clone({
       account,
       common,
       nft,
@@ -74,6 +75,7 @@ export const vuexLocal = new VuexPersistence({
         language,
         lastDelayTime,
         layoutType,
+        showGuideVal,
         show0,
         show1,
         show2,
@@ -91,22 +93,19 @@ export const vuexLocal = new VuexPersistence({
         show14,
         show15,
         show16,
-        wallet_token
+        wallet_token,
       },
       mnemonic,
       txList,
-      configuration
-    }))
+      configuration,
+    });
   },
 });
 
 const store = createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+  state: {},
+  mutations: {},
+  actions: {},
   modules: {
     account,
     price,
@@ -116,26 +115,27 @@ const store = createStore({
     nft,
     mnemonic,
     txList,
-    configuration
+    configuration,
   },
-  plugins: [
-    vuexLocal.plugin
-  ]
-})
+  plugins: [vuexLocal.plugin],
+});
 // Actively synchronizes from cache to store
 export const asyncStoreFromLocal = () => {
-  let time = setTimeout(async() => {
-    const savedState = await vuexLocal.restoreState(vuexLocal.key, vuexLocal.storage)
-    store.replaceState(deepmerge(store.state, savedState || {}, {
-      arrayMerge: (destinationArray, sourceArray, options) => sourceArray
-    }))
-    clearTimeout(time)
-   },500)
-}
+  let time = setTimeout(async () => {
+    const savedState = await vuexLocal.restoreState(
+      vuexLocal.key,
+      vuexLocal.storage
+    );
+    store.replaceState(
+      deepmerge(store.state, savedState || {}, {
+        arrayMerge: (destinationArray, sourceArray, options) => sourceArray,
+      })
+    );
+    clearTimeout(time);
+  }, 500);
+};
 
-
-export default store
+export default store;
 export interface StoreReturns {
-  [key: string]: any
+  [key: string]: any;
 }
-

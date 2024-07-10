@@ -1,15 +1,5 @@
-
 <template>
-  <van-popover
-    v-model:show="showModal"
-    @click-overlay="beforeClose"
-    :close-on-click-overlay="false"
-    trigger="manual"
-    class="popover-dialog step3"
-    placement="bottom"
-    teleport="#page-box"
-    overlay
-  >
+  <van-popover v-model:show="showModal" @click-overlay="beforeClose" :close-on-click-overlay="false" trigger="manual" class="popover-dialog step3" placement="bottom" teleport="#page-box" overlay>
     <div class="dialog-box">
       <div class="serial-number">
         <span class="left">3</span><span>/</span> 11
@@ -21,9 +11,8 @@
         {{ t("bootstrapwindow.assetsMessage") }}
       </div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(3)">
-          {{ t("bootstrapwindow.next") }}</van-button
-        >
+        <van-button type="primary" @click="handleClick(4)">
+          {{ t("bootstrapwindow.next") }}</van-button>
       </div>
     </div>
   </van-popover>
@@ -43,20 +32,14 @@ export default defineComponent({
     [Button.name]: Button,
     WormTransition,
   },
-  props: {
-    type: {
-      type: Number,
-      default: 3,
-    },
-  },
   setup(props: any, context: SetupContext) {
     const { t } = useI18n();
-    const { state, dispatch } = useStore();
-    const show3 = computed(() => state.system.show3);
+    const { state, dispatch, getters } = useStore();
+    const showGuideModalVal = computed(() => getters['system/getGuideModalVal'])
     const showModal = ref(false);
     watch(
-      () => show3,
-      (n) => (showModal.value = n.value),
+      () => showGuideModalVal,
+      (n) => (showModal.value = n.value === 3 ? true : false),
       { immediate: true, deep: true }
     );
 
@@ -80,7 +63,6 @@ export default defineComponent({
     };
     return {
       t,
-      show3,
       handleClick,
       showModal,
       beforeClose,
@@ -92,6 +74,7 @@ export default defineComponent({
 .dialog-box {
   // width: 340px;
   padding-bottom: 25px;
+
   .serial-number {
     display: flex;
     justify-content: flex-end;
@@ -99,10 +82,12 @@ export default defineComponent({
     padding-bottom: 14px;
     padding-right: 14px;
     font-size: 12px;
+
     .left {
       color: white;
     }
   }
+
   .title {
     text-align: center;
     font-size: 24px;
@@ -111,17 +96,20 @@ export default defineComponent({
     margin-top: 22px;
     color: white;
   }
+
   .small-tit {
     text-align: center;
     margin-bottom: 30px;
     font-size: 12px;
     color: #848484;
   }
+
   :deep {
     button {
       min-width: 100px;
     }
   }
+
   :deep(.van-popover__wrapper) {
     height: 0;
   }

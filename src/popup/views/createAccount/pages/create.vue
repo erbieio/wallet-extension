@@ -359,4 +359,12 @@ export default {
 :deep(.icon-box) {
   margin-top: 35px;
 }
+
+.hover {
+  text-decoration: underline;
+
+  &:hover {
+    color: #0958d9;
+  }
+}
 </style>

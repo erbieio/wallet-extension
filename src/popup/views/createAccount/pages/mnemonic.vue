@@ -7,7 +7,7 @@
   <div class="mnemonic-page">
     <WormTransition size="small">
       <template v-slot:icon>
-        <img class="logo" src="@/assets/logo1.png"  />
+        <img class="logo" src="@/assets/logo1.png" />
       </template>
     </WormTransition>
     <div class="title f-24 lh-30 text-center mt-10">{{ t("createAccountpage.mneTit") }}</div>
@@ -237,7 +237,7 @@ export default {
   .ipt {
     width: 89px;
     height: 25px;
-    background: rgba(255,255,255,.05);
+    background: rgba(255, 255, 255, .05);
     border-radius: 25px;
     border: 1PX solid white;
     position: relative;
@@ -265,7 +265,7 @@ export default {
       width: 24px;
       line-height: 24px;
       height: 24px;
-      background: white;
+      background: rgba(255, 255, 255, .1);
       border-radius: 12px;
       position: absolute;
       left: -0.5px;
@@ -280,6 +280,7 @@ export default {
       border: none;
       text-align: center;
       color: white;
+      background: none;
       border-radius: 25px;
       font-size: 12px;
       margin-right: 2px;
@@ -294,7 +295,7 @@ export default {
 
   .card {
     line-height: 25px;
-    background: rgba(255,255,255,.05);
+    background: rgba(255, 255, 255, .05);
     border-radius: 12.5px;
     padding: 0 13px;
     margin-right: 10px;
@@ -329,4 +330,5 @@ export default {
   .container {
     padding: 0 27.5px;
   }
-}</style>
+}
+</style>

@@ -269,6 +269,14 @@ export default {
   }
 }
 
+.hover {
+  text-decoration: underline;
+
+  &:hover {
+    color: #0958d9;
+  }
+}
+
 :deep() {
   .van-field.error {
     .van-field__body {

@@ -43,7 +43,7 @@
   </div>
 </template>
 <script lang="ts">
-import GuideModal9 from "@/popup/components/guideModal/step9.vue";
+// import GuideModal9 from "@/popup/components/guideModal/step9.vue";
 import GuideModal13 from "@/popup/components/guideModal/step13.vue";
 
 // One-click exchange animation component
@@ -65,7 +65,7 @@ import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { decode } from "js-base64";
 import { useToast } from "@/popup/plugins/toast";
-import {WALLET_DOC} from '@/popup/enum/env'
+import { WALLET_DOC } from '@/popup/enum/env'
 
 export default defineComponent({
   name: "exchange-btn",
@@ -73,7 +73,7 @@ export default defineComponent({
     [Button.name]: Button,
     [Sticky.name]: Sticky,
     [Icon.name]: Icon,
-    GuideModal9,
+    // GuideModal9,
     GuideModal13,
   },
   props: {
@@ -413,4 +413,5 @@ export default defineComponent({
     opacity: 1;
     transform: scale(1);
   }
-}</style>
+}
+</style>

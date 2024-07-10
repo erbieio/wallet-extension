@@ -1,6 +1,6 @@
 {
   "name": "ErbieWallet",
-  "description": "It is used for digital signature and digital asset management, and for storing and trading crypto assets",
+  "description": "ErbieChain's native crypto wallet supports staking and other specialized scenarios and is compatible with all EVM assets.",
   "default_locale": "en",
   "version": "0.2.9",
   "manifest_version": 3,

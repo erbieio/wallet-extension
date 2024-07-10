@@ -1,8 +1,5 @@
-
-
-
-import { handleRequest } from './modules/handleRequest.js'
-import { handleRpcResponse } from './modules/handleRpcResponse.js'
+import { handleRequest } from "./modules/handleRequest.js";
+import { handleRpcResponse } from "./modules/handleRpcResponse.js";
 
 import {
   getPwd,
@@ -17,99 +14,126 @@ import {
   getSenderAccounts,
   handleType,
   wallet_methods,
-  eventTypes
-} from './modules/common.js'
-import { handleRpc } from './modules/handleRequest.js';
+  eventTypes,
+} from "./modules/common.js";
+import { handleRpc } from "./modules/handleRequest.js";
 // Listening for Browser events
 // Return true for asynchronous messages
-chrome.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
-  const walletPwd = await getPwd()
+chrome.runtime.onMessage.addListener(async function (
+  request,
+  sender,
+  sendResponse
+) {
+  const walletPwd = await getPwd();
   if (!walletPwd) {
-    clearConnectList()
+    clearConnectList();
   }
   const { data, target } = request;
   if (!target) {
-    return false
+    return false;
   }
-  const { method, params: newParams, sendId } = data
-  if (target != 'erbie-inpage' && target != 'wormholes-popup' && (!data || !data.method)) {
-    const errMsg = errorCode['4100']
-    sendMessage({ ...createMsg(errMsg, data.method || 'unknow'), sendId }, {}, sender)
-    return false
+  const { method, params: newParams, sendId } = data;
+  if (
+    target != "erbie-inpage" &&
+    target != "erbie-popup" &&
+    (!data || !data.method)
+  ) {
+    const errMsg = errorCode["4100"];
+    sendMessage(
+      { ...createMsg(errMsg, data.method || "unknow"), sendId },
+      {},
+      sender
+    );
+    return false;
   }
 
   // Check whether target is a Content-script injected erbie-inpage
   // Authentication to check whether the connection is established
-  const isConnect = await isConnected(sender)
+  const isConnect = await isConnected(sender);
   //  When not connected
-  if ((target == 'erbie-inpage' && !isConnect) && (method != handleType.wallet_requestPermissions && method != handleType.eth_requestAccounts && method !== 'message')) {
-    const errMsg = errorCode['4100']
-    sendMessage({ ...createMsg(errMsg, method || 'unknow'), sendId }, {}, sender)
-    return false
+  if (
+    target == "erbie-inpage" &&
+    !isConnect &&
+    method != handleType.wallet_requestPermissions &&
+    method != handleType.eth_requestAccounts &&
+    method !== "message"
+  ) {
+    const errMsg = errorCode["4100"];
+    sendMessage(
+      { ...createMsg(errMsg, method || "unknow"), sendId },
+      {},
+      sender
+    );
+    return false;
   }
   // If no, return the account address if yes
-  if (isConnect && (method == handleType.wallet_requestPermissions || method == handleType.eth_requestAccounts)) {
-    const response = await getSenderAccounts(sender)
-    const errMsg = { ...errorCode['200'], data: response }
-    const sendMsg = createMsg(errMsg, method)
-    sendMessage({ ...sendMsg, sendId }, {}, sender)
-    return false
+  if (
+    isConnect &&
+    (method == handleType.wallet_requestPermissions ||
+      method == handleType.eth_requestAccounts)
+  ) {
+    const response = await getSenderAccounts(sender);
+    const errMsg = { ...errorCode["200"], data: response };
+    const sendMsg = createMsg(errMsg, method);
+    sendMessage({ ...sendMsg, sendId }, {}, sender);
+    return false;
   }
 
-
-
-
   // form web page message
-  if (target == 'erbie-inpage') {
+  if (target == "erbie-inpage") {
     // Check whether the RPC Method is supported
     if (wallet_methods.includes(method)) {
       // Return error messages are not supported
       if (handleRequest[method]) {
-        handleRequest[method]({ newParams, sendId }, sendResponse, sender)
+        handleRequest[method]({ newParams, sendId }, sendResponse, sender);
       } else {
-        const errMsg = errorCode['4200']
-        sendMessage({ ...createMsg(errMsg, method || 'unknow'), sendId }, {}, sender)
-        return false
+        const errMsg = errorCode["4200"];
+        sendMessage(
+          { ...createMsg(errMsg, method || "unknow"), sendId },
+          {},
+          sender
+        );
+        return false;
       }
     } else {
       // RPC calls
-      handleRpc(method, { newParams, sendId }, sendResponse, sender)
+      handleRpc(method, { newParams, sendId }, sendResponse, sender);
     }
     return true;
   }
 
   // form popup message
-  if (target == 'wormholes-popup') {
-    const { method, response } = data
-    if (method == 'update-wallet') {
+  if (target == "erbie-popup") {
+    const { method, response } = data;
+    if (method == "update-wallet") {
       // initWallet()
-      return false
+      return false;
     }
     if (!handleRpcResponse[method] || !handleRpcResponse[method].sendResponse) {
-      const errMsg = errorCode['4200']
-      sendMessage(createMsg(errMsg, method || 'unknow'), {}, sender)
-      return false
+      const errMsg = errorCode["4200"];
+      sendMessage(createMsg(errMsg, method || "unknow"), {}, sender);
+      return false;
     }
-    handleRpcResponse[method].sendResponse(response || {}, sendResponse, sender)
-    return true
+    handleRpcResponse[method].sendResponse(
+      response || {},
+      sendResponse,
+      sender
+    );
+    return true;
   }
-
 });
-
-
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason == "install") {
-    console.log('Background.js onInstalled.')
+    console.log("Background.js onInstalled.");
     //call a function to handle a first install
   } else if (details.reason == "update") {
-    console.log('Background.js onUpdate.')
+    console.log("Background.js onUpdate.");
     //call a function to handle an update
   }
-  clearConnectList()
-  clearPwd()
-
-})
+  clearConnectList();
+  clearPwd();
+});
 
 //  Listen window closed
 chrome.tabs.onRemoved.addListener(async function (tabid, { windowId }) {
@@ -127,35 +151,37 @@ chrome.tabs.onRemoved.addListener(async function (tabid, { windowId }) {
   //   console.log('err remove', err)
   //  }
 
-  Object.keys(handleRpcResponse).forEach(method => {
-    if (handleRpcResponse[method] && handleRpcResponse[method].window && handleRpcResponse[method].window.id == windowId) {
-      resetParamsData(method)
+  Object.keys(handleRpcResponse).forEach((method) => {
+    if (
+      handleRpcResponse[method] &&
+      handleRpcResponse[method].window &&
+      handleRpcResponse[method].window.id == windowId
+    ) {
+      resetParamsData(method);
     }
-  })
-})
+  });
+});
 
 export const getQuery = (url) => {
-  const hash = url
-  const strarr = hash.split('?')
-  const str = strarr.length ? strarr[1] : null
+  const hash = url;
+  const strarr = hash.split("?");
+  const str = strarr.length ? strarr[1] : null;
   if (!str) {
-    return {}
+    return {};
   }
   let arr = str.split("&");
   let obj = {};
   for (let i of arr) {
     obj[i.split("=")[0]] = i.split("=")[1];
   }
-  return obj
-}
-
+  return obj;
+};
 
 chrome.alarms.onAlarm.addListener((e) => {
-  const pwdExpiredKey = eventTypes.pwdExpired
-  const { name } = e
+  const pwdExpiredKey = eventTypes.pwdExpired;
+  const { name } = e;
   if (name == pwdExpiredKey) {
     // 12 h password expired clear data
-    handleRpcResponse[handleType.logout].sendResponse({}, null, null)
-
+    handleRpcResponse[handleType.logout].sendResponse({}, null, null);
   }
-})
+});

@@ -1,6 +1,6 @@
 <template>
   <van-popover v-model:show="showModal" @click-overlay="beforeClose" :close-on-click-overlay="false" trigger="manual" class="popover-dialog step1" placement="bottom-start" teleport="#page-box" overlay>
-    <div class="dialog-box" v-if="show1">
+    <div class="dialog-box">
       <div class="serial-number">
         <span class="left">1</span>
         <span>/</span> 11
@@ -8,7 +8,7 @@
       <div class="title">{{ t('bootstrapwindow.accout') }}</div>
       <div class="small-tit pl-30 pr-30 mt-20">{{ t('bootstrapwindow.accountMessage') }}</div>
       <div class="flex center">
-        <van-button type="primary" @click="handleClick(1)">{{ t('bootstrapwindow.next') }}</van-button>
+        <van-button type="primary" @click="handleClick(2)">{{ t('bootstrapwindow.next') }}</van-button>
       </div>
       <span class="tip2 f-12">{{ t('bootstrapwindow.exitprompt') }}</span>
     </div>
@@ -29,20 +29,16 @@ export default defineComponent({
     [Button.name]: Button,
     WormTransition
   },
-  props: {
-    type: {
-      type: Number,
-      default: 1
-    }
-  },
   setup(props: any, context: SetupContext) {
     const { t } = useI18n()
-    const { state, dispatch } = useStore()
+    const { state, dispatch, getters } = useStore()
     const showModal = ref(false)
-    const show1 = computed(() => state.system.show1)
+    const showGuideModalVal = computed(() => getters['system/getGuideModalVal'])
     watch(
-      () => show1,
-      n => (showModal.value = n.value),
+      () => showGuideModalVal,
+      n => {
+        showModal.value = n.value === 1 ? true : false
+      },
       { immediate: true, deep: true }
     )
     const handleClick = (v: number) => {
@@ -63,7 +59,6 @@ export default defineComponent({
     }
     return {
       t,
-      show1,
       handleClick,
       showModal,
       beforeClose
