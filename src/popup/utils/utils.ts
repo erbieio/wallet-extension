@@ -1,5 +1,5 @@
 import useClipboard from "vue-clipboard3";
-import { SCAN_PATH, VUE_APP_SCAN_URL } from "@/popup/enum/env";
+import { SCAN_PATH, VUE_APP_SCAN_PATH, VUE_APP_SCAN_URL } from "@/popup/enum/env";
 import store from "@/popup/store";
 
 const { toClipboard } = useClipboard();
@@ -165,7 +165,7 @@ type ScanPaths =
   | "/blockDetail";
 
 export const toScan = (addr: string, path: ScanPaths = "/accountDetail") => {
-  const fullPath = `${VUE_APP_SCAN_URL}${path}/${addr}`;
+  const fullPath = `${VUE_APP_SCAN_PATH}${path}/${addr}`;
   if (addr) {
     if (store.state.account.currentNetwork.id === "wormholes-network-1") {
       window.open(fullPath);
