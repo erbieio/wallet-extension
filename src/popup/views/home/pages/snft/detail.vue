@@ -113,7 +113,6 @@ import { useTradeConfirm } from "@/popup/plugins/tradeConfirmationsModal";
 import { web3 } from "@/popup/utils/web3";
 import { useToast } from "@/popup/plugins/toast";
 import { reactive } from "vue";
-import { toScan } from "@/popup/utils/utils";
 
 
 const disabledChip = {
@@ -619,7 +618,6 @@ export default {
       chooseNum,
       chooseName,
       showImg,
-      toScan,
       toSend,
       showModal,
       pageData,

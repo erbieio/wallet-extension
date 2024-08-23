@@ -171,7 +171,7 @@ export default defineComponent({
       return bigP.multipliedBy(bigU);
     });
     const view = () => {
-      toScan(props.data.hash, '/txDetail')
+      toScan(props.data.hash, '/tx')
     };
     const cancel = () => {
       emit("handleClose");

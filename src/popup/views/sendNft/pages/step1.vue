@@ -85,7 +85,6 @@ import NavHeader from "@/popup/components/navHeader/index.vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { addressMask, decimal } from "@/popup/utils/filters";
-import { toScan } from '@/popup/utils/utils'
 
 export default {
   components: {

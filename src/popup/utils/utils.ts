@@ -159,12 +159,11 @@ export function guid() {
 }
 
 type ScanPaths =
-  | "/accountDetail"
-  | "/txDetail"
-  | "/accountDetail"
-  | "/blockDetail";
+  | "/address"
+  | "/tx"
+  | "/block";
 
-export const toScan = (addr: string, path: ScanPaths = "/accountDetail") => {
+export const toScan = (addr: string, path: ScanPaths = "/address") => {
   const fullPath = `${VUE_APP_SCAN_PATH}${path}/${addr}`;
   if (addr) {
     if (store.state.account.currentNetwork.id === "wormholes-network-1") {
